@@ -1,2 +1,2 @@
-# finalproject
+# finalproject-react
 react
