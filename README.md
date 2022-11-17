@@ -1,3 +1,9 @@
+윤지님 화이팅
+나영님 화이팅
+성준님 화이팅
+동현님 화이팅
+동영님 화이팅
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
