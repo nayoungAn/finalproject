@@ -1,6 +1,7 @@
 import { POST_LOGIN, POST_REGISTER} from "../modules/MemberMoudule";
 
 
+
 //로그인
 export const callLoginAPI = ({form}) => {
 
@@ -27,6 +28,8 @@ export const callLoginAPI = ({form}) => {
             window.localStorage.setItem('accessToken', result.data.accessToken);
             dispatch({ type: POST_LOGIN, payload: result });
         }
+
+        
     }
 
 }
