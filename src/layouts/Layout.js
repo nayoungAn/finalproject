@@ -8,7 +8,6 @@ function Layout() {
 
     return (
 
-
         <> 
         <div className="wrapper">
             <Header/>
