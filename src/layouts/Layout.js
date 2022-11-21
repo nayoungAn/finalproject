@@ -7,15 +7,16 @@ import LayoutCSS from "./Layout.module.css"
 function Layout() {
 
     return (
-        <>
-            <div className="wrapper">
-                <Header/>
-                <Navbar/>
-                <main className={ LayoutCSS.main}>
-                    <Outlet/>
-                </main>
-                <Footer/>
-            </div>  
+
+        <> <div className={ LayoutCSS.main}>
+            <Header/>
+            <Navbar/>
+            <Footer/>
+           </div>  
+            <main>
+                <Outlet/>
+            </main>
+
         </>
     );
 }

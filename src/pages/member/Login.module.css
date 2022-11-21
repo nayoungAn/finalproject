@@ -1,0 +1,55 @@
+.backgroundDiv{
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}
+
+.loginDiv{    
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;   
+}
+
+.loginDiv input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 250px;
+    border-radius: 10px;
+    text-indent: 10px;
+    border-color: #979BA5 ;
+    color: #626469;
+    outline: none;
+}
+.loginDiv input:focus{
+    border-color: #4D62CC;
+    outline: none;
+}
+
+.loginDiv button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 250px;
+    background-color: #4D62CC;
+    font-weight: bold;
+    border: none;
+    color: #FFFFFF;
+}
+
+.loginDiv button:hover {
+    background-color: #1e339c;
+}
+
+

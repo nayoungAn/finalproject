@@ -1,17 +1,17 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+
+import {  BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/member/Login";
 import Layout from "./layouts/Layout";
-import Main from "./pages/lectures/Main";
 
 function App() {
   return (
 
     <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<Layout/> }>
-            <Route index element={<Main/> }/>
 
-          </Route>
-      </Routes>
+    <Routes>
+      <Route path="/" element={ <Login/>}/>
+      <Route paht="/ono" element={ <Layout/>}/>
+    </Routes>
     </BrowserRouter>
     
   );

@@ -3,13 +3,13 @@ import FooterCSS from './Footer.module.css';
 
 function Footer() {
 
-  return(
-    <div className={ FooterCSS.footerDiv} >
+    /*<div className={ FooterCSS.footerDiv} >
       <h3 style={{width: '100%', textAlign: 'center'}}>
         Copyright 2022. On&Off All rights reserved.
       </h3>  
-    </div>
-  ) 
+    </div>*/
+
+
 };
 
 export default Footer;
