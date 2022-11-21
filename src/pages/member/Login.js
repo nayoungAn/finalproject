@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { callLoginAPI } from "../../api/MemberAPICalls";
 import LoginCSS from './Login.module.css'
 
+
+
 function Login() {
 
     const navigate = useNavigate();
@@ -65,8 +67,15 @@ function Login() {
                 아이디 | 비밀번호 찾기
             </button>
             </div>
+
+         
         </div>
+
+      
+
         );
+
+     
 }
 
 export default Login;
