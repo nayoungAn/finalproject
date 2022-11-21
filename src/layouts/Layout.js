@@ -7,6 +7,7 @@ import LayoutCSS from "./Layout.module.css"
 function Layout() {
 
     return (
+
         <> <div className={ LayoutCSS.main}>
             <Header/>
             <Navbar/>
@@ -15,6 +16,7 @@ function Layout() {
             <main>
                 <Outlet/>
             </main>
+
         </>
     );
 }
