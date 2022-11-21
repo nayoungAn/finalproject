@@ -14,7 +14,7 @@ function Login() {
     useEffect(() => {
         if(login.status === 200) {
             console.log("[Login] Login SUCCESS {}", login);
-            navigate("/", { replace: true });
+            navigate("ono", { replace: true });
         }
     }
     ,[login]
@@ -41,7 +41,7 @@ function Login() {
     return(
         <div className={ LoginCSS.backgroundDiv }>
         <div className={ LoginCSS.loginDiv }>
-            <h1>로그인</h1>
+            <img src="images/ono.png" alt="logo image"/>
             <input
                 type="text"
                 name="memberId"

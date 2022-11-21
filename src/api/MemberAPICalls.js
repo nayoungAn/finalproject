@@ -8,6 +8,7 @@ export const callLoginAPI = ({form}) => {
 
     return async (dispatch, getState) => {
 
+
         const result = await fetch(requestURL, {
             method : "POST",
             headers : {
@@ -19,7 +20,7 @@ export const callLoginAPI = ({form}) => {
                 memberPassword: form.memberPassword
             })
         })
-        .then(response => response.json);
+        .then(response => response.json());
 
         if(result.status === 200) {
             console.log('[MemberAPICalls] callLoginAPI result : ', result);
