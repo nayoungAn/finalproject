@@ -24,10 +24,11 @@ function Navbar(){
             <ul className={ NavCSS.NavlistUl }>
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button className={NavCSS.dropbtn}>공지사항</button>
                 <div className={ NavCSS.dropdowncontent }>
-    <a href="#">12321</a>
-    <a href="#">L312321</a>
-    <a href="#">Link3</a>
-  </div></NavLink></li>}
+                    
+                <a href="#">12321</a>
+                <a href="#">21</a>
+                <a href="#">Link3</a>
+                </div></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>원생관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>강사관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>강의관리</button></NavLink></li>}
