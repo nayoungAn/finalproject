@@ -7,6 +7,7 @@ import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectUpdate from "./pages/classes/SubjectUpdate"
 import ClassHistory from "./pages/classes/ClassHistory";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
+import TeacherManagement from "./pages/teacher/TeacherManagement";
 function App() {
   return (
 
@@ -22,6 +23,7 @@ function App() {
               <Route path="classes" element={ <OpenClasses/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
+        <Route path="teacher" element={  <TeacherManagement/> }/>
     </Route>
     </Routes>
     </BrowserRouter>

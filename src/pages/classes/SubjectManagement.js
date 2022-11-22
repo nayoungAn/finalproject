@@ -2,13 +2,14 @@ import SubjectManagementCSS from './SubjectManagement.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import{ callSubjectListForAdminAPI,callSubjectDeleteAPI } from '../../api/SubjectAPICalls';
+import{callSubjectDeleteAPI } from '../../api/SubjectAPICalls';
+import { callSubjectListForAdminAPI } from '../../api/SubjectListAPICall';
 
 function SubjectManagement() {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const subjects  = useSelector(state => state.subjectReducer);      
+    const subjects  = useSelector(state => state.subjectListReducer);      
     const subjectList = subjects.data;
     console.log('subjectManagement', subjectList);
 
@@ -22,37 +23,45 @@ function SubjectManagement() {
             pageNumber.push(i);
         }
     }
-
+    // window.location.reload()
     useEffect(
         () => {         
             dispatch(callSubjectListForAdminAPI({
-                currentPage: currentPage
+                currentPage: currentPage,
             }));            
+            
         }
-        ,[currentPage]
+        ,[currentPage]    
     );
 
     const onClickSubjectInsert = () => {
         console.log('[SubjectManagement] onClickSubjectInsert');
         navigate("/ono/OpenClasses/subject-registration", { replace: false })
     }
+
     const onClickSubjectDelete = (subjectCode) => {
         console.log('[SubjectManagement] onClickSubjectDelete');
-     
-        dispatch(callSubjectDeleteAPI({
-            subjectCode : subjectCode
-        }));
-        
-        window.location.reload();
-        
+        {
+            dispatch(callSubjectDeleteAPI({
+                subjectCode : subjectCode
+            }));
+            console.log("삭제");
+            alert('과목이 삭제되었습니다.');
+             window.location.reload();
+        }
     }
     const onClickTableTr = (e, subjectCode) => {
 
         console.log(e.target.className);
-        console.log("상세조회");
-        e.target.className = "deleteBtn" ? 
-        false : navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false }) 
         
+        if(e.target.className != "deleteBtn")
+                {
+                    navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false })
+                    console.log("상세조회");
+                }     
+        else {
+            onClickSubjectDelete(subjectCode);
+        }
     }
 
     return (
@@ -94,7 +103,7 @@ function SubjectManagement() {
                             <td>{ s.subjectLanguage }</td>
                             <td>{ s.subjectForm }</td>
                             <td><button className="deleteBtn"
-                    onClick={ () => onClickSubjectDelete(s.subjectCode)}
+                  
                 >
                     삭제
                 </button></td>

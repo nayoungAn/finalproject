@@ -42,8 +42,10 @@ function SubjectRegistration(){
             form : formData
         }));
 
+        alert('과목이 등록되었습니다.');
         navigate("/ono/OpenClasses/subjects", { replace : true });
-        window.location.reload();
+        // window.location.reload()
+
     }
 
     return (
