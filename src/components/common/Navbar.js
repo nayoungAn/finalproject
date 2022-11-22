@@ -1,9 +1,13 @@
 import { NavLink, Link } from 'react-router-dom';
-
 import NavCSS from './Navbar.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
+import {useRef, useState} from "react";
+//import {classNames} from "classNames";
+import useDetectClose from "../../hooks/useDetectCLose";
+
 
 function Navbar(){
+
 
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
@@ -16,12 +20,11 @@ function Navbar(){
     return(
         <div className={ NavCSS.NavbarDiv }>
             <ul className={ NavCSS.NavlistUl }>
-
                 {/* 관리자 */}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>공지사항</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>원생관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>강사관리</button></NavLink></li>}
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/OpenClasses"><button>강의관리</button></NavLink></li>}
+                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>강의관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>수납관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/Cons"><button>상담관리</button></NavLink></li>}
                 {/* 강사 */}
