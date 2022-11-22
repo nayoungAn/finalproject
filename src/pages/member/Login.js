@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { callLoginAPI } from "../../api/MemberAPICalls";
 import LoginCSS from './Login.module.css'
 
+
 function Login() {
 
     const navigate = useNavigate();
@@ -38,6 +39,9 @@ function Login() {
         }))
     }
 
+    const onClickFindHandler = () => {
+        navigate("/findmeminfo", {replace:true});
+    }
     return(
         <div className={ LoginCSS.backgroundDiv }>
         <div className={ LoginCSS.loginDiv }>
@@ -61,12 +65,19 @@ function Login() {
             >
                 로그인
             </button>
-            <button>
+            <button onClick={ onClickFindHandler }>
                 아이디 | 비밀번호 찾기
             </button>
             </div>
+
+         
         </div>
+
+      
+
         );
+
+     
 }
 
 export default Login;

@@ -1,38 +1,83 @@
-
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import HeaderCSS from "./Header.module.css";
+import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { callLogoutAPI } from "../../api/MemberAPICalls";
+import LoginModal from '../LoginModal';
+import { decodeJwt } from '../../utils/tokenUtils';
 
 function Header(){
 
+    /* localStorage에 저장된 토큰 정보가 있으면 로그인 한 상태이다. */
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
 
-    const isLogin = null;
+    if(isLogin){
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
 
-    function BeforeLogin(){
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [loginModal, setLoginModal] = useState(false);
+      /* 로고 클릭 시 메인 페이지로 이동 */
+      const onClickLogoHandler = () => {
+        navigate("/", { replace : true });
+        }
+
+    /* 로그아웃 버튼 이벤트 */
+    const onClickLogoutHandler = () => {
+        window.localStorage.removeItem('accessToken');
+        dispatch(callLogoutAPI());
+        alert('로그아웃 후 메인으로 이동합니다.');
+        navigate('/', { replace : true });
+    }
+
+    const onClickSmsPageHandler = () => {
+
+        //토큰이 만료되었다면 다시 로그인 -> 로그인 모달창 띄우기
+        const token = decodeJwt(window.localStorage.getItem('accessToken'));
+
+        if(token.exp * 1000 < Date.now()) {
+            setLoginModal(true);
+            return;
+        }
+
+        navigate("/sms", { replace : true });
+    }
+    function AfterLogin(){
+
         return (
-            <div className={HeaderCSS.logintext}>
-                <NavLink to="/login">로그인</NavLink> | <NavLink to="/register">회원가입</NavLink>
+            <div>
+                 {decoded === "ROLE_ADMIN" && 
+                    <button 
+                    className={ HeaderCSS.logintext }
+                    onClick={ onClickSmsPageHandler }
+                >SMS
+                </button>
+                }
+                <button 
+                    className={ HeaderCSS.logintext } 
+                    onClick={ onClickLogoutHandler }
+                >
+                    로그아웃
+                </button>
+               
             </div>
         );
     }
 
-    function AfterLogin() {
-        return(
-            
-        <div>
-            <button className={HeaderCSS.HeaderBtn}>마이페이지</button> | <button className={HeaderCSS.HeaderBtn}>로그아웃</button>
-        </div> 
     
-           
-        )
-    }
 
 
     return (
         <>
+            { loginModal ? <LoginModal setLoginModal={ setLoginModal }/> : null }
             <div className={ HeaderCSS.HeaderDiv }>
-                <NavLink to="/"> <img src={process.env.PUBLIC_URL +'/logo/mainlogo.png' } className={HeaderCSS.mainlogo} alt="메인로고"/></NavLink>
-
-                { !isLogin ? <BeforeLogin/> : <AfterLogin/>}
+                <NavLink to="/"> 
+                <img src={process.env.PUBLIC_URL +'/logo/mainlogo.png' } className={HeaderCSS.mainlogo} alt="메인로고"/>
+                </NavLink>
+               { !isLogin ? <null/> : <AfterLogin/>}
             </div>
         </>
     );
