@@ -19,7 +19,7 @@ function Navbar(){
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>공지사항</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>원생관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>강사관리</button></NavLink></li>}
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/OpenClasses"><button>강의관리</button></NavLink></li>}
+                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/ono/OpenClasses"><button>강의관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>수납관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>상담관리</button></NavLink></li>}
                 {/* 강사 */}
