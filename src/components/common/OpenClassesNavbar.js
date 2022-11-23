@@ -17,6 +17,7 @@ function OpenClassesNavbar() {
             <li><NavLink to="/OpenClasses/subjects">과목 조회 </NavLink></li>
             <li><NavLink to="/OpenClasses/classes">강의 조회</NavLink></li>
             <li><NavLink to="/OpenClasses/classHistory">수강 조회</NavLink></li>
+
             </ul>
         </div>
     );
