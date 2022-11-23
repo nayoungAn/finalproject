@@ -1,16 +1,19 @@
-import consCSS from './Cons.module.css';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import consCSS from './ConsMain.module.css';
 import { callConsListAPI } from '../../api/ConsAPICalls';
-import Cons from "../../components/cons/Cons";
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
+
 
 function ConsMain(){
 
      /* 상품 목록 데이터 조회 */
+     const navigate = useNavigate();
      const dispatch = useDispatch();
      const cons = useSelector(state => state.consReducer);
      const consList = cons.data;
      const [currentPage, setCurrentPage] = useState(1);
+     
  
      useEffect(
          () => {
@@ -20,7 +23,20 @@ function ConsMain(){
          }
          , [currentPage]
      );
- 
+     /* 상세 목록 */ 
+     const onClickTable = (c, consCode) => {
+
+        console.log(c.target.className);
+        
+        if(c.target.className != "deleteBtn")
+                {
+                    navigate(`/ono/Cons/consdetail/${consCode}`, { replace: false })
+                    console.log("상세조회");
+                }     
+        else {
+            //onClickSubjectDelete(consCode);
+        }
+    }
      /* 페이징 버튼 */ 
      const pageInfo = cons.pageInfo;
      const pageNumber = [];
@@ -32,12 +48,54 @@ function ConsMain(){
 
     return (
         <>
-            <div className={ consCSS.productDiv }>
-            {
-                Array.isArray(consList) 
-                && consList.map((cons) => (<Cons key={ cons.consCode } cons={ cons } />))
-            }
-            </div>
+             <div className={ consCSS.bodyDiv }>
+            <div>
+                <button
+                    //onClick={ onClickSubjectInsert }
+                >
+                    과목 등록
+                </button>
+            </div>            
+            <table className={ consCSS.consTable }>
+                <colgroup>
+                    <col width="10%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="40%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>상담번호</th>
+                        <th>상담일</th>
+                        <th>이름</th>
+                        <th>제목</th>
+                        <th>내용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { Array.isArray(consList) && consList.map((c) => (
+                        <tr
+                            key={ c.consCode }
+                            onClick={ (event) => onClickTable(event, c.consCode) }
+                        >
+                            <td>{  c.consCode }</td>
+                            <td>{ c.consDate }</td>
+                            <td>{ c.consName }</td>
+                            <td>{ c.consTitle }</td>
+                            <td>{ c.consDescription }</td>
+                            <td><button className="deleteBtn"
+                  
+                >
+                    삭제
+                </button></td>
+                        </tr>
+                    )) 
+                    }
+                </tbody>                    
+            </table>         
+            
+        </div>
             <div style={ { listStyleType: 'none', display: 'flex'} }>
             {
                 Array.isArray(consList) &&

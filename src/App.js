@@ -31,10 +31,10 @@ function App() {
         <Route path="teacher" element={  <TeacherManagement/> }/>
 
         <Route path="Cons" element={ <ConsLayout/> }>
-            <Route index element={ <Navigate to="/Cons/consMain" replace /> } />
+            <Route index element={ <Navigate to="consMain" replace /> } />
             <Route path="consMain" element={ <ConsMain/> }/>
-            <Route path="cons/:consCode" element={ <ConsDetail/> }/>
-      </Route>
+            <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
+       </Route>
     </Route>
     </Routes>
     </BrowserRouter>

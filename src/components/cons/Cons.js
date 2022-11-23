@@ -12,7 +12,7 @@ function Cons({ cons : {consCode,consDate, consName,consGender,consBirth,consTit
     const onClickProductHandler = (consCode) => {
         /* 상품 div 클릭 시 전달 된 productCode를 기반으로 /product/1 와 같은 navigate 요청을 보낸다.
         replace : true -> 뒤로 가기 불가, replace : false -> 뒤로 가기 가능 */
-        navigate(`/Cons/cons/${consCode}`, { replace : false });
+        navigate(`/ono/Cons/consdetail/${consCode}`, { replace : false });
     }
 
     return (

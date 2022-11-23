@@ -46,3 +46,26 @@ export const callConsDetailAPI = ({consCode}) => {
         }
     }
 }
+
+export const callConsUpdateAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/cons`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken"),
+            },
+            body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[ConsAPICalls] callConsUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_CONS, payload : result.data });
+        }
+    }
+}

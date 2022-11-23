@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { callConsDetailAPI } from '../../api/ConsAPICalls';
 import ConsDetailCSS from './ConsDetail.module.css';
-import { decodeJwt } from '../../utils/tokenUtils';
 
+import { callConsUpdateAPI } from '../../api/ConsAPICalls';
 
 function ConsDetail() {
 
@@ -13,122 +13,205 @@ function ConsDetail() {
     const cons = useSelector(state => state.consReducer);
     const params = useParams();
     const consCode = params.consCode;
-    const [amount, setAmount] = useState(1);
-    const [loginModal, setLoginModal] = useState(false);
+
+    const [form, setForm] = useState({});
+    const [modifyMode, setModifyMode] = useState(false);
+
 
     useEffect(
+       
         () => {
             dispatch(callConsDetailAPI({
-                consCode : consCode
+                consCode : params.consCode
+                
             }));
         },
         []
     );
 
-    // /* 구매 수량 변화시 적용 */
-    // const onChangeAmountHandler = (e) => {
-    //     setAmount(e.target.value);
-    // }
+     /* 입력 양식의 값 변경될 때 */
+     const onChangeHandler = (e) => {
+        //setModifyMode(true)
+        setForm({
+            ...form,
+            [e.target.name] : e.target.value
+        });
+     
+      
+    }
 
-    // console.log('product', cons);
+     /* 수정 모드 변경 이벤트 */
+     const onClickModifyModeHandler = () => {
+        setModifyMode(true);
+        setForm({
+            consCode : cons.consCode,
+            consDate : cons.consDate,
+            consName : cons.consName,
+            consGender : cons.consGender,
+            consBirth : cons.consBirth,
+            consTitle: cons.consTitle,
+            consDescription : cons.consDescription,
+            consPhone : cons.consPhone
+          
+        });
+    }
+   
+     /* 상품 수정 저장 버튼 클릭 이벤트 */
+     const onClickConsUpdateHandler = () => {
+        
+        
+        const formData = new FormData();
 
-    // /* 구매하기 버튼 이벤트 */
-    // const onClickPurchaseHandler = () => {
-
-    //     // 1. 로그인 상태인지 확인
-    //     const token = decodeJwt(window.localStorage.getItem("accessToken"));
-    //     console.log('[onClickPurchaseHandler] token : ', token);
-
-    //     if(!token) {
-    //         alert("구매 전 로그인이 필요합니다.");
-    //         setLoginModal(true);
-    //         return;
-    //     }
-
-    //     // 2. 토큰이 만료 되었을 때 다시 로그인
-    //     if(token.exp * 1000 < Date.now()) {
-    //         setLoginModal(true);
-    //         return;
-    //     }
-
-    //     // 3. 구매 가능 수량 확인
-    //     if(amount > product.productStock) {
-    //         alert("구매 가능 수량을 확인해주세요");
-    //         return;
-    //     }
-
-    //     navigate(`/purchase?amount=${amount}`, { replace : false });
-    // }
-
-    // const onClickReviewHandler = () => {
-    //     navigate(`/review/${params.productCode}`, { replace : false});
-    // }
+        formData.append("consCode", form.consCode);
+        formData.append("consDate", form.consDate);
+        formData.append("consName", form.consName);
+        formData.append("consGender", form.consGender);
+        formData.append("consBirth", form.consBirth);
+        formData.append("consTitle", form.consTitle);
+        formData.append("consDescription", form.consDescription);
+        formData.append("consPhone", form.consPhone);
+        console.log(cons.consCode);
+        console.log(form.consCode);
+        console.log(form.consDate);
+    
+        dispatch(callConsUpdateAPI({
+            form : formData
+        }));
+        alert('과목이 수정되었습니다.');
+        navigate('/ono/Cons/consMain', { replace : true });
+    }
 
     return (
         <>
             
             <div className={ ConsDetailCSS.DetailDiv } >
-                <div className={ ConsDetailCSS.imgDiv }>
-                    <button
-                        className={ ConsDetailCSS.reviewBtn }
-                    >
-                        리뷰보기
-                    </button>
-                </div>
                 <div className={ ConsDetailCSS.descriptionDiv }>
                     <table className={ ConsDetailCSS.descriptionTable }>
                         <tbody>
                             <tr>
-                                <th>상품 코드</th>
-                                <td>{ cons.consCode || '' }</td>
+                               
                             </tr>
                             <tr>
-                                <th>상품명</th>
-                                <td>{ cons.consDate || '' }</td>
-                            </tr>
-                            <tr>
-                                <th>상품 가격</th>
-                                <td>{ cons.consName || '' }</td>
-                            </tr>
-                            <tr>
-                                <th>상품 설명</th>
-                                <td>{ cons.consGender || '' }</td>
-                            </tr>
-                            <tr>
-                                <th>구매 가능 수량</th>
-                                <td>{ cons.consBirth || '' }</td>
-                            </tr>
-                            <tr>
-                                <th>구매 가능 수량</th>
-                                <td>{ cons.consTitle || '' }</td>
-                            </tr>
-                            <tr>
-                                <th>구매 가능 수량</th>
-                                <td>{ cons.consDescription || '' }</td>
-                            </tr>
-                            <tr>
-                                <th>구매 가능 수량</th>
-                                <td>{ cons.consPhone || '' }</td>
-                            </tr>
-                            {/* <tr>
-                                <th>구매 수량</th>
+                                <th>상담일</th>
                                 <td>
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        value={ amount }
-                                        onChange={ onChangeAmountHandler }
+                                    <input 
+                                        name='consDate'
+                                        placeholder='상담일'
+                                        className={ ConsDetailCSS.subjectInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ !modifyMode ? cons.consDate : form.consDate || cons.consDate  }
+                                        //readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : ''} : null }
                                     />
                                 </td>
-                            </tr> */}
+                            </tr>
+                            <tr>
+                                <th>이름</th>
+                                <td>
+                                    <input 
+                                        name='consName'
+                                        placeholder='이름'
+                                        className={ ConsDetailCSS.subjectInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ !modifyMode ? cons.consName : form.consName}
+                                        //readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : ''} : null }
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>성별</th>
+                                <td>
+                                    <input 
+                                        name='consGender'
+                                        placeholder='이름'
+                                        className={ ConsDetailCSS.subjectInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ !modifyMode ? cons.consGender : form.consGender}
+                                        //readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : ''} : null }
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>생년월일</th>
+                                <td>
+                                    <input 
+                                        name='consBirth'
+                                        placeholder='이름'
+                                        className={ ConsDetailCSS.subjectInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ !modifyMode ? cons.consBirth : form.consBirth }
+                                        //readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : ''} : null }
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>제목</th>
+                                <td>
+                                    <input 
+                                        name='consTitle'
+                                        placeholder='이름'
+                                        className={ ConsDetailCSS.subjectInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ !modifyMode ? cons.consTitle : form.consTitle  }
+                                        //readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : ''} : null }
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>내용</th>
+                                <td>
+                                    <input 
+                                        name='consDescription'
+                                        placeholder='이름'
+                                        className={ ConsDetailCSS.subjectInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ !modifyMode ? cons.consDescription : form.consDescription }
+                                        //readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : ''} : null }
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>전화번호</th>
+                                <td>
+                                    <input 
+                                        name='consPhone'
+                                        placeholder='이름'
+                                        className={ ConsDetailCSS.subjectInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ !modifyMode ? cons.consPhone : form.consPhone }
+                                       // readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : ''} : null }
+                                    />
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    <button
-                        className={ ConsDetailCSS.productBuyBtn }
-                        // onClick={ onClickPurchaseHandler }
-                    >
-                        구매하기
-                    </button>
+                    <div>
+                <button        
+                    onClick={ () => navigate(-1) }            
+                >
+                    돌아가기
+                </button>
+            {!modifyMode &&
+                <button 
+                    onClick={ onClickModifyModeHandler }
+                >
+                    수정 모드
+                </button>
+            }
+            {modifyMode &&
+                <button 
+                    onClick={ onClickConsUpdateHandler }
+                >
+                    상담 수정 저장하기
+                </button>
+            }
+            </div>        
                 </div>
             </div>
         </>

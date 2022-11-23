@@ -9,27 +9,6 @@
     height: 350px;
 }
 
-.imgDiv{
-    display: flex;    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.imgDiv img {
-    margin: 5px;
-    width: 70%;
-    height: 80%;
-}
-
-.imgDiv button {
-    margin: 5px;
-    height: 8%;
-    width: 80%;
-}
-
 .descriptionDiv{
     display: flex;    
     flex-direction: column;
@@ -40,26 +19,33 @@
 }
 
 .descriptionTable{ 
-    width: 80%;
+    width: 100%;
     height: 80%;
 }
 
-.reviewBtn{
+.consRegistBtn{
     margin-top: 5px;
     margin-bottom: 5px;
     height: 30px;
     width: 100%;
     border-radius: 25px;
-    background-color: white;
     font-weight: bold;
 }
 
-.productBuyBtn{
+.consDeleteBtn{
     margin-top: 5px;
     margin-bottom: 5px;
     height: 30px;
     width: 100%;
     border-radius: 25px;
-    background-color: white;
     font-weight: bold;
+}
+
+.subjectInfoInput {    
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    background-color: white;
+    text-indent: 0.5em;
 }
