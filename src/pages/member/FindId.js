@@ -1,10 +1,9 @@
 import { useDispatch} from "react-redux";
 import { callFindIdAPI } from "../../api/MemberAPICalls";
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 
 function FindId() {
-    const navigate = useNavigate();
+   
     const dispatch = useDispatch();
 
     const [form, setForm] = useState({
