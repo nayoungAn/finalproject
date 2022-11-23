@@ -1,6 +1,6 @@
-import { GET_TEACHER, GET_TEACHERS, POST_LOGIN, POST_REGISTER} from "../modules/MemberMoudule";
-
-
+import { POST_FIND_ID, POST_LOGIN} from "../modules/MemberModule";
+import { useNavigate } from "react-router-dom"
+import swal from "sweetalert2";
 
 //로그인
 export const callLoginAPI = ({form}) => {
@@ -28,8 +28,6 @@ export const callLoginAPI = ({form}) => {
             window.localStorage.setItem('accessToken', result.data.accessToken);
             dispatch({ type: POST_LOGIN, payload: result });
         }
-
-        
     }
 
 }
@@ -43,110 +41,93 @@ export const callLogoutAPI = () => {
     }
 }
 
-//강사 등록
-export const callRegisterAPI = ({form}) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/signup`;
+
+export const callFindIdAPI = ({form}) => {
+
+    const navigate = useNavigate;
+    const requestURL = `http:////${process.env.REACT_APP_RESTAPI_IP}:8001/auth/find-id`;
 
     return async (dispatch, getState) => {
-
+        
         const result = await fetch(requestURL, {
-            method: "POST",
-            headers: {
+            method : "POST",
+            headers :{
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: JSON.stringify({
+                memberName: form.memberName,
+                memberEmail: form.memberEmail
+            }) 
+        })
+        .then(response => response.json());
+
+        if(result.status === 200){
+            console.log('[MemberAPICalls] callFindIdAPI result : SUCCESS');
+            dispatch({type: POST_FIND_ID, payload: result.data});
+            swal.fire({
+                title: "아이디 찾기 완료", 
+                text: `가입된 아이디는 ${result.data.memberId} 입니다.`,
+                icon: "success",
+                Button: "로그인으로 이동",
+            })
+            .then(() => {
+                navigate(`/`, { replace: true});
+              
+             })
+        } else{
+            swal.fire({
+                title: "아이디 찾기 실패",
+                text: '입력하신 정보로 해당하는 아이디를 찾을 수 없습니다.',
+                icon: "error"
+            });
+        }
+
+    }
+
+}
+
+export const callFindPwdAPI = ({form}) => {
+
+    const navigate = useNavigate;
+    const requestURL = `http:////${process.env.REACT_APP_RESTAPI_IP}:8001/auth/temporary-pwd`;
+    
+    return async (dispatch, getState) => {
+        
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers :{
                 "Content-Type": "application/json",
                 "Accept": "*/*"
             },
             body: JSON.stringify({
                 memberId: form.memberId,
-                memberPassword: form.memberPassword,
-                memberName: form.memberName,
-                memberPhone: form.memberPhone,
-                memberBirthday: form.memberBirthday,
-                memberGender: form.memberGender,
-                memberAddress: form.memberAddress,
-                memberStatus: form.memberStatus,
-                memberEmail: form.memberEmail,
-                memberImage: form.memberImage                
+                memberEmail: form.memberEmail
+            }) 
+        })
+        .then(response => response.json());
+
+        if(result.status === 200){
+            console.log('[MemberAPICalls] callFindIdAPI result : SUCCESS');
+            dispatch({type: POST_FIND_ID, payload: result.data});
+            swal.fire({
+                title: "발송 완료", 
+                text: `임시 비밀번호가 발급되었습니다. 메일함을 확인해 주세요`,
+                icon: "success",
+                Button: "로그인으로 이동",
             })
-        })
-        .then(response => response.json());
-
-        console.log('[MemberAPICalls] callRegisterAPI RESULT : ', result);
-
-        if(result.status === 201){
-            dispatch({ type: POST_REGISTER, payload: result});
+            .then(() => {
+                navigate(`/`, { replace: true});
+              
+             })
+        } else{
+            swal.fire({
+                title: "발송 실패",
+                text: '아이디 또는 이메일을 정확하게 입력해 주세요.',
+                icon: "error"
+            });
         }
-    };
-}
 
-export const callSearchTeacherListForAdminAPI = ({search, currentPage = 1}) => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teachers/search?search=${search}&page=${currentPage}`
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[MemberAPICalls] callSearchTeacherListForAdminAPI RESULT : ', result);
-            dispatch({ type: GET_TEACHERS, payload : result.data });
-        }
-    }
-}
-
-
-export const callTeacherListForAdminAPI = ({currentPage = 1}) => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teachers-management?page=${currentPage}`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept": "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[MemberAPICalls] callTeacherListForAdminAPI result : ', result);
-            dispatch({ type: GET_TEACHERS, payload: result.data });
-        }
     }
 
 }
-
-export const callTeacherDetailForAdminAPI = ({memberCode}) => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teachers-management/${memberCode}`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[MemberAPICalls] callTeacherDetailForAdminAPI RESULT : ', result);
-            dispatch({ type: GET_TEACHER, payload : result.data });
-        }
-    }
-}
-
-

@@ -11,6 +11,7 @@ function SubjectManagement() {
     const dispatch = useDispatch();
     const subjects  = useSelector(state => state.subjectListReducer);      
     const subjectList = subjects.data;
+    const deleteSubjects = useSelector(state => state.subjectReducer); 
     console.log('subjectManagement', subjectList);
 
     const pageInfo = subjects.pageInfo;
@@ -23,15 +24,14 @@ function SubjectManagement() {
             pageNumber.push(i);
         }
     }
-    // window.location.reload()
     useEffect(
         () => {         
             dispatch(callSubjectListForAdminAPI({
-                currentPage: currentPage,
+                currentPage: currentPage
             }));            
             
         }
-        ,[currentPage]    
+        ,[currentPage, deleteSubjects]    
     );
 
     const onClickSubjectInsert = () => {
@@ -41,27 +41,26 @@ function SubjectManagement() {
 
     const onClickSubjectDelete = (subjectCode) => {
         console.log('[SubjectManagement] onClickSubjectDelete');
-        {
+        
             dispatch(callSubjectDeleteAPI({
                 subjectCode : subjectCode
             }));
-            console.log("삭제");
-            alert('과목이 삭제되었습니다.');
-             window.location.reload();
-        }
+
+            console.log("데이터보기" , deleteSubjects);
+      
+            
+            
+            deleteSubjects.subjectCode === null ? alert('과목이 삭제되었습니다.')        
+            : alert('등록된 강의로 인하여 삭제 실패하였습니다.');
+
     }
     const onClickTableTr = (e, subjectCode) => {
 
         console.log(e.target.className);
         
-        if(e.target.className != "deleteBtn")
-                {
-                    navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false })
-                    console.log("상세조회");
-                }     
-        else {
-            onClickSubjectDelete(subjectCode);
-        }
+     e.target.className != "deleteBtn" ?  navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false })
+     : onClickSubjectDelete(subjectCode);
+     
     }
 
     return (
