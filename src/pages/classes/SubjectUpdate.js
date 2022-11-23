@@ -2,12 +2,12 @@ import SubjectRegistrationCSS from './SubjectRegistration.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { callSubjectDetailForAdminAPI, callSubjectUpdateAPI } from '../../api/SubjectAPICalls';
-
+import { callSubjectUpdateAPI } from '../../api/SubjectAPICalls';
+import { callSubjectDetailForAdminAPI } from '../../api/SubjectListAPICall';
 function SubjectUpdate(){
 
     const params = useParams();
-    const subjectDetail = useSelector(state => state.subjectReducer);
+    const subjectDetail = useSelector(state => state.subjectListReducer);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -63,9 +63,8 @@ function SubjectUpdate(){
         dispatch(callSubjectUpdateAPI({
             form : formData
         }));
-
+        alert('과목이 수정되었습니다.');
         navigate('/ono/OpenClasses/subjects', { replace : true });
-        window.location.reload();
     }
 
     return (
