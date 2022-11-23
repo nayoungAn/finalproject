@@ -241,6 +241,7 @@ function ProductUpdate(){
                                     />
                                 </td>
                             </tr>    
+                            
                             <tr>
                                 <td><label>근무상태</label></td>
                                 <td>
@@ -262,7 +263,7 @@ function ProductUpdate(){
                                             onChange={ onChangeHandler } 
                                             value='N'
                                             readOnly={modifyMode ? false : true }
-                                            checked={ (!modifyMode ? teacherDetail?.memberGender : form.memberGender) === 'N' ?  true : false}
+                                            checked={ (!modifyMode ? teacherDetail?.memberStatus : form.memberStatus) === 'N' ?  true : false}
                                         /> 퇴사</label>
                                 </td>
                             </tr>   
