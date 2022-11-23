@@ -1,8 +1,8 @@
-import memberReducer from "./MemberMoudule";
+import memberReducer from "./MemberModule";
 import { combineReducers } from "redux";
 import subjectReducer from "./SubjectModule";
 import subjectListReducer from "./SubjectListModule";
-import teacherReducer from "./TeacherMoudule";
+import teacherReducer from "./TeacherModule";
 
 const rootReducer = combineReducers({
     memberReducer,

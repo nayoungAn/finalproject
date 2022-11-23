@@ -64,6 +64,7 @@ function TeacherManagement() {
     // }
 
     const onClickTeacherInsert = () => {
+        console.log('[TeacherManagement] onClickTeacherInsert');
         navigate ('/ono/teacher/regist', {replace : true})
     }
     return (

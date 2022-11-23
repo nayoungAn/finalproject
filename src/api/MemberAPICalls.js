@@ -1,4 +1,4 @@
-import { POST_FIND_ID, POST_LOGIN, POST_REGISTER} from "../modules/MemberMoudule";
+import { POST_FIND_ID, POST_LOGIN, POST_REGISTER} from "../modules/MemberModule";
 import { useNavigate } from "react-router-dom"
 import swal from "sweetalert2";
 

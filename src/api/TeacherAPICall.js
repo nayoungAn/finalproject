@@ -1,4 +1,4 @@
-import { POST_TEACHER_REGISTER, GET_TEACHER, GET_TEACHERS} from "../modules/TeacherMoudule";
+import { POST_TEACHER_REGISTER, GET_TEACHER, GET_TEACHERS} from "../modules/TeacherModule";
 
 export const callTeacherRegistAPI = ({form}) =>{
 

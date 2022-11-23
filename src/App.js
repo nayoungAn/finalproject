@@ -12,6 +12,7 @@ import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectUpdate from "./pages/classes/SubjectUpdate";
+
 function App() {
   return (
 
@@ -35,10 +36,8 @@ function App() {
               <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
 
-        <Route path="teacher" element={  <TeacherManagement/> }>
-              <Route index element={ <Navigate to="/teacher" replace /> } />
-              <Route path="/ono/teacher/regist" element={ <TeacherRegistration/> }/> 
-        </Route>
+        <Route path="teacher" element={  <TeacherManagement/> }/>
+              <Route path="teacher/regist" element={ <TeacherRegistration/> }/> 
       </Route>
     </Routes>
     </BrowserRouter>
