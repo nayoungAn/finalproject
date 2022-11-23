@@ -3,8 +3,6 @@ import NavCSS from './Navbar.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 import {useRef, useState} from "react";
 //import {classNames} from "classNames";
-import useDetectClose from "../../hooks/useDetectCLose";
-
 
 function Navbar(){
 
