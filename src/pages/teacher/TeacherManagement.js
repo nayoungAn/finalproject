@@ -8,7 +8,7 @@ function TeacherManagement() {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const members  = useSelector(state => state.memberReducer);      
+    const members  = useSelector(state => state.teacherReducer);      
     const memberList = members.data;
     console.log('memberManagement', memberList);
 
@@ -63,6 +63,9 @@ function TeacherManagement() {
     //     }
     // }
 
+    const onClickTeacherInsert = () => {
+        navigate ('/ono/teacher/regist', {replace : true})
+    }
     return (
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
@@ -72,6 +75,10 @@ function TeacherManagement() {
                 >
                     과목 등록
                 </button> */}
+            </div>
+            <div>
+                <button
+                 onClick={ onClickTeacherInsert }> 강사등록 </button>
             </div>            
             <table className={ TeacherManagementCSS.teacherTable }>
                 <colgroup>

@@ -8,14 +8,15 @@ function Layout() {
 
     return (
 
-        <> <div className={ LayoutCSS.main}>
+        <> 
+        <div className="wrapper">
             <Header/>
             <Navbar/>
-           </div>  
-            <main>
+            <main className={LayoutCSS.main}>
                 <Outlet/>
             </main>
             <Footer/>
+        </div>   
         </>
     );
 }
