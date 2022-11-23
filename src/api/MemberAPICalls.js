@@ -41,40 +41,6 @@ export const callLogoutAPI = () => {
     }
 }
 
-//강사 등록
-export const callRegisterAPI = ({form}) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/auth/signup`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "*/*"
-            },
-            body: JSON.stringify({
-                memberId: form.memberId,
-                memberPassword: form.memberPassword,
-                memberName: form.memberName,
-                memberPhone: form.memberPhone,
-                memberBirthday: form.memberBirthday,
-                memberGender: form.memberGender,
-                memberAddress: form.memberAddress,
-                memberStatus: form.memberStatus,
-                memberEmail: form.memberEmail,
-                memberImage: form.memberImage                
-            })
-        })
-        .then(response => response.json());
-
-        console.log('[MemberAPICalls] callRegisterAPI RESULT : ', result);
-
-        if(result.status === 201){
-            dispatch({ type: POST_REGISTER, payload: result});
-        }
-    };
-}
 
 export const callFindIdAPI = ({form}) => {
 
@@ -121,8 +87,47 @@ export const callFindIdAPI = ({form}) => {
 
 }
 
-export const callFindPwdAPI = () => {
+export const callFindPwdAPI = ({form}) => {
 
+    const navigate = useNavigate;
     const requestURL = `http:////${process.env.REACT_APP_RESTAPI_IP}:8001/auth/temporary-pwd`;
     
+    return async (dispatch, getState) => {
+        
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers :{
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: JSON.stringify({
+                memberId: form.memberId,
+                memberEmail: form.memberEmail
+            }) 
+        })
+        .then(response => response.json());
+
+        if(result.status === 200){
+            console.log('[MemberAPICalls] callFindIdAPI result : SUCCESS');
+            dispatch({type: POST_FIND_ID, payload: result.data});
+            swal.fire({
+                title: "발송 완료", 
+                text: `임시 비밀번호가 발급되었습니다. 메일함을 확인해 주세요`,
+                icon: "success",
+                Button: "로그인으로 이동",
+            })
+            .then(() => {
+                navigate(`/`, { replace: true});
+              
+             })
+        } else{
+            swal.fire({
+                title: "발송 실패",
+                text: '아이디 또는 이메일을 정확하게 입력해 주세요.',
+                icon: "error"
+            });
+        }
+
+    }
+
 }

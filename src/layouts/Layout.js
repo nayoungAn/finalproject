@@ -11,12 +11,11 @@ function Layout() {
         <> <div className={ LayoutCSS.main}>
             <Header/>
             <Navbar/>
-            <Footer/>
            </div>  
             <main>
                 <Outlet/>
             </main>
-
+            <Footer/>
         </>
     );
 }
