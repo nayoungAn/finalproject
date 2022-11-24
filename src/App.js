@@ -13,6 +13,7 @@ import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ function App() {
         <Route path="find-id" element={ <FindId/>}/>
         <Route path="find-pwd" element={ <FindPwd/>}/>
       </Route>
+
      <Route path="/ono" element={ <Layout/>}>
         <Route path="OpenClasses" element={ <OpenClassesLayout/> }>
               <Route index element={ <Navigate to="subjects" replace /> } />
@@ -32,6 +34,7 @@ function App() {
               <Route path="classes" element={ <OpenClasses/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
+
         <Route path="teacher" element={  <TeacherManagement/> }/>
               <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>

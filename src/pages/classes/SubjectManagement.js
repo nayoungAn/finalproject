@@ -12,6 +12,7 @@ function SubjectManagement() {
     const subjects  = useSelector(state => state.subjectListReducer);      
     const subjectList = subjects.data;
     const deleteSubjects = useSelector(state => state.subjectReducer); 
+
     console.log('subjectManagement', subjectList);
 
     const pageInfo = subjects.pageInfo;
@@ -24,6 +25,7 @@ function SubjectManagement() {
             pageNumber.push(i);
         }
     }
+
     useEffect(
         () => {         
             dispatch(callSubjectListForAdminAPI({
@@ -58,9 +60,11 @@ function SubjectManagement() {
 
         console.log(e.target.className);
         
+
      e.target.className != "deleteBtn" ?  navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false })
      : onClickSubjectDelete(subjectCode);
      
+
     }
 
     return (
