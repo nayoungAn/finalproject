@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import { callTeacherListForAdminAPI } from '../../api/TeacherListAPICall';
 
+
 function TeacherManagement() {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const members  = useSelector(state => state.teacherListReducer);      
+
     const memberList = members.data;
     console.log('memberManagement', memberList);
 
@@ -33,10 +35,12 @@ function TeacherManagement() {
         ,[currentPage]    
     );
 
+
     const onClickTableTr = (memberCode) => {
 
      navigate(`/ono/teacher-update/${memberCode}`, { replace: false })
     }
+
     const onClickTeacherInsert = () => {
         console.log('[TeacherManagement] onClickTeacherInsert');
         navigate ('/ono/teacher/regist', {replace : true})
@@ -45,6 +49,7 @@ function TeacherManagement() {
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
+
                 <button
                  onClick={ onClickTeacherInsert }> 강사등록 </button>
             </div>            
