@@ -8,6 +8,9 @@ import SubjectUpdate from "./pages/classes/SubjectUpdate"
 import ClassHistory from "./pages/classes/ClassHistory";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import TeacherManagement from "./pages/teacher/TeacherManagement";
+import NoticeList from "./pages/notice/NoticeList";
+import NoticeDetail from "./pages/notice/NoticeDetail";
+
 function App() {
   return (
 
@@ -15,6 +18,9 @@ function App() {
     <Routes>
       <Route path="/" element={ <Login/>}/>
       <Route path="/ono" element={ <Layout/>} >
+        <Route path="notice" index element= { <NoticeList/> }/>
+        <Route path="notice/:noticeCode" element= { <NoticeDetail/> }/>
+
         <Route path="OpenClasses" element={ <OpenClassesLayout/> }>
               <Route index element={ <Navigate to="subjects" replace /> } />
               <Route path="subjects" element={ <SubjectManagement/> }/>
