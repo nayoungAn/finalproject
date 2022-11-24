@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { callConsDetailAPI } from '../../api/ConsAPICalls';
+import { callConsDetailAPI, callConsDeleteAPI } from '../../api/ConsAPICalls';
 import ConsDetailCSS from './ConsDetail.module.css';
 
 import { callConsUpdateAPI } from '../../api/ConsAPICalls';
@@ -12,11 +12,21 @@ function ConsDetail() {
     const dispatch = useDispatch();
     const cons = useSelector(state => state.consReducer);
     const params = useParams();
-    const consCode = params.consCode;
+    const consCodee = params.consCode;
 
     const [form, setForm] = useState({});
     const [modifyMode, setModifyMode] = useState(false);
+    const deleteCons = useSelector(state => state.consReducer);
 
+    /* date 형식 00:00:00 제거 */ 
+    const date = cons.consDate;
+    const consdate= (date||'').split(' 00:00:00',1);
+   
+    const birth = cons.consBirth;
+    const consbirth= (birth||'').split(' 00:00:00',1);
+
+
+    
 
     useEffect(
        
@@ -26,7 +36,7 @@ function ConsDetail() {
                 
             }));
         },
-        []
+        [],deleteCons
     );
 
      /* 입력 양식의 값 변경될 때 */
@@ -45,10 +55,10 @@ function ConsDetail() {
         setModifyMode(true);
         setForm({
             consCode : cons.consCode,
-            consDate : cons.consDate,
+            consDate : consdate,
             consName : cons.consName,
             consGender : cons.consGender,
-            consBirth : cons.consBirth,
+            consBirth : consbirth,
             consTitle: cons.consTitle,
             consDescription : cons.consDescription,
             consPhone : cons.consPhone
@@ -58,6 +68,7 @@ function ConsDetail() {
    
      /* 상품 수정 저장 버튼 클릭 이벤트 */
      const onClickConsUpdateHandler = () => {
+        
         
         
         const formData = new FormData();
@@ -70,15 +81,28 @@ function ConsDetail() {
         formData.append("consTitle", form.consTitle);
         formData.append("consDescription", form.consDescription);
         formData.append("consPhone", form.consPhone);
-        console.log(cons.consCode);
-        console.log(form.consCode);
-        console.log(form.consDate);
+       
     
         dispatch(callConsUpdateAPI({
             form : formData
         }));
         alert('과목이 수정되었습니다.');
         navigate('/ono/Cons/consMain', { replace : true });
+    }
+
+    const onClickConsDelete = (consCode) => {
+
+        console.log('[SubjectManagement] onClickSubjectDelete');
+        
+            dispatch(callConsDeleteAPI({
+                consCode : consCodee
+            }));
+            console.log(consCode);
+            console.log("데이터보기" , deleteCons);
+            
+            alert('과목이 삭제되었습니다.');  
+
+            navigate('/ono/Cons/consMain', { replace : true });
     }
 
     return (
@@ -99,7 +123,7 @@ function ConsDetail() {
                                         placeholder='상담일'
                                         className={ ConsDetailCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ !modifyMode ? cons.consDate : form.consDate || cons.consDate  }
+                                        value={ !modifyMode ? consdate : form.consDate || '' }
                                         //readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : ''} : null }
                                     />
@@ -113,9 +137,9 @@ function ConsDetail() {
                                         placeholder='이름'
                                         className={ ConsDetailCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ !modifyMode ? cons.consName : form.consName}
+                                        value={ !modifyMode ? cons.consName : form.consName || '' }
                                         //readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : ''} : null }
+                                        //style={ !modifyMode ? { backgroundColor : ''} : null }
                                     />
                                 </td>
                             </tr>
@@ -141,7 +165,7 @@ function ConsDetail() {
                                         placeholder='이름'
                                         className={ ConsDetailCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ !modifyMode ? cons.consBirth : form.consBirth }
+                                        value={ !modifyMode ? consbirth : form.consBirth }
                                         //readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : ''} : null }
                                     />
@@ -196,6 +220,12 @@ function ConsDetail() {
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기
+                </button>
+
+                <button        
+                    onClick={ onClickConsDelete}            
+                >
+                    삭제
                 </button>
             {!modifyMode &&
                 <button 

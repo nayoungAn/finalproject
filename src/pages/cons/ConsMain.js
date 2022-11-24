@@ -13,8 +13,8 @@ function ConsMain(){
      const cons = useSelector(state => state.consReducer);
      const consList = cons.data;
      const [currentPage, setCurrentPage] = useState(1);
+
      
- 
      useEffect(
          () => {
              dispatch(callConsListAPI({
@@ -45,13 +45,17 @@ function ConsMain(){
              pageNumber.push(i);
          }
      }
+     const onClickConsInsert = () => {
+        console.log('[SubjectManagement] onClickSubjectInsert');
+        navigate("/ono/cons/cons-registration", { replace: false })
+    }
 
     return (
         <>
              <div className={ consCSS.bodyDiv }>
             <div>
                 <button
-                    //onClick={ onClickSubjectInsert }
+                    onClick={ onClickConsInsert }
                 >
                     과목 등록
                 </button>
@@ -80,15 +84,10 @@ function ConsMain(){
                             onClick={ (event) => onClickTable(event, c.consCode) }
                         >
                             <td>{  c.consCode }</td>
-                            <td>{ c.consDate }</td>
+                            <td>{ c.consDate.split(' 00:00:00',1) }</td>
                             <td>{ c.consName }</td>
                             <td>{ c.consTitle }</td>
                             <td>{ c.consDescription }</td>
-                            <td><button className="deleteBtn"
-                  
-                >
-                    삭제
-                </button></td>
                         </tr>
                     )) 
                     }

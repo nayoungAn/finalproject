@@ -9,7 +9,7 @@ export const callConsListAPI = ({currentPage = 1}) => {
         const result = await fetch(requestURL, {
             method : "GET",
             headers : {
-                "Content-Type" : "application/json",
+                
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
@@ -33,7 +33,7 @@ export const callConsDetailAPI = ({consCode}) => {
         const result = await fetch(requestURL, {
             method : "GET",
             headers : {
-                "Content-Type" : "application/json",
+                
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
@@ -68,4 +68,49 @@ export const callConsUpdateAPI = ({form}) => {
             dispatch({ type: PUT_CONS, payload : result.data });
         }
     }
+}
+export const callConsDeleteAPI = ({consCode}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/cons/${consCode}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "DELETE",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[SubjectAPIcalls] callSubjectDeleteAPI RESULT : ', result);
+            dispatch({ type: DELETE_CONS, payload : result});
+        }
+    }
+}
+
+export const callConsRegistAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/cons`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[SubjectAPIcalls] callSubjectRegistAPI result : ', result);
+            dispatch({ type: POST_CONS, payload: result.data });
+        }
+    }
+
 }

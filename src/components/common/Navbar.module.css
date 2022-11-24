@@ -1,9 +1,6 @@
 .NavbarDiv {
   
     border-bottom: solid 1px rgb(73, 106, 212);
-    position: relative;
-    display: inline-block;
-    
 }
 
 .NavlistUl {
@@ -24,6 +21,11 @@
     text-align: center;
 }
 
+a {
+    text-decoration: none;    
+    color: black;
+}
+
 a:hover, a:focus, a:active{
     text-decoration: none;
     color: rgb(73, 106, 212);
@@ -42,4 +44,9 @@ button{
     padding-left: 7px;
     padding-right: 7px;
 
+}
+
+button:hover{
+    transform:  scale(1.03);
+    
 }
