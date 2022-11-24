@@ -39,10 +39,10 @@ function QnaTeacher() {
             <div className={ QnaTeacherCSS.qnaTableDiv }>
                 <table className={ QnaTeacherCSS.qnaTableCss}>
                     <colgroup>
-                        <col width="5%" />
+                        <col width="3%" />
                         <col width="20%" />
-                        <col width="%" />
-                        <col width="20%" />
+                        <col width="40%" />
+                        <col width="15%" />
                         <col width="50%" />
                     </colgroup>
                     <thead>
