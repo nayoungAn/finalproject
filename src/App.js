@@ -13,6 +13,7 @@ import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
+import QnaTeacher from "./pages/consultant/QnaTeacher";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
         <Route path="teacher" element={  <TeacherManagement/> }/>
               <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
-
+        <Route path="qna" element={ <QnaTeacher/> }/>
       </Route>
     </Routes>
     </BrowserRouter>
