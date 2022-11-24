@@ -1,10 +1,12 @@
-import {POST_SUBJECT, PUT_SUBJECT, DELETE_SUBJECT } from "../modules/SubjectModule";
 
-export const callSubjectRegistAPI = ({form}) => {
+import { POST_TEACHER_REGISTER, PUT_TEACHER, DELETE_TEACHER} from "../modules/TeacherModule";
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/subjects`;
 
-    return async (dispatch, getState) => {
+export const callTeacherRegistAPI = ({form}) =>{
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teachers`; 
+
+    return async ( dispatch, getState ) => {
 
         const result = await fetch(requestURL, {
             method : "POST",
@@ -16,45 +18,50 @@ export const callSubjectRegistAPI = ({form}) => {
         })
         .then(response => response.json());
 
-        if(result.status === 200) {
-            console.log('[SubjectAPIcalls] callSubjectRegistAPI result : ', result);
-            dispatch({ type: POST_SUBJECT, payload: result.data });
+        if(result.status === 200){
+
+            console.log('[TeacherAPICalls] callTeacherRegistAPI result : ', result);
+            dispatch({ type: POST_TEACHER_REGISTER, payload: result.data});
         }
     }
-
 }
 
 
-export const callSubjectUpdateAPI = ({form}) => {
+export const callTeacherUpdateAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/subjects`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teachers`;
+
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
+
             method : "PUT",
             headers : {
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken"),
             },
             body : form
+
         })
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[SubjectAPIcalls] callSubjectUpdateAPI RESULT : ', result);
-            dispatch({ type: PUT_SUBJECT, payload : result.data });
+            console.log('[TeacherAPICalls] callTeacherUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_TEACHER, payload : result.data });
         }
     }
 }
 
-export const callSubjectDeleteAPI = ({subjectCode}) => {
+export const callTeacherDeleteAPI = ({memberCode}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/subjects/${subjectCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teachers/${memberCode}`;
+
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
+
             method : "DELETE",
             headers : {
                 "Accept" : "*/*",
@@ -64,25 +71,10 @@ export const callSubjectDeleteAPI = ({subjectCode}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[SubjectAPIcalls] callSubjectDeleteAPI RESULT : ', result);
 
-            dispatch({ type: DELETE_SUBJECT, payload : result});
+            console.log('[TeacherAPICalls] callTeacherDeleteAPI RESULT : ', result);
+            dispatch({ type: DELETE_TEACHER, payload : result});
 
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
