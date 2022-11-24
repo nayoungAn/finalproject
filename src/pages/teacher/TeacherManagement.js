@@ -2,13 +2,15 @@ import TeacherManagementCSS from './TeacherManagement.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import { callTeacherListForAdminAPI } from '../../api/TeacherAPICall';
+import { callTeacherListForAdminAPI } from '../../api/TeacherListAPICall';
+
 
 function TeacherManagement() {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const members  = useSelector(state => state.teacherReducer);      
+    const members  = useSelector(state => state.teacherListReducer);      
+
     const memberList = members.data;
     console.log('memberManagement', memberList);
 
@@ -33,35 +35,11 @@ function TeacherManagement() {
         ,[currentPage]    
     );
 
-    // const onClickSubjectInsert = () => {
-    //     console.log('[SubjectManagement] onClickSubjectInsert');
-    //     navigate("/ono/OpenClasses/subject-registration", { replace: false })
-    // }
 
-    // const onClickSubjectDelete = (subjectCode) => {
-    //     console.log('[SubjectManagement] onClickSubjectDelete');
-    //     {
-    //         dispatch(callSubjectDeleteAPI({
-    //             subjectCode : subjectCode
-    //         }));
-    //         console.log("삭제");
-    //         alert('과목이 삭제되었습니다.');
-    //          window.location.reload();
-    //     }
-    // }
-    // const onClickTableTr = (e, memberCode) => {
+    const onClickTableTr = (memberCode) => {
 
-    //     console.log(e.target.className);
-        
-    //     if(e.target.className != "deleteBtn")
-    //             {
-    //                 navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false })
-    //                 console.log("상세조회");
-    //             }     
-    //     else {
-    //         onClickSubjectDelete(memberCode);
-    //     }
-    // }
+     navigate(`/ono/teacher-update/${memberCode}`, { replace: false })
+    }
 
     const onClickTeacherInsert = () => {
         console.log('[TeacherManagement] onClickTeacherInsert');
@@ -71,13 +49,7 @@ function TeacherManagement() {
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
-                {/* <button
-                    onClick={ onClickSubjectInsert }
-                >
-                    과목 등록
-                </button> */}
-            </div>
-            <div>
+
                 <button
                  onClick={ onClickTeacherInsert }> 강사등록 </button>
             </div>            
@@ -104,7 +76,7 @@ function TeacherManagement() {
                     { Array.isArray(memberList) && memberList.map((m) => (
                         <tr
                             key={ m.memberCode }
-                            // onClick={ (event) => onClickTableTr(event, m.memberCode) }
+                            onClick={ () => onClickTableTr(m.memberCode) }
                         >
                             <td>{ m.memberCode }</td>
                             <td>{ m.memberName }</td>

@@ -1,0 +1,17 @@
+.subjectDiv{
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+    flex-direction: column;
+}
+
+.subjectDiv img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.subjectDiv h5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

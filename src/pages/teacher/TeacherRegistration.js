@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callTeacherRegistAPI } from "../../api/TeacherAPICall";
-import teacherRegistrationCSS from './TeacherRegistration.module.css';
+
 function TeacherRegistration(){
 
     const dispatch = useDispatch();
@@ -11,6 +11,7 @@ function TeacherRegistration(){
     const [ image, setImage ] = useState(null);
     const [ imageUrl, setImageUrl] = useState('');
     const [ form, setForm] = useState({
+
         memberName: '',
         memberBirthday: '',
         memberId : '',
@@ -30,6 +31,7 @@ function TeacherRegistration(){
 
         setImage(image);
     }
+
 
     useEffect(() => {
         if(image){
@@ -52,6 +54,7 @@ function TeacherRegistration(){
         });
     }
 
+
     const onClickTeacherRegistrationHandler = () => {
 
         const formData = new FormData();
@@ -72,6 +75,7 @@ function TeacherRegistration(){
         dispatch(callTeacherRegistAPI({
             form : formData
         }));
+
 
         alert('강사 등록 완료');
         navigate('/ono/teacher', { replace : true });
@@ -94,14 +98,16 @@ function TeacherRegistration(){
                     onChange={ onChangeImageUpload }   
                     ref={ imageInput }
                 />
+
                 <button
                     onClick={ onClickImageUpload }
                 > 업로드 </button>
-                
+
             </div>
             <div>
                 <table>
                     <tbody>
+
                         <tr>
                             <td><label> 이름 </label></td>
                             <td>
