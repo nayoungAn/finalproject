@@ -23,6 +23,6 @@ function OpenClassesNavbar() {
         </div>
     );
 
-}
+}                                              
 
 export default OpenClassesNavbar;
