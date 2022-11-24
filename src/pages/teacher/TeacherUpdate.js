@@ -215,7 +215,7 @@ function ProductUpdate(){
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>입사일</label></td>
+                                <td><label>최근 입사일</label></td>
                                 <td>
                                     <input 
                                         name='memberRegisterDate'

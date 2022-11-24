@@ -56,6 +56,7 @@ function TeacherManagement() {
                     <col width="20%" />
                     <col width="20%" />
                     <col width="10%" />
+                    <col width="10%" />
                 </colgroup>
                 <thead>
                     <tr>
@@ -65,6 +66,7 @@ function TeacherManagement() {
                         <th>생년월일</th>
                         <th>휴대전화</th>
                         <th>이메일</th>
+                        <th>재직상태</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +81,7 @@ function TeacherManagement() {
                             <td>{ m.memberBirthday }</td>
                             <td>{ m.memberPhone }</td>
                             <td>{ m.memberEmail }</td>
+                            <td>{ m.memberStatus }</td>
                             <td><button className="deleteBtn"
                   
                 >
