@@ -13,6 +13,7 @@ import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
+import Teacherclass from "./pages/teacherclass/teacherclass";
 
 function App() {
   return (
@@ -35,11 +36,22 @@ function App() {
               <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
 
-        <Route path="teacher" element={  <TeacherManagement/> }/>
+        <Route path="teacher" element={  <TeacherManagement/> }>
               <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
+        </Route>
+
+        <Route path="teacherclass" element={<Teacherclass/>}>
+        </Route> 
+
 
       </Route>
+
+      
+
+      
+
+      
     </Routes>
     </BrowserRouter>
   );
