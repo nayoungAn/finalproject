@@ -60,7 +60,7 @@ function App() {
         <Route path="teacherclass" element={<Teacherclass/>}>
         </Route> 
 
-      
+      </Route>
     </Routes>
     </BrowserRouter>
   );
