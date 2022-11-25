@@ -10,9 +10,9 @@ function Teacherclass() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const classes = useSelector(state => state.teacherClassReducer);
-
-    const classesList = classes.data;
-    console.log('classList', classesList);
+    const classesList = classes.data
+ 
+    console.log('classesList', classesList);
 
     const pageInfo = classes.pageInfo;
 
@@ -20,7 +20,7 @@ function Teacherclass() {
 
     const pageNumber = [];
     if(pageInfo){
-        for(let i = pageInfo.startPage ; i<= pageInfo.endPage ; i++){
+        for(let i = pageInfo.startPage; i<= pageInfo.endPage; i++){
             pageNumber.push(i);
         }
     }
@@ -36,7 +36,7 @@ function Teacherclass() {
     );
 
     const onClickTeacherclass =(classCode)=> {
-        navigate(`/ono/Teacherclass/${classCode}`, {replace:false})
+        navigate(`/ono/teacherclass/${classCode}`, {replace:false})
     }
 
 
@@ -47,7 +47,7 @@ function Teacherclass() {
         <div>
             
             <table className={TeacherClassCSS.classtable}>
-                <thead>
+                <thead className={TeacherClassCSS.classhead}>
                     <tr>
                         <th>No.</th>
                         <th>강의명</th>
@@ -59,17 +59,19 @@ function Teacherclass() {
                 </thead>
 
                 <tbody>
-                    {Array.isArray(classesList) && classesList.map((c)=>(
-                        <tr
-                        key={ c.classCode }
-                        onClick={ () => onClickTeacherclass(c.classCode) }
+                    {
+                        Array.isArray(classesList) && classesList.map(
+                            (c) => (
+                            <tr
+                            key={ c.classCode }
+                            onClick={ () => onClickTeacherclass(c.classCode)}
                     >
                             <td>{c.classCode}</td>
                             <td>{c.className}</td>
                             <td>{c.classStartDate}</td>
                             <td>{c.classEndDate}</td>
                             <td>{c.classStatus}</td>
-                            <td>{c.memberCode}</td>
+                            <td>{c.member.memberCode}</td>
 
                         </tr>
                     ))
@@ -97,7 +99,7 @@ function Teacherclass() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ? {backgroundColor : 'blue' } : null}
                     className={ TeacherClassCSS.pagingBtn }
                 >
                     {num}

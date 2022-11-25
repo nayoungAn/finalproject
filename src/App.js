@@ -19,10 +19,12 @@ import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import Teacherclass from "./pages/teacherclass/Teacherclass";
 import ConsRegistration from "./pages/cons/ConsRegistration";
+import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
 import AccManagement from "./pages/acc/AccManagement";
 import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
+
 
 
 function App() {
@@ -60,7 +62,8 @@ function App() {
         </Route>
 
 
-        <Route path="Teacherclass" element={<Teacherclass/>}>
+        <Route path="teacherclass" element={<Teacherclass/>}>
+             <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>}/>
         </Route> 
       
       </Route>
