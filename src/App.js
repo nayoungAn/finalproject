@@ -3,6 +3,7 @@ import Login from "./pages/member/Login";
 import Layout from "./layouts/Layout.js";
 import OpenClassesLayout from "./layouts/OpenClassesLayout";
 import ClassManagement from "./pages/classes/ClassManagement";
+import ClassUpdate from "./pages/classes/ClassUpdate";
 import ClassHistory from "./pages/classes/ClassHistory";
 import FindId from "./pages/member/FindId";
 import FindPwd from "./pages/member/FindPwd";
@@ -15,7 +16,7 @@ import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import TeacherSearch from "./pages/teacher/TeacherSearch";
-
+import ClassRegistration from "./pages/classes/ClassRegistration";
 function App() {
   return (
     <BrowserRouter>
@@ -35,6 +36,8 @@ function App() {
               <Route path="subject-registration" element={ <SubjectRegistration/> }/>
               <Route path="subject-update/:subjectCode" element={ <SubjectUpdate/> }/>
               <Route path="classes" element={ <ClassManagement/> }/>
+              <Route path="class-registration" element={ <ClassRegistration/> }/>
+              <Route path="class-update/:classCode" element={ <ClassUpdate/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
 

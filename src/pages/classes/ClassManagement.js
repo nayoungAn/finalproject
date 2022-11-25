@@ -39,12 +39,12 @@ function ClassManagement() {
 
     const onClickClassInsert = () => {
         console.log('[ClassManagement] onClickClassInsert');
-        navigate("/ono/classes/class-registration", { replace: false })
+        navigate("/ono/OpenClasses/class-registration", { replace: false })
     }
 
     const onClickTableTr = (classCode) => {
 
-    navigate(`/ono/classes/class-update/${classCode}`, { replace: false })
+    navigate(`/ono/OpenClasses/class-update/${classCode}`, { replace: false })
     
 
     }
@@ -110,7 +110,7 @@ function ClassManagement() {
                             <td>{ c.member.memberName }</td>
                             <td>{ c.className }</td>
                             
-                            <td>{ c.classesScheduleList.map((d) => d.day.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])}</td> 
+                            <td>{ c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])}</td> 
                             <td>{ c.classRoom }</td>
                             <td>{ c.classStudents + "/" + c.classQuota}</td>
                         </tr>

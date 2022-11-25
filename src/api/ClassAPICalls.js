@@ -106,10 +106,24 @@ export const callClassUpdateAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method : "PUT",
             headers : {
+                "Content-Type" : "application/json",
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
-            body : form
+            body : JSON.stringify({
+                memberName: form.member.memberName,
+                subjectName : form.subject.subjectName,
+                classCode : form.classCode,
+                className : form.className,
+                classQuota : form.classQuota,
+                classPrice : form.classPrice,
+                classStartDate: form.classStartDate,
+                classEndDate : form.classEndDate,
+                classRoom : form.classRoom,
+                classDescription : form.classDescription,
+                classCircuit : form.classCircuit,
+                classesScheduleList : form.classesScheduleList
+            })
         })
         .then(response => response.json());
 

@@ -1,4 +1,4 @@
-import ClassManagementCSS from './ClassManagement.module.css';
+import ClassRegistrationCSS from './ClassRegistration.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ function ClassUpdate(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [form, setForm] = useState({});
+    
 
     /* 읽기모드와 수정모드를 구분 */
     const [modifyMode, setModifyMode] = useState(false);
@@ -23,7 +24,6 @@ function ClassUpdate(){
             classCode : params.classCode
         }));
     }, []);
-
 
     /* 입력 양식의 값 변경될 때 */
     const onChangeHandler = (e) => {
@@ -38,7 +38,7 @@ function ClassUpdate(){
     const onClickModifyModeHandler = () => {
         setModifyMode(true);
         setForm({
-            memberName : classDetail.member.memberName,
+            memberName: classDetail.member.memberName,
             subjectName : classDetail.subject.subjectName,
             classCode : classDetail.classCode,
             className : classDetail.className,
@@ -56,24 +56,38 @@ function ClassUpdate(){
     /* 상품 수정 저장 버튼 클릭 이벤트 */
     const onClickClassUpdateHandler = () => {
 
-        const formData = new FormData();
-        formData.append("memberName", form.memberName)
-        formData.append("classCode", form.classCode);
-        formData.append("subjectForm", form.subjectForm);
-        formData.append("subjectLanguage", form.subjectLanguage);
-        formData.append("subjectBook", form.subjectBook);
-        formData.append("subjectDescription", form.subjectDescription);
 
-        dispatch(callSubjectUpdateAPI({
-            form : formData
+        dispatch(callClassUpdateAPI({
+            form : form
         }));
-        alert('과목이 수정되었습니다.');
-        navigate('/ono/OpenClasses/subjects', { replace : true });
+        alert('강의가 수정되었습니다.');
+        navigate('/ono/OpenClasses/classes', { replace : true });
     }
 
+    
+    const schedule = (() => {
+        const scheduleList = classDetail.classesScheduleList;
+        const arr = []
+        if(scheduleList) {
+            for (var ele of scheduleList) {
+                arr.push(ele.dayName)
+                arr.push(ele.timeName)
+                
+                }
+        }
+         
+        // console.log(scheduleList);
+        console.log(arr)
+        return arr
+       
+    })
+    
+  
     return (
+
         <div>
             <div>
+           
                 <button        
                     onClick={ () => navigate(-1) }            
                 >
@@ -86,56 +100,114 @@ function ClassUpdate(){
                     수정 모드
                 </button>
             }
+
             {modifyMode &&
                 <button 
-                    onClick={ onClickSubjectUpdateHandler }
+                    onClick={ onClickClassUpdateHandler }
                 >
-                    과목 수정 저장하기
+                    강의 수정 저장하기
                 </button>
             }
             </div>        
-            <div className={ SubjectRegistrationCSS.subjectSection }>
-                <div className={ SubjectRegistrationCSS.subjectInfoDiv }>
+            <div className={ ClassRegistrationCSS.classSection }>
+                <div className={ ClassRegistrationCSS.classInfoDiv }>
                     <table>
                         <tbody>
-                            <tr>
+                        <tr>
                                 <td><label>과목명</label></td>
                                 <td>
                                     <input 
                                         name='subjectName'
                                         placeholder='과목명'
-                                        className={ SubjectRegistrationCSS.subjectInfoInput }
+                                        className={ ClassRegistrationCSS.classInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? subjectDetail.subjectName : form.subjectName) || '' }
+                                        value={ (!modifyMode ? classDetail.subject?.subjectName : form.subjectName) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>수업 형태</label></td>
+                                <td><label>강사명</label></td>
                                 <td>
                                     <input 
-                                        name='subjectForm'
-                                        placeholder='수업 형태'
-                                        className={ SubjectRegistrationCSS.subjectInfoInput }
+                                        name='memberName'
+                                        placeholder='강사명'
+                                        className={ ClassRegistrationCSS.classInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? subjectDetail.subjectForm : form.subjectForm) || 0 }
+                                        value={ (!modifyMode ? classDetail.member?.memberName : form.memberName) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>언어</label></td>
+                                <td><label>수강 정원</label></td>
+                                <td>
+                                    <input 
+                                        name='classQuota'
+                                        placeholder='수강 정원'
+                                        className={ ClassRegistrationCSS.classInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ (!modifyMode ? classDetail.classQuota : form.classQuota) || 0 }
+                                        readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                    />
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td><label>시간표</label></td>
+                                <td>
+                                    <input 
+                                        name='classesScheduleList'
+                                        placeholder='강의명'
+                                        className={ ClassRegistrationCSS.classInfoInput }
+                                        onChange={ onChangeHandler }
+                                        value={ (!modifyMode ? schedule() : form.classesScheduleList) || '' }
+                                        readOnly={ modifyMode ? false : true }
+                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                    />
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td><label>수업료</label></td>
                                 <td>
                                     <label>
                                         <input 
-                                            name="subjectLanguage"  
-                                            placeholder='언어'
-                                            className={ SubjectRegistrationCSS.subjectInfoInput }
+                                            name="classPrice"  
+                                            placeholder='수업료'
+                                            className={ ClassRegistrationCSS.classInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? subjectDetail.subjectLanguage : form.subjectLanguage) || 0 }
+                                            value={ (!modifyMode ? classDetail.classPrice : form.classPrice) || 0 }
+                                            readOnly={ modifyMode ? false : true }
+                                            style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                            /> 
+                                    </label>
+                                </td>
+                            </tr>    <tr>
+                                <td><label>수업일</label></td>
+                                <td>
+                                    <label>
+                                        <input 
+                                            name="classStartDate"  
+                                            placeholder='시작일'
+                                            className={ ClassRegistrationCSS.classInfoInput }
+                                            onChange={ onChangeHandler } 
+                                            value={ (!modifyMode ? classDetail.classStartDate : form.classPrice) || 0 }
+                                            readOnly={ modifyMode ? false : true }
+                                            style={ !modifyMode ? { backgroundColor : 'gray'} : null }
+                                            /> 
+                                    </label>
+                                </td>
+                            </tr>    <tr>
+                                <td>
+                                    <label>
+                                        <input 
+                                            name="classEndDate"  
+                                            placeholder='종료일'
+                                            className={ ClassRegistrationCSS.classInfoInput }
+                                            onChange={ onChangeHandler } 
+                                            value={ (!modifyMode ? classDetail.classEndDate : form.classEndDate) || 0 }
                                             readOnly={ modifyMode ? false : true }
                                             style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
@@ -143,51 +215,38 @@ function ClassUpdate(){
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>교재</label></td>
+                                <td><label>강의실</label></td>
                                 <td>
                                     <label>
                                         <input 
-                                            name="subjectBook"  
-                                            placeholder='교재'
-                                            className={ SubjectRegistrationCSS.subjectInfoInput }
+                                            name="classRoom"  
+                                            placeholder='1강의장'
+                                            className={ ClassRegistrationCSS.classInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? subjectDetail.subjectBook : form.subjectBook) || 0 }
+                                            value={ (!modifyMode ? classDetail.classRoom : form.classRoom) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
                                     </label>
                                 </td>
-                            </tr>
+                            </tr>   
+                          
+                    
+                        
                             <tr>
-                                <td><label>과목 설명</label></td>
-                                <td>
-                                    <label>
-                                        <input 
-                                            name="subjectDescription"  
-                                            placeholder='과목 설명'
-                                            className={ SubjectRegistrationCSS.subjectInfoInput }
-                                            onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? subjectDetail.subjectDescription : form.subjectDescription) || 0 }
-                                            readOnly={ modifyMode ? false : true }
-                                            style={ !modifyMode ? { backgroundColor : 'gray'} : null }
-                                            /> 
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>과목 학습 목표</label></td>
+                                <td><label>강의 설명</label></td>
                                 <td>
                                     <textarea 
-                                        className={ SubjectRegistrationCSS.textAreaStyle }
-                                        name='subjectLearningObjectives'
+                                        className={ ClassRegistrationCSS.textAreaStyle }
+                                        name='classDescription'
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? subjectDetail.subjectLearningObjectives : form.subjectLearningObjectives) || 0 }
+                                        value={ (!modifyMode ? classDetail.classDescription : form.classDescription) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     ></textarea>
                                 </td>
                             </tr> 
-                    
+                            
                         </tbody>                        
                     </table>
                 </div>
