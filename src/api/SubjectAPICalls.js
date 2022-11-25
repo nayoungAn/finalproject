@@ -65,7 +65,9 @@ export const callSubjectDeleteAPI = ({subjectCode}) => {
 
         if(result.status === 200) {
             console.log('[SubjectAPIcalls] callSubjectDeleteAPI RESULT : ', result);
+
             dispatch({ type: DELETE_SUBJECT, payload : result});
+
         }
     }
 }

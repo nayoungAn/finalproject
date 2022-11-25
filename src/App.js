@@ -21,6 +21,7 @@ import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import ConsRegistration from "./pages/cons/ConsRegistration";
+import Teacherclass from "./pages/teacherclass/teacherclass";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="find-id" element={ <FindId/>}/>
         <Route path="find-pwd" element={ <FindPwd/>}/>
       </Route>
+
      <Route path="/ono" element={ <Layout/>}>
         <Route path="OpenClasses" element={ <OpenClassesLayout/> }>
               <Route index element={ <Navigate to="subjects" replace /> } />
@@ -42,7 +44,6 @@ function App() {
               <Route path="classes" element={ <OpenClasses/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
-        <Route path="teacher" element={  <TeacherManagement/> }/>
 
         <Route path="Cons" element={ <ConsLayout/> }>
             <Route index element={ <Navigate to="consMain" replace /> } />
@@ -50,9 +51,16 @@ function App() {
             <Route path="cons-registration" element={ <ConsRegistration/> }/>
             <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
        </Route>
+            
+        <Route path="teacher" element={  <TeacherManagement/> }>
               <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
-      </Route>
+        </Route>
+
+        <Route path="teacherclass" element={<Teacherclass/>}>
+        </Route> 
+
+      
     </Routes>
     </BrowserRouter>
   );
