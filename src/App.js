@@ -14,6 +14,8 @@ import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import QnaTeacher from "./pages/consultant/QnaTeacher";
+import QnaDetail from "./pages/consultant/QnaDetail";
+import Test from "./pages/consultant/Test";
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={ <Login/>}/>
       <Route path="findmeminfo" element= { <FindMemLayout/>}>
-        <Route index element={ <Navigate to= "/findmeminfo/find-pwd" replace/> }/>
+        <Route index element={ <Navigate to= "/findmeminfo/find-id" replace/> }/>
         <Route path="find-id" element={ <FindId/>}/>
         <Route path="find-pwd" element={ <FindPwd/>}/>
       </Route>
@@ -38,8 +40,9 @@ function App() {
 
         <Route path="teacher" element={  <TeacherManagement/> }/>
               <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
-              <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
-        <Route path="qna" element={ <QnaTeacher/> }/>
+              <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>      
+        <Route path="qna/:classCode" element={ <QnaTeacher/> }/>
+        <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
       </Route>
     </Routes>
     </BrowserRouter>

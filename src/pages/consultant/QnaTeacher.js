@@ -23,7 +23,7 @@ function QnaTeacher() {
     useEffect(
         () => {
             dispatch(callQnaListAPI({
-                mtmCode : params.mtmCode,
+                classCode : params.classCode,
                 currentPage : currentPage
             }));
         }
@@ -31,7 +31,7 @@ function QnaTeacher() {
     )
 
     const onClickTableTr = (mtmCode) => {
-        navigate(`/qnaDetail/${mtmCode}`, { replace : true });
+        navigate(`/qnaDetail/${mtmCode}`, { replace : false });
     }
 
     return(

@@ -1,8 +1,8 @@
 import { GET_QNA, GET_QNAS} from "../modules/QnaListModule";
 
-export const callQnaListAPI = ({mtmCode, currentPage}) => {
+export const callQnaListAPI = ({classCode, currentPage}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/qna`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qna/${classCode}?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
