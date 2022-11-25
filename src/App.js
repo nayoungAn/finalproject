@@ -46,6 +46,7 @@ function App() {
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
               <Route path="teachers/search" element={ <TeacherSearch/> }/>
       </Route>
+      <Route/>
     </Routes>
     </BrowserRouter>
   );
