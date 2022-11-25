@@ -11,6 +11,12 @@ import smsListReducer from "./SmsListModule";
 import teacherClassReducer from "./TeacherClassModule";
 
 
+import accListReducer from "./AccListModule";
+import accReducer from "./AccModule";
+import smsListReducer from "./SmsListModule";
+import teacherClassReducer from "./TeacherClassModule";
+
+
 const rootReducer = combineReducers({
     memberReducer,
     consReducer,

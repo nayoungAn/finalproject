@@ -158,6 +158,7 @@ function SubjectManagement() {
                     className={ SubjectManagementCSS.pagingBtn }
                 >
                     {num}
+                    
                 </button>
             </li>
             ))}
