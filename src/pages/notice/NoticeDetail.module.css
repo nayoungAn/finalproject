@@ -6,7 +6,8 @@
 
 .subjectInfoDiv{
     display: flex;
-    width: 350px;
+    width: 750px;
+    
 }
 
 .subjectInfoInput {    
@@ -20,6 +21,11 @@
 
 .subjectInfoDiv table {
     width: 100%;
+}
+
+.subjectContentInput {
+    height: 400px;
+    width : 720px;
 }
 
 .textAreaStyle {

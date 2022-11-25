@@ -33,6 +33,10 @@ function NoticeList() {
         ,[currentPage]    
     );
 
+    const onClickNoticeInsert = () => {
+        navigate("/ono/notice", {replace : false})
+    }
+
     const onClickNoticeDelete = (noticeCode) => {
         console.log('[SubjectManagement] onClickSubjectDelete');
         {
@@ -63,11 +67,11 @@ function NoticeList() {
         <>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
             <div>
-                {/* <button
-                    onClick={ onClickSubjectInsert }
+                <button
+                    onClick={ onClickNoticeInsert }
                 >
-                    과목 등록
-                </button> */}
+                    작성하기
+                </button>
             </div>            
             <table className={ NoticeListmoduleCSS.teacherTable }>
                 <colgroup>
@@ -82,6 +86,7 @@ function NoticeList() {
                         <th>제목</th>
                         <th>등록일</th>
                         <th>작성자</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
