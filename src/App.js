@@ -2,22 +2,33 @@ import {  BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/member/Login";
 import Layout from "./layouts/Layout.js";
 import OpenClassesLayout from "./layouts/OpenClassesLayout";
-import ClassManagement from "./pages/classes/ClassManagement";
-import ClassUpdate from "./pages/classes/ClassUpdate";
+import OpenClasses from "./pages/classes/OpenClasses";
+import Subjects from "./pages/classes/Subjects";
+import ConsLayout from "./layouts/ConsLayout";
+import ConsMain from "./pages/cons/ConsMain";
+import ConsDetail from "./pages/cons/ConsDetail";
+import SubjectManagement from "./pages/classes/SubjectManagement";
+import SubjectUpdate from "./pages/classes/SubjectUpdate"
 import ClassHistory from "./pages/classes/ClassHistory";
 import FindId from "./pages/member/FindId";
 import FindPwd from "./pages/member/FindPwd";
 import TeacherManagement from "./pages/teacher/TeacherManagement";
 import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
-import SubjectManagement from "./pages/classes/SubjectManagement";
-import SubjectSearch from "./pages/classes/SubjectSearch";
-import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
-import TeacherSearch from "./pages/teacher/TeacherSearch";
-import ClassRegistration from "./pages/classes/ClassRegistration";
+import Teacherclass from "./pages/teacherclass/Teacherclass";
+import ConsRegistration from "./pages/cons/ConsRegistration";
+import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
+import AccManagement from "./pages/acc/AccManagement";
+import AccRegistration from "./pages/acc/AccRegistration";
+import AccUpdate from "./pages/acc/AccUpdate";
+import SmsManagement from "./pages/sms/SmsManagement";
+
+
+
 function App() {
+
   return (
     <BrowserRouter>
     <Routes>
@@ -32,21 +43,40 @@ function App() {
         <Route path="OpenClasses" element={ <OpenClassesLayout/> }>
               <Route index element={ <Navigate to="subjects" replace /> } />
               <Route path="subjects" element={ <SubjectManagement/> }/>
-              <Route path="search" element={ <SubjectSearch/>} />
               <Route path="subject-registration" element={ <SubjectRegistration/> }/>
               <Route path="subject-update/:subjectCode" element={ <SubjectUpdate/> }/>
-              <Route path="classes" element={ <ClassManagement/> }/>
-              <Route path="class-registration" element={ <ClassRegistration/> }/>
-              <Route path="class-update/:classCode" element={ <ClassUpdate/> }/>
+              <Route path="classes" element={ <OpenClasses/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
 
-        <Route path="teacher" element={  <TeacherManagement/> }/>
+        <Route path="Cons" element={ <ConsLayout/> }>
+            <Route index element={ <Navigate to="consMain" replace /> } />
+            <Route path="consMain" element={ <ConsMain/> }/>
+            <Route path="cons-registration" element={ <ConsRegistration/> }/>
+            <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
+       </Route>
+            
+        <Route path="teacher" element={  <TeacherManagement/> }>
               <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
-              <Route path="teachers/search" element={ <TeacherSearch/> }/>
+        </Route>
+
+
+        <Route path="teacherclass" element={<Teacherclass/>}>
+             <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>}/>
+        </Route> 
+      
       </Route>
-    </Routes>
+
+
+        <Route path="acc" element={<AccManagement />}>
+        <Route path="acc-update/:accCode" element={<AccUpdate />} />
+        <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
+        <Route path="sms" element={<SmsManagement />} >
+        </Route>
+        
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
