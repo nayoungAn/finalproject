@@ -23,8 +23,16 @@
 
 .classtable{
     width: 900px;
-    border-bottom: 1px solid #1c4bcc;
+    text-align: center;
+    
 }
+
+.classtable th{
+    border-bottom: 1px solid #1c4bcc;
+    border-collapse: collapse;
+} 
+
+
 
 .teacherTable tr:hover { 
     background-color: #F5F5F5; 
