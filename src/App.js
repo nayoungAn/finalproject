@@ -13,7 +13,7 @@ import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
-import Teacherclass from "./pages/teacherclass/teacherclass";
+import Teacherclass from "./pages/teacherclass/Teacherclass";
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
         </Route>
 
-        <Route path="teacherclass" element={<Teacherclass/>}>
+        <Route path="Teacherclass" element={<Teacherclass/>}>
         </Route> 
 
 
