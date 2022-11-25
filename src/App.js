@@ -60,6 +60,8 @@ function App() {
 
         <Route path="Teacherclass" element={<Teacherclass/>}>
         </Route> 
+      
+      </Route>
 
       
     </Routes>
