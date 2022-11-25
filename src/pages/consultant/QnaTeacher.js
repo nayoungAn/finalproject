@@ -31,7 +31,7 @@ function QnaTeacher() {
     )
 
     const onClickTableTr = (mtmCode) => {
-        navigate(`/qnaDetail/${mtmCode}`, { replace : false });
+        navigate(`/ono/qnaDetail/${mtmCode}`, { replace : false });
     }
 
     return(

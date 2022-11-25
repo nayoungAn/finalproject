@@ -9,6 +9,7 @@ export const callQnaListAPI = ({classCode, currentPage}) => {
         const result =  await fetch(requestURL, {
             method : "GET",
             headers : {
+                "Content-Type" : "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
@@ -25,7 +26,7 @@ export const callQnaListAPI = ({classCode, currentPage}) => {
 
 export const callQnaDetailAPI = ({mtmCode}) => {
     
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/qna/${mtmCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qna/classes/${mtmCode}`;
     
     return async (dispatch, getState) => {
 
@@ -33,7 +34,9 @@ export const callQnaDetailAPI = ({mtmCode}) => {
             method : "GET",
             headers : {
                 "Content-Type" : "application/json",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+
             },
          
         })
