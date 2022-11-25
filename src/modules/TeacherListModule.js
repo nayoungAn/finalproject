@@ -5,10 +5,10 @@ const initialState = [];
 export const GET_TEACHER = "member/GET_TEACHER";
 export const GET_TEACHERS = 'member/GET_TEACHERS';
 
-const actions = createActions({
-    [GET_TEACHER]: () => {}, 
-    [GET_TEACHERS]: () => {},
-});
+// const actions = createActions({
+//     [GET_TEACHER]: () => {}, 
+//     [GET_TEACHERS]: () => {},
+// });
 
 const teacherListReducer = handleActions(
     {

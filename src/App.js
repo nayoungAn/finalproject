@@ -20,8 +20,9 @@ import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
+import Teacherclass from "./pages/teacherclass/Teacherclass";
 import ConsRegistration from "./pages/cons/ConsRegistration";
-import Teacherclass from "./pages/teacherclass/teacherclass";
+
 
 function App() {
 
@@ -57,7 +58,7 @@ function App() {
               <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
         </Route>
 
-        <Route path="teacherclass" element={<Teacherclass/>}>
+        <Route path="Teacherclass" element={<Teacherclass/>}>
         </Route> 
 
       
