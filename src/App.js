@@ -17,6 +17,17 @@ import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
+import ConsLayout from "./layouts/ConsLayout";
+import ConsMain from "./pages/cons/ConsMain";
+import ConsDetail from "./pages/cons/ConsDetail";
+import ConsRegistration from "./pages/cons/ConsRegistration";
+import Teacherclass from "./pages/teacherclass/Teacherclass";
+import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
+import AccManagement from "./pages/acc/AccManagement";
+import AccRegistration from "./pages/acc/AccRegistration";
+import AccUpdate from "./pages/acc/AccUpdate";
+import SmsManagement from "./pages/sms/SmsManagement";
+
 function App() {
   return (
     <BrowserRouter>
@@ -42,11 +53,29 @@ function App() {
         </Route>
 
         <Route path="teacher" element={  <TeacherManagement/> }/>
-              <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
-              <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
-              <Route path="teachers/search" element={ <TeacherSearch/> }/>
+        <Route path="teacher/regist" element={ <TeacherRegistration/> }/>
+        <Route path="teacher-update/:memberCode" element={ <TeacherUpdate/> }/>
+        <Route path="teachers/search" element={ <TeacherSearch/> }/>
+
+        <Route path="Cons" element={ <ConsLayout/> }>
+            <Route index element={ <Navigate to="consMain" replace /> } />
+            <Route path="consMain" element={ <ConsMain/> }/>
+            <Route path="cons-registration" element={ <ConsRegistration/> }/>
+            <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
+       </Route>
+      
+       <Route path="teacherclass" element={<Teacherclass/>}>
+             <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>}/>
+        </Route> 
       </Route>
-      <Route/>
+
+        <Route path="acc" element={<AccManagement />}>
+          <Route path="acc-update/:accCode" element={<AccUpdate />} />
+          <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
+          <Route path="sms" element={<SmsManagement />} >
+          </Route>
+      </Route>
+      
     </Routes>
     </BrowserRouter>
   );
