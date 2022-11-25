@@ -11,8 +11,8 @@ function Teacherclass() {
     const dispatch = useDispatch();
     const classes = useSelector(state => state.teacherClassReducer);
 
-    const classList = classes.data;
-    console.log('classList', classList);
+    const classesList = classes.data;
+    console.log('classList', classesList);
 
     const pageInfo = classes.pageInfo;
 
@@ -57,8 +57,9 @@ function Teacherclass() {
                         <th>담당강사</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    {Array.isArray(classList) && classList.map((c)=>(
+                    {Array.isArray(classesList) && classesList.map((c)=>(
                         <tr
                         key={ c.classCode }
                         onClick={ () => onClickTeacherclass(c.classCode) }
@@ -78,17 +79,14 @@ function Teacherclass() {
         </div>
 
 
-
-
-
         <div style={{listStyleType: 'none', display:'flex'}}>
             {
-                Array.isArray(classList)
+                Array.isArray(classesList)
                 && 
                 <button
                     onClick={()=> setCurrentPage(currentPage -1)}
                     disabled={ currentPage === 1}
-                    className={TeacherClassCSS.pagingBtn}
+                    className={ TeacherClassCSS.pagingBtn }
                     >
                         &lt;
 
@@ -106,7 +104,8 @@ function Teacherclass() {
                 </button>
             </li>
             ))}
-            { Array.isArray(classList) &&
+
+            { Array.isArray(classesList) &&
             <button 
                 className={ TeacherClassCSS.pagingBtn }
                 onClick={() => setCurrentPage(currentPage + 1)} 
