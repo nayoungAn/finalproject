@@ -43,7 +43,7 @@ function Header(){
             return;
         }
 
-        navigate("/sms", { replace : true });
+        navigate("/ono/sms", { replace : true });
     }
     function AfterLogin(){
 
