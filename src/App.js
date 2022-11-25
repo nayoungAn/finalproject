@@ -62,6 +62,8 @@ function App() {
 
         <Route path="Teacherclass" element={<Teacherclass/>}>
         </Route> 
+      
+      </Route>
 
 
         <Route path="acc" element={<AccManagement />}>
