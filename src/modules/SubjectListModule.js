@@ -26,3 +26,4 @@ const subjectListReducer = handleActions(
 );
 
 export default subjectListReducer;
+

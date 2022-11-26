@@ -5,7 +5,7 @@ import { combineReducers } from "redux";
 import subjectListReducer from "./SubjectListModule";
 import teacherListReducer from "./TeacherListModule";
 import teacherReducer from "./TeacherModule";
-
+import classReducer from "./ClassModule";
 import accListReducer from "./AccListModule";
 import accReducer from "./AccModule";
 import smsListReducer from "./SmsListModule";
@@ -21,10 +21,11 @@ const rootReducer = combineReducers({
     teacherListReducer,
     accListReducer,
     accReducer,
-    smsListReducer
+    classReducer,
+    accListReducer,
+    accReducer,
+    smsListReducer,
     teacherClassReducer
-    
-
 });
 
 export default rootReducer;

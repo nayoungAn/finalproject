@@ -77,6 +77,7 @@ function ProductUpdate(){
             memberStatus : teacherDetail.memberStatus,
             memberAddress : teacherDetail.memberAddress,
             memberRegisterDate : teacherDetail.memberRegisterDate,
+            
         });
     }
 
@@ -104,7 +105,7 @@ function ProductUpdate(){
             form : formData
         }));
 
-        alert('강사가 수정되었습니다.');
+        alert('강사 내역이 수정되었습니다.');
         navigate('/ono/teacher', { replace : true });
         window.location.reload();
     }
@@ -215,7 +216,7 @@ function ProductUpdate(){
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>입사일</label></td>
+                                <td><label>최근 입사일</label></td>
                                 <td>
                                     <input 
                                         name='memberRegisterDate'
