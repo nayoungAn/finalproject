@@ -59,14 +59,21 @@ export const callQnaResistAPI = ({form}) => {
     return async (dispatch, getState ) => {
 
         const result = await fetch(requestURL, {
-            method : "GET",
+            method : "POST",
             headers : {
                 "Content-Type" : "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
 
             },
-            body : form
+            body : JSON.stringify({
+                mtmCode : form.mtmCode,
+                classes : {
+                    classCode : form.classCode
+                },
+                mtmTitle : form.mtmTitle,
+                mtmDescription : form.mtmDescription
+            })
         })
         .then(response => response.json());
 
