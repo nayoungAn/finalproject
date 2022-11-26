@@ -25,7 +25,7 @@ import AccManagement from "./pages/acc/AccManagement";
 import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
-
+import TeacherClassLayout from "./layouts/TeacherClassLayout"
 
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={ <Login/>}/>
+     
       <Route path="findmeminfo" element= { <FindMemLayout/>}>
         <Route index element={ <Navigate to= "/findmeminfo/find-id" replace/> }/>
         <Route path="find-id" element={ <FindId/>}/>
@@ -63,15 +64,20 @@ function App() {
         </Route>
 
         <Route path="teacherclass" element={<Teacherclass/>}/>
-        <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>}/>
-        <Route path="qna/:classCode" element={ < QnaTeacher/> }/>
-        <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
+
+        <Route path="tea" element={<TeacherClassLayout/>}>
+              <Route index element={ <Navigate to="teacherclass/:classCode" replace/> } />
+              <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>} />
+              <Route path="qna/:classCode" element={ <QnaTeacher/> }/>
+              <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
+        </Route>
 
         <Route path="acc" element={<AccManagement />}/>
        
         <Route path="acc-update/:accCode" element={<AccUpdate />} />
         <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
         <Route path="sms" element={<SmsManagement />} >
+          
         </Route>
       </Route>
         

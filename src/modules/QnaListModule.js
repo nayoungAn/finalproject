@@ -3,11 +3,9 @@ import { createActions, handleActions } from "redux-actions";
 const initialState = [];
 
 export const GET_QNAS = "teacher/GET_QNAS";
-export const GET_QNA = "teacher/GET_QNA";
 
 const actions = createActions({
-    [GET_QNAS]: () => {},
-    [GET_QNA]: () => {}
+    [GET_QNAS]: () => {}
 });
 
 const QnaListReducer = handleActions(
@@ -16,11 +14,7 @@ const QnaListReducer = handleActions(
             return payload
         }
     },
-    {
-        [GET_QNA]: (state, { payload}) => {
-            return payload
-        }
-    },
+   
     initialState
 );
 

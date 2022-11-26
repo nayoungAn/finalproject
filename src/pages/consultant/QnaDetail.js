@@ -9,7 +9,8 @@ function OnaDetai() {
     const dispatch = useDispatch();
     const params = useParams();
     const qna = useSelector(state => state.qnaListReducer);
-    const qnaDetail = qna.data
+    
+    
     
     useEffect(
         () => {
@@ -17,41 +18,32 @@ function OnaDetai() {
 
             dispatch(callQnaDetailAPI({
                 mtmCode: params.mtmCode
+                
             }));
         }
         ,[]
     );
+    console.log('[QnaDetail] qna : ', qna);
+    
 
     return(
+
         <>
             <div className={ QnaDtailCSS.qnaDetailtableDiv }>
                 <table className={ QnaDtailCSS.qnaDetailtableCss }>
-                    <colgroup>
-                         <col width="10%" />
-                        <col width="50%" />
-                        <col width="20%" />
-                        <col width="20%" />
-                        <col width="20%" />
-                    </colgroup>
-                    <tbody>
-                            {
-                                Array.isArray(qnaDetail) && qnaDetail.map(
-                                    (qna) => (
-                                        <tr>
-                                            <td>{qna.qnaCode}</td>
-                                            <td>{ qna.classes.className }</td>
-                                            <td>{ qna.mtmTitle }</td>
-                                            <td>{ qna.member.memberName }</td>
-                                            <td>{ qna.mtmDate }</td>
-                                        </tr>
-                                    )
-                                )
-                            }
+                    <tbody>   
+                       <tr>
+                            <th>{ qna.mtmCode }  </th>
+                            <th>{ qna.mtmTitle } </th>
+                            <th>{ qna.mtmDate }  </th>
+                        </tr>
+                        <tr>
+                            <td> { qna.mtmDescription } </td>
+                        </tr>
                     </tbody> 
                 </table>
             </div>
-
-           
+        
         </>
     )
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callteacherClasssDetailAPI } from "../../api/TeacherClassAPICall";
 //import TeacherClassDetailCSS from './TeacherclassDetail.module.css';
+import TeacherClassNav from "../../components/common/TeacherClassNav"
 
 function TeacherclassDetail(){
     
@@ -23,15 +24,9 @@ function TeacherclassDetail(){
         
     );
 
-    const onClickQnaHandler= () => {
-        navigate(`/ono/qna/${params.classCode}`, { replace : false });
-    }
-
         return (
             <>
                 <div> 
-                    <button onClick={onClickQnaHandler}> 1:1 상담 </button>
-                    <button> 출석부 </button>
                     <table>
                         <thead>
                             <tr>

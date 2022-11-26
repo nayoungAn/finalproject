@@ -1,8 +1,12 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 function FindMemInfoNav({ classCode }){
-   
-    const navigate = useNavigate()
+     const params = useParams();
+     const navigate = useNavigate()
+
+    const onClickQanclass = () => {
+        navigate(`/ono/tea/qna/${params.classCode}`, {replace:false})
+    }
 
     const onClickTeacherclass =(classCode)=> {
         navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
@@ -13,8 +17,8 @@ function FindMemInfoNav({ classCode }){
         <>
             <ul>
                 <li onClick={onClickTeacherclass}>강의정보</li>
-                <li><NavLink to="/ono/tea/qna/:classCode">1:1 상담</NavLink></li>
-                <li><NavLink to="/">출석부</NavLink></li>
+                <li onClick={onClickQanclass}>1:1 상담</li>
+                <li><NavLink to="/">출석부</NavLink></li> 
 
             </ul>
         </>

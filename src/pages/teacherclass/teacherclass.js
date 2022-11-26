@@ -36,7 +36,7 @@ function Teacherclass() {
     );
 
     const onClickTeacherclass =(classCode)=> {
-        navigate(`/ono/teacherclass/${classCode}`, {replace:false})
+        navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
     }
 
 
