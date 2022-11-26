@@ -6,7 +6,7 @@ import subjectListReducer from "./SubjectListModule";
 import teacherListReducer from "./TeacherListModule";
 import teacherReducer from "./TeacherModule";
 import qnaListReducer from "./QnaListModule";
-
+import classReducer from "./ClassModule";
 import accListReducer from "./AccListModule";
 import accReducer from "./AccModule";
 import smsListReducer from "./SmsListModule";
@@ -23,10 +23,11 @@ const rootReducer = combineReducers({
     qnaListReducer,
     accListReducer,
     accReducer,
-    smsListReducer,
-    teacherClassReducer,
     qnaReducer,
-    
+    classReducer,
+    smsListReducer,
+    teacherClassReducer
+
 });
 
 export default rootReducer;

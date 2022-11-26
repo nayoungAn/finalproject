@@ -1,23 +1,22 @@
-import SubjectManagementCSS from './SubjectManagement.module.css';
+import ClassManagementCSS from './ClassManagement.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import{callSubjectDeleteAPI } from '../../api/SubjectAPICalls';
-import { callSubjectListForAdminAPI } from '../../api/SubjectListAPICall';
+import { callClassListForAdminAPI } from '../../api/ClassAPICalls';
 import HeaderCSS from "../../components/common/Header";
 
-function SubjectManagement() {
+function ClassManagement() {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const subjects  = useSelector(state => state.subjectListReducer);      
-    const subjectList = subjects.data;
-    const deleteSubjects = useSelector(state => state.subjectReducer); 
+    const classes  = useSelector(state => state.classReducer);      
+    const classList = classes.data;
     const [search, setSearch] = useState('');
+    
 
-    console.log('subjectManagement', subjectList);
 
-    const pageInfo = subjects.pageInfo;
+
+    const pageInfo = classes.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -30,42 +29,23 @@ function SubjectManagement() {
 
     useEffect(
         () => {         
-            dispatch(callSubjectListForAdminAPI({
+            dispatch(callClassListForAdminAPI({
                 currentPage: currentPage
             }));            
             
         }
-        ,[currentPage, deleteSubjects]    
+        ,[currentPage]    
     );
 
-    const onClickSubjectInsert = () => {
-        console.log('[SubjectManagement] onClickSubjectInsert');
-        navigate("/ono/OpenClasses/subject-registration", { replace: false })
+    const onClickClassInsert = () => {
+        console.log('[ClassManagement] onClickClassInsert');
+        navigate("/ono/OpenClasses/class-registration", { replace: false })
     }
 
-    const onClickSubjectDelete = (subjectCode) => {
-        console.log('[SubjectManagement] onClickSubjectDelete');
-        
-            dispatch(callSubjectDeleteAPI({
-                subjectCode : subjectCode
-            }));
+    const onClickTableTr = (classCode) => {
 
-            console.log("데이터보기" , deleteSubjects);
-      
-            
-            
-            deleteSubjects.subjectCode === null ? alert('과목이 삭제되었습니다.')        
-            : alert('등록된 강의로 인하여 삭제 실패하였습니다.');
-
-    }
-    const onClickTableTr = (e, subjectCode) => {
-
-        console.log(e.target.className);
-        
-
-     e.target.className != "deleteBtn" ?  navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false })
-     : onClickSubjectDelete(subjectCode);
-     
+    navigate(`/ono/OpenClasses/class-update/${classCode}`, { replace: false })
+    
 
     }
 
@@ -78,17 +58,17 @@ function SubjectManagement() {
         if(e.key == 'Enter') {
             console.log('Enter key', search);
 
-            navigate(`/ono/OpenClasses/search?value=${search}`, { replace : false });
+            navigate(`/ono/classes/search?value=${search}`, { replace : false });
         }
     }
 
     return (
         <>
        
-        <div className={ SubjectManagementCSS.bodyDiv }>
+        <div className={ ClassManagementCSS.bodyDiv }>
             <div>
                 <button
-                    onClick={ onClickSubjectInsert }
+                    onClick={ onClickClassInsert }
                 >
                     과목 등록
                 </button>
@@ -101,39 +81,38 @@ function SubjectManagement() {
                     onChange={ onSearchChangeHandler }
                 />
             </div>            
-            <table className={ SubjectManagementCSS.subjectTable }>
+            <table className={ ClassManagementCSS.classTable }>
                 <colgroup>
                     <col width="10%" />
                     <col width="30%" />
                     <col width="40%" />
                     <col width="10%" />
                     <col width="20%" />
+                    <col width="10%" />
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>과목번호</th>
-                        <th>과목명</th>
-                        <th>과목 설명</th>
-                        <th>언어</th>
-                        <th>수업형태</th>
+                        <th>강의번호</th>
+                        <th>강사명</th> 
+                        <th>강의명</th>
+                        <th>수강일</th>
+                        <th>강의실</th>
+                        <th>정원</th>
                     </tr>
                 </thead>
                 <tbody>
-                    { Array.isArray(subjectList) && subjectList.map((s) => (
+                    { Array.isArray(classList) && classList.map((c) => (
                         <tr
-                            key={ s.subjectCode }
-                            onClick={ (event) => onClickTableTr(event, s.subjectCode) }
+                            key={ c.classCode }
+                            onClick={ () => onClickTableTr(c.classCode) }
                         >
-                            <td>{ s.subjectCode }</td>
-                            <td>{ s.subjectName }</td>
-                            <td>{ s.subjectDescription }</td>
-                            <td>{ s.subjectLanguage }</td>
-                            <td>{ s.subjectForm }</td>
-                            <td><button className="deleteBtn"
-                  
-                >
-                    삭제
-                </button></td>
+                            <td>{ c.classCode }</td>
+                            <td>{ c.member.memberName }</td>
+                            <td>{ c.className }</td>
+                            
+                            <td>{ c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])}</td> 
+                            <td>{ c.classRoom }</td>
+                            <td>{ c.classStudents + "/" + c.classQuota}</td>
                         </tr>
                     )) 
                     }
@@ -142,11 +121,11 @@ function SubjectManagement() {
             
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
-            { Array.isArray(subjectList) &&
+            { Array.isArray(classList) &&
             <button 
                 onClick={() => setCurrentPage(currentPage - 1)} 
                 disabled={currentPage === 1}
-                className={ SubjectManagementCSS.pagingBtn }
+                className={ ClassManagementCSS.pagingBtn }
             >
                 &lt;
             </button>
@@ -155,16 +134,15 @@ function SubjectManagement() {
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
                     style={ currentPage === num ? {backgroundColor : 'orange' } : null}
-                    className={ SubjectManagementCSS.pagingBtn }
+                    className={ ClassManagementCSS.pagingBtn }
                 >
                     {num}
-                    
                 </button>
             </li>
             ))}
-            { Array.isArray(subjectList) &&
+            { Array.isArray(classList) &&
             <button 
-                className={ SubjectManagementCSS.pagingBtn }
+                className={ ClassManagementCSS.pagingBtn }
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
             >
@@ -176,4 +154,4 @@ function SubjectManagement() {
     );
 }
 
-export default SubjectManagement;
+export default ClassManagement;

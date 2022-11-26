@@ -116,7 +116,7 @@ function SubjectUpdate(){
                                         placeholder='수업 형태'
                                         className={ SubjectRegistrationCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? subjectDetail.subjectForm : form.subjectForm) || 0 }
+                                        value={ (!modifyMode ? subjectDetail.subjectForm : form.subjectForm) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
@@ -131,7 +131,7 @@ function SubjectUpdate(){
                                             placeholder='언어'
                                             className={ SubjectRegistrationCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? subjectDetail.subjectLanguage : form.subjectLanguage) || 0 }
+                                            value={ (!modifyMode ? subjectDetail.subjectLanguage : form.subjectLanguage) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
@@ -147,7 +147,7 @@ function SubjectUpdate(){
                                             placeholder='교재'
                                             className={ SubjectRegistrationCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? subjectDetail.subjectBook : form.subjectBook) || 0 }
+                                            value={ (!modifyMode ? subjectDetail.subjectBook : form.subjectBook) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
@@ -163,7 +163,7 @@ function SubjectUpdate(){
                                             placeholder='과목 설명'
                                             className={ SubjectRegistrationCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? subjectDetail.subjectDescription : form.subjectDescription) || 0 }
+                                            value={ (!modifyMode ? subjectDetail.subjectDescription : form.subjectDescription) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
@@ -177,7 +177,7 @@ function SubjectUpdate(){
                                         className={ SubjectRegistrationCSS.textAreaStyle }
                                         name='subjectLearningObjectives'
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? subjectDetail.subjectLearningObjectives : form.subjectLearningObjectives) || 0 }
+                                        value={ (!modifyMode ? subjectDetail.subjectLearningObjectives : form.subjectLearningObjectives) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     ></textarea>
