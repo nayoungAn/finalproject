@@ -5,12 +5,13 @@ import { combineReducers } from "redux";
 import subjectListReducer from "./SubjectListModule";
 import teacherListReducer from "./TeacherListModule";
 import teacherReducer from "./TeacherModule";
+import qnaListReducer from "./QnaListModule";
 import classReducer from "./ClassModule";
 import accListReducer from "./AccListModule";
 import accReducer from "./AccModule";
 import smsListReducer from "./SmsListModule";
 import teacherClassReducer from "./TeacherClassModule";
-
+import qnaReducer from "./QnaModule";
 
 const rootReducer = combineReducers({
     memberReducer,
@@ -19,13 +20,14 @@ const rootReducer = combineReducers({
     subjectListReducer,
     teacherReducer,
     teacherListReducer,
+    qnaListReducer,
     accListReducer,
     accReducer,
+    qnaReducer,
     classReducer,
-    accListReducer,
-    accReducer,
     smsListReducer,
     teacherClassReducer
+
 });
 
 export default rootReducer;

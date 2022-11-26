@@ -1,23 +1,21 @@
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { callteacherClasssDetailAPI } from "../../api/TeacherClassAPICall";
 //import TeacherClassDetailCSS from './TeacherclassDetail.module.css';
+import TeacherClassNav from "../../components/common/TeacherClassNav"
 
 function TeacherclassDetail(){
     
-    
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const classesDetail = useSelector(state => state.techerClassReducer);
+    
     const params = useParams();
-    const classesDetailList = classesDetail.data
-
-    console.log('classesDetail', classesDetailList);
-
-
 
     useEffect(
         () => {
+            console.log('[TeacherclassDetail] classCode : ', params.classCode);
             dispatch(callteacherClasssDetailAPI({
                 classCode : params.classCode
             }));
@@ -26,11 +24,9 @@ function TeacherclassDetail(){
         
     );
 
-
         return (
             <>
                 <div> 
-
                     <table>
                         <thead>
                             <tr>

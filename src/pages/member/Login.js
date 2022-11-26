@@ -40,7 +40,7 @@ function Login() {
     }
 
     const onClickFindHandler = () => {
-        navigate("/findmeminfo", {replace:true});
+        navigate("/findmeminfo", { replace: false });
     }
     return(
         <div className={ LoginCSS.backgroundDiv }>

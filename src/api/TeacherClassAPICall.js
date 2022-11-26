@@ -30,7 +30,7 @@ export const callSearchTeacherClassAPI = ({currentPage = 1}) => {
 // 내강의 상세조회(강사)
 export const callteacherClasssDetailAPI =({classCode})=> {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teacherclass/${classCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/${classCode}`;
 
     return async (dispatch, getstat)=>{
 
@@ -47,7 +47,7 @@ export const callteacherClasssDetailAPI =({classCode})=> {
 
         if(result.status ===200){
             console.log('[TeacherclassAPICalls] callTeacherclassDetailAPI RESULT :', result);
-            dispatch({type: GET_CLASSES, payload: result.data});
+            dispatch({type: GET_CLASSES, payload: result.data });
         }
 
     }
