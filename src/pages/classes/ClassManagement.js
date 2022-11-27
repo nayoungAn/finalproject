@@ -12,10 +12,12 @@ function ClassManagement() {
     const classes  = useSelector(state => state.classReducer);      
     const classList = classes.data;
     const [search, setSearch] = useState('');
+    const classListOrderBy = [];
     
+    /* 정렬 규칙 */ 
+    const orderBy = ['월','화','수','목','금','토','일'];
 
-
-
+    
     const pageInfo = classes.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -109,12 +111,12 @@ function ClassManagement() {
                             <td>{ c.classCode }</td>
                             <td>{ c.member.memberName }</td>
                             <td>{ c.className }</td>
-                            
-                            <td>{ c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])}</td> 
+                           <td>{c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])
+                            .sort((a, b) => orderBy.indexOf(a) - orderBy.indexOf(b)) + " "} </td> 
                             <td>{ c.classRoom }</td>
                             <td>{ c.classStudents + "/" + c.classQuota}</td>
                         </tr>
-                    )) 
+                    )) /* 수강일 중복 삭제 및 정렬 */ 
                     }
                 </tbody>                    
             </table>         

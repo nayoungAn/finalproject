@@ -21,7 +21,7 @@ import ConsLayout from "./layouts/ConsLayout";
 import ConsMain from "./pages/cons/ConsMain";
 import ConsDetail from "./pages/cons/ConsDetail";
 import ConsRegistration from "./pages/cons/ConsRegistration";
-import Teacherclass from "./pages/teacherclass/Teacherclass";
+import Teacherclass from "./pages/teacherclass/teacherclass";
 import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
 import AccManagement from "./pages/acc/AccManagement";
 import AccRegistration from "./pages/acc/AccRegistration";

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callTeacherUpdateAPI } from '../../api/TeacherAPICall';
 import { callTeacherDetailForAdminAPI } from '../../api/TeacherListAPICall';
-function ProductUpdate(){
+function TeacherUpdate(){
 
     const params = useParams();
     const teacherDetail = useSelector(state => state.teacherListReducer);
@@ -306,4 +306,4 @@ function ProductUpdate(){
 
 }
 
-export default ProductUpdate;
+export default TeacherUpdate;
