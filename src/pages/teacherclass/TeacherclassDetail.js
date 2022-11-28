@@ -2,15 +2,15 @@ import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callteacherClasssDetailAPI } from "../../api/TeacherClassAPICall";
-//import TeacherClassDetailCSS from './TeacherclassDetail.module.css';
+import TeacherClassDetailCSS from './TeacherclassDetail.module.css';
 //import TeacherClassNav from "../../components/common/TeacherClassNav"
 
 function TeacherclassDetail(){
     
   //  const navigate = useNavigate();
     const dispatch = useDispatch();
-    const classesDetail = useSelector(state => state.techerClassReducer);
-    
+    const classesDetail = useSelector(state => state.teacherClassReducer);
+    console.log("classesDetail", classesDetail);
     const params = useParams();
 
     useEffect(
@@ -19,49 +19,79 @@ function TeacherclassDetail(){
             dispatch(callteacherClasssDetailAPI({
                 classCode : params.classCode
             }));
-        }
+        },[]
 
         
     );
 
         return (
             <>
-                <div> 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>강의명</th>
-                                <th>시작일</th>
-                                <th>종료일</th>
-                                <th>강의진행상태</th>
-                                <th>담당강사</th>
-                            </tr>
-                        </thead>
+           
+                <form className={TeacherClassDetailCSS.background}>
+                    <div className={TeacherClassDetailCSS.balance}>
+                    <tr>
+                <th>강의명</th>
+                {classesDetail.member &&(
+                    <td className={TeacherClassDetailCSS.classtitle}>
+                        {classesDetail.className}</td>
+                )}
+                
+                <th>담당강사</th>
+                {classesDetail.member &&(
+                    <td className={TeacherClassDetailCSS.classteacher}>
+                        {classesDetail.member.memberName}</td>
+                )}
+                </tr>
 
-                    <tbody>
-                    {
-                        Array.isArray(classesDetail) && classesDetail.map(
-                            (c) => (
-                            <tr
-                            key={ c.classCode }
-                    >
-                            <td>{c.classCode}</td>
-                            <td>{c.className}</td>
-                            <td>{c.classStartDate}</td>
-                            <td>{c.classEndDate}</td>
-                            <td>{c.classStatus}</td>
-                            <td>{c.member.memberCode}</td>
+                <tr>
 
-                        </tr>
-                    ))
-                    }
-                    </tbody>
-                   
-                   
-                   
-                    </table>
+                <th>수업기간</th>
+                <div className={TeacherClassDetailCSS.period}>
+                <td>{classesDetail.classStartDate}</td>
+                <td>~</td>
+                <td>{classesDetail.classEndDate}</td>
                 </div>
+                
+                
+              
+
+                </tr>
+
+                <tr>
+                    <th>수강 모집인원</th>
+                    <td className={TeacherClassDetailCSS.quota}>{classesDetail.classQuota}</td>
+                    
+                    <th>강의실</th>
+                    <td className={TeacherClassDetailCSS.classRoom}>{classesDetail.classRoom}</td>
+                </tr>
+
+                <div className={TeacherClassDetailCSS.classnote}>
+                <th>강의설명</th>
+                 {classesDetail.subject &&(
+                    <td className={TeacherClassDetailCSS.note}>{classesDetail.subject.subjectDescription}</td>
+                )}
+                </div>
+
+                <div>
+                    <tr>
+                    <th>자료목록</th>
+                   
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>파일명</td>
+                        <td>첨부일자</td>
+                    </tr>
+                </div>
+
+                    </div>
+
+              
+
+                </form>
+
+               
+
             </>
         );
 
