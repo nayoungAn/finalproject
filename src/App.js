@@ -20,9 +20,9 @@ import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import ConsRegistration from "./pages/cons/ConsRegistration";
 import Teacherclass from "./pages/teacherclass/teacherclass";
 import AccManagement from "./pages/acc/AccManagement";
-import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
+import SmsTransmission from "./pages/sms/SmsTransmission";
 
 function App() {
 
@@ -63,10 +63,10 @@ function App() {
 
         <Route path="acc" element={<AccManagement />}>
         </Route>
-        <Route path="acc-update/:accCode" element={<AccUpdate />} />
-        <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
-        <Route path="sms" element={<SmsManagement />} >
+        <Route path="acc-update/:accCode" element={<AccUpdate />} >
         </Route>
+        <Route path="sms" element={<SmsManagement />}/>
+        <Route path="sms-transmission/:smsCode" element={<SmsTransmission />}/>
         
         </Route>
       </Routes>

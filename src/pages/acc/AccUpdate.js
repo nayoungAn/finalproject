@@ -1,13 +1,13 @@
-import AccRegistrationCSS from "./AccRegistration.module.css";
+import AccUpdateCSS from "./AccUpdate.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callAccUpdateAPI } from "../../api/AccAPICalls";
 import { callAccDetailForAdminAPI } from "../../api/AccListAPICall";
+
 function AccUpdate() {
   const params = useParams();
   const accDetail = useSelector((state) => state.accListReducer);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState({});
@@ -19,7 +19,7 @@ function AccUpdate() {
   useEffect(() => {
     dispatch(
       callAccDetailForAdminAPI({
-        accCode: params.accCode,
+        accCode: params.accCode
       })
     );
   }, []);
@@ -28,7 +28,7 @@ function AccUpdate() {
   const onChangeHandler = (e) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -39,17 +39,19 @@ function AccUpdate() {
       accCode: accDetail.accCode,
       accDate: accDetail.accDate,
       accOption: accDetail.accOption,
-      accContent: accDetail.accContent,
+      accStatus: accDetail.accStatus,
+      accContent: accDetail.accContent
     });
   };
 
-  /* 상품 수정 저장 버튼 클릭 이벤트 */
+  /* 수납 수정 저장 버튼 클릭 이벤트 */
   const onClickAccUpdateHandler = () => {
     const formData = new FormData();
 
     formData.append("accCode", form.accCode);
     formData.append("accDate", form.accDate);
     formData.append("accOption", form.accOption);
+    formData.append("accStatus", form.accStatus);
     formData.append("accContent", form.accContent);
 
     dispatch(
@@ -64,18 +66,18 @@ function AccUpdate() {
   return (
     <div>
       <div>
-        <button onClick={() => navigate(-1)}>돌아가기</button>
+        <button onClick={() => navigate(-1)}>취소</button>
         {!modifyMode && (
-          <button onClick={onClickModifyModeHandler}>수정 모드</button>
+          <button onClick={onClickModifyModeHandler}>작성하기</button>
         )}
         {modifyMode && (
           <button onClick={onClickAccUpdateHandler}>
-            수납 내역 수정 저장하기
+            작성완료
           </button>
         )}
       </div>
-      <div className={AccRegistrationCSS.accSection}>
-        <div className={AccRegistrationCSS.accInfoDiv}>
+      <div className={AccUpdateCSS.accSection}>
+        <div className={AccUpdateCSS.accInfoDiv}>
           <table>
             <tbody>
               <tr>
@@ -86,7 +88,7 @@ function AccUpdate() {
                   <input
                     name="accDate"
                     placeholder="수납일"
-                    className={AccRegistrationCSS.AccInfoInput}
+                    className={AccUpdateCSS.AccInfoInput}
                     onChange={onChangeHandler}
                     value={
                       (!modifyMode ? accDetail.accDate : form.accDate) || ""
@@ -104,10 +106,28 @@ function AccUpdate() {
                   <input
                     name="accOption"
                     placeholder="결제방법"
-                    className={AccRegistrationCSS.accInfoInput}
+                    className={AccUpdateCSS.accInfoInput}
                     onChange={onChangeHandler}
                     value={
                       (!modifyMode ? accDetail.accOption : form.accOption) || 0
+                    }
+                    readOnly={modifyMode ? false : true}
+                    style={!modifyMode ? { backgroundColor: "gray" } : null}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>수납상태</label>
+                </td>
+                <td>
+                  <input
+                    name="accStatus"
+                    placeholder="수납상태"
+                    className={AccUpdateCSS.accInfoInput}
+                    onChange={onChangeHandler}
+                    value={
+                      (!modifyMode ? accDetail.accStatus : form.accStatus) || 0
                     }
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
@@ -123,7 +143,7 @@ function AccUpdate() {
                     <input
                       name="accContent"
                       placeholder="수납메모"
-                      className={AccRegistrationCSS.subjectInfoInput}
+                      className={AccUpdateCSS.subjectInfoInput}
                       onChange={onChangeHandler}
                       value={
                         (!modifyMode
