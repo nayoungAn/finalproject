@@ -77,3 +77,22 @@ export const callSearchStudentListForAdminAPI = ({search, currentPage = 1}) => {
         }
     }
 }
+/* 페이징 없고 원생일 경우 리스트 */ 
+export const callStudentManagerListNoPagingAPI = () => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/students-management-nopaging`;
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+        if(result.status === 200) {
+            console.log('[StudentManagerAPICalls] callStudentManagerListNoPagingAPI result : ', result);
+            dispatch({ type: GET_STUDENTLIST, payload: result.data });
+        }
+    }
+}

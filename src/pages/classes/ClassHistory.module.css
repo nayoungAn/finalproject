@@ -1,0 +1,28 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    }
+    
+    .main {
+        width: 30%;
+        height: 78vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: auto;
+     
+    
+    }
+    
+    .item1 {
+        flex: 1;
+        background-color:crimson
+      }
+
+     .item2 {
+        flex: 1;
+        background-color:blue
+      }
+   
+    

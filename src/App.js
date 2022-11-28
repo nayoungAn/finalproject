@@ -27,7 +27,6 @@ import AccManagement from "./pages/acc/AccManagement";
 import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
-import ClassHistoryLayout from "./layouts/ClassHistoryLayout";
 function App() {
   return (
     <BrowserRouter>
@@ -49,11 +48,7 @@ function App() {
               <Route path="classes" element={ <ClassManagement/> }/>
               <Route path="class-registration" element={ <ClassRegistration/> }/>
               <Route path="class-update/:classCode" element={ <ClassUpdate/> }/>
-                <Route path="classHistory" element={ <ClassHistoryLayout/> }>
-                <Route index element={ <Navigate to="1" replace /> } />
-                <Route path="1" element={ <ClassHistory/>}>
-                </Route>
-                </Route>
+              <Route path="classHistory" element={ <ClassHistory/> }/>
         </Route>
 
         <Route path="teacher" element={  <TeacherManagement/> }/>
