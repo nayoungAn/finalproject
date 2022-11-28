@@ -14,7 +14,7 @@ const actions = createActions({
     [DELETE_QNA]: () => {},
 });
 
-const QnaReducer = handleActions(
+const qnaReducer = handleActions(
     
     {
         [GET_QNA]: (state, { payload}) => {
@@ -40,4 +40,4 @@ const QnaReducer = handleActions(
 );
 
 
-export default QnaReducer;
+export default qnaReducer;
