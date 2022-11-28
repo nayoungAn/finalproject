@@ -35,6 +35,7 @@ import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
 import QnaRegistration from "./pages/consultant/QnaRegistration";
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
+import Attend from "./pages/attend/Attend";
 
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
               <Route path="qna/:classCode" element={ <QnaTeacher/> }/>
               <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
               <Route path="qnaReply" element={ <QnaRegistration/>} />
+              <Route path="attend/:classCode" element={ <Attend/> } />
         </Route>
 
         <Route path="acc" element={<AccManagement />}/>
