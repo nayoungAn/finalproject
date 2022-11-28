@@ -60,18 +60,19 @@ function App() {
         </Route>
 
 
-        <Route path="Teacherclass" element={<Teacherclass/>}>
-        </Route> 
+        <Route path="Teacherclass" element={<Teacherclass/>}/>
+    
 
 
-        <Route path="acc" element={<AccManagement />}>
-        </Route>
-        <Route path="acc-update/:accCode" element={<AccUpdate />} >
-        </Route>
-        <Route path="sms" element={<SmsManagement />}/>
-        <Route path="sms-transmission/:smsCode" element={<SmsTransmission />}/>
+        <Route path="acc" element={<AccManagement />}/>
         
-        </Route>
+        <Route path="acc-update/:accCode" element={<AccUpdate />}/>
+        
+        <Route path="sms" element={<SmsManagement />}/>
+        
+        <Route path="sms-transmission/:smsCode" element={<SmsTransmission />}/>
+          
+      </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
     teacherListReducer,
     accListReducer,
     accReducer,
-    smsListReducer
+    smsListReducer,
     teacherClassReducer
     
 
