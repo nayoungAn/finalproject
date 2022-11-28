@@ -39,8 +39,10 @@ function Login() {
         }))
     }
 
-    const onClickFindHandler = () => {
-        navigate("/findmeminfo", { replace: false });
+    const onClickFindHandler = (e) => {
+        if(e.key == 'Enter') {
+            navigate("/findmeminfo", { replace: false });
+            }
     }
     return(
         <div className={ LoginCSS.backgroundDiv }>
