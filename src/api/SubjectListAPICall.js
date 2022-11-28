@@ -48,7 +48,7 @@ export const callSubjectListForAdminAPI = ({currentPage = 1}) => {
 
 }
 
-export const callSubjectListForAdminAPInopaging = () => {
+export const callSubjectListForAdminNoPagingAPI = () => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/subjects-management-nopaging`;
 
@@ -94,7 +94,6 @@ export const callSubjectDetailForAdminAPI = ({subjectCode}) => {
         }
     }
 }
-
 
 
 

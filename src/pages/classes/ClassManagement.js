@@ -12,8 +12,6 @@ function ClassManagement() {
     const classes  = useSelector(state => state.classReducer);      
     const classList = classes.data;
     const [search, setSearch] = useState('');
-    const classListOrderBy = [];
-    
     /* 정렬 규칙 */ 
     const orderBy = ['월','화','수','목','금','토','일'];
 

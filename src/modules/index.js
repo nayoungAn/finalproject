@@ -10,7 +10,7 @@ import accListReducer from "./AccListModule";
 import accReducer from "./AccModule";
 import smsListReducer from "./SmsListModule";
 import teacherClassReducer from "./TeacherClassModule";
-
+import studentManagerReducer from "./StudentManagerModule";
 
 const rootReducer = combineReducers({
     memberReducer,
@@ -25,7 +25,8 @@ const rootReducer = combineReducers({
     accListReducer,
     accReducer,
     smsListReducer,
-    teacherClassReducer
+    teacherClassReducer,
+    studentManagerReducer
 });
 
 export default rootReducer;
