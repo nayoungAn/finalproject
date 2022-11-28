@@ -17,7 +17,6 @@ import SubjectSearch from "./pages/classes/SubjectSearch";
 import SubjectUpdate from "./pages/classes/SubjectUpdate";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
-
 import QnaTeacher from "./pages/consultant/QnaTeacher";
 import QnaDetail from "./pages/consultant/QnaDetail";
 

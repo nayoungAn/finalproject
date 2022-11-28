@@ -3,19 +3,19 @@ import { useNavigate, useParams, useLocation} from "react-router-dom";
 import QnaRegistrationCSS from "./QnaRegistration.module.css";
 import { useState } from 'react';
 import { callQnaResistAPI } from '../../api/QnaAPICalls';
-import QnaListReducer from "../../modules/QnaListModule";
 
 function QnaRegistration() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const classes = useSelector(state => state.teacherClassReducer);
-   
     
     const [ form, setForm ] = useState({
         classCode : classes.classCode,
         mtmTitle : '',
-        mtmDescription :'' 
+        mtmDescription :'', 
+        mtmRefer : '',
+        answerCode : 0,
     });
 
     console.log('qna 리듀서', classes);
@@ -31,8 +31,7 @@ function QnaRegistration() {
         dispatch(callQnaResistAPI({
             form : form
         }));
-
-       
+        navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false });
     }
 
     return(
