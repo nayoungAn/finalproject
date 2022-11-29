@@ -35,9 +35,9 @@ function OnaDetail() {
     const onClickHandler = () => {
         if(qnaDetail.answerCode === 1){
                 alert('답변 완료 된 상담 글입니다.');
-                navigate(`/ono/tea/qnaDetail/${mtmCode}`, { replace : false });
+                navigate(`/ono/qna/${mtmCode}`, { replace : false });
         }else{
-                navigate(`/ono/tea/qnaReply`, { replace : false });
+                navigate(`/ono/qnaReply`, { replace : false });
                 }
         }
 
@@ -70,7 +70,7 @@ function OnaDetail() {
         }));
         alert('답글이 수정 되었습니다.');  
 
-        navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false });       
+        navigate(`/ono/qna`, { replace : false });       
     } 
 
     //답글 삭제
@@ -82,7 +82,7 @@ function OnaDetail() {
             
             alert('답글이 삭제 되었습니다.');  
 
-            navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false }); 
+            navigate(`/ono/qna`, { replace : false }); 
     }
     
     console.log("로그인 멤버 코드", qnaDetail.member?.memberName )

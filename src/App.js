@@ -21,7 +21,6 @@ import SubjectSearch from "./pages/classes/SubjectSearch";
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import QnaTeacher from "./pages/consultant/QnaTeacher";
-import QnaDetail from "./pages/consultant/QnaDetail";
 
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
@@ -33,9 +32,11 @@ import AccManagement from "./pages/acc/AccManagement";
 import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
-import QnaRegistration from "./pages/consultant/QnaRegistration";
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import Attend from "./pages/attend/Attend";
+import AttendUpdate from "./pages/attend/AttendUpdate";
+import QnaDetail from "./pages/consultant/QnaDetail";
+import QnaRegistaration from "./pages/consultant/QnaRegistration";
 
 
 function App() {
@@ -76,16 +77,17 @@ function App() {
 
         </Route>
         
+        <Route path="qna" element={ <QnaTeacher/>} />
+        <Route path="qna/:mtmCode" element={ <QnaDetail/>} />
+        <Route path="qnaReply" element={ <QnaRegistaration/>} />
+
 
         <Route path="teacherclass" element={<Teacherclass/>}/>
-
         <Route path="tea" element={<TeacherClassLayout/>}>
               <Route index element={ <Navigate to="teacherclass/:classCode" replace/> } />
               <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>} />
-              <Route path="qna/:classCode" element={ <QnaTeacher/> }/>
-              <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
-              <Route path="qnaReply" element={ <QnaRegistration/>} />
               <Route path="attend/:classCode" element={ <Attend/> } />
+              <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> } />
         </Route>
 
         <Route path="acc" element={<AccManagement />}/>

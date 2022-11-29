@@ -13,6 +13,7 @@ import smsListReducer from "./SmsListModule";
 import teacherClassReducer from "./TeacherClassModule";
 import qnaReducer from "./QnaModule";
 import attendReducer from "./AttendModule";
+import attendCheckReducer from "./AttendCheckModule";
 
 const rootReducer = combineReducers({
     memberReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
     smsListReducer,
     teacherClassReducer,
     attendReducer,
+    attendCheckReducer,
 
 });
 

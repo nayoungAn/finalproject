@@ -1,40 +1,32 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { callAttendAPI } from "../../api/AttendAPICalls";
+import { useParams } from "react-router-dom";
+import { callAttendCheckAPI } from "../../api/AttendAPICalls";
 import AttendCSS from "./Attend.module.css";
-function Attend() {
+function AttendUpdate() {
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const attend = useSelector(state => state.attendReducer);
     const params = useParams();
     const attendCheck = useSelector(state => state.attendCheckReducer);
-    
- 
-    console.log('attend', attend);
-    console.log('attendCheck', attendCheck);
-
  
     useEffect(
         () => {
-            dispatch(callAttendAPI({
+            dispatch(callAttendCheckAPI({
                 classCode : params.classCode
+                
             }))
         }
         ,[]
     );
+    
+    console.log('attend수정', attend);
+    console.log('attendCheck수정', attendCheck);
 
-
-    const onClickHadler = () => {
-        navigate(`/ono/tea/attendUpdate/${params.classCode}`, {replace : false})
-    }
     return(
 
         <> 
             <div className={ AttendCSS.bodyDiv }>
-                <button
-                   onClick={onClickHadler}>출석관리</button>
                <table className={ AttendCSS.attendTable }>
                     <colgroup>
                         <col width="80%" />
@@ -55,7 +47,7 @@ function Attend() {
                                 <td>{ a.attendStatus}</td>
                             </tr>
                         ))}
-                    
+                 
                         { Array.isArray(attendCheck) && attendCheck.map((c) =>(
                             <tr
                                 key={ c.attendCode }
@@ -65,11 +57,9 @@ function Attend() {
                         ))}
                     </tbody>
                </table>
-            </div>
-            
-           
+            </div>  
         </>
     );    
 }
 
-export default Attend;
+export default AttendUpdate;

@@ -7,7 +7,6 @@ function QnaTeacher() {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams();
     const [ currentPage, setCurrentPage ] = useState(1);
     const qna = useSelector(state => state.qnaListReducer);
     const qnaList = qna.data;
@@ -23,7 +22,6 @@ function QnaTeacher() {
     useEffect(
         () => {
             dispatch(callQnaListAPI({
-                classCode : params.classCode,
                 currentPage : currentPage
             }));
         }
@@ -31,7 +29,7 @@ function QnaTeacher() {
     )
 
     const onClickTableTr = (mtmCode) => {
-        navigate(`/ono/tea/qnaDetail/${mtmCode}`, { replace : false });
+        navigate(`/ono/qna/${mtmCode}`, { replace : false });
     }
 
     return(

@@ -7,7 +7,7 @@ export const PUT_ATTEND = 'attend/PUT_ATTEND';
 
 const actions = createActions({
     [GET_ATTEND]: () => {},
-    [PUT_ATTEND]: () => {}
+    [PUT_ATTEND]: () => {},
 });
 
 /* 리듀서 */
@@ -19,6 +19,7 @@ const attendReducer = handleActions(
         [PUT_ATTEND] : (state, { payload }) => {
             return payload;
         },
+        
     },
     initialState
 );

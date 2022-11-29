@@ -1,9 +1,9 @@
 import { GET_QNAS } from "../modules/QnaListModule";
 import { GET_QNA, POST_QNA ,PUT_QNA, DELETE_QNA } from "../modules/QnaModule";
 
-export const callQnaListAPI = ({classCode, currentPage}) => {
+export const callQnaListAPI = ({currentPage}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qna/${classCode}?page=${currentPage}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/qna?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
@@ -27,7 +27,7 @@ export const callQnaListAPI = ({classCode, currentPage}) => {
 
 export const callQnaDetailAPI = ({mtmCode}) => {
     
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qna/classes/${mtmCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/qna/${mtmCode}`;
     
     return async (dispatch, getState) => {
 
@@ -54,7 +54,7 @@ export const callQnaDetailAPI = ({mtmCode}) => {
 
 export const callQnaResistAPI = ({form}) => {
 
-    const requestURL =  `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qnaReply`;
+    const requestURL =  `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/qnaReply`;
 
     return async (dispatch, getState ) => {
 
@@ -90,7 +90,7 @@ export const callQnaResistAPI = ({form}) => {
 
 export const callQnaUpdateAPI = ({form}) => {
     
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qnaReply`
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/qnaReply`
 
     return async (dispatch, getState) => {
 
@@ -119,8 +119,8 @@ export const callQnaUpdateAPI = ({form}) => {
 
 }
 
-export const callQnaDeleteAPI = ({mtmCode}) =>{
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qnaReply/${mtmCode}`
+export const callQnaDeleteAPI = ({reCode}) =>{
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono//qnaReply/${reCode}`
 
     return async (dispatch, getState) => {
 
