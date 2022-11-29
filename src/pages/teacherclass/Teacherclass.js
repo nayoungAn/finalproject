@@ -1,8 +1,8 @@
 import { callSearchTeacherClassAPI } from"../../api/TeacherClassAPICall";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from "react-redux";
-import TeacherClassCSS from './Teacherclass.module.css';
 import { useState,useEffect } from "react";
+import TeacherClassCSS from './Teacherclass.module.css';
 
 
 function Teacherclass() {
@@ -10,9 +10,9 @@ function Teacherclass() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const classes = useSelector(state => state.teacherClassReducer);
-
-    const classList = classes.data;
-    console.log('classList', classList);
+    const classesList = classes.data
+ 
+    console.log('classesList', classesList);
 
     const pageInfo = classes.pageInfo;
 
@@ -20,7 +20,7 @@ function Teacherclass() {
 
     const pageNumber = [];
     if(pageInfo){
-        for(let i = pageInfo.startPage ; i<= pageInfo.endPage ; i++){
+        for(let i = pageInfo.startPage; i<= pageInfo.endPage; i++){
             pageNumber.push(i);
         }
     }
@@ -36,7 +36,7 @@ function Teacherclass() {
     );
 
     const onClickTeacherclass =(classCode)=> {
-        navigate(`/ono/Teacherclass/${classCode}`, {replace:false})
+        navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
     }
 
 
@@ -47,7 +47,7 @@ function Teacherclass() {
         <div>
             
             <table className={TeacherClassCSS.classtable}>
-                <thead>
+                <thead className={TeacherClassCSS.classhead}>
                     <tr>
                         <th>No.</th>
                         <th>강의명</th>
@@ -57,18 +57,21 @@ function Teacherclass() {
                         <th>담당강사</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    {Array.isArray(classList) && classList.map((c)=>(
-                        <tr
-                        key={ c.classCode }
-                        onClick={ () => onClickTeacherclass(c.classCode) }
+                    {
+                        Array.isArray(classesList) && classesList.map(
+                            (c) => (
+                            <tr
+                            key={ c.classCode }
+                            onClick={ () => onClickTeacherclass(c.classCode)}
                     >
                             <td>{c.classCode}</td>
                             <td>{c.className}</td>
                             <td>{c.classStartDate}</td>
                             <td>{c.classEndDate}</td>
                             <td>{c.classStatus}</td>
-                            <td>{c.memberCode}</td>
+                            <td>{c.member.memberName}</td>
 
                         </tr>
                     ))
@@ -78,17 +81,14 @@ function Teacherclass() {
         </div>
 
 
-
-
-
         <div style={{listStyleType: 'none', display:'flex'}}>
             {
-                Array.isArray(classList)
+                Array.isArray(classesList)
                 && 
                 <button
                     onClick={()=> setCurrentPage(currentPage -1)}
                     disabled={ currentPage === 1}
-                    className={TeacherClassCSS.pagingBtn}
+                    className={ TeacherClassCSS.pagingBtn }
                     >
                         &lt;
 
@@ -99,14 +99,15 @@ function Teacherclass() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ? {backgroundColor : 'blue' } : null}
                     className={ TeacherClassCSS.pagingBtn }
                 >
                     {num}
                 </button>
             </li>
             ))}
-            { Array.isArray(classList) &&
+
+            { Array.isArray(classesList) &&
             <button 
                 className={ TeacherClassCSS.pagingBtn }
                 onClick={() => setCurrentPage(currentPage + 1)} 

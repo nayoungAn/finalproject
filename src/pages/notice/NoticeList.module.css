@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 15px;
-    height: 100%;
 }
 
 .buttonDiv{
@@ -21,21 +20,10 @@
     font-weight: bold;
 }
 
-.classtable{
+.teacherTable{
     width: 900px;
-    text-align: center;
-    border-style:none;
-    border-collapse: collapse;
-    
+    margin : 10px;
 }
-
-
-.classtable th{
-    border-bottom: 1px solid #1c4bcc;
-  
-} 
-
-
 
 .teacherTable tr:hover { 
     background-color: #F5F5F5; 
@@ -54,5 +42,5 @@
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: rgb(37, 169, 221);
+    background-color: burlywood;
 }
