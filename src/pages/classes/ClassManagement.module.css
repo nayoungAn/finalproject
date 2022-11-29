@@ -21,27 +21,15 @@
     font-weight: bold;
 }
 
-.classtable{
+.classTable{
     width: 900px;
-    text-align: center;
-    border-style:none;
-    border-collapse: collapse;
-    
 }
 
-
-.classtable th{
-    border-bottom: 1px solid #1c4bcc;
-  
-} 
-
-
-
-.teacherTable tr:hover { 
+.classTable tr:hover { 
     background-color: #F5F5F5; 
 }
 
-.teacherTable tr {
+.classTable tr {
     cursor: pointer;
 }
 
@@ -54,5 +42,5 @@
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: rgb(37, 169, 221);
+    background-color: burlywood;
 }

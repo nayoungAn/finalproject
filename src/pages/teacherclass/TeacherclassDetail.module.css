@@ -1,0 +1,60 @@
+.classtable{
+    width: 900px;
+    border-bottom: 1px solid #1c4bcc;
+}
+
+.teacherTable tr:hover { 
+    background-color: #F5F5F5; 
+}
+
+.teacherTable tr {
+    cursor: pointer;
+}
+
+.pagingBtn{
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.pagingBtn:hover{
+    cursor: pointer;
+    background-color: rgb(37, 169, 221);
+}
+
+.background{
+    position: relative;
+    display:flex;
+    gap: 10px;
+    border-color: #1c4bcc ;
+    border-style: double;
+    background-color: #dadef6;  
+    padding: 10px;
+    border-spacing: 0 10px;
+
+   
+}
+
+td{
+ background-color:white;
+ border-radius: 15px;
+
+
+}
+
+
+.period{
+    background-color: white;
+    border-radius: 15px;
+}
+
+.classnote{
+ width: 700px;
+ padding: 20px;
+}
+.note{
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+}

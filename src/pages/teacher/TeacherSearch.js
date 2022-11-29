@@ -1,67 +1,68 @@
-import TeacherManagementCSS from './TeacherManagement.module.css';
+import queryString from 'query-string';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from "react";
-import { callTeacherListForAdminAPI } from '../../api/TeacherListAPICall';
 import HeaderCSS from "../../components/common/Header";
+import { useLocation } from 'react-router-dom';
+import TeacherManagementCSS from './TeacherManagement.module.css';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { callSearchTeacherListForAdminAPI } from '../../api/TeacherListAPICall';
 
+function TeacherSearch() {
 
-function TeacherManagement() {
-    
+    const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const members  = useSelector(state => state.teacherListReducer);      
-    const memberList = members.data;
-    const [search, setSearch] = useState('');
-    
-    console.log('memberManagement', memberList);
+    const { search } = useLocation();
+    const { value } = queryString.parse(search);
+    console.log('value', value);
 
-    const pageInfo = members.pageInfo;
+    const dispatch = useDispatch();
+    const teachers  = useSelector(state => state.teacherListReducer);      
+    const teacherList = teachers.data;
 
     const [currentPage, setCurrentPage] = useState(1);
+    const pageInfo = teachers.pageInfo;
 
+    /* 페이징 버튼 */
     const pageNumber = [];
-    if(pageInfo){
-        for(let i = pageInfo.startPage ; i <= pageInfo.endPage ; i++){
+    if(pageInfo) {
+        for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
             pageNumber.push(i);
         }
     }
-    // window.location.reload()
     useEffect(
-        () => {         
-            dispatch(callTeacherListForAdminAPI({
-                currentPage: currentPage,
-            }));            
-            
+        () => {
+            dispatch(callSearchTeacherListForAdminAPI({
+                search : value,
+                currentPage : currentPage
+            }));
         }
-        ,[currentPage]    
+        , [currentPage, value]
     );
-
-
-    const onClickTableTr = (memberCode) => {
-
-     navigate(`/ono/teacher-update/${memberCode}`, { replace: false })
-    }
 
     const onClickTeacherInsert = () => {
         console.log('[TeacherManagement] onClickTeacherInsert');
-        navigate ('/ono/teacher/regist', {replace : true})
+        navigate("/ono/teacher/regist", { replace: false })
     }
 
-/* 검색 키워드 입력 시 입력 값 상태 저장 */
-const onSearchChangeHandler = (e) => {
-    setSearch(e.target.value);
-}
-/* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
-const onEnterKeyHandler = (e) => {
-    if(e.key == 'Enter') {
-        console.log('Enter key', search);
+  const onClickTableTr = (memberCode) => {
 
-        navigate(`/ono/teachers/search?value=${search}`, { replace : false });
+    navigate(`/ono/teacher-update/${memberCode}`, { replace: false })
+
     }
-}
 
+     /* 검색 키워드 입력 시 입력 값 상태 저장 */
+     const onSearchChangeHandler = (e) => {
+        setSearchValue(e.target.value);
+    }
 
+    /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
+    const onEnterKeyHandler = (e) => {
+        if(e.key == 'Enter') {
+            console.log('Enter key', searchValue);
+
+            navigate(`/ono/teachers/search?value=${searchValue}`, { replace : false });
+        }
+    }
 
     return (
         <>
@@ -70,16 +71,24 @@ const onEnterKeyHandler = (e) => {
 
                 <button
                  onClick={ onClickTeacherInsert }> 강사등록 </button>
-             <input
+
+                <button        
+                    onClick={ () => navigate("/ono/teacher") }            
+                >
+                    돌아가기
+                </button>
+                 <input
                     className={ HeaderCSS.InputStyle }
                     type="text"
                     placeholder="검색"
-                    value={ search }
+                    value={ searchValue }
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-                </div>            
-                <table className={ TeacherManagementCSS.teacherTable }>
+             
+
+            </div>            
+            <table className={ TeacherManagementCSS.teacherTable }>
                 <colgroup>
                     <col width="5%" />
                     <col width="15%" />
@@ -101,7 +110,7 @@ const onEnterKeyHandler = (e) => {
                     </tr>
                 </thead>
                 <tbody>
-                    { Array.isArray(memberList) && memberList.map((m) => (
+                    { Array.isArray(teacherList) && teacherList.map((m) => (
                         <tr
                             key={ m.memberCode }
                             onClick={ () => onClickTableTr(m.memberCode) }
@@ -113,16 +122,15 @@ const onEnterKeyHandler = (e) => {
                             <td>{ m.memberPhone }</td>
                             <td>{ m.memberEmail }</td>
                             <td>{ m.memberStatus }</td>
-                           
+                            
                         </tr>
                     )) 
                     }
                 </tbody>                    
             </table>         
-            
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
-            { Array.isArray(memberList) &&
+            { Array.isArray(teacherList) &&
             <button 
                 onClick={() => setCurrentPage(currentPage - 1)} 
                 disabled={currentPage === 1}
@@ -141,7 +149,7 @@ const onEnterKeyHandler = (e) => {
                 </button>
             </li>
             ))}
-            { Array.isArray(memberList) &&
+            { Array.isArray(teacherList) &&
             <button 
                 className={ TeacherManagementCSS.pagingBtn }
                 onClick={() => setCurrentPage(currentPage + 1)} 
@@ -155,4 +163,4 @@ const onEnterKeyHandler = (e) => {
     );
 }
 
-export default TeacherManagement;
+export default TeacherSearch;

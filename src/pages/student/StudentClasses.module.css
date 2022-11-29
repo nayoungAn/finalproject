@@ -24,15 +24,12 @@
 .classtable{
     width: 900px;
     text-align: center;
-    border-style:none;
-    border-collapse: collapse;
     
 }
 
-
 .classtable th{
     border-bottom: 1px solid #1c4bcc;
-  
+    border-collapse: collapse;
 } 
 
 

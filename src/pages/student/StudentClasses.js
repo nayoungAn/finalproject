@@ -1,15 +1,15 @@
-import { callSearchTeacherClassAPI } from"../../api/TeacherClassAPICall";
+import { callStudentClassesListAPI } from"../../api/StudentAPICalls";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from "react-redux";
+import StudentClasses from './StudentClasses.module.css';
 import { useState,useEffect } from "react";
-import TeacherClassCSS from './Teacherclass.module.css';
 
 
 function Teacherclass() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const classes = useSelector(state => state.teacherClassReducer);
+    const classes = useSelector(state => state.studentClassReducer);
     const classesList = classes.data
  
     console.log('classesList', classesList);
@@ -27,7 +27,7 @@ function Teacherclass() {
     
     useEffect(
         () => {         
-            dispatch(callSearchTeacherClassAPI({
+            dispatch(callStudentClassesListAPI({
                 currentPage: currentPage,
             }));            
             
@@ -46,8 +46,8 @@ function Teacherclass() {
 
         <div>
             
-            <table className={TeacherClassCSS.classtable}>
-                <thead className={TeacherClassCSS.classhead}>
+            <table className={StudentClasses.classtable}>
+                <thead className={StudentClasses.classhead}>
                     <tr>
                         <th>No.</th>
                         <th>강의명</th>
@@ -71,7 +71,7 @@ function Teacherclass() {
                             <td>{c.classStartDate}</td>
                             <td>{c.classEndDate}</td>
                             <td>{c.classStatus}</td>
-                            <td>{c.member.memberName}</td>
+                            <td>{c.member.memberCode}</td>
 
                         </tr>
                     ))
@@ -88,7 +88,7 @@ function Teacherclass() {
                 <button
                     onClick={()=> setCurrentPage(currentPage -1)}
                     disabled={ currentPage === 1}
-                    className={ TeacherClassCSS.pagingBtn }
+                    className={ StudentClasses.pagingBtn }
                     >
                         &lt;
 
@@ -100,7 +100,7 @@ function Teacherclass() {
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
                     style={ currentPage === num ? {backgroundColor : 'blue' } : null}
-                    className={ TeacherClassCSS.pagingBtn }
+                    className={ StudentClasses.pagingBtn }
                 >
                     {num}
                 </button>
@@ -109,7 +109,7 @@ function Teacherclass() {
 
             { Array.isArray(classesList) &&
             <button 
-                className={ TeacherClassCSS.pagingBtn }
+                className={ StudentClasses.pagingBtn }
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
             >
