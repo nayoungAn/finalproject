@@ -3,7 +3,6 @@ import Login from "./pages/member/Login";
 import Layout from "./layouts/Layout.js";
 import OpenClassesLayout from "./layouts/OpenClassesLayout";
 
-import OpenClasses from "./pages/classes/OpenClasses";
 import ConsLayout from "./layouts/ConsLayout";
 import ConsMain from "./pages/cons/ConsMain";
 import ConsDetail from "./pages/cons/ConsDetail";
@@ -22,7 +21,6 @@ import NoticeDetail from "./pages/notice/NoticeDetail";
 import NoticeRegist from "./pages/notice/NoticeRegist";
 import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
-import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectSearch from "./pages/classes/SubjectSearch";
 
 import FindMemLayout from "./layouts/FineMemLayout";
@@ -32,7 +30,7 @@ import StudentManagerDetail from "./pages/studentManager/StudentManagerDetail";
 
 import QnaTeacher from "./pages/consultant/QnaTeacher";
 import QnaDetail from "./pages/consultant/QnaDetail";
-import Teacherclass from "./pages/teacherclass/Teacherclass";
+import QnaRegistration from "./pages/consultant/QnaRegistration";
 
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
@@ -45,7 +43,16 @@ import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
 
-import TeacherClassLayout from "./layouts/TeacherClassLayout"
+import TeacherClassLayout from "./layouts/TeacherClassLayout";
+
+//원생
+import StudentLayout from "./layouts/StudentLayout";
+import StudentClasses from "./pages/student/StudentClasses";
+import StudentClassesDetail from "./pages/student/StudentClassesDetail";
+import StudentMyInfo from "./pages/student/StudentMyInfo";
+import StudentQna from "./pages/student/StudentQna";
+import StudentQnaDetail from "./pages/student/StudentQnaDetail";
+import StudentQnaRegistration from "./pages/student/StudentQnaRegistration";
 
 
 function App() {
@@ -114,12 +121,12 @@ function App() {
        
 
         {/* 원생 */}
-        <Route path="Student" element={<StudentLayout/>}>
+        <Route path="student" element={<StudentLayout/>}>
           <Route index element={ <Navigate to="studentMyInfo" replace /> } />
           <Route path="studentMyInfo" element={ <StudentMyInfo/> }/>
           <Route path="studentClasses" element={ <StudentClasses/> }/>
           <Route path="studentClassesDetail" element={ <StudentClassesDetail/> }/>
-          <Route path="studentQna/:classCode" element={ <StudentQnA/> }/>
+          <Route path="studentQna/:classCode" element={ <StudentQna/> }/>
           <Route path="studentQnaDetail/:mtmCode" element={ <StudentQnaDetail/> }/>
           <Route path="studentQnaRegistration" element={ <StudentQnaRegistration/> }/>
         </Route>

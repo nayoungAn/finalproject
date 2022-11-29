@@ -3,9 +3,11 @@ import { GET_STUDENTQNA, GET_STUDENTSQNA, PUT_STUDENTQNA, POST_STUDENTQNA, DELET
 
 import { GET_STUDENTCLASS, GET_STUDENTSCLASS } from "../modules/StudentClassesModule";
 
+import { GET_STUDENTMYINFO, PUT_STUDENTMYINFO, POST_STUDENTMYINFO} from "../modules/StudentMyInfoModule";
+
 export const callQnaListAPI = ({classCode, currentPage}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/student/qna/${classCode}?page=${currentPage}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna/${classCode}?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
@@ -46,7 +48,7 @@ export const callQnaDetailAPI = ({mtmCode}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callQnaListAPI result : ', result);
+            console.log('[QnaAPICalls] callQnaDetailAPI result : ', result);
 
             dispatch({ type: GET_STUDENTQNA, payload: result.data });
         }
@@ -56,7 +58,7 @@ export const callQnaDetailAPI = ({mtmCode}) => {
 
 export const callQnaRegsistAPI = ({form}) => {
 
-    const requestURL =  `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qnaReply`;
+    const requestURL =  `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna`;
 
     return async (dispatch, getState ) => {
 
@@ -73,7 +75,7 @@ export const callQnaRegsistAPI = ({form}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callQnaResistAPI result : ', result);
+            console.log('[QnaAPICalls] callQnaRegsistAPI result : ', result);
             dispatch({ type: POST_STUDENTQNA, payload: result.data });
         }
 
@@ -85,7 +87,7 @@ export const callQnaRegsistAPI = ({form}) => {
 // 내강의 조회(강사)
 export const callStudentClassesListAPI = ({currentPage = 1}) => {
 
-    const requestURL =`http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teacherclass?page=${currentPage}`
+    const requestURL =`http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass?page=${currentPage}`
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL,{
@@ -101,7 +103,7 @@ export const callStudentClassesListAPI = ({currentPage = 1}) => {
         .then(response=> response.json());
 
         if(result.status === 200){
-            console.log('[TeacherclassAPICalls] callSearchTeacherClassAPI RESULT :', result);
+            console.log('[StudentAPICalls] callStudentClassesListAPI RESULT :', result);
             dispatch({ type: GET_STUDENTCLASS, payload: result.data });
         }
         
@@ -128,10 +130,57 @@ export const callstudentClasssDetailAPI =({classCode})=> {
         .then(response => response.json());
 
         if(result.status ===200){
-            console.log('[TeacherclassAPICalls] callTeacherclassDetailAPI RESULT :', result);
+            console.log('[StudentAPICalls] callstudentClasssDetailAPI RESULT :', result);
             dispatch({type: GET_STUDENTSCLASS, payload: result.data });
         }
 
     }
+    
+}
 
+export const callStudentDetailAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberinfo`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[StudentAPICalls] callStudentDetailAPI RESULT : ', result);
+            dispatch({ type: GET_STUDENTMYINFO, payload : result.data });
+        }
+    }
+}
+
+export const callStudentUpdateAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberinfoUpdate`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken"),
+            },
+            body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[StudentAPICalls] callStudentUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_STUDENTMYINFO, payload : result.data });
+        }
+    }
+   
 }
