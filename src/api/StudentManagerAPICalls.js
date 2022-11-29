@@ -1,4 +1,4 @@
-import { GET_STUDENT, GET_STUDENTLIST, PUT_STUDENT } from "../modules/StudentManagerModule";
+import { GET_STUDENT, GET_STUDENTLIST, POST_STUDENT, PUT_STUDENT } from "../modules/StudentManagerModule";
 //로그인
 export const callStudentManagerListAPI = ({currentPage = 1}) => {
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/student-manager?page=${currentPage}`;
@@ -43,7 +43,7 @@ export const callStudentManagerUpdateAPI = ({form}) => {
             method : "PUT",
             headers : {
                 "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken"),
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
             body : form
         })
@@ -54,13 +54,9 @@ export const callStudentManagerUpdateAPI = ({form}) => {
         }
     }
 }
-
-export const callSearchStudentListForAdminAPI = ({search, currentPage = 1}) => {
-
+export const callSearchListAPI = ({search, currentPage = 1}) => {
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/student-manager/search?search=${search}&page=${currentPage}`
-
     return async (dispatch, getState) => {
-
         const result = await fetch(requestURL, {
             method : "GET",
             headers : {
@@ -70,29 +66,28 @@ export const callSearchStudentListForAdminAPI = ({search, currentPage = 1}) => {
             }
         })
         .then(response => response.json());
-
         if(result.status === 200) {
-            console.log('[StudentManagerAPICalls] callSearchStudentListForAdminAPI RESULT : ', result);
+            console.log('[StudentManagerAPICalls] callSearchListAPI RESULT : ', result);
             dispatch({ type: GET_STUDENTLIST, payload : result.data });
         }
     }
 }
-/* 페이징 없고 원생일 경우 리스트 */ 
-export const callStudentManagerListNoPagingAPI = () => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/students-management-nopaging`;
-    return async (dispatch, getState) => {
+//원생 등록
+export const callStudentManagerRegistAPI = ({form}) =>{
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/student-manager`;
+    return async ( dispatch, getState ) => {
         const result = await fetch(requestURL, {
-            method : "GET",
+            method : "POST",
             headers : {
-                "Content-Type" : "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
+            },
+            body : form
         })
         .then(response => response.json());
-        if(result.status === 200) {
-            console.log('[StudentManagerAPICalls] callStudentManagerListNoPagingAPI result : ', result);
-            dispatch({ type: GET_STUDENTLIST, payload: result.data });
+        if(result.status === 200){
+            console.log('[StudentManagerAPICalls] callTeacherRegistAPI result : ', result);
+            dispatch({ type: POST_STUDENT, payload: result.data});
         }
     }
 }

@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callClassRegistAPI } from '../../api/ClassAPICalls';
-import { callSubjectListForAdminNoPagingAPI } from '../../api/SubjectListAPICall';
-import { callTeacherListForAdminNoPagingAPI } from '../../api/TeacherListAPICall';
+import { callClassListForAdminNoPagingAPI } from '../../api/ClassAPICalls';
 import uuid from "react-uuid"
 
 
@@ -33,10 +32,8 @@ function ClassRegistration() {
     console.log(arr)
     useEffect(
         () => {
-            dispatch(callSubjectListForAdminNoPagingAPI({
+            dispatch(callClassListForAdminNoPagingAPI({
             }));
-            dispatch(callTeacherListForAdminNoPagingAPI({
-            }))
         }
         , []
     );

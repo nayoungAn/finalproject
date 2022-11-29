@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import ClassHistoryItemCSS from './ClassHistoryItem.module.css';
 import { callStudentManagerDetailForAdminAPI } from '../../api/StudentManagerDetailAPICall';
-import { callStudentManagerDetailAPI} from '../../api/StudentManagerAPICalls';
+import { callStudentManagerDetailAPI} from '../../api/ClassHistoryAPICalls';
 /* pros
 properties의 약어, 컴포넌트 속성을 설정할 때 사용하는 요소
 Main에서 Product 컴포넌트를 생성할 때 <Product product={ product(상품 정보가 담긴 객체) } />와 같이 생성하면

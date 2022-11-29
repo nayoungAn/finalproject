@@ -3,7 +3,7 @@ import ClassHistoryCSS from "./ClassHistory.module.css";
 import ClassHistoryItem from "../../components/classHistory/ClassHistoryItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { callSearchStudentListForAdminAPI } from "../../api/StudentManagerAPICalls";
+import { callSearchListAPI } from "../../api/StudentManagerAPICalls";
 import HeaderCSS from "../../components/common/Header";
 import ClassDetail from "../../pages/classes/ClassDetail";
 import ClassHistoryList from "./ClassHistoryList";
@@ -25,7 +25,7 @@ function ClassHistory() {
   }
   useEffect(() => {
     dispatch(
-      callSearchStudentListForAdminAPI({
+      callSearchListAPI({
         search: searchValue,
         currentPage: currentPage,
       })
@@ -104,7 +104,9 @@ function ClassHistory() {
 
           <div className={ClassHistoryCSS.item3}>
             <h4>수강 목록</h4>
+            <button>수강 등록</button>
             <ClassHistoryList/>
+            
           </div>
         </div>
       </div>
