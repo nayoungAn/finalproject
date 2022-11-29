@@ -1,67 +1,46 @@
-.backDiv {
-  width: 50%;
-  height: 100%;
-  background-color: skyblue;
+.bodyDiv{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    height: 100%;
 }
 
-.div1 {
-  height: 60%;
-  display: flex;
-  background-color: red;
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.buttonDiv button {
+    width: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 25px;
+    height: 30px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
 }
 
-.div2 {
-  height: 40%;
-  background-color: orange;
+.subjectTable{
+    width: 900px;
 }
 
-.div3 {
-  background-color: greenyellow;
+.subjectTable tr:hover { 
+    background-color: #F5F5F5; 
 }
 
-.div4 {
-  background-color: blue;
+.subjectTable tr {
+    cursor: pointer;
 }
 
-.div5 {
-  width: 50%;
-  background-color: green;
+.pagingBtn{
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
 }
 
-.section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: navy;
-}
-
-.container {
-  max-width: 1024px;
-  height: 100%;
-  width: 100vw;
-}
-
-.smsTitle {
-  width: 100%;
-}
-
-.selectBox {
-  width: 30%;
-  text-align: end;
-}
-
-.inputBox {
-  width: 70%;
-}
-
-.searchInput {
-  border: 1px solid black;
-  width: 80%;
-}
-
-.searchResult {
-  border: 1px solid black;
-  height: 90%;
-  width: 80%;
+.pagingBtn:hover{
+    cursor: pointer;
+    background-color: burlywood;
 }
