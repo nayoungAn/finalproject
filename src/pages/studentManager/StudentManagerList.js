@@ -1,18 +1,18 @@
-import NoticeListmoduleCSS from './NoticeList.module.css';
+import StudentListmoduleCSS from './StudentManagerList.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import { callNoticeListAPI, callNoticeDeleteAPI } from '../../api/NoticeAPICalls';
+import { callStudentManagerListAPI } from '../../api/StudentManagerAPICalls';
 
-function NoticeList() {
+function StudentList() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const notice  = useSelector(state => state.noticeReducer);      
-    const noticeList = notice.data;
-    console.log('noticeList', noticeList);
+    const student  = useSelector(state => state.studentManagerReducer);      
+    const studentList = student.data;
+    console.log('studentList', studentList);
 
-    const pageInfo = notice.pageInfo;
+    const pageInfo = student.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -25,7 +25,7 @@ function NoticeList() {
     // window.location.reload()
     useEffect(
         () => {         
-            dispatch(callNoticeListAPI({
+            dispatch(callStudentManagerListAPI({
                 currentPage: currentPage,
             }));            
             
@@ -34,76 +34,58 @@ function NoticeList() {
     );
 
     const onClickNoticeInsert = () => {
-        navigate("/ono/notice-regist", {replace : false})
-    }
-
-    const onClickNoticeDelete = (noticeCode) => {
-        console.log('[SubjectManagement] onClickSubjectDelete');
-        {
-            dispatch(callNoticeDeleteAPI({
-                noticeCode : noticeCode
-            }));
-            console.log("삭제");
-            alert('공지사항이 삭제되었습니다.');
-                window.location.reload();
-        }
+        navigate("/ono/student-regist", {replace : false})
     }
 
     const onClickTableTr = (e, noticeCode) => {
 
         console.log(e.target.className);
-        
-        if(e.target.className !== "deleteBtn")
-                {
-                    navigate(`/ono/notice/${noticeCode}`, { replace: false })
-                    console.log("상세조회");
-                }     
-        else {
-            onClickNoticeDelete(noticeCode);
-        }
+
+        navigate(`/ono/student-manager/${noticeCode}`, { replace: false })
+        console.log("상세조회");
     }
 
     return (
         <>
-        <div className={ NoticeListmoduleCSS.bodyDiv }>
+        <div className={ StudentListmoduleCSS.bodyDiv }>
             <div>
                 <button
                     onClick={ onClickNoticeInsert }
                 >
-                    작성하기
+                    등록하기
                 </button>
             </div>            
-            <table className={ NoticeListmoduleCSS.teacherTable }>
+            <table className={ StudentListmoduleCSS.studentTable }>
                 <colgroup>
                     <col width="5%" />
-                    <col width="55%" />
+                    <col width="20%" />
                     <col width="10%" />
                     <col width="30%" />
+                    <col width="35%" />
+                    
                 </colgroup>
                 <thead>
                     <tr>
                         <th>번호</th>
-                        <th>제목</th>
-                        <th>등록일</th>
-                        <th>작성자</th>
+                        <th>이름</th>
+                        <th>생년월일</th>
+                        <th>전화번호</th>
+                        <th>등록날짜</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    { Array.isArray(noticeList) && noticeList.map((n) => (
+                    { Array.isArray(studentList) && studentList.map((m) => (
                         <tr
-                            key={ n.noticeCode }
-                            onClick={ (event) => onClickTableTr(event, n.noticeCode) }
+                            key={ m.memberCode }
+                            onClick={ (event) => onClickTableTr(event, m.memberCode) }
                         >
-                            <td>{ n.noticeCode }</td>
-                            <td>{ n.noticeTitle }</td>
-                            <td>{ n.noticeDate }</td>
-                            <td>{ n.member.memberName }</td>
-                            <td><button className="deleteBtn"
-                  
-                >
-                    삭제
-                </button></td>
+                            <td>{ m.memberCode }</td>
+                            <td>{ m.memberName }</td>
+                            <td>{ m.memberBirthday }</td>
+                            <td>{ m.memberPhone }</td>
+                            <td>{ m.memberRegisterDate }</td>
+
                         </tr>
                     )) 
                     }
@@ -113,11 +95,11 @@ function NoticeList() {
             
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
-            { Array.isArray(noticeList) &&
+            { Array.isArray(studentList) &&
             <button 
                 onClick={() => setCurrentPage(currentPage - 1)} 
                 disabled={currentPage === 1}
-                className={ NoticeListmoduleCSS.pagingBtn }
+                className={ StudentListmoduleCSS.pagingBtn }
             >
                 &lt;
             </button>
@@ -126,13 +108,13 @@ function NoticeList() {
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
                     style={ currentPage === num ? {backgroundColor : 'orange' } : null}
-                    className={ NoticeListmoduleCSS.pagingBtn }
+                    className={ StudentListmoduleCSS.pagingBtn }
                 >
                     {num}
                 </button>
             </li>
             ))}
-            { Array.isArray(noticeList) &&
+            { Array.isArray(studentList) &&
             <button 
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
@@ -146,4 +128,4 @@ function NoticeList() {
 }
 
 
-export default NoticeList;
+export default StudentList;

@@ -29,39 +29,7 @@ function NoticeDetail() {
     );
 
     console.log(noticeDetail);
-
-
-    /* 구매 수량 변화시 적용 */
-    // const onChangeAmountHandler = (e) => {
-    //     setAmount(e.target.value);
-    // }
-
-    //console.log('product', product);
-
-
-
-    /* 등록하기 버튼 이벤트 */
-    // const onClickInsertHandler = () => {
-
-    //     // 1. 로그인 상태인지 확인
-    //     const token = decodeJwt(window.localStorage.getItem("accessToken"));
-    //     console.log('[onClickInsertHandler] token : ', token);
-
-    //     if(!token) {
-    //         alert("등록 전 로그인이 필요합니다.");
-    //         setLoginModal(true);
-    //         return;
-    //     }
-
-    //     // 2. 토큰이 만료 되었을 때 다시 로그인
-    //     if(token.exp * 1000 < Date.now()) {
-    //         setLoginModal(true);
-    //         return;
-    //     }
-
-    //     navigate(`/notice`, { replace : false });
-    // }
-
+    
     /* 입력 양식의 값 변경될 때 */
     const onChangeHandler = (e) => {
         setForm({
@@ -78,7 +46,7 @@ function NoticeDetail() {
             noticeTitle : noticeDetail.noticeTitle,
             noticeContent : noticeDetail.noticeContent,
             noticeDate : noticeDetail.noticeDate,
-            noticeName : noticeDetail.member.memberName
+            memberName : noticeDetail.member.memberName
         });
     }
 
@@ -91,7 +59,7 @@ function NoticeDetail() {
         formData.append("noticeTitle", form.noticeTitle);
         formData.append("noticeContent", form.noticeContent);
         formData.append("noticeDate", form.noticeDate);
-        formData.append("noticeName", form.noticeName);
+        formData.append("memberName", form.memberName);
         
         dispatch(callNoticeUpdateAPI({
             form : formData

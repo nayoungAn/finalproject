@@ -17,7 +17,7 @@ function Navbar(){
             <ul className={ NavCSS.NavlistUl }>
                 {/* 관리자 */}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/ono/notice"><button>공지사항</button></NavLink></li>}
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/ono/student"><button>원생관리</button></NavLink></li>}
+                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/ono/student-manager"><button>원생관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/ono/teacher"><button>강사관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/ono/OpenClasses"><button>강의관리</button></NavLink></li>}
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/"><button>수납관리</button></NavLink></li>}

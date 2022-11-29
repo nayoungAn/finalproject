@@ -1,4 +1,4 @@
-import { GET_NOTICE, GET_NOTICELIST, PUT_NOTICE ,DELETE_NOTICE } from "../modules/NoticeModule";
+import { GET_NOTICE, GET_NOTICELIST, PUT_NOTICE ,DELETE_NOTICE, POST_NOTICE } from "../modules/NoticeModule";
 
 //로그인
 export const callNoticeListAPI = ({currentPage = 1}) => {
@@ -90,6 +90,29 @@ export const callNoticeDeleteAPI = ({noticeCode}) => {
         if(result.status === 200) {
             console.log('[NoticeAPIcalls] callSubjectDeleteAPI RESULT : ', result);
             dispatch({ type: DELETE_NOTICE, payload : result.data });
+        }
+    }
+}
+
+export const callNoticeRegistAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/notice`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[NoticeAPIcalls] callNoticeRegistAPI RESULT : ', result);
+            dispatch({ type: POST_NOTICE, payload : result.data });
         }
     }
 }
