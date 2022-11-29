@@ -1,0 +1,67 @@
+.backDiv {
+  width: 50%;
+  height: 100%;
+  background-color: skyblue;
+}
+
+.div1 {
+  height: 60%;
+  display: flex;
+  background-color: red;
+}
+
+.div2 {
+  height: 40%;
+  background-color: orange;
+}
+
+.div3 {
+  background-color: greenyellow;
+}
+
+.div4 {
+  background-color: blue;
+}
+
+.div5 {
+  width: 50%;
+  background-color: green;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: navy;
+}
+
+.container {
+  max-width: 1024px;
+  height: 100%;
+  width: 100vw;
+}
+
+.smsTitle {
+  width: 100%;
+}
+
+.selectBox {
+  width: 30%;
+  text-align: end;
+}
+
+.inputBox {
+  width: 70%;
+}
+
+.searchInput {
+  border: 1px solid black;
+  width: 80%;
+}
+
+.searchResult {
+  border: 1px solid black;
+  height: 90%;
+  width: 80%;
+}

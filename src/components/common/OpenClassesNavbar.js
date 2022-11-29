@@ -14,15 +14,13 @@ function OpenClassesNavbar() {
     return (
         <div className={ OpenClassesNavbarCSS.OpenClassesNavbarDiv }>
             <ul className={ OpenClassesNavbarCSS.OpenClassesNavbarUl }>
-
             <li><NavLink to="/ono/OpenClasses/subjects">과목 조회 </NavLink></li>
             <li><NavLink to="/ono/OpenClasses/classes">강의 조회</NavLink></li>
             <li><NavLink to="/ono/OpenClasses/classHistory">수강 조회</NavLink></li>
-
             </ul>
         </div>
     );
 
-}
+}                                              
 
 export default OpenClassesNavbar;

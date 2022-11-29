@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import{callSubjectDeleteAPI } from '../../api/SubjectAPICalls';
 import { callSubjectListForAdminAPI } from '../../api/SubjectListAPICall';
+import HeaderCSS from "../../components/common/Header";
 
 function SubjectManagement() {
     
@@ -12,6 +13,7 @@ function SubjectManagement() {
     const subjects  = useSelector(state => state.subjectListReducer);      
     const subjectList = subjects.data;
     const deleteSubjects = useSelector(state => state.subjectReducer); 
+    const [search, setSearch] = useState('');
 
     console.log('subjectManagement', subjectList);
 
@@ -67,8 +69,22 @@ function SubjectManagement() {
 
     }
 
+       /* 검색 키워드 입력 시 입력 값 상태 저장 */
+       const onSearchChangeHandler = (e) => {
+        setSearch(e.target.value);
+    }
+    /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
+    const onEnterKeyHandler = (e) => {
+        if(e.key == 'Enter') {
+            console.log('Enter key', search);
+
+            navigate(`/ono/OpenClasses/search?value=${search}`, { replace : false });
+        }
+    }
+
     return (
         <>
+       
         <div className={ SubjectManagementCSS.bodyDiv }>
             <div>
                 <button
@@ -76,8 +92,16 @@ function SubjectManagement() {
                 >
                     과목 등록
                 </button>
+                <input
+                    className={ HeaderCSS.InputStyle }
+                    type="text"
+                    placeholder="검색"
+                    value={ search }
+                    onKeyUp={ onEnterKeyHandler }
+                    onChange={ onSearchChangeHandler }
+                />
             </div>            
-            <table className={ SubjectManagementCSS.productTable }>
+            <table className={ SubjectManagementCSS.subjectTable }>
                 <colgroup>
                     <col width="10%" />
                     <col width="30%" />
@@ -134,6 +158,7 @@ function SubjectManagement() {
                     className={ SubjectManagementCSS.pagingBtn }
                 >
                     {num}
+                    
                 </button>
             </li>
             ))}
