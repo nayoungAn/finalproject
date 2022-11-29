@@ -73,8 +73,8 @@ function AccManagement() {
                   onClick={(event) => onClickTableTr(event, s.accCode)}
                 >
                   <td>{s.accCode}</td>
-                  <td>{s.classesHistory.openClasses.member.memberName}</td>
-                  <td>{s.classesHistory.openClasses.member.memberPhone}</td>
+                  <td>{s.classesHistory.member.memberName}</td>
+                  <td>{s.classesHistory.member.memberPhone}</td>
                   <td>{s.classesHistory.openClasses.className}</td>
                   <td>{s.classesHistory.openClasses.classPrice}</td>
                   <td>{s.accDate}</td>

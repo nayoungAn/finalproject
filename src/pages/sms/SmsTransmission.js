@@ -1,5 +1,5 @@
 import SmsTransmissionCSS from "./SmsTransmission.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { callSmsListForAdminAPI } from "../../api/SmsListAPICall";
@@ -25,10 +25,13 @@ function SmsTransmission() {
   useEffect(() => {
     dispatch(
       callSmsListForAdminAPI({
-        currentPage: currentPage,
+//        currentPage: currentPage,
+        smsCode: useParams.smsCode
       })
     );
-  }, [currentPage]);
+  },
+// [currentPage]);
+    []);
 
   return (
     <section className={SmsTransmissionCSS.container}>

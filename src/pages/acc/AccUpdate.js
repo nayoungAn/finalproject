@@ -15,13 +15,12 @@ function AccUpdate() {
   /* 읽기모드와 수정모드를 구분 */
   const [modifyMode, setModifyMode] = useState(false);
 
-  /* 최초 랜더링 시 상품 상세 정보 조회 */
+  /* 최초 랜더링 시 수납 상세 정보 조회 */
   useEffect(() => {
-    dispatch(
-      callAccDetailForAdminAPI({
+    dispatch(callAccDetailForAdminAPI({
         accCode: params.accCode
-      })
-    );
+        
+      }));
   }, []);
 
   /* 입력 양식의 값 변경될 때 */
@@ -37,6 +36,10 @@ function AccUpdate() {
     setModifyMode(true);
     setForm({
       accCode: accDetail.accCode,
+      memberName: accDetail.memberName,
+      memberPhone: accDetail.memberPhone,
+      className: accDetail.className,
+      classPrice: accDetail.classPrice,
       accDate: accDetail.accDate,
       accOption: accDetail.accOption,
       accStatus: accDetail.accStatus,
@@ -49,6 +52,10 @@ function AccUpdate() {
     const formData = new FormData();
 
     formData.append("accCode", form.accCode);
+    formData.append("memberName", form.memberName);
+    formData.append("memberPhone", form.memberPhone);
+    formData.append("className", form.className);
+    formData.append("classPrice", form.classPrice);
     formData.append("accDate", form.accDate);
     formData.append("accOption", form.accOption);
     formData.append("accStatus", form.accStatus);
@@ -80,6 +87,78 @@ function AccUpdate() {
         <div className={AccUpdateCSS.accInfoDiv}>
           <table>
             <tbody>
+            <tr>
+                <td>
+                  <label>이름</label>
+                </td>
+                <td>
+                  <input
+                    name="memberName"
+                    placeholder="이름"
+                    className={AccUpdateCSS.AccInfoInput}
+                    onChange={onChangeHandler}
+                    value={
+                      (!modifyMode ? accDetail.classesHistory?.member.memberName : form.memberName) || ""
+                    }
+                    readOnly={modifyMode ? false : true}
+                    style={!modifyMode ? { backgroundColor: "gray" } : null}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>번호</label>
+                </td>
+                <td>
+                  <input
+                    name="memberPhone"
+                    placeholder="번호"
+                    className={AccUpdateCSS.AccInfoInput}
+                    onChange={onChangeHandler}
+                    value={
+                      (!modifyMode ? accDetail.classesHistory?.member.memberPhone : form.memberPhone) || ""
+                    }
+                    readOnly={modifyMode ? false : true}
+                    style={!modifyMode ? { backgroundColor: "gray" } : null}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>과목</label>
+                </td>
+                <td>
+                  <input
+                    name="className"
+                    placeholder="과목"
+                    className={AccUpdateCSS.AccInfoInput}
+                    onChange={onChangeHandler}
+                    value={
+                      (!modifyMode ? accDetail.classesHistory?.openClasses.className : form.className) || ""
+                    }
+                    readOnly={modifyMode ? false : true}
+                    style={!modifyMode ? { backgroundColor: "gray" } : null}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>수강료</label>
+                </td>
+                <td>
+                  <input
+                    name="classPrice"
+                    placeholder="수강료"
+                    className={AccUpdateCSS.AccInfoInput}
+                    onChange={onChangeHandler}
+                    value={
+                      (!modifyMode ? accDetail.classesHistory?.openClasses.classPrice : form.classPrice) || ""
+                    }
+                    readOnly={modifyMode ? false : true}
+                    style={!modifyMode ? { backgroundColor: "gray" } : null}
+                  />
+                </td>
+              </tr>
               <tr>
                 <td>
                   <label>수납일</label>
