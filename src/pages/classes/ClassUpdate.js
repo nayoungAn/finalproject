@@ -11,9 +11,10 @@ import uuid from "react-uuid"
 function ClassUpdate() {
     const subjects = useSelector(state => state.subjectListReducer);
     const teachers = useSelector(state => state.teacherListReducer);
-
+    
     const params = useParams();
     const classDetail = useSelector(state => state.classReducer);
+    const schedule = ['월','화','수','목','금','토','일']
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -206,6 +207,20 @@ function ClassUpdate() {
                                 </td>                              
                             </tr>
                             <tr>
+                                <td><label> 강의명</label></td>
+                                <td>
+                                    <input
+                                        name='className'
+                                        placeholder='강의명'
+                                        className={ClassRegistrationCSS.classInfoInput}
+                                        onChange={onChangeHandler}
+                                        value={(!modifyMode ? classDetail.className : form.className) || 0}
+                                        readOnly={modifyMode ? false : true}
+
+                                    />
+                                </td>
+                                </tr>
+                            <tr>
                                 <td><label>수강 정원</label></td>
                                 <td>
                                     <input
@@ -303,7 +318,20 @@ function ClassUpdate() {
                                     </label>
                                 </td>
                             </tr>
-
+                            <tr>
+                                <td><label>강의 회차</label></td>
+                                <td>
+                                    <input
+                                        name='classCircuit'
+                                        placeholder='1회차'
+                                        className={ClassRegistrationCSS.classInfoInput}
+                                        value={(!modifyMode ? classDetail.classCircuit : form.classCircuit) || ''}
+                                        readOnly={modifyMode ? false : true}        
+                                        onChange={onChangeHandler}
+                                    />
+                                </td>
+                           
+                            </tr>                   
 
 
                             <tr>
@@ -333,53 +361,47 @@ function ClassUpdate() {
                             
                                 <td>1교시</td>
 
-                                <td><input type="checkbox" id="월1교시" value="월,1교시" onChange = {onChangeHandler} checked = {arr.includes("월1교시")}/> </td>
-                                <td><input type="checkbox" id="화1교시" value="화,1교시" onChange = {onChangeHandler} checked = {arr.includes("화1교시")}/> </td>
-                                <td><input type="checkbox" id="수1교시" value="수,1교시" onChange = {onChangeHandler} checked = {arr.includes("수1교시")}/> </td>
-                                <td><input type="checkbox" id="목1교시" value="목,1교시" onChange = {onChangeHandler} checked = {arr.includes("목1교시")}/> </td>
-                                <td><input type="checkbox" id="금1교시" value="금,1교시" onChange = {onChangeHandler} checked = {arr.includes("금1교시")}/> </td>
-                                <td><input type="checkbox" id="토1교시" value="토,1교시" onChange = {onChangeHandler} checked = {arr.includes("토1교시")}/> </td>
-                                <td><input type="checkbox" id="일1교시" value="일,1교시" onChange = {onChangeHandler} checked = {arr.includes("일1교시")}/> </td>
+                                {schedule.map((item,idx) => (
+                                    <td key={uuid()}>
+                                    <input type="checkbox" key={idx}  value={item + ",1교시"  }  onChange = {onChangeHandler} checked = {arr.includes(item + "1교시")}
+                                    />
+                                    </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)}>
                                 <td>2교시</td>
-                                <td><input type="checkbox" id="월2교시" value="월,2교시" onChange = {onChangeHandler} checked = {arr.includes("월2교시")}/> </td>
-                                <td><input type="checkbox" id="화2교시" value="화,2교시" onChange = {onChangeHandler} checked = {arr.includes("화2교시")}/> </td>
-                                <td><input type="checkbox" id="수2교시" value="수,2교시" onChange = {onChangeHandler} checked = {arr.includes("수2교시")}/> </td>
-                                <td><input type="checkbox" id="목2교시" value="목,2교시" onChange = {onChangeHandler} checked = {arr.includes("목2교시")}/> </td>
-                                <td><input type="checkbox" id="금2교시" value="금,2교시" onChange = {onChangeHandler} checked = {arr.includes("금2교시")}/> </td>
-                                <td><input type="checkbox" id="토2교시" value="토,2교시" onChange = {onChangeHandler} checked = {arr.includes("토2교시")}/> </td>
-                                <td><input type="checkbox" id="일2교시" value="일,2교시" onChange = {onChangeHandler} checked = {arr.includes("일2교시")} /> </td>
+                               
+                                {schedule.map((item,idx) => (
+                                    <td key={uuid()}>
+                                    <input type="checkbox" key={idx}  value={item + ",2교시"  }  onChange = {onChangeHandler} checked = {arr.includes(item + "2교시")}
+                                    />
+                                    </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)}>
                                 <td>3교시</td>
-                                <td><input type="checkbox" id="월3교시" value="월,3교시" onChange = {onChangeHandler} checked = {arr.includes("월3교시")} /> </td>
-                                <td><input type="checkbox" id="화3교시" value="화,3교시" onChange = {onChangeHandler} checked = {arr.includes("화3교시")} /> </td>
-                                <td><input type="checkbox" id="수3교시" value="수,3교시" onChange = {onChangeHandler} checked = {arr.includes("수3교시")} /> </td>
-                                <td><input type="checkbox" id="목3교시" value="목,3교시" onChange = {onChangeHandler} checked = {arr.includes("목3교시")} /> </td>
-                                <td><input type="checkbox" id="금3교시" value="금,3교시" onChange = {onChangeHandler} checked = {arr.includes("금3교시")} /> </td>
-                                <td><input type="checkbox" id="토3교시" value="토,3교시" onChange = {onChangeHandler} checked = {arr.includes("토3교시")} /> </td>
-                                <td><input type="checkbox" id="일3교시" value="일,3교시" onChange = {onChangeHandler} checked = {arr.includes("일3교시")} /> </td>
+                               
+                                {schedule.map((item,idx) => (
+                                    <td key={uuid()}>
+                                    <input type="checkbox" key={idx}  value={item + ",3교시"  }  onChange = {onChangeHandler} checked = {arr.includes(item + "3교시")}
+                                    />
+                                    </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)}>
                                 <td>4교시</td>
-                                <td><input type="checkbox" id="월4교시" value="월,4교시" onChange = {onChangeHandler} checked = {arr.includes("월4교시")} /> </td>
-                                <td><input type="checkbox" id="화4교시" value="화,4교시" onChange = {onChangeHandler} checked = {arr.includes("화4교시")} /> </td>
-                                <td><input type="checkbox" id="수4교시" value="수,4교시" onChange = {onChangeHandler} checked = {arr.includes("수4교시")} /> </td>
-                                <td><input type="checkbox" id="목4교시" value="목,4교시" onChange = {onChangeHandler} checked = {arr.includes("목4교시")}/> </td>
-                                <td><input type="checkbox" id="금4교시" value="금,4교시" onChange = {onChangeHandler} checked = {arr.includes("금4교시")}/> </td>
-                                <td><input type="checkbox" id="토4교시" value="토,4교시" onChange = {onChangeHandler} checked = {arr.includes("토4교시")}/> </td>
-                                <td><input type="checkbox" id="일4교시" value="일,4교시" onChange = {onChangeHandler} checked = {arr.includes("일4교시")}/> </td>
+                                
+                                {schedule.map((item,idx) => (
+                                    <td key={uuid()}>
+                                    <input type="checkbox" key={idx}  value={item + ",4교시"  }  onChange = {onChangeHandler} checked = {arr.includes(item + "4교시")}
+                                    />
+                                    </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)}>
                                 <td>5교시</td>
-                                <td><input type="checkbox" id="월5교시" value="월,5교시" onChange = {onChangeHandler} checked = {arr.includes("월5교시")} /> </td>
-                                <td><input type="checkbox" id="화5교시" value="화,5교시" onChange = {onChangeHandler} checked = {arr.includes("화5교시")}/> </td>
-                                <td><input type="checkbox" id="수5교시" value="수,5교시" onChange = {onChangeHandler} checked = {arr.includes("수5교시")}/> </td>
-                                <td><input type="checkbox" id="목5교시" value="목,5교시" onChange = {onChangeHandler} checked = {arr.includes("목5교시")}/> </td>
-                                <td><input type="checkbox" id="금5교시" value="금,5교시" onChange = {onChangeHandler} checked = {arr.includes("금5교시")}/> </td>
-                                <td><input type="checkbox" id="토5교시" value="토,5교시" onChange = {onChangeHandler} checked = {arr.includes("토5교시")}/> </td>
-                                <td><input type="checkbox" id="일5교시" value="일,5교시" onChange = {onChangeHandler} checked = {arr.includes("일5교시")}/> </td>
+                                
+                                {schedule.map((item,idx) => (
+                                    <td key={uuid()}>
+                                    <input type="checkbox" key={idx}  value={item + ",5교시"  }  onChange = {onChangeHandler} checked = {arr.includes(item + "5교시")}
+                                    />
+                                    </td>))}
                             </tr>
                        
                         </tbody>     )}

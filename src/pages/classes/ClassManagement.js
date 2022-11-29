@@ -70,7 +70,7 @@ function ClassManagement() {
                 <button
                     onClick={ onClickClassInsert }
                 >
-                    과목 등록
+                    강의 등록
                 </button>
                 <input
                     className={ HeaderCSS.InputStyle }

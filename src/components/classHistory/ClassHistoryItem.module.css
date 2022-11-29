@@ -18,7 +18,7 @@
 .NavlistUl li {
     min-width: 100px;
     height: auto;
-    text-align: center;
+    text-align: left;
 }
 
 a {
