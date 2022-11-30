@@ -1,43 +1,25 @@
-import {POST_ACC, PUT_ACC } from "../modules/AccModule";
-
-export const callAccRegistAPI = ({form}) => {
-
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/acc`;
-
-    return async (dispatch, getState) => {
-
-        const result = await fetch(requestURL, {
-            method : "POST",
-            headers : {
-                "Accept": "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            },
-            body : form
-        })
-        .then(response => response.json());
-
-        if(result.status === 200) {
-            console.log('[AccAPIcalls] callAccRegistAPI result : ', result);
-            dispatch({ type: POST_ACC, payload: result.data });
-        }
-    }
-
-}
-
+import {PUT_ACC } from "../modules/AccModule";
 
 export const callAccUpdateAPI = ({form}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/acc`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/acc/acc-management`;
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
             method : "PUT",
             headers : {
+                "Content-Type" : "application/json",
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken"),
             },
-            body : form
+            body : JSON.stringify({
+                accCode : form.accCode,
+                accDate : form.accDate,
+                accOption : form.accOption,
+                accStatus : form.accStatus,
+                accContent : form.accContent
+            })
         })
         .then(response => response.json());
 

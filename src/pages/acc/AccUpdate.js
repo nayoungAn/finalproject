@@ -1,6 +1,6 @@
 import AccUpdateCSS from "./AccUpdate.module.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callAccUpdateAPI } from "../../api/AccAPICalls";
 import { callAccDetailForAdminAPI } from "../../api/AccListAPICall";
@@ -12,6 +12,8 @@ function AccUpdate() {
   const navigate = useNavigate();
   const [form, setForm] = useState({});
 
+  console.log('acc 리듀서', accDetail);
+
   /* 읽기모드와 수정모드를 구분 */
   const [modifyMode, setModifyMode] = useState(false);
 
@@ -19,9 +21,9 @@ function AccUpdate() {
   useEffect(() => {
     dispatch(callAccDetailForAdminAPI({
         accCode: params.accCode
-        
       }));
-  }, []);
+    },
+  []);
 
   /* 입력 양식의 값 변경될 때 */
   const onChangeHandler = (e) => {
@@ -29,15 +31,17 @@ function AccUpdate() {
       ...form,
       [e.target.name]: e.target.value
     });
-  };
+  }
 
   /* 수정 모드 변경 이벤트 */
   const onClickModifyModeHandler = () => {
     setModifyMode(true);
     setForm({
       accCode: accDetail.accCode,
+      // memberCode: accDetail.memberCode,
       memberName: accDetail.memberName,
       memberPhone: accDetail.memberPhone,
+      // classCode: accDetail.classCode,
       className: accDetail.className,
       classPrice: accDetail.classPrice,
       accDate: accDetail.accDate,
@@ -47,41 +51,45 @@ function AccUpdate() {
     });
   };
 
+
   /* 수납 수정 저장 버튼 클릭 이벤트 */
   const onClickAccUpdateHandler = () => {
-    const formData = new FormData();
+    // const formData = new FormData();
+    // formData.append("accCode", form.accCode);
+    // // formData.append("memberName", form.memberName);
+    // // formData.append("memberPhone", form.memberPhone);
+    // // formData.append("className", form.className);
+    // // formData.append("classPrice", form.classPrice);
+    // formData.append("accDate", form.accDate);
+    // formData.append("accOption", form.accOption);
+    // formData.append("accStatus", form.accStatus);
+    // formData.append("accContent", form.accContent);
 
-    formData.append("accCode", form.accCode);
-    formData.append("memberName", form.memberName);
-    formData.append("memberPhone", form.memberPhone);
-    formData.append("className", form.className);
-    formData.append("classPrice", form.classPrice);
-    formData.append("accDate", form.accDate);
-    formData.append("accOption", form.accOption);
-    formData.append("accStatus", form.accStatus);
-    formData.append("accContent", form.accContent);
-
-    dispatch(
-      callAccUpdateAPI({
-        form: formData,
-      })
-    );
+    dispatch(callAccUpdateAPI({
+        form: form
+      }));
     alert("수납 내역이 수정되었습니다.");
     navigate("/ono/acc", { replace: true });
-  };
+  }
 
   return (
     <div>
       <div>
-        <button onClick={() => navigate(-1)}>취소</button>
-        {!modifyMode && (
-          <button onClick={onClickModifyModeHandler}>작성하기</button>
-        )}
-        {modifyMode && (
+        <button onClick={() => navigate(-1)}
+        >
+          취소
+          </button>
+        {!modifyMode && 
+          <button onClick={onClickModifyModeHandler}
+          >
+            작성하기
+            </button>
+        }
+        {modifyMode && 
           <button onClick={onClickAccUpdateHandler}>
             작성완료
           </button>
-        )}
+        }
       </div>
       <div className={AccUpdateCSS.accSection}>
         <div className={AccUpdateCSS.accInfoDiv}>
@@ -97,9 +105,7 @@ function AccUpdate() {
                     placeholder="이름"
                     className={AccUpdateCSS.AccInfoInput}
                     onChange={onChangeHandler}
-                    value={
-                      (!modifyMode ? accDetail.classesHistory?.member.memberName : form.memberName) || ""
-                    }
+                    value={(!modifyMode ? accDetail.classesHistory?.member.memberName : accDetail.classesHistory?.member.memberName) || ""}
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
                   />
@@ -115,9 +121,7 @@ function AccUpdate() {
                     placeholder="번호"
                     className={AccUpdateCSS.AccInfoInput}
                     onChange={onChangeHandler}
-                    value={
-                      (!modifyMode ? accDetail.classesHistory?.member.memberPhone : form.memberPhone) || ""
-                    }
+                    value={(!modifyMode ? accDetail.classesHistory?.member.memberPhone : accDetail.classesHistory?.member.memberPhone) || ""}
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
                   />
@@ -133,9 +137,7 @@ function AccUpdate() {
                     placeholder="과목"
                     className={AccUpdateCSS.AccInfoInput}
                     onChange={onChangeHandler}
-                    value={
-                      (!modifyMode ? accDetail.classesHistory?.openClasses.className : form.className) || ""
-                    }
+                    value={(!modifyMode ? accDetail.classesHistory?.openClasses.className : accDetail.classesHistory?.openClasses.className) || ""}
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
                   />
@@ -151,9 +153,7 @@ function AccUpdate() {
                     placeholder="수강료"
                     className={AccUpdateCSS.AccInfoInput}
                     onChange={onChangeHandler}
-                    value={
-                      (!modifyMode ? accDetail.classesHistory?.openClasses.classPrice : form.classPrice) || ""
-                    }
+                    value={(!modifyMode ? accDetail.classesHistory?.openClasses.classPrice : accDetail.classesHistory?.openClasses.classPrice) || ""}
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
                   />
@@ -169,9 +169,7 @@ function AccUpdate() {
                     placeholder="수납일"
                     className={AccUpdateCSS.AccInfoInput}
                     onChange={onChangeHandler}
-                    value={
-                      (!modifyMode ? accDetail.accDate : form.accDate) || ""
-                    }
+                    value={(!modifyMode ? accDetail.accDate : form.accDate) || ""}
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
                   />
@@ -187,9 +185,7 @@ function AccUpdate() {
                     placeholder="결제방법"
                     className={AccUpdateCSS.accInfoInput}
                     onChange={onChangeHandler}
-                    value={
-                      (!modifyMode ? accDetail.accOption : form.accOption) || 0
-                    }
+                    value={(!modifyMode ? accDetail.accOption : form.accOption) || ""}
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
                   />
@@ -205,9 +201,7 @@ function AccUpdate() {
                     placeholder="수납상태"
                     className={AccUpdateCSS.accInfoInput}
                     onChange={onChangeHandler}
-                    value={
-                      (!modifyMode ? accDetail.accStatus : form.accStatus) || 0
-                    }
+                    value={(!modifyMode ? accDetail.accStatus : form.accStatus) || ""}
                     readOnly={modifyMode ? false : true}
                     style={!modifyMode ? { backgroundColor: "gray" } : null}
                   />
@@ -224,11 +218,7 @@ function AccUpdate() {
                       placeholder="수납메모"
                       className={AccUpdateCSS.subjectInfoInput}
                       onChange={onChangeHandler}
-                      value={
-                        (!modifyMode
-                          ? accDetail.accContent
-                          : form.accContent) || 0
-                      }
+                      value={(!modifyMode ? accDetail.accContent : form.accContent) || 0}
                       readOnly={modifyMode ? false : true}
                       style={!modifyMode ? { backgroundColor: "gray" } : null}
                     />
