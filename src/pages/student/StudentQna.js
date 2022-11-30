@@ -13,7 +13,9 @@ function StudentQna() {
     const qna = useSelector(state => state.studentQnaReducer);
     const qnaList = qna.data;
     const pageInfo = qna.pageInfo;
+   
 
+  
     const pageNumber = [];
     if(pageInfo) {
         for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
@@ -24,7 +26,7 @@ function StudentQna() {
     useEffect(
         () => {
             dispatch(callQnaListAPI({
-                classCode : params.classCode,
+               
                 currentPage : currentPage
             }));
         }
@@ -32,12 +34,26 @@ function StudentQna() {
     )
 
     const onClickTableTr = (mtmCode) => {
-        navigate(`/ono/memberclass/qnaDetail/${mtmCode}`, { replace : false });
+        navigate(`/ono/student/studentQnadetail/${mtmCode}`, { replace : false });
     }
 
+
+    const onClickQnaInsert = (classCode) => {
+        console.log('[SubjectManagement] onClickSubjectInsert');
+        navigate(`/ono/student/studentQnaRegistration`, { replace: false })
+    }
+
+    
     return(
         <>  
             <div className={ StudentQnaCSS.qnaTableDiv }>
+            <div>
+                <button
+                    onClick={ onClickQnaInsert }
+                >
+                    상담 등록
+                </button>
+            </div>            
                 <table className={ StudentQnaCSS.qnaTableCss}>
                     <colgroup>
                         <col width="3%" />
@@ -62,16 +78,30 @@ function StudentQna() {
                                     <tr
                                         key={ qna.mtmCode }
                                         onClick={ () => onClickTableTr(qna.mtmCode) }
+                                        
                                     >
                                         <td>{ qna.mtmCode }</td>
                                         <td>{ qna.classes.className }</td>
                                         <td>{ qna.mtmTitle }</td>
                                         <td>{ qna.member.memberName }</td>
                                         <td>{ qna.mtmDate }</td>
+                                        <td>{ qna.mtmCode }</td>
+                                        <td>{ qna.classes.className }</td>
+                                        <td>{ qna.mtmTitle }</td>
+                                        <td>{ qna.member.memberName }</td>
+                                        <td>{ qna.mtmDate }</td>
                                     </tr>
+                                    
                                 )
+
                             )
+                            
+                            
+                        
                         }
+                        
+                       
+                        
                     </tbody>
                 </table>
             </div>

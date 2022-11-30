@@ -30,7 +30,7 @@ function Navbar(){
                 { decoded === "ROLE_TEACHER" &&<li><NavLink to="/"><button>원생관리</button></NavLink></li>}
                 { decoded === "ROLE_TEACHER" &&<li><NavLink to="/ono/qna"><button>1:1 상담</button></NavLink></li>}
                 {/* 원생 */}
-                { decoded === "ROLE_STUDENT" && <li><NavLink to="/ono/notice"><button>공지사항</button></NavLink></li>}
+                { decoded === "ROLE_STUDENT" && <li><NavLink to="student/studentnotice"><button>공지사항</button></NavLink></li>}
                 { decoded === "ROLE_STUDENT" && <li><NavLink to="student/studentMyInfo"><button>내 정보</button></NavLink></li>}
                 { decoded === "ROLE_STUDENT" && <li><NavLink to="student/studentClasses"><button>내 강의</button></NavLink></li>}
                 { decoded === "ROLE_STUDENT" && <li><NavLink to="student/studentQna"><button>1:1 상담</button></NavLink></li>}

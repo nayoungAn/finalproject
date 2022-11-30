@@ -125,9 +125,9 @@ function App() {
           <Route index element={ <Navigate to="studentMyInfo" replace /> } />
           <Route path="studentMyInfo" element={ <StudentMyInfo/> }/>
           <Route path="studentClasses" element={ <StudentClasses/> }/>
-          <Route path="studentClassesDetail" element={ <StudentClassesDetail/> }/>
-          <Route path="studentQna/:classCode" element={ <StudentQna/> }/>
-          <Route path="studentQnaDetail/:mtmCode" element={ <StudentQnaDetail/> }/>
+          <Route path="studentClassesDetail/:classCode" element={ <StudentClassesDetail/> }/>
+          <Route path="studentQna" element={ <StudentQna/> }/>
+          <Route path="studentQnadetail/:mtmCode" element={ <StudentQnaDetail/> }/>
           <Route path="studentQnaRegistration" element={ <StudentQnaRegistration/> }/>
         </Route>
           

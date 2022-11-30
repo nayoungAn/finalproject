@@ -27,8 +27,8 @@ function StudentMyInfo() {
         []
     );
 
-    console.log(studentDetail.data);
-    console.log(studentDetail.lectureList);
+    console.log(studentDetail);
+    console.log(studentDetail.memberCode);
     
     /* 입력 양식의 값 변경될 때 */
     const onChangeHandler = (e) => {
@@ -81,7 +81,8 @@ function StudentMyInfo() {
             <div className={ StudentMyInfoCSS.subjectSection }>
                 <div className={ StudentMyInfoCSS.subjectInfoDiv }>
                     <table className={ StudentMyInfoCSS.studentTable }>
-                    { studentDetail.memberInfo  && studentDetail.lectureList && ( <tbody>
+                    {/* { studentDetail && studentDetail.lectureList && (  */}
+                    <tbody>
                             <tr>
                                 <td><label>이름</label></td>
                                 <td><label>생년월일</label></td>
@@ -94,7 +95,7 @@ function StudentMyInfo() {
                                         placeholder='이름'
                                         className={ StudentMyInfoCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? studentInfo.memberName : form.memberName) || '' }
+                                        value={ (!modifyMode ? studentDetail.memberName : form.memberName) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
@@ -105,7 +106,7 @@ function StudentMyInfo() {
                                         placeholder='생년월일'
                                         className={ StudentMyInfoCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? studentInfo.memberBirthday : form.memberBirthday) || '' }
+                                        value={ (!modifyMode ? studentDetail.memberBirthday : form.memberBirthday) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
@@ -124,7 +125,7 @@ function StudentMyInfo() {
                                             placeholder='등록일'
                                             className={ StudentMyInfoCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (studentInfo.memberRegisterDate) || '' }
+                                            value={ (studentDetail.memberRegisterDate) || '' }
                                             readOnly={ true }
                                             style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                             /> 
@@ -137,7 +138,7 @@ function StudentMyInfo() {
                                             placeholder='아이디'
                                             className={ StudentMyInfoCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? studentInfo.memberId : form.memberId) || '' }
+                                            value={ (!modifyMode ? studentDetail.memberId : form.memberId) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                             /> 
@@ -159,7 +160,7 @@ function StudentMyInfo() {
                                             onChange={ onChangeHandler } 
                                             value="남"
                                             readOnly={ modifyMode ? false : true }
-                                            checked={ (!modifyMode ? studentInfo.memberGender : form.memberGender) === 'Y' ? true : false }
+                                            checked={ (!modifyMode ? studentDetail.memberGender : form.memberGender) === 'Y' ? true : false }
                                         /> 
                                             남
                                     </label> &nbsp;
@@ -170,7 +171,7 @@ function StudentMyInfo() {
                                             onChange={ onChangeHandler } 
                                             value="여"
                                             readOnly={ modifyMode ? false : true }
-                                            checked={ (!modifyMode ? studentInfo.memberGender : form.memberGender) === 'N' ? true : false }
+                                            checked={ (!modifyMode ? studentDetail.memberGender : form.memberGender) === 'N' ? true : false }
                                         /> 여</label>
                                 </td>
                                 <td>
@@ -180,7 +181,7 @@ function StudentMyInfo() {
                                             placeholder='이메일'
                                             className={ StudentMyInfoCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? studentInfo.memberEmail : form.memberEmail) || '' }
+                                            value={ (!modifyMode ? studentDetail.memberEmail : form.memberEmail) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                             /> 
@@ -201,7 +202,7 @@ function StudentMyInfo() {
                                             placeholder='전화번호'
                                             className={ StudentMyInfoCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? studentInfo.memberPhone : form.memberPhone) || '' }
+                                            value={ (!modifyMode ? studentDetail.memberPhone : form.memberPhone) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                             /> 
@@ -214,49 +215,16 @@ function StudentMyInfo() {
                                             placeholder='주소'
                                             className={ StudentMyInfoCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? studentInfo.memberAddress : form.memberAddress) || '' }
+                                            value={ (!modifyMode ? studentDetail.memberAddress : form.memberAddress) || '' }
                                             readOnly={ modifyMode ? false : true }
                                             style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                             /> 
                                     </label>
                                 </td>
                             </tr>
-                          </tbody>              )}        
+                          </tbody>              
+                          {/* )}         */}
                     </table>
-                </div>
-                <div>
-                <table className={ StudentMyInfoCSS.studentTable }>
-                <colgroup>
-                    <col width="30%" />
-                    <col width="30%" />
-                    <col width="10%" />
-                    <col width="30%" />
-                    
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th>강의명</th>
-                        <th>강의실</th>
-                        <th>요일</th>
-                        <th>시간</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    { Array.isArray(studentDetail.lectureList) && studentDetail.lectureList.map((m) => (
-                        <tr key={m}>
-                            <td>{ m }</td>
-                            <td>{  }</td>
-                            <td>{  }</td>
-                            <td>{  }</td>
-                            <td>{  }</td>
-
-                        </tr>
-                    )) 
-                    }
-                </tbody>    
-                                    
-            </table>
                 </div>
             </div>
             <div>

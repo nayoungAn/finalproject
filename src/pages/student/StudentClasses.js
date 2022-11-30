@@ -12,7 +12,7 @@ function Teacherclass() {
     const classes = useSelector(state => state.studentClassReducer);
     const classesList = classes.data
  
-    console.log('classesList', classesList);
+   
 
     const pageInfo = classes.pageInfo;
 
@@ -36,7 +36,7 @@ function Teacherclass() {
     );
 
     const onClickTeacherclass =(classCode)=> {
-        navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
+        navigate(`/ono/student/studentClassesDetail/${classCode}`, {replace:false})
     }
 
 
@@ -63,15 +63,15 @@ function Teacherclass() {
                         Array.isArray(classesList) && classesList.map(
                             (c) => (
                             <tr
-                            key={ c.classCode }
-                            onClick={ () => onClickTeacherclass(c.classCode)}
+                            key={c.openClasses.classCode }
+                            onClick={ () => onClickTeacherclass(c.openClasses.classCode)}
                     >
-                            <td>{c.classCode}</td>
-                            <td>{c.className}</td>
-                            <td>{c.classStartDate}</td>
-                            <td>{c.classEndDate}</td>
-                            <td>{c.classStatus}</td>
-                            <td>{c.member.memberCode}</td>
+                            <td>{c.openClasses.classCode}</td>
+                            <td>{c.openClasses.className}</td>
+                            <td>{c.openClasses.classStartDate.split("T",1)}</td>
+                            <td>{c.openClasses.classEndDate.split("T",1)}</td>
+                            <td>{c.openClasses.classStatus}</td>
+                            <td>{c.openClasses.member.memberName}</td>
 
                         </tr>
                     ))

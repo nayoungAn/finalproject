@@ -7,7 +7,7 @@ import { GET_STUDENTMYINFO, PUT_STUDENTMYINFO, POST_STUDENTMYINFO} from "../modu
 
 export const callQnaListAPI = ({classCode, currentPage}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna/${classCode}?page=${currentPage}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
@@ -31,7 +31,7 @@ export const callQnaListAPI = ({classCode, currentPage}) => {
 
 export const callQnaDetailAPI = ({mtmCode}) => {
     
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qna/classes/${mtmCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qnadetail/${mtmCode}`;
     
     return async (dispatch, getState) => {
 
@@ -112,9 +112,9 @@ export const callStudentClassesListAPI = ({currentPage = 1}) => {
 
 
 // 내강의 상세조회(강사)
-export const callstudentClasssDetailAPI =({classCode})=> {
+export const callstudentClassesDetailAPI =({classCode})=> {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/${classCode}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/${classCode}`;
 
     return async (dispatch, getstat)=>{
 

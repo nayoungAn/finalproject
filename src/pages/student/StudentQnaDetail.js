@@ -36,8 +36,7 @@ function StudentQnaDetail() {
                             <th>{ qna.mtmCode }  </th>
                             <th>{ qna.mtmTitle } </th>
                             <th>{ qna.mtmDate }  </th>
-                        </tr>
-                        <tr>
+                    
                             <td> { qna.mtmDescription } </td>
                         </tr>
                     </tbody> 
