@@ -1,45 +1,35 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callQnaDetailAPI, callQnaUpdateAPI,callQnaDeleteAPI } from "../../api/QnaAPICalls";
+import { callQnaReDetailAPI, callQnaUpdateAPI,callQnaDeleteAPI } from "../../api/QnaAPICalls";
 import QnaRegistrationCSS from './QnaRegistration.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 import QnaDetailCSS from "./QnaDetail";
-function QnaDetail() {
+function QnaReDetail() {
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
-    const mtmCode = params.mtmCode;
+    const reCode = params.reCode;
     const qnaDetail = useSelector(state => state.qnaReducer);
     const [ modifyMode, setModifyMode ] = useState(false);
     const [ form, setForm ] = useState({});
     const token = decodeJwt(window.localStorage.getItem("accessToken"));  
+    const date = qnaDetail.reDate;
+    const consdate= (date||'').split(' 00:00:00',1);
+    console.log("답글날짜", consdate)
     
-
-    //상담 글 상세 조회
+    //답글 상세 조회
     useEffect(
         () => {
-            console.log('[QnaDetail] MtmCode : ', params.mtmCode);
-            dispatch(callQnaDetailAPI({
-                mtmCode: mtmCode
+            console.log('[QnaDetail] MtmCode : ', params.reCode);
+            dispatch(callQnaReDetailAPI({
+                reCode : reCode
             }));
         }
         ,[]
     );
 
-    console.log('[QnaDetail] qna : ', qnaDetail);
-
-    //답글 등록    
-    const onClickHandler = () => {
-        if(qnaDetail.answerCode === 1){
-                alert('답변 완료 된 상담 글입니다.');
-                navigate(`/ono/tea/qna/${mtmCode}`, { replace : false });
-        }else{
-                navigate(`/ono/tea/qnaReply`, { replace : false });
-                }
-           
-        }
 
      const onChangeHandler = (e) => {
         setForm({
@@ -52,9 +42,9 @@ function QnaDetail() {
     const onClickModifyModeHandler = () => {
         setModifyMode(true);
         setForm({
-            mtmCode : qnaDetail.mtmCode,
-            mtmTitle : qnaDetail.mtmTitle,
-            mtmDescription : qnaDetail.mtmDescription
+            reCode : qnaDetail.reCode,
+            reTitle : qnaDetail.reTitle,
+            reContent : qnaDetail.reContent
         })
     }
     
@@ -69,20 +59,20 @@ function QnaDetail() {
             form : form
         }));
         alert('답글이 수정 되었습니다.');  
-
-        navigate(`/ono/tea/qna`, { replace : false });       
+        navigate(`/ono/tea/qna/${params.classCode}`, { replace : false });  
+        //window.location.reload();     
     } 
 
     //답글 삭제
     const onClickDeleteHandler = () => {
 
             dispatch(callQnaDeleteAPI({
-                mtmCode : mtmCode
+                reCode: reCode
             }));
             
             alert('답글이 삭제 되었습니다.');  
 
-            navigate(`/ono/tea/qna`, { replace : false }); 
+            navigate(`/ono/tea/qna/${params.classCode}`, { replace : false });
     }
     
     console.log("로그인 멤버 코드", qnaDetail.member?.memberName )
@@ -90,11 +80,7 @@ function QnaDetail() {
     return(
 
         <>
-           <button
-                onClick={ onClickHandler }
-            >
-                    답글 등록
-            </button>
+           
             { qnaDetail &&
                 <div className = { QnaDetailCSS.qnaDetailtableDiv }>
                     <table className={ QnaDetailCSS.qnaDetailtableCss }>
@@ -107,9 +93,12 @@ function QnaDetail() {
                                 <td>
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
-                                        name= 'mtmTitle'
+                                        name= 'reTitle'
                                         placeholder='제목'
-                                        value={ qnaDetail.mtmTitle }
+                                        readOnly={modifyMode ? false : true}
+                                        style={ !modifyMode ? { backgroundColor: 'white'} : null}
+                                        onChange={ onChangeHandler }
+                                        value={ (!modifyMode ? qnaDetail.reTitle : form.reTitle) || ''}
                                    />
                                 </td>
                             </tr>
@@ -118,7 +107,9 @@ function QnaDetail() {
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         placeholder='작성자'
-                                        value={ qnaDetail.member?.memberName }
+                                        readOnly={true}
+                                        style={  { backgroundColor: 'white'} }
+                                        value={ qnaDetail && qnaDetail.member?.memberName || ''}
                                    />
                                 </td>
                             </tr>
@@ -127,16 +118,21 @@ function QnaDetail() {
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         placeholder='작성일'
-                                        value={ qnaDetail.mtmDate }
+                                        readOnly={true}
+                                        style={  { backgroundColor: 'white'} }
+                                        value={ qnaDetail && qnaDetail.reDate || ''}
                                    />
                                 </td>
                             </tr>
                             <tr>
                                  <td colSpan={2}>
                                     <textarea
-                                        name='mtmDescription'
+                                        name='reContent'
                                         className={ QnaDetailCSS.contentTextArea }
-                                        value={ qnaDetail.mtmDescription} 
+                                        readOnly={modifyMode ? false : true}
+                                        style={ !modifyMode ? { backgroundColor: 'white'} : null}
+                                        onChange={ onChangeHandler }
+                                        value={ (!modifyMode ? qnaDetail.reContent : form.reContent) || ''}
                                     >                                    
                                     </textarea>
                                 </td>
@@ -153,6 +149,34 @@ function QnaDetail() {
                         >
                             돌아가기
                         </button>
+                        { token &&
+                            (token.sub === qnaDetail.member?.memberId)
+                            ?
+                           
+                             <div>{!modifyMode &&
+                                  <button
+                                    className={ QnaDetailCSS.backBtn }
+                                    onClick={ onClickModifyModeHandler }
+                                  >
+                                    수정모드
+                                  </button>
+                                }
+                                {modifyMode &&
+                                    <button
+                                        className={ QnaDetailCSS.backBtn }
+                                        onClick={ onClickQnaUpdateHandler }
+                                    >
+                                        답글 수정 저장
+                                    </button>
+                                }
+                                    <button
+                                        onClick={ onClickDeleteHandler }
+                                    >
+                                        답글 삭제
+                                    </button>   
+                            </div>
+                          :null  
+                        }
                     </div>
 
                 }    
@@ -161,4 +185,4 @@ function QnaDetail() {
 
 }
 
-export default QnaDetail;
+export default QnaReDetail;

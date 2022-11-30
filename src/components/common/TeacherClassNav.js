@@ -1,6 +1,6 @@
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 
-function FindMemInfoNav({ classCode }){
+function FindMemInfoNav(){
      const params = useParams();
      const navigate = useNavigate()
 
