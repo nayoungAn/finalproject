@@ -1,23 +1,6 @@
-import { GET_CLASSHISTORY, POST_CLASSHISTORY } from "../modules/ClassHistoryModule";
+import { POST_CLASSHISTORY } from "../modules/ClassHistoryModule";
+import { callStudentManagerDetailAPI } from "./ClassHistoryRefreshAPICalls";
 
-export const callStudentManagerDetailAPI = ({memberCode}) => {
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/student-manager/${memberCode}`;
-    return async (dispatch, getState) => {
-        const result = await fetch(requestURL, {
-            method : "GET",
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept" : "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            }
-        })
-        .then(response => response.json());
-        if(result.status === 200) {
-            console.log('[ClassHistoryAPICalls] callStudentManagerDetailAPI RESULT : ', result);
-            dispatch({ type: GET_CLASSHISTORY, payload : result.data });
-        }
-    }
-}
 
 
 export const callClassHistoryRegistAPI = ({form}) => {
@@ -29,16 +12,30 @@ export const callClassHistoryRegistAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method : "POST",
             headers : {
+                "Content-Type" : "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            },
-            body : form
+            },                     
+                body : JSON.stringify({
+                    openClasses :  {
+                        classCode : form.classCode
+                    },
+                    member :  {
+                        memberCode : form.memberCode
+                    },
+                    startDate : form.starDate
+                })
         })
         .then(response => response.json());
 
         if(result.status === 200) {
             console.log('[ClassHistoryAPICalls] callClassHistoryRegistAPI result : ', result);
             dispatch({ type: POST_CLASSHISTORY, payload: result.data });
+
+            dispatch(
+                callStudentManagerDetailAPI ({
+                  memberCode : form.memberCode      
+                }));
         }
     }
 

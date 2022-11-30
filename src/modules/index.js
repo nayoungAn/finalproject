@@ -13,6 +13,7 @@ import teacherClassReducer from "./TeacherClassModule";
 import studentManagerReducer from "./StudentManagerModule";
 import studentManagerDetailReducer from "./StudentMangerDetailModule";
 import classHistoryReducer from "./ClassHistoryModule";
+import classHistoryRefreshReducer from "./ClassHistoryRefreshModule";
 const rootReducer = combineReducers({
     memberReducer,
     consReducer,
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
     teacherClassReducer,
     studentManagerReducer,
     studentManagerDetailReducer,
-    classHistoryReducer
+    classHistoryReducer,
+    classHistoryRefreshReducer
 });
 
 export default rootReducer;

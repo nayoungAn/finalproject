@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callClassRegistAPI } from '../../api/ClassAPICalls';
 import { callClassListForAdminNoPagingAPI } from '../../api/ClassAPICalls';
+import { callSubjectListForAdminNoPagingAPI } from '../../api/SubjectListAPICall';
+import { callTeacherListForAdminNoPagingAPI } from '../../api/TeacherListAPICall';
 import uuid from "react-uuid"
 
 
@@ -34,8 +36,11 @@ function ClassRegistration() {
         () => {
             dispatch(callClassListForAdminNoPagingAPI({
             }));
-        }
-        , []
+        dispatch(callSubjectListForAdminNoPagingAPI({
+        }));
+        dispatch(callTeacherListForAdminNoPagingAPI({
+        }))
+    }, []
     );
 
     /* 입력 양식의 값 변경될 때 */
@@ -112,7 +117,6 @@ function ClassRegistration() {
                                         placeholder='과목명'
                                         className={ClassRegistrationCSS.classInfoInput}
                                         onChange={onChangeHandler}
-                                        key={uuid()}
                                     >
                                         <option>과목명</option>
                                     {subjects.map((item,idx) => (
@@ -132,7 +136,6 @@ function ClassRegistration() {
                                         placeholder='강사명'
                                         className={ClassRegistrationCSS.classInfoInput}
                                         onChange={onChangeHandler}
-                                        key={uuid()}
 
                                     >  <option>강사명</option>
                                     {teachers.map((item,idx) => (

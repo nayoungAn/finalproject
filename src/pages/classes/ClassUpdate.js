@@ -21,12 +21,7 @@ function ClassUpdate() {
     const [form, setForm] = useState({
         
     });
-    /* date 형식 00:00:00 제거 */ 
-    // const classStartdate = classDetail.classStartDate;
-    // const classStartDateSplit= (classStartdate||'').split('T',1);
-    // const classEnddate = classDetail.classEndDate;
-    // const classEndDateSplit= (classEnddate||'').split('T',1);
-    /* 읽기모드와 수정모드를 구분 */
+   
     const [modifyMode, setModifyMode] = useState(false);
 
     /* 최초 랜더링 시 상품 상세 정보 조회 */

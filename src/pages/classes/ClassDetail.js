@@ -6,8 +6,6 @@ import { decodeJwt } from '../../utils/tokenUtils';
 
 function ClassDetail() {
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
     const member = useSelector(state => state.studentManagerDetailReducer);
 
     return (
