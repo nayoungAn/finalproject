@@ -33,7 +33,6 @@ import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
 import Teacherclass from "./pages/teacherclass/Teacherclass";
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
-import SmsManagement from "./pages/sms/SmsManagement";
 import SmsTransmission from "./pages/sms/SmsTransmission";
 import QnaRegistration from "./pages/consultant/QnaRegistration";
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
@@ -103,9 +102,8 @@ function App() {
         
         <Route path="acc-update/:accCode" element={<AccUpdate />}/>
         
-        <Route path="sms" element={<SmsManagement />}/>
+        <Route path="sms" element={<SmsTransmission />}/>
         
-        <Route path="sms-transmission/:smsCode" element={<SmsTransmission />}/>
           
       </Route>
 
