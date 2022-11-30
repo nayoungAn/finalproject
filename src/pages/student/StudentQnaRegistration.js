@@ -1,17 +1,26 @@
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import StudentQnaRegistrationCSS from "./StudentQnaRegistration.module.css";
 import {callQnaRegsistAPI} from "../../api/StudentAPICalls";
+import { callClassHistoryListForMemberNoPagingAPI } from '../../api/StudentAPICalls';
 
 function StudentQnaRegistration() {
 
-    const teachers = useSelector(state => state.classListReducer);
-
+    const classes = useSelector(state => state.studentQnaReducer);
+    const classesList = classes.data;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
-    
+
+
+    useEffect(
+        () => {
+            dispatch(callClassHistoryListForMemberNoPagingAPI({
+            }));
+        }, []
+    );
+
     const [ form, setForm ] = useState({
         classCode: 0,
         mtmTitle : '',
@@ -36,7 +45,7 @@ function StudentQnaRegistration() {
 
         dispatch(callQnaRegsistAPI({
             form : form,
-            subjectCode : form.classCode,
+            classCode : form.classCode,
         }));
 
         navigate(`/ono/tea/qna/${params.classCode}`, {replace:false})
@@ -61,21 +70,22 @@ function StudentQnaRegistration() {
             <div className={ StudentQnaRegistrationCSS.qnaSection }>
                 <div className={ StudentQnaRegistrationCSS.qnaInfoDiv }>
                     <table>
+                    { Array.isArray(classesList) && (
                         <tbody>
                             <tr>
                                 <td><label>과목명</label></td>
                                 <td>
                                     <select
-                                        id="subjectList"
-                                        name='subjectCode'
+                                        id="classList"
+                                        name='classCode'
                                         placeholder='과목명'
-                                        className={ClassRegistrationCSS.classInfoInput}
+                                        className={StudentQnaRegistrationCSS.qnaInfoInput}
                                         onChange={onChangeHandler}
                                     >
                                         <option>과목명</option>
-                                    {subjects.map((item,idx) => (
-                                    <option key={idx} name='subjectCode' value={item?.subjectCode} >
-                                      {item?.subjectName}
+                                    {classesList.map((item,idx) => (
+                                    <option key={idx} name='classCode' value={item?.classes.classCode} >
+                                      {item?.classes?.className}
                                     </option>
                                   ))}
                                     </select>
@@ -105,7 +115,7 @@ function StudentQnaRegistration() {
                                        />
                                    </td>
                                 </tr>
-                        </tbody>                        
+                        </tbody>)}                        
                     </table>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import { GET_STUDENTCLASS, GET_STUDENTSCLASS } from "../modules/StudentClassesMo
 
 import { GET_STUDENTMYINFO, PUT_STUDENTMYINFO, POST_STUDENTMYINFO} from "../modules/StudentMyInfoModule";
 
-export const callQnaListAPI = ({classCode, currentPage}) => {
+export const callQnaListAPI = ({currentPage}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna?page=${currentPage}`;
 
@@ -27,6 +27,30 @@ export const callQnaListAPI = ({classCode, currentPage}) => {
             dispatch({ type: GET_STUDENTSQNA, payload: result.data });
         }
     }
+}
+
+export const callClassHistoryListForMemberNoPagingAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/classeshistory-nopaging`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[QnaAPICalls] callClassHistoryListForMemberNoPagingAPI result : ', result);
+            dispatch({ type: GET_STUDENTCLASS, payload: result.data });
+        }
+    }
+
 }
 
 export const callQnaDetailAPI = ({mtmCode}) => {

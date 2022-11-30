@@ -38,7 +38,7 @@ function StudentQna() {
     }
 
 
-    const onClickQnaInsert = (classCode) => {
+    const onClickQnaInsert = () => {
         console.log('[SubjectManagement] onClickSubjectInsert');
         navigate(`/ono/student/studentQnaRegistration`, { replace: false })
     }
