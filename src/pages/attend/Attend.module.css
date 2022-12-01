@@ -1,4 +1,4 @@
-.QnaTableDiv {
+.attendTableDiv {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -8,13 +8,13 @@
     margin: 10px;
 }
 
-.QnaTableCss{
+.attendTableCss{
     width: 80%;
     border-collapse: collapse;
     table-layout: fixed;
 }
 
-.QnaTableCss th, td {
+.attendTableCss th, td {
     padding: 10px;
     height: 10px;
     text-align: center;
@@ -22,19 +22,16 @@
     table-layout:fixed;
 }
 
-.QnaTableCss tr:hover { 
+.attendTableCss tr:hover { 
     background-color: #F5F5F5; 
 }
 
-.QnaTableCss tr {
+.attendTableCss tr {
     cursor: pointer;
 }
 
-/* 댓글 CSS 조정 */
-
-
 .pagingDiv{
-    margin-top: 40px;
+    height: 50px
 }
 
 .pagingBtn{
@@ -46,5 +43,6 @@
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: burlywood;
+    background-color: rgb(168, 214, 238);
 }
+
