@@ -34,8 +34,8 @@ function QnaDetail() {
     const onClickHandler = () => {
         if(qnaDetail.answerCode === 1){
                 alert('답변 완료 된 상담 글입니다.');
-                navigate(`/ono/tea/qna/${mtmCode}`, { replace : false });
-        }else{
+                navigate(-1);
+        }else {
                 navigate(`/ono/tea/qnaReply`, { replace : false });
                 }
            
