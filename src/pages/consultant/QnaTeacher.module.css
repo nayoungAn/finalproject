@@ -1,0 +1,50 @@
+.QnaTableDiv {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 850px;
+    height: 100%;
+    margin: 10px;
+}
+
+.QnaTableCss{
+    width: 80%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.QnaTableCss th, td {
+    padding: 10px;
+    height: 10px;
+    text-align: center;
+    word-break:break-all;
+    table-layout:fixed;
+}
+
+.QnaTableCss tr:hover { 
+    background-color: #F5F5F5; 
+}
+
+.QnaTableCss tr {
+    cursor: pointer;
+}
+
+/* 댓글 CSS 조정 */
+
+
+.pagingDiv{
+    margin-top: 40px;
+}
+
+.pagingBtn{
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.pagingBtn:hover{
+    cursor: pointer;
+    background-color: burlywood;
+}

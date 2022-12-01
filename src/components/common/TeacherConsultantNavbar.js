@@ -1,5 +1,5 @@
 import OpenClassesNavbarCSS from './OpenClassesNavbar.module.css';
-import { decodeJwt } from '../../../utils/tokenUtils';
+import { decodeJwt } from '../../utils/tokenUtils';
 import { Navigate, NavLink } from 'react-router-dom';
 
 function OpenClassesNavbar() {
@@ -14,9 +14,10 @@ function OpenClassesNavbar() {
     return (
         <div className={ OpenClassesNavbarCSS.OpenClassesNavbarDiv }>
             <ul className={ OpenClassesNavbarCSS.OpenClassesNavbarUl }>
-            <li><NavLink to="/ono/OpenClasses/subjects">과목 조회 </NavLink></li>
-            <li><NavLink to="/ono/OpenClasses/classes">강의 조회</NavLink></li>
-            <li><NavLink to="/ono/OpenClasses/classHistory">수강 조회</NavLink></li>
+
+            <li><NavLink to="/ono/qna/teacher"> 1:1 상담</NavLink></li>
+            <li><NavLink to="/"> 등록 상담</NavLink></li>
+
             </ul>
         </div>
     );

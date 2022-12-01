@@ -1,8 +1,8 @@
 import { callSearchTeacherClassAPI } from"../../api/TeacherClassAPICall";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from "react-redux";
-import TeacherClassCSS from './Teacherclass.module.css';
 import { useState,useEffect } from "react";
+import TeacherClassCSS from './Teacherclass.module.css';
 
 
 function Teacherclass() {
@@ -36,7 +36,7 @@ function Teacherclass() {
     );
 
     const onClickTeacherclass =(classCode)=> {
-        navigate(`/ono/teacherclass/${classCode}`, {replace:false})
+        navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
     }
 
 
@@ -71,7 +71,7 @@ function Teacherclass() {
                             <td>{c.classStartDate}</td>
                             <td>{c.classEndDate}</td>
                             <td>{c.classStatus}</td>
-                            <td>{c.member.memberCode}</td>
+                            <td>{c.member.memberName}</td>
 
                         </tr>
                     ))
