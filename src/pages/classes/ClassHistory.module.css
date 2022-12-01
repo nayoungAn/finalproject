@@ -3,7 +3,14 @@
     margin:0;
     box-sizing: border-box;
     }
-    
+    .InputStyle {
+      width: 200px;
+      height: 25px;    
+      margin-left: 15px;
+      margin-right: 15px;
+      border-radius: 20px;
+      text-indent: 1em;
+}    
     .main {
         width: 100%;
         height: 100%;
@@ -22,7 +29,7 @@
       }
 
     .submain {
-      width: 70%;
+      width: 80%;
       height: 90%;
         flex-direction: column;
         align-items: center;
@@ -31,7 +38,6 @@
 
      .item2 {
         flex: 1;
-        background-color:rgb(255, 238, 0);
         height: 60%;
         box-sizing: border-box;
       }
@@ -40,6 +46,6 @@
       .item3 {
         height : 40%;
         flex: 1;
-        background-color: green;
+
         box-sizing: border-box;
       }

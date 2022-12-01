@@ -4,7 +4,6 @@ import ClassHistoryItem from "../../components/classHistory/ClassHistoryItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callSearchListAPI } from "../../api/StudentManagerAPICalls";
-import HeaderCSS from "../../components/common/Header";
 import ClassDetail from "../../pages/classes/ClassDetail";
 import ClassHistoryList from "./ClassHistoryList";
 import ClassHistoryRegistModal from "../../components/common/classHistory/ClassHistoryRegistModal";
@@ -47,16 +46,18 @@ function ClassHistory() {
     <>
       <div className={ClassHistoryCSS.main}>
         <div className={ClassHistoryCSS.item1}>
+          <h3>수강 관리</h3>
           <input
-            className={HeaderCSS.InputStyle}
+            className={ClassHistoryCSS.InputStyle}
             type="text"
             placeholder="검색"
             value={searchValue}
             onChange={onSearchChangeHandler}
           />
 
-          <h4>원생 이름 휴대전화</h4>
+          
           <div>
+          <h4>이름 Id</h4>
             {Array.isArray(classHistory) &&
               classHistory.map((member) => (
                 <ClassHistoryItem key={member.memberCode} member={member} />

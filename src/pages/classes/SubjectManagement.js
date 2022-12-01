@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import{callSubjectDeleteAPI } from '../../api/SubjectAPICalls';
 import { callSubjectListForAdminAPI } from '../../api/SubjectListAPICall';
-import HeaderCSS from "../../components/common/Header";
 
 function SubjectManagement() {
     
@@ -50,8 +49,6 @@ function SubjectManagement() {
                 subjectCode : subjectCode
             }));
 
-            console.log("데이터보기" , deleteSubjects);
-      
             
             
             deleteSubjects.subjectCode === null ? alert('과목이 삭제되었습니다.')        
@@ -82,18 +79,19 @@ function SubjectManagement() {
         }
     }
 
+    const onClickSearch = () => {
+        navigate(`/ono/OpenClasses/search?value=${search}`, { replace : false });
+    }
+
     return (
         <>
        
         <div className={ SubjectManagementCSS.bodyDiv }>
             <div>
-                <button
-                    onClick={ onClickSubjectInsert }
-                >
-                    과목 등록
-                </button>
+                <h3>과목 목록</h3>
+                <button className={ SubjectManagementCSS.btnSearch } onClick = { () => onClickSearch()}>검색</button>
                 <input
-                    className={ HeaderCSS.InputStyle }
+                    className={ SubjectManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ search }
@@ -110,7 +108,7 @@ function SubjectManagement() {
                     <col width="20%" />
                 </colgroup>
                 <thead>
-                    <tr>
+                    <tr className={ SubjectManagementCSS.subjectThead}>
                         <th>과목번호</th>
                         <th>과목명</th>
                         <th>과목 설명</th>
@@ -137,9 +135,13 @@ function SubjectManagement() {
                         </tr>
                     )) 
                     }
-                </tbody>                    
-            </table>         
-            
+                </tbody>
+                            
+            </table>      
+            <button
+                    onClick={ onClickSubjectInsert } className={SubjectManagementCSS.btnRegist}>
+                    과목 등록
+                </button>         
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(subjectList) &&
@@ -154,7 +156,7 @@ function SubjectManagement() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ? {backgroundColor : 'lightblue' } : null}
                     className={ SubjectManagementCSS.pagingBtn }
                 >
                     {num}
@@ -171,6 +173,7 @@ function SubjectManagement() {
                 &gt;
             </button>
             }
+              
         </div>
         </>
     );

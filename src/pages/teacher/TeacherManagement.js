@@ -47,7 +47,7 @@ function TeacherManagement() {
         console.log('[TeacherManagement] onClickTeacherInsert');
         navigate ('/ono/teacher/regist', {replace : true})
     }
-
+ 
 /* 검색 키워드 입력 시 입력 값 상태 저장 */
 const onSearchChangeHandler = (e) => {
     setSearch(e.target.value);
@@ -60,24 +60,28 @@ const onEnterKeyHandler = (e) => {
         navigate(`/ono/teachers/search?value=${search}`, { replace : false });
     }
 }
-
+const onClickSearch = () => {
+    navigate(`/ono/teachers/search?value=${search}`, { replace : false });
+}
 
 
     return (
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
-
+            <h3> 강사 목록</h3>
                 <button
                  onClick={ onClickTeacherInsert }> 강사등록 </button>
              <input
-                    className={ HeaderCSS.InputStyle }
+                    className={ TeacherManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ search }
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
+            <button className="btnSearch" onClick = { () => onClickSearch()}>검색</button>
+
                 </div>            
                 <table className={ TeacherManagementCSS.teacherTable }>
                 <colgroup>

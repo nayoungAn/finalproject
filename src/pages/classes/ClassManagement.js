@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import { callClassListForAdminAPI } from '../../api/ClassAPICalls';
-import HeaderCSS from "../../components/common/Header";
 
 function ClassManagement() {
     
@@ -62,6 +61,9 @@ function ClassManagement() {
         }
     }
 
+    const onClickSearch = () => {
+        navigate(`/ono/teachers/search?value=${search}`, { replace : false });
+    }
     return (
         <>
        
@@ -73,13 +75,14 @@ function ClassManagement() {
                     강의 등록
                 </button>
                 <input
-                    className={ HeaderCSS.InputStyle }
+                    className={ ClassManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ search }
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
+                <button className="btnSearch" onClick = { () => onClickSearch()}>검색</button>
             </div>            
             <table className={ ClassManagementCSS.classTable }>
                 <colgroup>

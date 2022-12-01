@@ -30,7 +30,7 @@ import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
 import ConsRegistration from "./pages/cons/ConsRegistration";
 import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
-import Teacherclass from "./pages/teacherclass/teacherclass";
+import Teacherclass from "./pages/teacherclass/Teacherclass";
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
 

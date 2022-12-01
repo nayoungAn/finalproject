@@ -20,6 +20,17 @@
     background-color: white;
     font-weight: bold;
 }
+.InputStyle {
+    width: 200px;
+    height: 25px;    
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 20px;
+    text-indent: 1em;
+    background-color: rgb(230, 230, 230);
+    float: right;
+    
+}
 
 .classTable{
     width: 900px;
