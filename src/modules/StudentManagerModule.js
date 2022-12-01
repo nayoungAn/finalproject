@@ -4,10 +4,10 @@ import { createActions, handleActions } from "redux-actions";
 const initialState = [];
 
 /* 액션 */
-export const GET_STUDENTLIST = "notice/GET_STUDENTLIST";
-export const GET_STUDENT = 'notice/GET_STUDENT';
-export const POST_STUDENT = 'notice/POST_STUDENT';
-export const PUT_STUDENT = 'notice/PUT_STUDENT';
+export const GET_STUDENTLIST = "student/GET_STUDENTLIST";
+export const GET_STUDENT = 'student/GET_STUDENT';
+export const POST_STUDENT = 'student/POST_STUDENT';
+export const PUT_STUDENT = 'student/PUT_STUDENT';
 
 const actions = createActions({
     [GET_STUDENTLIST]: () => {},

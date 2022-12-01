@@ -41,6 +41,8 @@ import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
 import QnaRegistration from "./pages/consultant/QnaRegistration";
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
+import StudentManagerSearch from "./pages/studentManager/StudentManagerSearch";
+import StudentManagerRegist from "./pages/studentManager/StudentManagerRegist";
 
 
 function App() {
@@ -62,6 +64,8 @@ function App() {
         
         <Route path="student-manager" element= { <StudentManagerList/> }/>
         <Route path="student-manager/:memberCode" element= { <StudentManagerDetail/> }></Route>
+        <Route path="student-manager/search" element={ <StudentManagerSearch/> }/>
+        <Route path="student-regist" element={ <StudentManagerRegist/> }/>
 
         <Route path="OpenClasses" element={ <OpenClassesLayout/> }>
               <Route index element={ <Navigate to="subjects" replace /> } />

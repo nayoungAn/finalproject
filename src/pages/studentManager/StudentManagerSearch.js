@@ -1,39 +1,44 @@
 import StudentListmoduleCSS from './StudentManagerList.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import { callStudentManagerListAPI } from '../../api/StudentManagerAPICalls';
+import { callSearchListAPI } from '../../api/StudentManagerAPICalls';
+import queryString from 'query-string';
 
-function StudentList() {
+function StudentManagerSearch() {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const { search } = useLocation();
+    const { value } = queryString.parse(search);
 
+    const dispatch = useDispatch();
     const student  = useSelector(state => state.studentManagerReducer);      
     const studentList = student.data;
-    console.log('studentList', studentList);
-
-    const pageInfo = student.pageInfo;
-
-    const [search, setSearch] = useState('');
+    const [searchValue, setSearchValue] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
 
+    
+    // window.location.reload()
+    useEffect(
+        () => {         
+            dispatch(callSearchListAPI({
+                search : value,
+                currentPage: currentPage
+            }));            
+            
+        }
+        ,[currentPage, value]    
+    );
+
+    /* 페이징 버튼 */
+    const pageInfo = student.pageInfo;
     const pageNumber = [];
     if(pageInfo){
         for(let i = pageInfo.startPage ; i <= pageInfo.endPage ; i++){
             pageNumber.push(i);
         }
     }
-    // window.location.reload()
-    useEffect(
-        () => {         
-            dispatch(callStudentManagerListAPI({
-                currentPage: currentPage,
-            }));            
-            
-        }
-        ,[currentPage]    
-    );
 
     const onClickNoticeInsert = () => {
         navigate("/ono/student-regist", {replace : false})
@@ -49,15 +54,16 @@ function StudentList() {
 
     /* 검색 키워드 입력 시 입력 값 상태 저장 */
     const onSearchChangeHandler = (e) => {
-        setSearch(e.target.value);
+        setSearchValue(e.target.value);
+        console.log(e.target.value);
     }
 
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
-            console.log('Enter key', search);
+            console.log('Enter key', searchValue);
 
-            navigate(`/ono/student-manager/search?value=${search}`, { replace : false });
+            navigate(`/ono/student-manager/search?value=${searchValue}`, { replace : false });
         }
     }
 
@@ -79,7 +85,7 @@ function StudentList() {
                     className={ StudentListmoduleCSS.InputStyle }
                     type="text"
                     placeholder="검색"
-                    value={ search }
+                    value={ searchValue }
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
@@ -157,4 +163,4 @@ function StudentList() {
 }
 
 
-export default StudentList;
+export default StudentManagerSearch;

@@ -80,31 +80,18 @@
     font-weight: bold;
 }
 
-.imgDiv{
-    display: flex;    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.imgDiv img {
-    margin: 5px;
-    width: 70%;
-    height: 80%;
-}
-
-.imgDiv button {
-    margin: 5px;
-    height: 8%;
-    width: 80%;
-}
-
 .productImage{
     margin-top: 5px;
-    width: 80px;
-    height: 90px;    
+    width: 80%;
+    height: 90%;    
+}
+
+.productImageDiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .productImageButton{

@@ -3,7 +3,6 @@ import noticeReducer from "./NoticeModule";
 import memberReducer from "./MemberModule";
 
 import consReducer from "./ConsModule";
-import subjectReducer from "./SubjectModule";
 
 import { combineReducers } from "redux";
 import subjectListReducer from "./SubjectListModule";
@@ -19,6 +18,7 @@ import accReducer from "./AccModule";
 import smsListReducer from "./SmsListModule";
 import teacherClassReducer from "./TeacherClassModule";
 import qnaReducer from "./QnaModule";
+import studentManagerDetailReducer from "./StudentManagerDetailModule";
 
 const rootReducer = combineReducers({
     memberReducer,
@@ -35,7 +35,8 @@ const rootReducer = combineReducers({
     qnaReducer,
     classReducer,
     smsListReducer,
-    teacherClassReducer
+    teacherClassReducer,
+    studentManagerDetailReducer
 
 });
 
