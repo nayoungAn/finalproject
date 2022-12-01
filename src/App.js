@@ -53,6 +53,8 @@ import StudentMyInfo from "./pages/student/StudentMyInfo";
 import StudentQna from "./pages/student/StudentQna";
 import StudentQnaDetail from "./pages/student/StudentQnaDetail";
 import StudentQnaRegistration from "./pages/student/StudentQnaRegistration";
+import StudentNoticeList from "./pages/student/StudentNoticeList";
+import StudentNoticeDetail from "./pages/student/StudentNoticeDetail";
 
 
 function App() {
@@ -129,6 +131,8 @@ function App() {
           <Route path="studentQna" element={ <StudentQna/> }/>
           <Route path="studentQnadetail/:mtmCode" element={ <StudentQnaDetail/> }/>
           <Route path="studentQnaRegistration" element={ <StudentQnaRegistration/> }/>
+          <Route path="studentnotice" element={ <StudentNoticeList/> }/>
+          <Route path="studentNoticeDetail/:noticeCode" element={ <StudentNoticeDetail/> }/>
         </Route>
           
         

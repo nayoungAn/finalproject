@@ -1,10 +1,10 @@
-import NoticeListmoduleCSS from './NoticeList.module.css';
+import NoticeListmoduleCSS from './StudentNoticeList.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import { callNoticeListAPI, callNoticeDeleteAPI } from '../../api/NoticeAPICalls';
 
-function NoticeList() {
+function StudentNoticeList() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -33,45 +33,24 @@ function NoticeList() {
         ,[currentPage]    
     );
 
-    const onClickNoticeInsert = () => {
-        navigate("/ono/notice-regist", {replace : false})
-    }
-
-    const onClickNoticeDelete = (noticeCode) => {
-        console.log('[SubjectManagement] onClickSubjectDelete');
-        {
-            dispatch(callNoticeDeleteAPI({
-                noticeCode : noticeCode
-            }));
-            console.log("삭제");
-            alert('공지사항이 삭제되었습니다.');
-                window.location.reload();
-        }
-    }
-
+    
     const onClickTableTr = (e, noticeCode) => {
 
         console.log(e.target.className);
         
         if(e.target.className !== "deleteBtn")
                 {
-                    navigate(`/ono/notice/${noticeCode}`, { replace: false })
+                    navigate(`/ono/student/studentNoticeDetail/${noticeCode}`, { replace: false })
                     console.log("상세조회");
                 }     
-        else {
-            onClickNoticeDelete(noticeCode);
-        }
+       
     }
 
     return (
         <>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
             <div>
-                <button
-                    onClick={ onClickNoticeInsert }
-                >
-                    작성하기
-                </button>
+               
             </div>            
             <table className={ NoticeListmoduleCSS.teacherTable }>
                 <colgroup>
@@ -99,11 +78,7 @@ function NoticeList() {
                             <td>{ n.noticeTitle }</td>
                             <td>{ n.noticeDate }</td>
                             <td>{ n.member.memberName }</td>
-                            <td><button className="deleteBtn"
-                  
-                >
-                    삭제
-                </button></td>
+                
                         </tr>
                     )) 
                     }
@@ -146,4 +121,4 @@ function NoticeList() {
 }
 
 
-export default NoticeList;
+export default StudentNoticeList;

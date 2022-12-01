@@ -19,6 +19,7 @@ import smsListReducer from "./SmsListModule";
 import teacherClassReducer from "./TeacherClassModule";
 import qnaReducer from "./QnaModule";
 import studentQnaReducer from "./StudentQnaModule";
+import studentQnaListReducer from "./StudentQnaListModule";
 import studentClassReducer from "./StudentClassesModule";
 import studentMyInfoModuleReducer from "./StudentMyInfoModule";
 
@@ -40,7 +41,8 @@ const rootReducer = combineReducers({
     teacherClassReducer,
     studentQnaReducer,
     studentClassReducer,
-    studentMyInfoModuleReducer
+    studentMyInfoModuleReducer,
+    studentQnaListReducer
 
 });
 

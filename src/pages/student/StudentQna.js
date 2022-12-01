@@ -84,20 +84,17 @@ function StudentQna() {
                                         <td>{ qna.classes.className }</td>
                                         <td>{ qna.mtmTitle }</td>
                                         <td>{ qna.member.memberName }</td>
-                                        <td>{ qna.mtmDate }</td>
-                                        <td>{ qna.mtmCode }</td>
-                                        <td>{ qna.classes.className }</td>
-                                        <td>{ qna.mtmTitle }</td>
-                                        <td>{ qna.member.memberName }</td>
-                                        <td>{ qna.mtmDate }</td>
+                                        <td>{ qna.mtmDate?.split("T",1) }</td>
+                                        <td>{ qna.reList?.reCode }</td>
+                                        <td>{ qna.reList?.reTitle }</td>
+                                        <td>{ qna.reList?.member?.memberName }</td>
+                                        <td>{ qna.reList?.reDate.split(" 00:00:00",1)}</td>
                                     </tr>
                                     
                                 )
 
                             )
-                            
-                            
-                        
+
                         }
                         
                        

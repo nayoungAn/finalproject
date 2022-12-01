@@ -7,12 +7,11 @@ import { callClassHistoryListForMemberNoPagingAPI } from '../../api/StudentAPICa
 
 function StudentQnaRegistration() {
 
-    const classes = useSelector(state => state.studentQnaReducer);
-    const classesList = classes.data;
+    const classes = useSelector(state => state.studentQnaListReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
-
+    console.log(classes);
 
     useEffect(
         () => {
@@ -39,16 +38,16 @@ function StudentQnaRegistration() {
     const onClickQnaRegistrationHandler = () => {
 
         const formData = new FormData();
-
+        formData.append("classCode", form.classCode);
         formData.append("mtmTitle", form.mtmTitle);
         formData.append("mtmDescription", form.mtmDescription);
 
         dispatch(callQnaRegsistAPI({
             form : form,
-            classCode : form.classCode,
+            classCode : form.openClasses?.classCode,
         }));
 
-        navigate(`/ono/tea/qna/${params.classCode}`, {replace:false})
+        navigate(`/ono/student/studentQna`, {replace:false})
         window.location.reload();
     }
 
@@ -70,7 +69,7 @@ function StudentQnaRegistration() {
             <div className={ StudentQnaRegistrationCSS.qnaSection }>
                 <div className={ StudentQnaRegistrationCSS.qnaInfoDiv }>
                     <table>
-                    { Array.isArray(classesList) && (
+                    { Array.isArray(classes) && (
                         <tbody>
                             <tr>
                                 <td><label>과목명</label></td>
@@ -83,9 +82,9 @@ function StudentQnaRegistration() {
                                         onChange={onChangeHandler}
                                     >
                                         <option>과목명</option>
-                                    {classesList.map((item,idx) => (
-                                    <option key={idx} name='classCode' value={item?.classes.classCode} >
-                                      {item?.classes?.className}
+                                    {classes.map((item,idx) => (
+                                    <option key={idx} name='classCode' value={item?.openClasses?.classCode} >
+                                      {item?.openClasses?.className}
                                     </option>
                                   ))}
                                     </select>

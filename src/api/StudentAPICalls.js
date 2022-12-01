@@ -1,6 +1,8 @@
 
 import { GET_STUDENTQNA, GET_STUDENTSQNA, PUT_STUDENTQNA, POST_STUDENTQNA, DELETE_STUDENTQNA} from "../modules/StudentQnaModule";
 
+import { GET_QNALIST, GET_QNALISTS} from "../modules/StudentQnaListModule";
+
 import { GET_STUDENTCLASS, GET_STUDENTSCLASS } from "../modules/StudentClassesModule";
 
 import { GET_STUDENTMYINFO, PUT_STUDENTMYINFO, POST_STUDENTMYINFO} from "../modules/StudentMyInfoModule";
@@ -22,7 +24,7 @@ export const callQnaListAPI = ({currentPage}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callQnaListAPI result : ', result);
+            console.log('[StudentAPICalls] callQnaListAPI result : ', result);
 
             dispatch({ type: GET_STUDENTSQNA, payload: result.data });
         }
@@ -46,8 +48,8 @@ export const callClassHistoryListForMemberNoPagingAPI = () => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callClassHistoryListForMemberNoPagingAPI result : ', result);
-            dispatch({ type: GET_STUDENTCLASS, payload: result.data });
+            console.log('[StudentAPICalls] callClassHistoryListForMemberNoPagingAPI result : ', result);
+            dispatch({ type: GET_QNALIST, payload: result.data });
         }
     }
 
@@ -72,9 +74,43 @@ export const callQnaDetailAPI = ({mtmCode}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callQnaDetailAPI result : ', result);
+            console.log('[StudentAPICalls] callQnaDetailAPI result : ', result);
 
             dispatch({ type: GET_STUDENTQNA, payload: result.data });
+        }
+    }
+
+}
+
+export const callQnaUpdateAPI = ({form}) => {
+    
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna`
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+
+            },
+            body : JSON.stringify({
+               
+                mtmCode : form.mtmCode,
+                mtmDate : form.mtmDate,
+                mtmTitle : form.mtmTitle,
+                mtmDescription : form.mtmDescription,
+                answerCode : form.answerCode,
+                mtmDelete : form.mtmDelete,
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200){
+            console.log('[StudentAPICalls] callQnaUpdateAPI result : ', result);
+            dispatch({ type: PUT_STUDENTQNA, payload: result.data });
         }
     }
 
@@ -87,19 +123,25 @@ export const callQnaRegsistAPI = ({form}) => {
     return async (dispatch, getState ) => {
 
         const result = await fetch(requestURL, {
-            method : "GET",
+            method : "POST",
             headers : {
                 "Content-Type" : "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
 
             },
-            body : form
+            body : JSON.stringify({
+                classes : {
+                    classCode : form.classCode
+                },
+                mtmTitle : form.mtmTitle,
+                mtmDescription : form.mtmDescription,
+            })
         })
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callQnaRegsistAPI result : ', result);
+            console.log('[StudentAPICalls] callQnaRegsistAPI result : ', result);
             dispatch({ type: POST_STUDENTQNA, payload: result.data });
         }
 
@@ -107,7 +149,28 @@ export const callQnaRegsistAPI = ({form}) => {
 
 }
 
+export const callStudentQnaDeleteAPI = ({mtmCode}) =>{
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna/qnaRequest/${mtmCode}`
 
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+
+            },
+        })
+        .then(response => response.json());
+
+        if(result.status === 200){
+            console.log('[QnaAPICalls] callQnaUpdateAPI result : ', result);
+            dispatch({ type: DELETE_STUDENTQNA, payload: result.data });
+        }
+    }
+}
 // 내강의 조회(강사)
 export const callStudentClassesListAPI = ({currentPage = 1}) => {
 
