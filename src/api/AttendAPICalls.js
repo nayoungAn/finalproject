@@ -62,7 +62,6 @@ export const callAttendUpdateAPI = ({form}) => {
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
             body : JSON.stringify({
-                attendCode : form.attendCode,
                 attendStatus : form.attendStatus
             })
         })
