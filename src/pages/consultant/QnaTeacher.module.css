@@ -31,29 +31,7 @@
 }
 
 /* 댓글 CSS 조정 */
-.qnaTbodyCss {
-    float: left;
-    margin-top: 50px;
-    margin-left: -696px;
-}
 
-.qnaTd01Css {
-    float: left;
-    margin-top: 50px;
-    margin-left: -320px;
-}
-
-.qnaTd02Css {
-    float: left;
-    margin-top: 50px;
-    margin-left: -225px;
-}
-
-.qnaTd03Css {
-    float: left;
-    margin-top: 50px;
-    margin-left: -105px;
-}
 
 .pagingDiv{
     margin-top: 40px;

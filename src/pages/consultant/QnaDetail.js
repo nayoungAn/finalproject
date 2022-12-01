@@ -41,49 +41,6 @@ function QnaDetail() {
            
         }
 
-     const onChangeHandler = (e) => {
-        setForm({
-            ...form,
-            [e.target.name] : e.target.value
-        });
-    }
-    
-    //답글 수정 
-    const onClickModifyModeHandler = () => {
-        setModifyMode(true);
-        setForm({
-            mtmCode : qnaDetail.mtmCode,
-            mtmTitle : qnaDetail.mtmTitle,
-            mtmDescription : qnaDetail.mtmDescription
-        })
-    }
-    
-    //답글 수정 저장
-    const onClickQnaUpdateHandler = (e) => {
-        setForm({
-            ...form,
-            [e.target.name] : e.target.value
-        });
-
-        dispatch(callQnaUpdateAPI({
-            form : form
-        }));
-        alert('답글이 수정 되었습니다.');  
-
-        navigate(`/ono/tea/qna`, { replace : false });       
-    } 
-
-    //답글 삭제
-    const onClickDeleteHandler = () => {
-
-            dispatch(callQnaDeleteAPI({
-                mtmCode : mtmCode
-            }));
-            
-            alert('답글이 삭제 되었습니다.');  
-
-            navigate(`/ono/tea/qna`, { replace : false }); 
-    }
     
     console.log("로그인 멤버 코드", qnaDetail.member?.memberName )
     console.log("토큰", token.sub)

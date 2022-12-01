@@ -70,7 +70,7 @@ function QnaTeacher() {
                     </colgroup>
                         {
                             Array.isArray(qnaList) && qnaList.map(
-                                (qna) => (
+                                (qna) => (<>
                                     <tr
                                         key={ qna.mtmReCode }
                                         onClick={ () => onClickTableTr(qna.mtmCode) }
@@ -81,18 +81,19 @@ function QnaTeacher() {
                                         <td>{ qna.mtmTitle }</td>
                                         <td>{ qna.member.memberName }</td>
                                         <td>{ qna.mtmDate }</td>
-                                        
-                                    <t
-                                        key={ qna.mtmReCode }
-                                        onClick={ () => onClickReTableTr(qna.mtmCode) }
-                                    >
-                                        <td className={ QnaTeacherCSS.qnaTbodyCss }>{ qna?.reList?.reCode }</td>
-                                        <td className={ QnaTeacherCSS.qnaTd01Css }>{ qna?.reList?.reTitle }</td>
-                                        <td className={ QnaTeacherCSS.qnaTd02Css }>{ qna?.reList?.member.memberName }</td>
-                                        <td className={ QnaTeacherCSS.qnaTd03Css }>{ qna?.reList?.reDate }</td>
-                                        </t>
+                                    </tr>    
+                                  
+                                    <tr 
+                                        key={ qna?.reList?.reCode }
+                                        onClick={ () => onClickReTableTr(qna?.reList?.reCode)}>
+
+                                        <td>{ qna?.reList?.reCode }</td>
+                                        <td>{ qna?.reList?.reTitle }</td>
+                                        <td>{ qna?.reList?.member.memberName }</td>
+                                        <td>{ qna?.reList?.reDate }</td>
+                                      
                                     </tr>
-                                   
+                                    </>
                                 )
                             )
                         }
