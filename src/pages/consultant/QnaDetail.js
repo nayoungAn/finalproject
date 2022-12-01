@@ -32,10 +32,10 @@ function QnaDetail() {
 
     //답글 등록    
     const onClickHandler = () => {
-        if(qnaDetail.mtmCode === qnaDetail?.reList.reCode){
+        if(qnaDetail.answerCode === 1){
                 alert('답변 완료 된 상담 글입니다.');
-                navigate(`/ono/tea/qna/${mtmCode}`, { replace : false });
-        }else if(qnaDetail?.reList.reCode === 'null'){
+                navigate(-1);
+        }else {
                 navigate(`/ono/tea/qnaReply`, { replace : false });
                 }
            
