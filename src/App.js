@@ -13,25 +13,30 @@ import ClassHistory from "./pages/classes/ClassHistory";
 import FindId from "./pages/member/FindId";
 import FindPwd from "./pages/member/FindPwd";
 import TeacherManagement from "./pages/teacher/TeacherManagement";
+import NoticeList from "./pages/notice/NoticeList";
+import NoticeDetail from "./pages/notice/NoticeDetail";
+import NoticeRegist from "./pages/notice/NoticeRegist";
 import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectSearch from "./pages/classes/SubjectSearch";
-
 import FindMemLayout from "./layouts/FineMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
+import StudentManagerList from "./pages/studentManager/StudentManagerList";
+import StudentManagerDetail from "./pages/studentManager/StudentManagerDetail";
 import QnaTeacher from "./pages/consultant/QnaTeacher";
 
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
-
 import ConsRegistration from "./pages/cons/ConsRegistration";
 import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
 import Teacherclass from "./pages/teacherclass/Teacherclass";
 import AccManagement from "./pages/acc/AccManagement";
-import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
-import SmsManagement from "./pages/sms/SmsManagement";
+
+import SmsTransmission from "./pages/sms/SmsTransmission";
+import QnaRegistration from "./pages/consultant/QnaRegistration";
+
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import Attend from "./pages/attend/Attend";
 import AttendUpdate from "./pages/attend/AttendUpdate";
@@ -52,6 +57,13 @@ function App() {
       </Route>
 
      <Route path="/ono" element={ <Layout/>}>
+        <Route path="notice" index element= { <NoticeList/> }/>
+        <Route path="notice/:noticeCode" element= { <NoticeDetail/> }/>
+        <Route path="notice-regist" element= { <NoticeRegist/> }/>
+        
+        <Route path="student-manager" element= { <StudentManagerList/> }/>
+        <Route path="student-manager/:memberCode" element= { <StudentManagerDetail/> }></Route>
+
         <Route path="OpenClasses" element={ <OpenClassesLayout/> }>
               <Route index element={ <Navigate to="subjects" replace /> } />
               <Route path="subjects" element={ <SubjectManagement/> }/>
@@ -91,15 +103,19 @@ function App() {
               <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> } />
         </Route>
 
+        <Route path="Teacherclass" element={<Teacherclass/>}/>
+    
+
+
         <Route path="acc" element={<AccManagement />}/>
-       
-        <Route path="acc-update/:accCode" element={<AccUpdate />} />
-        <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
-        <Route path="sms" element={<SmsManagement />} >
-          
-        </Route>
-      </Route>
         
+        <Route path="acc-update/:accCode" element={<AccUpdate />}/>
+        
+        <Route path="sms" element={<SmsTransmission />}/>
+        
+          
+      </Route>
+
       </Routes>
 
     </BrowserRouter>

@@ -1,0 +1,11 @@
+.productDiv{
+    width: 900px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.productDiv h5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
