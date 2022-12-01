@@ -25,6 +25,7 @@ export const callQnaListAPI = ({classCode, currentPage}) => {
     }
 }
 
+
 export const callQnaDetailAPI = ({mtmCode}) => {
     
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qna/classes/${mtmCode}`;
@@ -44,7 +45,34 @@ export const callQnaDetailAPI = ({mtmCode}) => {
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callQnaListAPI result : ', result);
+            console.log('[QnaAPICalls] callQnaListAPI result.data : ', result.data);
+
+            dispatch({ type: GET_QNA, payload: result.data });
+        }
+    }
+
+}
+
+export const callQnaReDetailAPI = ({reCode}) => {
+    
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/re/classes/${reCode}`;
+    
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+
+            },
+         
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[QnaAPICalls] callQnaListAPI result.data : ', result.data);
 
             dispatch({ type: GET_QNA, payload: result.data });
         }
@@ -68,19 +96,14 @@ export const callQnaResistAPI = ({form}) => {
             },
             body : JSON.stringify({
                 mtmCode : form.mtmCode,
-                classes : {
-                    classCode : form.classCode
-                },
-                mtmTitle : form.mtmTitle,
-                mtmDescription : form.mtmDescription,
-                mtmRefer : form.mtmRefer,
-                answerCode : form.mtmfer,
+                reTitle : form.reTitle,
+                reContent :form.reContent, 
             })
         })
         .then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[QnaAPICalls] callQnaResistAPI result : ', result);
+            console.log('[QnaAPICalls] callQnaResistAPI result.data : ', result.data);
             dispatch({ type: POST_QNA, payload: result.data });
         }
 
@@ -103,24 +126,24 @@ export const callQnaUpdateAPI = ({form}) => {
 
             },
             body : JSON.stringify({
-                mtmCode : form.mtmCode,
-                mtmTitle : form.mtmTitle,
-                mtmDescription : form.mtmDescription,
+                reCode : form.reCode,
+                reTitle : form.reTitle,
+                reContent : form.reContent,
 
             })
         })
         .then(response => response.json());
 
         if(result.status === 200){
-            console.log('[QnaAPICalls] callQnaUpdateAPI result : ', result);
+            console.log('[QnaAPICalls] callQnaUpdateAPI result.data : ', result.data);
             dispatch({ type: PUT_QNA, payload: result.data });
         }
     }
 
 }
 
-export const callQnaDeleteAPI = ({mtmCode}) =>{
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qnaReply/${mtmCode}`
+export const callQnaDeleteAPI = ({reCode}) =>{
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qnaReply/${reCode}`
 
     return async (dispatch, getState) => {
 
@@ -136,7 +159,7 @@ export const callQnaDeleteAPI = ({mtmCode}) =>{
         .then(response => response.json());
 
         if(result.status === 200){
-            console.log('[QnaAPICalls] callQnaUpdateAPI result : ', result);
+            console.log('[QnaAPICalls] callQnaUpdateAPI result.data : ', result.data);
             dispatch({ type: DELETE_QNA, payload: result.data });
         }
     }

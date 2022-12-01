@@ -32,7 +32,7 @@ function AccManagement() {
 
   //   const onClickAccInsert = () => {
   //     console.log("[AccManagement] onClickAccInsert");
-  //     navigate("/ono/acc/acc-registration", { replace: false });
+  //     navigate("/ono/acc/acc-update", { replace: false });
   //   };
 
   const onClickTableTr = (s, accCode) => {
@@ -47,20 +47,22 @@ function AccManagement() {
         <table className={AccManagementCSS.productTable}>
           <colgroup>
             <col width="10%" />
-            <col width="30%" />
-            <col width="40%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
             <col width="10%" />
           </colgroup>
           <thead>
             <tr>
               <th>수납번호</th>
-              <th>수납일</th>
-              <th>결제방법</th>
-              <th>수납메모</th>
               <th>이름</th>
               <th>번호</th>
               <th>과목</th>
               <th>수강료</th>
+              <th>수납일</th>
+              <th>결제방법</th>
+              <th>수납상태</th>
+              {/*<th>수납메모</th>*/}
             </tr>
           </thead>
           <tbody>
@@ -71,13 +73,14 @@ function AccManagement() {
                   onClick={(event) => onClickTableTr(event, s.accCode)}
                 >
                   <td>{s.accCode}</td>
-                  <td>{s.accDate}</td>
-                  <td>{s.accOption}</td>
-                  <td>{s.accContent}</td>
-                  <td>{s.classesHistory.openClasses.member.memberName}</td>
-                  <td>{s.classesHistory.openClasses.member.memberPhone}</td>
+                  <td>{s.classesHistory.member.memberName}</td>
+                  <td>{s.classesHistory.member.memberPhone}</td>
                   <td>{s.classesHistory.openClasses.className}</td>
                   <td>{s.classesHistory.openClasses.classPrice}</td>
+                  <td>{s.accDate}</td>
+                  <td>{s.accOption}</td>
+                  <td>{s.accStatus}</td>
+                  {/*<td>{s.accContent}</td>*/}
                 </tr>
               ))}
           </tbody>

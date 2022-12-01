@@ -1,15 +1,15 @@
-import SmsManagementCSS from "./SmsManagement.module.css";
-import { useNavigate } from "react-router-dom";
+import SmsTransmissionCSS from "./SmsTransmission.module.css";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { callSmsListForAdminAPI } from "../../api/SmsListAPICall";
 
-function SmsManagement() {
+function SmsTransmission() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sms = useSelector((state) => state.smsListReducer);
   const smsList = sms.data;
-  console.log("smsManagement", smsList);
+  console.log("smsTransmission", smsList);
 
   const pageInfo = sms.pageInfo;
 
@@ -25,49 +25,52 @@ function SmsManagement() {
   useEffect(() => {
     dispatch(
       callSmsListForAdminAPI({
-        currentPage: currentPage,
+//        currentPage: currentPage,
+        smsCode: useParams.smsCode
       })
     );
-  }, [currentPage]);
+  },
+// [currentPage]);
+    []);
 
   return (
-    <section className={SmsManagementCSS.container}>
-      <div className={SmsManagementCSS.smsTitle}>
+    <section className={SmsTransmissionCSS.container}>
+      <div className={SmsTransmissionCSS.smsTitle}>
         <h1>문자 서비스</h1>
       </div>
-      <article className={SmsManagementCSS.section}>
-        <div className={SmsManagementCSS.backDiv}>
-          <div className={SmsManagementCSS.div1}>
-            <div className={SmsManagementCSS.selectBox}>
+      <article className={SmsTransmissionCSS.section}>
+        <div className={SmsTransmissionCSS.backDiv}>
+          <div className={SmsTransmissionCSS.div1}>
+            <div className={SmsTransmissionCSS.selectBox}>
               <select>
                 <option>검색유형</option>
               </select>
             </div>
-            <div className={SmsManagementCSS.inputBox}>
+            <div className={SmsTransmissionCSS.inputBox}>
               <input
-                className={SmsManagementCSS.searchInput}
+                className={SmsTransmissionCSS.searchInput}
                 type="text"
                 placeholder="검색어를 입력하세요."
               ></input>
-              <div className={SmsManagementCSS.searchResult}>내용</div>
+              <div className={SmsTransmissionCSS.searchResult}>내용</div>
             </div>
           </div>
-          <div className={SmsManagementCSS.div2}>
+          <div className={SmsTransmissionCSS.div2}>
             <h4>수신번호</h4>
             <div>내용</div>
           </div>
         </div>
 
-        <div className={SmsManagementCSS.div5}>
-          <div className={SmsManagementCSS.div3}>
+        <div className={SmsTransmissionCSS.div5}>
+          <div className={SmsTransmissionCSS.div3}>
             <h4>발신번호</h4>
             <div>010-0000-0000</div>
           </div>
-          <div className={SmsManagementCSS.div4}>내용을 입력하세요</div>
+          <div className={SmsTransmissionCSS.div4}>내용을 입력하세요</div>
         </div>
       </article>
     </section>
   );
 }
 
-export default SmsManagement;
+export default SmsTransmission;
