@@ -45,7 +45,6 @@ function StudentNoticeDetail() {
                                         name='noticeCode'
                                         placeholder='번호'
                                         className={ NoticeDetailCSS.subjectInfoInput }
-                                       
                                         value={ (noticeDetail.noticeCode) || '' }
                                         readOnly={ true }
                                         
@@ -67,7 +66,6 @@ function StudentNoticeDetail() {
                                             name="noticeDate"  
                                             placeholder='작성일'
                                             className={ NoticeDetailCSS.subjectInfoInput }
-                                           
                                             value={ (noticeDetail.noticeDate) || '' }
                                             readOnly={ true }
                                             
@@ -80,7 +78,6 @@ function StudentNoticeDetail() {
                                             name="memberName"  
                                             placeholder='작성자'
                                             className={ NoticeDetailCSS.subjectInfoInput }
-                                           
                                             value={ (noticeDetail.member?.memberName) || '' }
                                             readOnly={ true }
                                             
@@ -98,7 +95,6 @@ function StudentNoticeDetail() {
                                             name="noticeContent"  
                                             placeholder='내용'
                                             className={ NoticeDetailCSS.subjectContentInput }
-                                             
                                             value={ (noticeDetail.noticeContent) || '' }
                                             readOnly={ true }
                                             
