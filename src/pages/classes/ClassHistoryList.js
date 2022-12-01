@@ -3,22 +3,40 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import StudentManagerDetailCSS from './StudentManagerDetail.module.css';
 import { callStudentManagerDetailForAdminAPI} from '../../api/StudentManagerDetailAPICall';
-
+import ClassHistoryUpdateModal from "../../components/common/classHistory/ClassHistoryUpdateModal";
 import uuid from 'react-uuid';
 function ClassHistoryList() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const studentDetail = useSelector(state => state.classHistoryRefreshReducer);
+    const [classHistoryUpdateModal, setClassHistoryUpdateModal] = useState(false);
+    const [classHistoryCode, setClassHistoryCode] = useState(0);
+    const [classCode, setClassCode] = useState(0);
+    const [classStatus, setClassStatus] = useState(0);
+    const [startDate, setStartDate] = useState(0);
+
+
     const studentInfo = studentDetail.memberInfo;
     const classHistory = studentDetail.lectureList
+    
+    /* 수정 버튼 클릭시 해당 수강 이력 코드를 보내줌 */ 
+    const onClickUpdateHandler = (classHistoryCode,classCode,classStatus,startDate) => {
+        setClassHistoryCode(classHistoryCode);
+        setClassCode(classCode)
+        setClassStatus(classStatus)
+        setStartDate(startDate)
+        setClassHistoryUpdateModal(true);
+      };
 
-    // console.log("studentDetail", studentDetail)
-    // // useEffect(() => {
-    // //     }, [studentDetail]);
-
+      
     return (
-        <>
+        <>     { classHistoryUpdateModal ? <ClassHistoryUpdateModal 
+        key={uuid()} classHistoryCode = { classHistoryCode} 
+        classCode = { classCode } 
+        classStatus = { classStatus }
+        startDate = { startDate }
+        setClassHistoryUpdateModal={ setClassHistoryUpdateModal }/> : null }    
             <div>
             <div className={ StudentManagerDetailCSS.subjectSection }>
                
@@ -51,8 +69,9 @@ function ClassHistoryList() {
                             <td>{ m.startDate.split('T',1)}</td>
                             <td>{ m.openClasses.classPrice}</td>
                             <td>{ m.classStatus}</td>
-                            <td><button>수정</button></td>
-                            <td><button>삭제</button></td>
+                            <td>{m.classHistoryCode}</td>
+                        <td><button onClick={() => {onClickUpdateHandler(m.classHistoryCode,
+                           m.openClasses.classCode, m.classStatus,  m.startDate)}}>수정</button></td>
                         </tr>
                     )) 
                     }

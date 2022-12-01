@@ -2,26 +2,31 @@ import ClassHistoryCSS from "./ClassHistoryModal.module.css";
 import ClassRegistrationCSS from "../../../pages/classes/ClassRegistration.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { callClassHistoryRegistAPI } from "../../../api/ClassHistoryAPICalls";
+import { callClassHistoryUpdateAPI, callClassHistoryDetailAPI} from "../../../api/ClassHistoryAPICalls";
 import { callClassListForAdminNoPagingAPI } from "../../../api/ClassAPICalls";
-import { callStudentManagerDetailAPI } from "../../../api/ClassHistoryRefreshAPICalls"
-function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
+function ClassHistoryUpdateModal({ setClassHistoryUpdateModal, classHistoryCode, classCode, classStatus,startDate }) {
 
   const classList = useSelector((state) => state.classReducer);
   const member = useSelector(state => state.studentManagerDetailReducer);
+  const classHistoryLists = useSelector((state) => state.classHistoryReducer);
 
+  
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
-    classCode: 0,
+    classHistoryCode : classHistoryCode,
+    classCode: classCode,
     memberCode: member.memberCode,
-    startDate: ""
+    startDate: startDate,
+    classStatus : classStatus
   });
-
   useEffect(() => {
     dispatch(callClassListForAdminNoPagingAPI({
 
     }));
+    dispatch(callClassHistoryDetailAPI({
+      classHistoryCode : classHistoryCode
+    }))
     }, []);
 
   const onChangeHandler = (e) => {
@@ -31,16 +36,15 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
     });
   };
 
-  const onClickRegistHandler = () => {
+  const onClickUpdateHandler = () => {
 
     dispatch(
-      callClassHistoryRegistAPI({
+      callClassHistoryUpdateAPI({
         form: form
         
       }));
-
-    setClassHistoryRegistModal(false);
-    alert("수강등록이 완료되었습니다.");
+    setClassHistoryUpdateModal(false);
+    alert("수강수정이 완료되었습니다.");
       
   };
 
@@ -55,22 +59,20 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
        str += " ~ "
        str +=  arr?.classEndDate.split('T',1) || ''
 
-       var ctr = arr?.classStudents
+       var ctr = arr?.classStudents || 0;
        ctr += " / ";
        ctr += arr?.classQuota
        console.log(ctr)
     }
     }
 
-  
 }
 
-  
-  return (
+return (
     <div className={ClassHistoryCSS.modal}>
       <div className={ClassHistoryCSS.modalContainer}>
         <div className={ClassHistoryCSS.loginModalDiv}>
-            {classList && (
+            {classList && classHistoryLists && (
           <table>
             {Array.isArray(classList) && (
               <tbody>
@@ -83,6 +85,7 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                       placeholder='강의명'
                       className={ClassRegistrationCSS.classInfoInput}
                       onChange={onChangeHandler}
+                      value={form.classCode}
                     >
                       <option>강의명</option>
                       {classList.map((item, idx) => (
@@ -131,7 +134,7 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                         name="classStartDate"
                         placeholder="2022-10-15"
                         className={ClassRegistrationCSS.classInfoInput}
-                      value={`${arr?.subject.subjectName || ''}`}
+                        value={str || ''}
                         readOnly = {true}
                       />
                     </label>
@@ -164,8 +167,26 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                         placeholder="2022-10-15"
                         className={ClassRegistrationCSS.classInfoInput}
                         onChange={onChangeHandler}
+                        value={form.startDate.split('T',1)}
                       />
                     </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>수강 상태</label>
+                  </td>
+                  <td>
+                    <select
+                      name='classStatus'
+                      className={ClassRegistrationCSS.classInfoInput}
+                      onChange={onChangeHandler}
+                      value={form.classStatus}
+                    >
+                      <option value="수강중">수강중</option>
+                      <option value="수강완료">수강완료</option>
+                      <option value="수강포기">수강포기</option>
+                    </select>
                   </td>
                 </tr>
               </tbody>
@@ -181,7 +202,7 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                     height: "10px",
                     color: "black"
                   }}
-                  onClick={onClickRegistHandler}>등록</button>
+                  onClick={onClickUpdateHandler}>수정</button>
                 <button
                   style={{
                     border: "none",
@@ -190,7 +211,7 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                     height: "10px",
                     color: "black"
                   }}
-                  onClick={() => setClassHistoryRegistModal(false)}
+                  onClick={() => setClassHistoryUpdateModal(false)}
                 >
                   돌아가기
                 </button>
@@ -199,6 +220,6 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
       </div>
     </div>
   );
-}
+                }
 
-export default ClassHistoryRegistModal;
+export default ClassHistoryUpdateModal;
