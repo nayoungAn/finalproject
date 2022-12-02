@@ -42,6 +42,9 @@ td{
 
 
 }
+th{
+    padding: 15px;
+}
 
 
 .period{
@@ -53,8 +56,17 @@ td{
  width: 700px;
  padding: 20px;
 }
+
 .note{
     border-radius: 15px;
     border: none;
     background-color: white;
+    width: 500px;
+    height: 100px;
+}
+
+.List{
+    background-color: white;
+    border-radius: 15px;
+    
 }
