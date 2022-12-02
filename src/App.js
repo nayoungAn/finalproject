@@ -20,7 +20,7 @@ import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectSearch from "./pages/classes/SubjectSearch";
-import FindMemLayout from "./layouts/FineMemLayout";
+import FindMemLayout from "./layouts/FindMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import StudentManagerList from "./pages/studentManager/StudentManagerList";
 import StudentManagerDetail from "./pages/studentManager/StudentManagerDetail";
@@ -35,7 +35,6 @@ import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
 
 import SmsTransmission from "./pages/sms/SmsTransmission";
-import QnaRegistration from "./pages/consultant/QnaRegistration";
 
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import Attend from "./pages/attend/Attend";
