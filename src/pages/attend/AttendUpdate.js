@@ -33,7 +33,6 @@ function AttendUpdate() {
         () => {
             dispatch(callAttendCheckAPI({
                 classCode : params.classCode
-                
             }))
         }
         ,[]

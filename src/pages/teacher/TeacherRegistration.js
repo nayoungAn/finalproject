@@ -1,20 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callTeacherRegistAPI } from "../../api/TeacherAPICall";
 
+
 function TeacherRegistration(){
 
+  
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const imageInput = useRef();
     const [ image, setImage ] = useState(null);
     const [ imageUrl, setImageUrl] = useState('');
-    const [ form, setForm] = useState({
-
+    const member = useSelector(state => state.teacherListReducer);
+    const memberInfo = member.data;
+    console.log("memberInfo", memberInfo)
+    console.log("member", member)
+    
+    const [ form, setForm ] = useState({
+    
         memberName: '',
         memberBirthday: '',
-        memberId : '',
+        memberId :'',
         memberPassword: '',
         memberGender: '',
         memberEmail: '',
@@ -54,6 +61,8 @@ function TeacherRegistration(){
         });
     }
 
+ 
+
 
     const onClickTeacherRegistrationHandler = () => {
 
@@ -83,6 +92,7 @@ function TeacherRegistration(){
     }
 
     return(
+        
         <div>
             <p> 강사 등록 </p>
             <div>
@@ -121,6 +131,7 @@ function TeacherRegistration(){
                             <td><label> 생년월일 </label></td>
                             <td>
                                 <input
+                                    type="date"
                                     name='memberBirthday'
                                     onChange={ onChangeHandler }
                                 />
@@ -133,6 +144,7 @@ function TeacherRegistration(){
                                     name='memberId'
                                     onChange={ onChangeHandler }
                                 />
+                               
                             </td>
                         </tr>
                         <tr>
@@ -157,6 +169,7 @@ function TeacherRegistration(){
                             <td><label> 이메일 </label></td>
                             <td>
                                 <input
+                                    type="email"
                                     name='memberEmail'
                                     onChange={ onChangeHandler }
                                 />
@@ -186,6 +199,7 @@ function TeacherRegistration(){
             <button
                 onClick= {onClickTeacherRegistrationHandler}> 등록 </button>        
         </div>
+       
     )
 }
 
