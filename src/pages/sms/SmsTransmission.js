@@ -1,37 +1,42 @@
 import SmsTransmissionCSS from "./SmsTransmission.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { callSmsListForAdminAPI } from "../../api/SmsListAPICall";
+import { callSearchListForAdminAPI } from "../../api/SmsListAPICall";
 
 function SmsTransmission() {
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const sms = useSelector((state) => state.smsListReducer);
-  const smsList = sms.data;
-  console.log("smsTransmission", smsList);
+  const sms = useSelector(state => state.smsListReducer);
+  const [smsList, setSmsList] = useState(sms);
+  console.log("smsTransmission", sms);
 
-  const pageInfo = sms.pageInfo;
+  const onClickSmsInsert = () => {
+    navigate("/ono/sms", { replace: false });
+  };
 
-  const [currentPage, setCurrentPage] = useState(1);
+  /* 검색 키워드 입력 시 입력 값 상태 저장 */
+  const onSearchChangeHandler = (e) => {
+    const { value } = e.target;
+    setSearchValue(value);
+  };
+  let checkedItemList = [];
 
-  const pageNumber = [];
-  if (pageInfo) {
-    for (let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
-      pageNumber.push(i);
-    }
-  }
-  //window.location.reload()
+  const checkHandler = (item) => {
+    console.log("item = ", item);
+  };
+
   useEffect(() => {
-    dispatch(
-      callSmsListForAdminAPI({
-//        currentPage: currentPage,
-        smsCode: useParams.smsCode
-      })
-    );
-  },
-// [currentPage]);
-    []);
+    dispatch(callSearchListForAdminAPI(searchValue));
+  }, [searchValue]);
+
+  useEffect(() => {
+    setSmsList(sms);
+  }, [sms]);
+
+  useEffect(() => {
+  }, [checkedItemList]);
 
   return (
     <section className={SmsTransmissionCSS.container}>
@@ -41,33 +46,59 @@ function SmsTransmission() {
       <article className={SmsTransmissionCSS.section}>
         <div className={SmsTransmissionCSS.backDiv}>
           <div className={SmsTransmissionCSS.div1}>
-            <div className={SmsTransmissionCSS.selectBox}>
+            {/* <div className={SmsTransmissionCSS.selectBox}>
               <select>
-                <option>검색유형</option>
+                <option hidden selected>
+                  검색유형
+                </option>
+                <option>학생명</option>
+                <option>강의명</option>
               </select>
-            </div>
+            </div> */}
             <div className={SmsTransmissionCSS.inputBox}>
               <input
                 className={SmsTransmissionCSS.searchInput}
                 type="text"
                 placeholder="검색어를 입력하세요."
+                value={searchValue}
+                onChange={onSearchChangeHandler}
               ></input>
-              <div className={SmsTransmissionCSS.searchResult}>내용</div>
+              {/* <button onClick={onClickSmsInsert}>확인</button> */}
+              {sms.map((item) => {
+                return (
+                  <div
+                    className={SmsTransmissionCSS.searchResult1}
+                    key={item.member.memberCode}
+                    isChecked={false}
+                    onClick={() => checkHandler(item)}
+                  >
+                    {item.member.memberName} {item.member.memberPhone}{" "}
+                    {item.openClasses.className}
+                  </div>
+                );
+              })}
             </div>
           </div>
-          <div className={SmsTransmissionCSS.div2}>
+          {/* <div className={SmsTransmissionCSS.div2}>
             <h4>수신번호</h4>
-            <div>내용</div>
-          </div>
+            <div>010-0000-0000</div>
+          </div> */}
         </div>
 
-        <div className={SmsTransmissionCSS.div5}>
-          <div className={SmsTransmissionCSS.div3}>
+        {/* <div className={SmsTransmissionCSS.div4}> */}
+        {/* <div className={SmsTransmissionCSS.div3}>
             <h4>발신번호</h4>
             <div>010-0000-0000</div>
-          </div>
-          <div className={SmsTransmissionCSS.div4}>내용을 입력하세요</div>
+          </div> */}
+        <div className={SmsTransmissionCSS.searchResult2}>
+          내용을 입력하세요
         </div>
+
+        <div className={SmsTransmissionCSS.div2}>
+          <button type="submit">전송</button>
+        </div>
+
+        {/* </div> */}
       </article>
     </section>
   );

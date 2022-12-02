@@ -1,5 +1,6 @@
 import {PUT_ACC } from "../modules/AccModule";
 
+/* 수정 */
 export const callAccUpdateAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/acc/acc-management`;
