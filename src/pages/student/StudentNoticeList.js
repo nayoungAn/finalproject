@@ -1,8 +1,9 @@
 import NoticeListmoduleCSS from './StudentNoticeList.module.css';
+import HeaderCSS from "../../components/common/Header";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import { callNoticeListAPI, callNoticeDeleteAPI } from '../../api/NoticeAPICalls';
+import { callNoticeListAPI  } from '../../api/NoticeAPICalls';
 
 function StudentNoticeList() {
 
@@ -10,6 +11,7 @@ function StudentNoticeList() {
     const dispatch = useDispatch();
     const notice  = useSelector(state => state.noticeReducer);      
     const noticeList = notice.data;
+    const [search, setSearch] = useState('');
     console.log('noticeList', noticeList);
 
     const pageInfo = notice.pageInfo;
@@ -26,13 +28,18 @@ function StudentNoticeList() {
     useEffect(
         () => {         
             dispatch(callNoticeListAPI({
+                value : search,
                 currentPage: currentPage,
             }));            
             
         }
-        ,[currentPage]    
+        ,[currentPage, search]    
     );
 
+    /* 검색 키워드 입력 시 입력 값 상태 저장 */
+    const onSearchChangeHandler = (e) => {
+        setSearch(e.target.value);
+    }
     
     const onClickTableTr = (e, noticeCode) => {
 
@@ -50,13 +57,19 @@ function StudentNoticeList() {
         <>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
             <div>
-               
+            <input
+                    className={ HeaderCSS.InputStyle }
+                    type="text"
+                    placeholder="검색"
+                    value={ search }
+                    onChange={ onSearchChangeHandler }
+                />
             </div>            
             <table className={ NoticeListmoduleCSS.teacherTable }>
                 <colgroup>
                     <col width="5%" />
                     <col width="55%" />
-                    <col width="10%" />
+                    <col width="15%" />
                     <col width="30%" />
                 </colgroup>
                 <thead>
@@ -76,7 +89,7 @@ function StudentNoticeList() {
                         >
                             <td>{ n.noticeCode }</td>
                             <td>{ n.noticeTitle }</td>
-                            <td>{ n.noticeDate }</td>
+                            <td>{ n.noticeDate.split(" 00:00:00",1) }</td>
                             <td>{ n.member.memberName }</td>
                 
                         </tr>

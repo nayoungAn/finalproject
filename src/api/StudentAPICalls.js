@@ -7,9 +7,9 @@ import { GET_STUDENTCLASS, GET_STUDENTSCLASS } from "../modules/StudentClassesMo
 
 import { GET_STUDENTMYINFO, PUT_STUDENTMYINFO, POST_STUDENTMYINFO} from "../modules/StudentMyInfoModule";
 
-export const callQnaListAPI = ({currentPage}) => {
+export const callQnaListAPI = ({searchvalue, currentPage = 1}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna?page=${currentPage}`;
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/qna/search?search=${searchvalue}&page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
@@ -171,7 +171,7 @@ export const callStudentQnaDeleteAPI = ({mtmCode}) =>{
         }
     }
 }
-// 내강의 조회(강사)
+// 내강의 조회(원생)
 export const callStudentClassesListAPI = ({currentPage = 1}) => {
 
     const requestURL =`http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass?page=${currentPage}`
@@ -198,7 +198,7 @@ export const callStudentClassesListAPI = ({currentPage = 1}) => {
 }
 
 
-// 내강의 상세조회(강사)
+// 내강의 상세조회(원생)
 export const callstudentClassesDetailAPI =({classCode})=> {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/memberclass/${classCode}`;

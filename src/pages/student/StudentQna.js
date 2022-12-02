@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams} from "react-router-dom";
 import { callQnaListAPI } from "../../api/StudentAPICalls";
 import StudentQnaCSS from './StudentQna.module.css';
+import HeaderCSS from "../../components/common/Header";
+import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
 
 function StudentQna() {
     
@@ -13,6 +16,11 @@ function StudentQna() {
     const qna = useSelector(state => state.studentQnaReducer);
     const qnaList = qna.data;
     const pageInfo = qna.pageInfo;
+    //const { searchValue } = useLocation();
+    const [searchvalue, searchsetvalue] = useState('');
+    //const { value } = queryString.parse(searchvalue);
+    console.log('value', searchvalue);
+    console.log('subjectManagement', qnaList);
    
 
   
@@ -26,11 +34,11 @@ function StudentQna() {
     useEffect(
         () => {
             dispatch(callQnaListAPI({
-               
+                searchvalue : searchvalue,
                 currentPage : currentPage
             }));
         }
-        ,[currentPage]
+        ,[currentPage, searchvalue]
     )
 
     const onClickTableTr = (mtmCode) => {
@@ -44,6 +52,11 @@ function StudentQna() {
     }
 
     
+       /* 검색 키워드 입력 시 입력 값 상태 저장 */
+       const onSearchChangeHandler = (e) => {
+        searchsetvalue(e.target.value);
+    }
+    
     return(
         <>  
             <div className={ StudentQnaCSS.qnaTableDiv }>
@@ -53,6 +66,13 @@ function StudentQna() {
                 >
                     상담 등록
                 </button>
+                <input
+                    className={ HeaderCSS.InputStyle }
+                    type="text"
+                    placeholder="검색"
+                    value={ searchvalue }
+                    onChange={ onSearchChangeHandler }
+                />
             </div>            
                 <table className={ StudentQnaCSS.qnaTableCss}>
                     <colgroup>

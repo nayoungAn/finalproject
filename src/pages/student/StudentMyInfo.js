@@ -10,10 +10,10 @@ function StudentMyInfo() {
     const dispatch = useDispatch();
     const studentDetail = useSelector(state => state.studentMyInfoModuleReducer);
     const studentInfo = studentDetail.memberInfo;
+    const params = useParams();
+    const imageInput = useRef();
     const [image, setImage] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
-    const imageInput = useRef();
-    const params = useParams();
     const [form, setForm] = useState({});
 
     /* 읽기모드와 수정모드를 구분 */
@@ -22,7 +22,7 @@ function StudentMyInfo() {
     useEffect(
         () => {
             dispatch(callStudentDetailAPI({
-            memberCode : params.memberCode
+                memberCode : params.memberCode
             }));
         },
         []
@@ -43,8 +43,7 @@ function StudentMyInfo() {
     }, 
     [image]);
 
-    
-    //console.log(studentInfo.memberCode);
+    console.log(studentDetail.lectureList);
     
     /* 입력 양식의 값 변경될 때 */
     const onChangeHandler = (e) => {
@@ -75,11 +74,10 @@ function StudentMyInfo() {
         setModifyMode(true);
         setForm({
             memberCode : studentInfo.memberCode,
-            //memberpassword: studentInfo.memberpassword,
             memberName : studentInfo.memberName,
             memberId : studentInfo.memberId,
-            memberGender : studentInfo.memberGender,
             memberBirthday : studentInfo.memberBirthday,
+            memberGender : studentInfo.memberGender,
             memberPhone : studentInfo.memberPhone,
             memberEmail : studentInfo.memberEmail,
             memberAddress : studentInfo.memberAddress
@@ -92,11 +90,10 @@ function StudentMyInfo() {
         const formData = new FormData();
 
         formData.append("memberCode", form.memberCode);
-        //formData.append("memberpassword", form.memberpassword);
-        formData.append("memberName", form.memberName);
         formData.append("memberId", form.memberId);
-        formData.append("memberGender", form.memberGender);
+        formData.append("memberName", form.memberName);
         formData.append("memberBirthday", form.memberBirthday);
+        formData.append("memberGender", form.memberGender);
         formData.append("memberEmail", form.memberEmail);
         formData.append("memberPhone", form.memberPhone);
         formData.append("memberAddress", form.memberAddress);
@@ -109,25 +106,33 @@ function StudentMyInfo() {
             form : formData
         }));
         alert('원생정보가 수정되었습니다.');
-        //navigate(`/ono/student-manager/${studentInfo.memberCode}`, { replace : true });
+        navigate(`/ono/student/studentMyInfo`, { replace : true });
         window.location.reload();
     }
+
 
     return (
         <>
             <div>
             <div className={ StudentMyInfoCSS.subjectSection }>
                 <div className={ StudentMyInfoCSS.subjectInfoDiv }>
+                    
                     <table className={ StudentMyInfoCSS.studentTable }>
-                    {  studentDetail.memberInfo && studentDetail.lectureList && (  
-                    <tbody>
-                          <tr>
-                                <td>
-                            { studentInfo && <img 
-                                    className={ StudentMyInfoCSS.productImage } 
-                                    src={ (imageUrl == null) ? studentInfo.memberImageUrl : imageUrl } 
-                                    alt="preview"
-                                />}
+                    { studentDetail.memberInfo  && studentDetail.lectureList && ( <tbody>
+                            <tr>
+                                <td colSpan={4}>
+                                { studentInfo && 
+                                <button
+                                    className={ StudentMyInfoCSS.memberImageButton }
+                                    onClick={ onClickImageUpload }
+                                    disabled={ !modifyMode }
+                                >
+                                    <img 
+                                        className={ StudentMyInfoCSS.memberImage } 
+                                        src={ (imageUrl == null) ? (studentInfo.memberImageUrl == "http://localhost:8001/memberimgs/null") ? process.env.PUBLIC_URL +'/logo/nopicture.png' : studentInfo.memberImageUrl : imageUrl }
+                                        alt="preview"
+                                    />
+                                </button>}
                                 
                                 <input                
                                     style={ { display: 'none' }}
@@ -137,41 +142,29 @@ function StudentMyInfo() {
                                     onChange={ onChangeImageUpload }
                                     ref={ imageInput }
                                 />
-                                </td>
-                                <td>
-                                <button 
-                                    className={ StudentMyInfoCSS.productImageButton }
-                                    onClick={ onClickImageUpload } 
-                                    style={ !modifyMode ? { backgroundColor : 'gray'} : null }
-                                    disabled={ !modifyMode }
-                                >
-                                    이미지 업로드
-                                    </button>
-                                </td>
                                 
-                            </tr>
+                                </td>
+                            </tr>   
                             <tr>
-                                <td><label>이름</label></td>
-                                <td><label>생년월일</label></td>
-
-                            </tr>    
-                            <tr>
+                            <td><label>이름</label></td>
                             <td>
                                     <input 
                                         name='memberName'
                                         placeholder='이름'
-                                        className={ StudentMyInfoCSS.subjectInfoInput }
+                                        className={ StudentMyInfoCSS.studentInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? studentInfo.memberName : form.memberName) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
                                 </td>
+                                <td><label>생년월일</label></td>
                                 <td>
+                                    
                                     <input 
                                         name='memberBirthday'
                                         placeholder='생년월일'
-                                        className={ StudentMyInfoCSS.subjectInfoInput }
+                                        className={ StudentMyInfoCSS.studentInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? studentInfo.memberBirthday : form.memberBirthday) || '' }
                                         readOnly={ modifyMode ? false : true }
@@ -181,16 +174,13 @@ function StudentMyInfo() {
                                 
                             </tr>    
                             <tr>
-                                <td><label>등록일</label></td>
-                                <td><label>아이디</label></td>
-                            </tr>
-                            <tr>
+                            <td><label>등록일</label></td>
                             <td>
                                     <label>
                                         <input 
                                             name="noticeRegisterDate"  
                                             placeholder='등록일'
-                                            className={ StudentMyInfoCSS.subjectInfoInput }
+                                            className={ StudentMyInfoCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (studentInfo.memberRegisterDate) || '' }
                                             readOnly={ true }
@@ -198,12 +188,13 @@ function StudentMyInfo() {
                                             /> 
                                     </label>
                                 </td>
+                                <td><label>아이디</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberId"  
                                             placeholder='아이디'
-                                            className={ StudentMyInfoCSS.subjectInfoInput }
+                                            className={ StudentMyInfoCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberId : form.memberId) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -213,12 +204,7 @@ function StudentMyInfo() {
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>성별</label></td>
-                                <td><label>이메일</label></td>
-                            </tr>
-
-                            <tr>
-                                
+                            <td><label>성별</label></td>
                                 <td>
                                     <label>
                                         <input 
@@ -227,7 +213,7 @@ function StudentMyInfo() {
                                             onChange={ onChangeHandler } 
                                             value="남성"
                                             readOnly={ modifyMode ? false : true }
-                                            checked={ (!modifyMode ? studentInfo.memberGender : form.memberGender) === "남성" ? true : false }
+                                            checked={ (!modifyMode ? studentInfo.memberGender : form.memberGender) === '남성' ? true : false }
                                         /> 
                                             남성
                                     </label> &nbsp;
@@ -238,15 +224,16 @@ function StudentMyInfo() {
                                             onChange={ onChangeHandler } 
                                             value="여성"
                                             readOnly={ modifyMode ? false : true }
-                                            checked={ (!modifyMode ? studentInfo.memberGender : form.memberGender) === "여성" ? true : false }
+                                            checked={ (!modifyMode ? studentInfo.memberGender : form.memberGender) === '여성' ? true : false }
                                         /> 여성</label>
                                 </td>
+                                <td><label>이메일</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberEmail"  
                                             placeholder='이메일'
-                                            className={ StudentMyInfoCSS.subjectInfoInput }
+                                            className={ StudentMyInfoCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberEmail : form.memberEmail) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -256,18 +243,13 @@ function StudentMyInfo() {
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>전화번호</label></td>
-                                <td><label>주소</label></td>
-                            </tr>
-
-                            <tr>
-                                
+                            <td><label>전화번호</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberPhone"  
                                             placeholder='전화번호'
-                                            className={ StudentMyInfoCSS.subjectInfoInput }
+                                            className={ StudentMyInfoCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberPhone : form.memberPhone) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -275,12 +257,13 @@ function StudentMyInfo() {
                                             /> 
                                     </label>
                                 </td>
+                                <td><label>주소</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberAddress"  
                                             placeholder='주소'
-                                            className={ StudentMyInfoCSS.subjectInfoInput }
+                                            className={ StudentMyInfoCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberAddress : form.memberAddress) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -289,16 +272,16 @@ function StudentMyInfo() {
                                     </label>
                                 </td>
                             </tr>
-                          </tbody>              )}        
+                          </tbody> )}        
                     </table>
                 </div>
                 <div>
                 <table className={ StudentMyInfoCSS.studentClassTable }>
                 <colgroup>
-                    <col width="40%" />
-                    <col width="30%" />
+                    <col width="35%" />
+                    <col width="35%" />
+                    <col width="5%" />
                     <col width="10%" />
-                    <col width="15%" />
                     
                 </colgroup>
                 <thead>
@@ -315,41 +298,42 @@ function StudentMyInfo() {
                         <tr key={m.openClasses.classCode }>
                             <td>{ m.openClasses.className }</td>
                             <td>{ m.openClasses.classRoom }</td>
-                            <td>{ m.openClasses.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [] )}</td>
-                            <td>{ m.openClasses.classesScheduleList.map((t) => t.timeName)}&nbsp;</td>
+                            <td>
+                                { m.openClasses.classesScheduleList.map((d) => d.dayName + "\n")}
+                                
+                            </td>
+                            <td>{ m.openClasses.classesScheduleList.map((t) => t.timeName + "\n") }</td>
+                            
+
                         </tr>
                     )) 
                     }
                 </tbody>    
                                     
-                </table>
-                    </div>
+            </table>
                 </div>
-                <div>
-                    <button        
-                        onClick={ () => navigate(-1) }            
-                    >
-                        돌아가기
-                    </button>
-                {!modifyMode &&
-                    <button 
-                        onClick={ onClickModifyModeHandler }
-                    >
-                        수정 모드
-                    </button>
-                }
-                {modifyMode &&
-                    <button 
-                        onClick={ onClickSubjectUpdateHandler }
-                    >
-                        저장하기
-                    </button>
-                }
-                </div>        
             </div>
-        </>
-        );
-    
-    }
+            <div>
+              
+            {!modifyMode &&
+                <button 
+                    onClick={ onClickModifyModeHandler }
+                >
+                    수정 모드
+                </button>
+            }
+            {modifyMode &&
+                <button 
+                    onClick={ onClickSubjectUpdateHandler }
+                >
+                    저장하기
+                </button>
+            }
+            </div>        
+        </div>
+    </>
+    );
+
+}
 
 export default StudentMyInfo;
