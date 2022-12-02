@@ -75,13 +75,16 @@ function TeacherclassDetail(){
                 <div>
                     <tr>
                     <th>자료목록</th>
-                   
                     </tr>
+
+                    <div className={TeacherClassDetailCSS.List}>
                     <tr>
                         <td>No.</td>
                         <td>파일명</td>
                         <td>첨부일자</td>
                     </tr>
+                    </div>
+                    
                 </div>
 
                     </div>
