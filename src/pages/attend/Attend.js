@@ -35,10 +35,11 @@ function Attend() {
     const onClickModifyModeHandler = () => {
         setModifyMode(true);
         setForm({
-            memberCode : attend.member.memberCode,
+            attendCode : attendCheck.attendCode,
             attendStatus : attendCheck.attendStatus
         })
     }
+    console.log("출석상태" , attendCheck.attendStatus )
 
     const onClickAttendUpdateHandler = (e) => {
         setForm({
@@ -50,7 +51,6 @@ function Attend() {
         }));
         alert('출석부 수정');  
        
-        window.location.reload();     
     } 
 
     
@@ -64,6 +64,21 @@ function Attend() {
             <div className={ AttendCSS.bodyDiv }>
                 <button
                    onClick={onClickHadler}>출석관리</button>
+                {!modifyMode &&
+                    <button
+                        onClick={onClickModifyModeHandler}
+                    >
+                        수정모드
+                    </button>
+                }
+                {modifyMode &&
+                    <button
+                        onClick={ onClickAttendUpdateHandler}
+                    >
+                        수정 저장
+                    </button>    
+                }
+                   
                 
                <table className={ AttendCSS.attendTable }>
                     <colgroup>
@@ -84,16 +99,52 @@ function Attend() {
                             <tr
                                 key={ a.classHistoryCode }
                             >   
-                                <td>{ a.member.memberCode}</td>
-                                <td>{ a.member.memberName  }</td>
-                                <td>{ a.attendStatus}</td>
+                                <td> 
+                                    <input
+                                        type="text"
+                                        readOnly={true}
+                                        value={ a && a.member.memberCode || ''}/></td>
+                                <td> 
+                                    <input
+                                        type="text"
+                                        readOnly={true}
+                                        value={ a && a.member.memberName  || ''}/></td>  
                             </tr>
                         ))}
+                        {modifyMode &&
                             <td> 
-                             <label><input type="radio" name="attendStatus"  onChange={ onChangeHandler } value="출석"/> 출석</label> &nbsp;
-                             <label><input type="radio" name="attendStatus"  onChange={ onChangeHandler } value="지각"/> 지각</label> &nbsp;
-                             <label><input type="radio" name="attendStatus"  onChange={ onChangeHandler } value="결석"/> 결석</label>
+                             <label>
+                                <input 
+                                    type="radio"
+                                     name="attendStatus"  
+                                     onChange={ onChangeHandler } 
+                                     value="출석"
+                                     readOnly={modifyMode ? false : true }
+                                     checked={(!modifyMode ? attendCheck?.attendStaus : form.attendStatus) === '출석' ? true : false}
+                                     /> 출석</label> &nbsp;
+                            
+                             <label>
+                                <input 
+                                    type="radio"
+                                     name="attendStatus"  
+                                     onChange={ onChangeHandler } 
+                                     value="지각"
+                                     readOnly={modifyMode ? false : true }
+                                     checked={(!modifyMode ? attendCheck?.attendStaus : form.attendStatus) === '지각' ? true : false}
+                                     /> 지각 </label> &nbsp;
+                            
+                             <label>
+                                <input 
+                                    type="radio"
+                                     name="attendStatus"  
+                                     onChange={ onChangeHandler } 
+                                     value="결석"
+                                     readOnly={modifyMode ? false : true }
+                                     checked={(!modifyMode ? attendCheck?.attendStaus : form.attendStatus) === '결석' ? true : false}
+                                     /> 결석</label> &nbsp;
+                            
                              </td>
+                             }
                         { Array.isArray(attendCheck) && attendCheck.map((c) =>(
                             <tr
                                 key={ c.attendCode }

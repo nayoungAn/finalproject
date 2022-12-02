@@ -31,9 +31,15 @@
 
 
 .classtable th{
-    border-bottom: 1px solid #1c4bcc;
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
   
 } 
+
+.classtable td{
+    border-bottom: 0.5px solid gainsboro ;
+
+}
 
 
 
@@ -45,14 +51,18 @@
     cursor: pointer;
 }
 
+
 .pagingBtn{
     margin: 5px;
-    border-radius: 25px;
-    background-color: white;
+    color:rgb(119, 119, 119);
+    border-style: none;
+    background-color: transparent;
     font-weight: bold;
+    
 }
 
 .pagingBtn:hover{
+    color: black;
     cursor: pointer;
-    background-color: rgb(37, 169, 221);
+   
 }

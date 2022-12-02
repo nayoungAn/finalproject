@@ -9,9 +9,8 @@ function Login() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const login = useSelector(state => state.memberReducer);
-
+    
     useEffect(() => {
         if(login.status === 200) {
             console.log("[Login] Login SUCCESS {}", login);
@@ -36,13 +35,13 @@ function Login() {
     const onClickHandler = () => {
         dispatch(callLoginAPI({
             form: form
-        }))
+        }))     
     }
 
-    const onClickFindHandler = (e) => {
-        if(e.key == 'Enter') {
-            navigate("/findmeminfo", { replace: false });
-            }
+    const onClickFindHandler = () => {
+       
+        navigate("/findmeminfo", { replace: false });
+           
     }
     return(
         <div className={ LoginCSS.backgroundDiv }>

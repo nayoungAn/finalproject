@@ -1,0 +1,29 @@
+
+.FindNavUl{
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style:none; 
+    margin-bottom: 30px;
+    margin-left: 60px;
+} 
+
+
+.FindNavUl li{
+    font-size : xx-large;
+    margin-right: 80px;
+  
+}
+
+.FindNavUl a{
+    color: rgb(108, 105, 105);
+}
+
+.FindNavUl a:hover{
+    color: #2F65EB;
+    font-weight: bold;
+    border-bottom: solid 3px #2F65EB;
+   
+}
+
