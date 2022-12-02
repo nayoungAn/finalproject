@@ -28,9 +28,9 @@
     width: 250px;
     border-radius: 10px;
     text-indent: 10px;
-    border-color: #979BA5 ;
-    color: #626469;
     outline: none;
+    color: #8f9299;
+    border: solid 1px rgb(191, 191, 191);
 }
 .loginDiv input:focus{
     border-color: #4D62CC;
@@ -49,7 +49,12 @@
 }
 
 .loginDiv button:hover {
-    background-color: #1e339c;
+    background-color: #1737d6;
 }
 
+.loginFind {
+    padding-top: 10px;
+    cursor: pointer;
+    color: #626469;
+}
 
