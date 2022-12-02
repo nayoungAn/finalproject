@@ -7,6 +7,8 @@ import LoginCSS from './Login.module.css'
 
 function Login() {
 
+    const [isInputClicked, setIsInputClicked] = useState(false);
+    const [InputClicked, setInputClicked] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const login = useSelector(state => state.memberReducer);
@@ -14,7 +16,7 @@ function Login() {
     useEffect(() => {
         if(login.status === 200) {
             console.log("[Login] Login SUCCESS {}", login);
-            navigate("ono", { replace: true });
+            navigate("/ono/notice", { replace: true });
         }
     }
     ,[login]
@@ -50,25 +52,37 @@ function Login() {
             <input
                 type="text"
                 name="memberId"
-                placeholder="아이디"
+                onFocus={() => {
+                    setIsInputClicked(true);
+                }}
+                onBlur={() => {
+                    setIsInputClicked(false);
+                }}
+                placeholder={ isInputClicked === true ? "" : "아이디를 입력하세요"}
                 autoComplete='off'
                 onChange={ onChangeHandler }
             />
             <input
                 type="password"
                 name="memberPassword"
-                placeholder="패스워드"
+                onFocus={() => {
+                    setInputClicked(true);
+                }}
+                onBlur={() => {
+                    setInputClicked(false);
+                }}
+                placeholder={ InputClicked === true ? "" : "비밀번호를 입력하세요"}
                 autoComplete='off'
                 onChange={ onChangeHandler }
             />
             <button
                 onClick={ onClickHandler } 
             >
-                로그인
+                Login
             </button>
-            <button onClick={ onClickFindHandler }>
-                아이디 | 비밀번호 찾기
-            </button>
+            <h6 onClick={ onClickFindHandler } className={ LoginCSS.loginFind }>
+                아이디ㆍ비밀번호 찾기 &gt;
+            </h6>
             </div>
 
          

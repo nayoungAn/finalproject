@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callTeacherRegistAPI } from "../../api/TeacherAPICall";
-
+import TeacherCSS from "./TeacherRegistration.module.css";
 
 function TeacherRegistration(){
 
@@ -110,14 +110,14 @@ function TeacherRegistration(){
                 />
 
                 <button
+                    className={TeacherCSS.uploadBtn}
                     onClick={ onClickImageUpload }
                 > 업로드 </button>
 
             </div>
-            <div>
+            <div className={TeacherCSS.member}>
                 <table>
                     <tbody>
-
                         <tr>
                             <td><label> 이름 </label></td>
                             <td>
@@ -126,13 +126,28 @@ function TeacherRegistration(){
                                     onChange={ onChangeHandler }
                                 />
                             </td>
+                            <td><label> 성별 </label></td>
+                            <td>
+                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="여성"/> 여성</label> &nbsp;
+                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="남성"/> 남성</label>
+
+                            </td>
                         </tr>
-                        <tr>
+                        
+                        <tr >
                             <td><label> 생년월일 </label></td>
                             <td>
                                 <input
                                     type="date"
                                     name='memberBirthday'
+                                    onChange={ onChangeHandler }
+                                />
+                            </td>
+                            <td><label> 이메일 </label></td>
+                            <td>
+                                <input
+                                    type="email"
+                                    name='memberEmail'
                                     onChange={ onChangeHandler }
                                 />
                             </td>
@@ -144,7 +159,13 @@ function TeacherRegistration(){
                                     name='memberId'
                                     onChange={ onChangeHandler }
                                 />
-                               
+                            </td>
+                            <td><label> 휴대번호 </label></td>
+                            <td>
+                                <input
+                                    name='memberPhone'
+                                    onChange={ onChangeHandler }
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -156,35 +177,6 @@ function TeacherRegistration(){
                                     onChange={ onChangeHandler }
                                 />
                             </td>
-                        </tr>
-                        <tr>
-                            <td><label> 성별 </label></td>
-                            <td>
-                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="여성"/> 여성</label> &nbsp;
-                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="남성"/> 남성</label>
-                        
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label> 이메일 </label></td>
-                            <td>
-                                <input
-                                    type="email"
-                                    name='memberEmail'
-                                    onChange={ onChangeHandler }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label> 휴대번호 </label></td>
-                            <td>
-                                <input
-                                    name='memberPhone'
-                                    onChange={ onChangeHandler }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
                             <td><label> 주소 </label></td>
                             <td>
                                 <input
@@ -193,10 +185,12 @@ function TeacherRegistration(){
                                 />
                             </td>
                         </tr>
+                      
                     </tbody>
                 </table>
             </div>
             <button
+                className={TeacherCSS.teaBtn}
                 onClick= {onClickTeacherRegistrationHandler}> 등록 </button>        
         </div>
        

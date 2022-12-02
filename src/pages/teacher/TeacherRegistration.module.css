@@ -1,69 +1,83 @@
-.teacherSection{
-    display: flex;
-    flex-direction: row;
+.member{
+    width: 700px;
+    margin: auto;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    margin-top: 300px;
 }
 
-.teacherInfoDiv{
-    display: flex;
-    width: 350px;
+.member label{
+    font-size: 15px;
 }
 
-.teacherInfoInput {    
-    width: 80%;
-    margin: 0;
-    padding: 0;
-    border-radius: 10px;
-    background-color: white;
-    text-indent: 0.5em;
+.member input{
+    width : 220px;
+    height : 30px;
+    border : 1px solid #dedbdb;
+    border-radius: 5px;
+    outline-style: none;
+    margin-bottom: 10px;
+    background-color: #F4F6FB;
 }
 
-.teacherInfoDiv table {
-    width: 100%;
+
+input[type="radio"]{
+    font-size: 0.8em;
+    width: 0.8em;
+    height: 0.8em; 
 }
 
-.textAreaStyle {
-    width: 100%;
-    height: 6.25em;
-    border: 1px solid black;
-    border-radius: 10px;
-    resize: none;
+
+
+.teaBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	display:inline-block;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    margin-left: 300px;
+    font-weight: bold;    
+    margin-top: 20px;
 }
 
-.teacherButtonDiv{
-    display: flex;
-    justify-content: flex-end;
-}
-.teacherButtonDiv button{
-    margin: 5px;    
-    margin-top: 15px;
-    margin-bottom: 15px;
-    height: 25px;
-    width: 150px;
-    border-radius: 25px;
-    background-color: white;
-    font-weight: bold;
+.teaBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
 }
 
-.teacherImageDiv{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.teaBtn:active{
+    position:relative;
+	top:1px;
 }
 
-.teacherImage{
-    margin-top: 5px;
-    width: 80%;
-    height: 90%;    
+
+.uploadBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	display:inline-block;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    margin-left: 300px;
+    font-weight: bold;    
+    margin-top: 50px;
 }
 
-.teacherImageButton{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 150px;
-    border-radius: 25px;
-    background-color: white;
-    font-weight: bold;
+
+.uploadBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+.uploadBtn:active{
+    position:relative;
+	top:1px;
 }
