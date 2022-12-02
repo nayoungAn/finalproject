@@ -3,23 +3,56 @@
     flex-direction: column;
     margin-top: 15px;
     height: 100%;
-    width: 60%;
     
+}
+.bodyDiv h2{
+    margin-top: 20px;
+
 }
 .InputStyle {
     width: 200px;
     height: 25px;    
     margin-left: 15px;
     margin-right: 15px;
-    border-radius: 20px;
+    margin-top:5px;
+    border-radius: 10px;
+    border-color: white;
     text-indent: 1em;
     background-color: rgb(230, 230, 230);
-    float: right;
+    float:right;
+    border: 0;
+    outline: 0;
+}
+
+.btnSearch{
+    width: 80px;
+    height: 25px;
+    border-collapse: collapse;
+    border-radius: 25px;
+    text-align: center;
+    margin-top:5px;
+    margin-bottom: 30px;
+    margin-right: 5px;
+    background-color:  #2F65EB;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: auto;  
+    float:right;
+    border: 0;
+    outline: 0;
     
 }
 
-
-
+.btnRegist{
+    width: 80px;
+    height: 40px;
+    margin-top: 20px;
+    background-color:  #2F65EB;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: auto;  
+    font-weight: bold;
+}
 .buttonDiv{
     display: flex;
     flex-direction: row;
@@ -37,7 +70,8 @@
 }
 
 .teacherTable{
-    width: 900px;
+    width: 1000px;
+    border-collapse: collapse
 }
 
 .teacherTable tr:hover { 
@@ -46,16 +80,34 @@
 
 .teacherTable tr {
     cursor: pointer;
+    border-bottom: 1px solid rgba(168, 165, 165, 0.945);
+}
+
+.teacherTable th {
+    cursor: pointer;
+    padding-top : 10px;
+   padding-bottom: 10px;
+   border-top: 3px solid rgba(60, 63, 212, 0.945);
+   border-bottom: 3px solid rgba(60, 63, 212, 0.945);
+   color:rgba(60, 63, 212, 0.945);
+}
+
+.teacherTable td {
+    padding-top:15px;
+    padding-bottom: 10px;
 }
 
 .pagingBtn{
     margin: 5px;
     border-radius: 25px;
+    border: 0;
+    outline: 0;
     background-color: white;
     font-weight: bold;
+    color:rgb(112, 112, 112);
 }
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: burlywood;
+    background-color:  rgba(60, 63, 212, 0.945);
 }

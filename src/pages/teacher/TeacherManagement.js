@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import { callTeacherListForAdminAPI } from '../../api/TeacherListAPICall';
-import HeaderCSS from "../../components/common/Header";
 
 
 function TeacherManagement() {
@@ -69,9 +68,8 @@ const onClickSearch = () => {
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
-            <h3> 강사 목록</h3>
-                <button
-                 onClick={ onClickTeacherInsert }> 강사등록 </button>
+            <h2> 강사 목록</h2>
+              <button className={TeacherManagementCSS.btnSearch} onClick = { () => onClickSearch()}>검색</button>
              <input
                     className={ TeacherManagementCSS.InputStyle }
                     type="text"
@@ -80,7 +78,6 @@ const onClickSearch = () => {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-            <button className="btnSearch" onClick = { () => onClickSearch()}>검색</button>
 
                 </div>            
                 <table className={ TeacherManagementCSS.teacherTable }>
@@ -88,9 +85,9 @@ const onClickSearch = () => {
                     <col width="5%" />
                     <col width="15%" />
                     <col width="10%" />
-                    <col width="20%" />
-                    <col width="20%" />
                     <col width="10%" />
+                    <col width="20%" />
+                    <col width="20%" />
                     <col width="10%" />
                 </colgroup>
                 <thead>
@@ -116,15 +113,15 @@ const onClickSearch = () => {
                             <td>{ m.memberBirthday }</td>
                             <td>{ m.memberPhone }</td>
                             <td>{ m.memberEmail }</td>
-                            <td>{ m.memberStatus }</td>
-                           
+                            <td>{ m.memberStatus }</td>         
                         </tr>
                     )) 
                     }
                 </tbody>                    
             </table>         
-            
-        </div>
+            <button
+                 onClick={ onClickTeacherInsert } className={TeacherManagementCSS.btnRegist}> 강사등록 </button>
+      
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(memberList) &&
             <button 
@@ -138,7 +135,8 @@ const onClickSearch = () => {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ?
+                         {color : '#2F65EB', textDecoration : 'underline'} : null}
                     className={ TeacherManagementCSS.pagingBtn }
                 >
                     {num}
@@ -153,7 +151,7 @@ const onClickSearch = () => {
             >
                 &gt;
             </button>
-            }
+            }  </div>
         </div>
         </>
     );

@@ -4,11 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callTeacherUpdateAPI } from '../../api/TeacherAPICall';
 import { callTeacherDetailForAdminAPI } from '../../api/TeacherListAPICall';
+import { callTeacherHistoryAPI } from '../../api/TeacherHistoryAPICalls'
+
 function TeacherUpdate(){
 
     const params = useParams();
     const teacherDetail = useSelector(state => state.teacherListReducer);
-
+    const teacherHistory = useSelector(state => state.teacherHistoryReducer)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const imageInput = useRef();
@@ -16,7 +18,11 @@ function TeacherUpdate(){
     const [imageUrl, setImageUrl] = useState(null);
     const [form, setForm] = useState({});
 
-    /* 읽기모드와 수정모드를 구분 */
+
+    if(teacherHistory){
+        console.log("강사이력 조회", teacherHistory)
+    }
+        /* 읽기모드와 수정모드를 구분 */
     const [modifyMode, setModifyMode] = useState(false);
 
     /* 최초 랜더링 시 상품 상세 정보 조회 */
@@ -24,6 +30,9 @@ function TeacherUpdate(){
         dispatch(callTeacherDetailForAdminAPI({
             memberCode : params.memberCode
         }));
+        dispatch(callTeacherHistoryAPI({
+            memberCode: params.memberCode
+        }));    
     },
      []);
 
@@ -113,28 +122,10 @@ function TeacherUpdate(){
     return (
         <div>
             <div >
-                <button        
-                    onClick={ () => navigate(-1) }            
-                >
-                    돌아가기
-                </button>
-            {!modifyMode &&
-                <button 
-                    onClick={ onClickModifyModeHandler }
-                >
-                    수정 모드
-                </button>
-            }
-            {modifyMode &&
-                <button 
-                    onClick={ onClickTeacherUpdateHandler }
-                >
-                    강사 수정 저장하기
-                </button>
-            }
+                <h2> 강사 상세 조회</h2>
             </div>        
             <div className={ TeacherUpdateCSS.teacherSection }>
-                <div className={ TeacherUpdateCSS.teacherInfoDiv }>
+                <div className={ TeacherUpdateCSS.ImageInfoDiv }>
                     <div className={ TeacherUpdateCSS.teacherImageDiv }>
                         { teacherDetail && <img 
                             className={ TeacherUpdateCSS.teacherImage } 
@@ -160,25 +151,26 @@ function TeacherUpdate(){
                     </div>
                 </div>
                 <div className={ TeacherUpdateCSS.teacherInfoDiv }>
-                    <table>
+                    <table className={ TeacherUpdateCSS.teacherTable}>
+              
                         <tbody>
                             <tr>
-                                <td><label>이름</label></td>
-                                <td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}>
+                                <label>이름</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTableTd}>
                                     <input 
+                                    
                                         name='memberName'
                                         placeholder='강사 이름'
                                         className={ TeacherUpdateCSS.teacherInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? teacherDetail.memberName : form.memberName) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
-                                    />
-                                </td>
-                            </tr>    
-                            <tr>
-                                <td><label>생년월일</label></td>
-                                <td>
+                                        style={{ fontWeight : 'bold'}}
+
+                                    /></td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>생년월일</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTableTd} >
                                     <input 
                                         name='memberBirthday'
                                         placeholder='19960525'
@@ -186,13 +178,12 @@ function TeacherUpdate(){
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? teacherDetail.memberBirthday : form.memberBirthday) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
-                                    />
+                                        style={{ fontWeight : 'bold'}}                                    />
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>성별</label></td>
-                                <td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>성별</label></td>
+                                <td className= { TeacherUpdateCSS.teacherTableLabel }>
                                     <label>
                                         <input 
                                             type="radio" 
@@ -202,8 +193,8 @@ function TeacherUpdate(){
                                             readOnly={modifyMode ? false : true }
                                             checked={ (!modifyMode ? teacherDetail?.memberGender : form.memberGender) === '여성' ? true : false }
                                         /> 
-                                            여성
-                                    </label> &nbsp;
+                                          
+                                    </label> &nbsp; 여성 &nbsp;
                                     <label>
                                         <input 
                                             type="radio" 
@@ -212,25 +203,23 @@ function TeacherUpdate(){
                                             value="남성"
                                             readOnly={modifyMode ? false : true }
                                             checked={ (!modifyMode ? teacherDetail?.memberGender : form.memberGender) === '남성' ? true : false }
-                                        /> 남성</label>
+                                        /></label> 
+                                        &nbsp; 남성
                                 </td>
-                            </tr>    
-                            <tr>
-                                <td><label>최근 입사일</label></td>
-                                <td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>최근 입사일</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTableTd} >
                                     <input 
                                         name='memberRegisterDate'
                                         className={ TeacherUpdateCSS.teacherInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? teacherDetail.memberRegisterDate : form.memberRegisterDate) || '' }
                                         readOnly={ true }
-                                        style={ { backgroundColor : 'gray'} }
                                     />
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>이메일</label></td>
-                                <td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>이메일</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTableTd}>
                                     <input 
                                         name='memberEmail'
                                         placeholder='asd@asd.com'
@@ -238,14 +227,11 @@ function TeacherUpdate(){
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? teacherDetail.memberEmail : form.memberEmail) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
-                            </tr>    
-                            
-                            <tr>
-                                <td><label>근무상태</label></td>
-                                <td>
+
+                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>근무상태</label></td>
+                                <td className= { TeacherUpdateCSS.teacherTableLabel } >
                                     <label>
                                         <input 
                                             type="radio" 
@@ -255,8 +241,8 @@ function TeacherUpdate(){
                                             readOnly={modifyMode ? false : true }
                                             checked={ (!modifyMode ? teacherDetail?.memberStatus : form.memberStatus) === 'Y' ?  true : false }
                                         /> 
-                                            근무
-                                    </label> &nbsp;
+                                           
+                                    </label> &nbsp; 근무&emsp;
                                     <label>
                                         <input 
                                             type="radio" 
@@ -265,13 +251,15 @@ function TeacherUpdate(){
                                             value='N'
                                             readOnly={modifyMode ? false : true }
                                             checked={ (!modifyMode ? teacherDetail?.memberStatus : form.memberStatus) === 'N' ?  true : false}
-                                        /> 퇴사</label>
+                                        /> </label>
+                                       &nbsp; 퇴사
                                 </td>
                             </tr>   
                             
-                            <tr>
-                                <td><label>휴대번호</label></td>
-                                <td>
+                            <tr >
+                                <td className={ TeacherUpdateCSS.teacherTabletd}>
+                                    <label>휴대번호</label></td>
+                                <td  className={ TeacherUpdateCSS.teacherTableTd} >
                                     <input 
                                         name='memberPhone'
                                         placeholder='010-1234-5678'
@@ -279,13 +267,11 @@ function TeacherUpdate(){
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? teacherDetail.memberPhone : form.memberPhone) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
-                            </tr>    
-                            <tr>
-                                <td><label>주소</label></td>
-                                <td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}>
+                                    <label>주소</label></td>
+                                <td  className={ TeacherUpdateCSS.teacherTableTd}>
                                     <input 
                                         name='memberAddress'
                                         placeholder='서울시 은평구'
@@ -293,13 +279,57 @@ function TeacherUpdate(){
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? teacherDetail.memberAddress : form.memberAddress) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
-                            </tr>    
-                        </tbody>                        
+                            </tr> 
+                            <tr >
+                                 <td style={{backgroundColor : '#BFC6CD',
+                                fontWeight : 'bold'}}>강사 이력</td>
+                            </tr>
+                            <tr>
+                            <td  className={ TeacherUpdateCSS.teacherHistoryTableTd} >입사일</td>
+                            <td className={ TeacherUpdateCSS.teacherHistoryTableTd} >퇴사일</td>
+                            </tr>
+                            { Array.isArray(teacherHistory) && teacherHistory.map((m) => (
+                            <tr
+                                key={ m.historyCode } 
+                            >   
+                                <td className={ TeacherUpdateCSS.teacherHistoryTabletd} >{ m.joinDate.split("T",1) || '' }</td>
+                                <td className={ TeacherUpdateCSS.teacherHistoryTabletd}>{ m.retirementDate?.split("T",1) || '' }</td>
+                            
+                            </tr>
+                        )) 
+                        }   
+                             
+                        </tbody>         
+                        <tfoot>
+                            <td></td><td></td><td></td>
+                        <button className={TeacherUpdateCSS.btnRegist}       
+                    onClick={ () => navigate(-1) 
+                    }            
+                >
+                    돌아가기
+                </button>
+            {!modifyMode &&
+                <button 
+                    onClick={ onClickModifyModeHandler }
+                    className={TeacherUpdateCSS.btnRegist}
+                >
+                    수정 모드
+                </button>
+            }
+            {modifyMode &&
+                <button 
+                    onClick={ onClickTeacherUpdateHandler }
+                >
+                    강사 수정 저장하기
+                </button>
+            } 
+                        </tfoot>
                     </table>
+             
                 </div>
+                
             </div>
         </div>
     );

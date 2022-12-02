@@ -88,7 +88,7 @@ function SubjectManagement() {
        
         <div className={ SubjectManagementCSS.bodyDiv }>
             <div>
-                <h3>과목 목록</h3>
+                <h2>과목 목록</h2>
                 <button className={ SubjectManagementCSS.btnSearch } onClick = { () => onClickSearch()}>검색</button>
                 <input
                     className={ SubjectManagementCSS.InputStyle }
@@ -98,14 +98,15 @@ function SubjectManagement() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-            </div>            
+                            </div>            
             <table className={ SubjectManagementCSS.subjectTable }>
                 <colgroup>
                     <col width="10%" />
-                    <col width="30%" />
-                    <col width="40%" />
                     <col width="10%" />
-                    <col width="20%" />
+                    <col width="30%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="5%"/>
                 </colgroup>
                 <thead>
                     <tr className={ SubjectManagementCSS.subjectThead}>
@@ -114,6 +115,7 @@ function SubjectManagement() {
                         <th>과목 설명</th>
                         <th>언어</th>
                         <th>수업형태</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -142,7 +144,7 @@ function SubjectManagement() {
                     onClick={ onClickSubjectInsert } className={SubjectManagementCSS.btnRegist}>
                     과목 등록
                 </button>         
-        </div>
+  
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(subjectList) &&
             <button 
@@ -156,7 +158,8 @@ function SubjectManagement() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'lightblue' } : null}
+                    style={ currentPage === num ? 
+                       { color : '#2F65EB', textDecoration : 'underline'} : null}
                     className={ SubjectManagementCSS.pagingBtn }
                 >
                     {num}
@@ -173,7 +176,7 @@ function SubjectManagement() {
                 &gt;
             </button>
             }
-              
+                    </div>
         </div>
         </>
     );

@@ -19,7 +19,7 @@ import attendCheckReducer from "./AttendCheckModule";
 import studentManagerDetailReducer from "./StudentMangerDetailModule";
 import classHistoryReducer from "./ClassHistoryModule";
 import classHistoryRefreshReducer from "./ClassHistoryRefreshModule";
-
+import teacherHistoryReducer from "./TeacherHistoryModule";
 const rootReducer = combineReducers({
     memberReducer,
     consReducer,
@@ -40,7 +40,8 @@ const rootReducer = combineReducers({
     attendCheckReducer,
     studentManagerDetailReducer,
     classHistoryReducer,
-    classHistoryRefreshReducer
+    classHistoryRefreshReducer,
+    teacherHistoryReducer
     
 });
 
