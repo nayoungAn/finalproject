@@ -3,8 +3,17 @@
     margin: auto;
     padding: 0 20px;
     margin-bottom: 20px;
-    margin-top: 300px;
+    margin-top: 110px;
 }
+
+.tea p{
+    font-size: 30px;
+    color: #2957c9;
+    margin-top: 40px;
+    font-weight: bold;
+    
+}
+
 
 .member label{
     font-size: 15px;
@@ -56,28 +65,18 @@ input[type="radio"]{
 }
 
 
-.uploadBtn{
-    background-color:#ffffff;
-	border-radius:10px;
-	border:1px solid #3f6fe9;
-	display:inline-block;
-	cursor:pointer;
-	color:#3f6fe9;
-	font-size:17px;
-	padding:5px 20px;
-    margin-left: 300px;
-    font-weight: bold;    
-    margin-top: 50px;
-}
-
-
-.uploadBtn:hover{
-    background-color:#3f6fe9;
+.uploadBtn1{
+    width: 300px;
+    height: 300px;
     border:1px solid #3f6fe9;
-    color:  #fbfbfb;
+    border-radius: 1000px;
+    margin-left: 150px;
+    margin-top: 80px;
 }
 
-.uploadBtn:active{
-    position:relative;
-	top:1px;
+.uploadBtn2{
+    width: 300px;
+    height: 300px;
+    border-radius:1000px;
 }
+

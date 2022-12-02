@@ -93,13 +93,8 @@ function TeacherRegistration(){
 
     return(
         
-        <div>
+        <div className={TeacherCSS.tea}>
             <p> 강사 등록 </p>
-            <div>
-                { imageUrl && <img
-                    src={ imageUrl }
-                    alt="preview"
-                />}
                 <input
                     style={ { display: 'none' }}
                     type="file"
@@ -107,12 +102,19 @@ function TeacherRegistration(){
                     accept='image/jpg,image/png,image/jpeg,image/gif'
                     onChange={ onChangeImageUpload }   
                     ref={ imageInput }
-                />
+                    />
 
-                <button
-                    className={TeacherCSS.uploadBtn}
+                <div
+                    className={TeacherCSS.uploadBtn1}
                     onClick={ onClickImageUpload }
-                > 업로드 </button>
+                    >  
+                    { imageUrl && <img
+                        className={TeacherCSS.uploadBtn2}
+                        src={ imageUrl }
+                        alt="preview"
+                    />}
+                
+                
 
             </div>
             <div className={TeacherCSS.member}>
