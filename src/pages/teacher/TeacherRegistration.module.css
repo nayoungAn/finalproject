@@ -4,16 +4,25 @@
     padding: 0 20px;
     margin-bottom: 20px;
     margin-top: 110px;
+    
+}
+
+.tea{
+    width: 800px;
+    height: 850px;
+    box-shadow: 5px 5px 5px 5px rgba(34, 36, 38, 0.15);
+    border-radius: 5px;
+    margin-top: 50px;
 }
 
 .tea p{
     font-size: 30px;
     color: #2957c9;
     margin-top: 40px;
+    margin-left: 50px;
     font-weight: bold;
     
 }
-
 
 .member label{
     font-size: 15px;
@@ -27,13 +36,14 @@
     outline-style: none;
     margin-bottom: 10px;
     background-color: #F4F6FB;
+    
 }
 
 
 input[type="radio"]{
     font-size: 0.8em;
     width: 0.8em;
-    height: 0.8em; 
+    height: 0.8em;
 }
 
 
@@ -42,14 +52,12 @@ input[type="radio"]{
     background-color:#ffffff;
 	border-radius:10px;
 	border:1px solid #3f6fe9;
-	display:inline-block;
 	cursor:pointer;
 	color:#3f6fe9;
 	font-size:17px;
 	padding:5px 20px;
-    margin-left: 300px;
-    font-weight: bold;    
-    margin-top: 20px;
+    margin-left: 625px;
+    font-weight: bold;  
 }
 
 .teaBtn:hover{
@@ -65,18 +73,18 @@ input[type="radio"]{
 }
 
 
+
 .uploadBtn1{
-    width: 300px;
-    height: 300px;
-    border:1px solid #3f6fe9;
-    border-radius: 1000px;
-    margin-left: 150px;
-    margin-top: 80px;
+    width: 230px;
+    height: 210px;
+    margin-left: 280px;
+    margin-top: 50px;
+    background-image: url("../../../public/images/onoimg2.png");
 }
 
 .uploadBtn2{
-    width: 300px;
-    height: 300px;
+    width: 220px;
+    height: 210px;
     border-radius:1000px;
 }
 
