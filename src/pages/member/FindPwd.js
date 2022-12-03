@@ -32,7 +32,7 @@ function FindPwd(){
          <div className={FindCSS.findDiv}>
             
             <div className={FindCSS.findText}>
-                <p> 비밀번호를 잊으셨나요? <br/> 아래의 정보를 입력해주세요.</p>
+                <p> <a>비밀번호</a>를 잊으셨나요? <br/> 아래의 정보를 입력해주세요.</p>
             </div>
                 
             <div className={FindCSS.findInfo}>

@@ -93,13 +93,8 @@ function TeacherRegistration(){
 
     return(
         
-        <div>
+        <div className={TeacherCSS.tea}>
             <p> 강사 등록 </p>
-            <div>
-                { imageUrl && <img
-                    src={ imageUrl }
-                    alt="preview"
-                />}
                 <input
                     style={ { display: 'none' }}
                     type="file"
@@ -107,14 +102,19 @@ function TeacherRegistration(){
                     accept='image/jpg,image/png,image/jpeg,image/gif'
                     onChange={ onChangeImageUpload }   
                     ref={ imageInput }
-                />
+                    />
 
-                <button
-                    className={TeacherCSS.uploadBtn}
+                <div
+                    
+                    className={TeacherCSS.uploadBtn1}
                     onClick={ onClickImageUpload }
-                > 업로드 </button>
-
-            </div>
+                    >  
+                    { imageUrl && <img
+                        className={TeacherCSS.uploadBtn2}
+                        src={ imageUrl }
+                        alt="preview"
+                    />}
+                 </div>
             <div className={TeacherCSS.member}>
                 <table>
                     <tbody>
@@ -132,6 +132,7 @@ function TeacherRegistration(){
                                 <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="남성"/> 남성</label>
 
                             </td>
+                            
                         </tr>
                         
                         <tr >
@@ -189,9 +190,13 @@ function TeacherRegistration(){
                     </tbody>
                 </table>
             </div>
+              
             <button
                 className={TeacherCSS.teaBtn}
-                onClick= {onClickTeacherRegistrationHandler}> 등록 </button>        
+                onClick= {onClickTeacherRegistrationHandler}
+                > 등록 
+            </button>   
+                
         </div>
        
     )
