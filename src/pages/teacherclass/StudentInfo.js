@@ -58,7 +58,7 @@ function StudentInfo() {
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody className={StudentInfoCSS.memberinfo}>
                     {
                         Array.isArray(studentList) && studentList.map(
                             (m) => (
