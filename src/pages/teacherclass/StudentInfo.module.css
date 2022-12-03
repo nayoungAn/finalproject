@@ -70,3 +70,14 @@
     cursor: pointer;
    
 }
+
+.classtable th{
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
+  
+} 
+
+.classtable td{
+    border-bottom: 0.5px solid gainsboro ;
+
+}
