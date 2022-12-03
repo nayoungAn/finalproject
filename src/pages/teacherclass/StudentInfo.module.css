@@ -1,3 +1,7 @@
+.StudentInfo{
+    width: 900px;
+}
+
 .bodyDiv{
     display: flex;
     flex-direction: column;
@@ -12,6 +16,8 @@
 }
 .buttonDiv button {
     width: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-right: 25px;
     height: 30px;
     border-radius: 25px;
@@ -19,7 +25,7 @@
     font-weight: bold;
 }
 
-.classtable{
+/* .classtable{
     width: 900px;
     text-align: center;
     border-style:none;
@@ -37,7 +43,7 @@
 .classtable td{
     border-bottom: 0.5px solid gainsboro ;
 
-}
+} */
 
 
 
