@@ -26,6 +26,7 @@ function TeacherManagement() {
             pageNumber.push(i);
         }
     }
+    
     // window.location.reload()
     useEffect(
         () => {         

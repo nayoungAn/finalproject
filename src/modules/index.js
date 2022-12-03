@@ -16,6 +16,8 @@ import teacherClassReducer from "./TeacherClassModule";
 import qnaReducer from "./QnaModule";
 import attendReducer from "./AttendModule";
 import attendCheckReducer from "./AttendCheckModule";
+import attachReducer from "./AttachModule";
+import studentInfoReducer from "./StudentInfoModule";
 
 const rootReducer = combineReducers({
     memberReducer,
@@ -35,6 +37,8 @@ const rootReducer = combineReducers({
     teacherClassReducer,
     attendReducer,
     attendCheckReducer,
+    attachReducer,
+    studentInfoReducer
 
 });
 

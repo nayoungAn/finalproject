@@ -29,8 +29,12 @@ import QnaTeacher from "./pages/consultant/QnaTeacher";
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
 import ConsRegistration from "./pages/cons/ConsRegistration";
+
 import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
 import Teacherclass from "./pages/teacherclass/Teacherclass";
+import AttachRegist from "./pages/teacherclass/AttachRegist";
+import StudentInfo from "./pages/teacherclass/StudentInfo";
+
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
 
@@ -88,21 +92,23 @@ function App() {
 
         </Route>
         
-      
-
+    
         <Route path="teacherclass" element={<Teacherclass/>}/>
         <Route path="tea" element={<TeacherClassLayout/>}>
               <Route index element={ <Navigate to="teacherclass/:classCode" replace/> } />
               <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>} />
+              <Route pate="teacherclass/:classCode/attach" element={<AttachRegist/>}/> 
               <Route path="qna/:classCode" element={ <QnaTeacher/>} />
               <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
               <Route path="qnaReDetail/:reCode" element={ <QnaReDetail/> }/>
               <Route path="qnaReply" element={ <QnaRegistaration/>} />
               <Route path="attend/:classCode" element={ <Attend/> } />
-              <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> } />
+              <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> }/>
         </Route>
 
-        <Route path="Teacherclass" element={<Teacherclass/>}/>
+        <Route path="studentinfo" element={<StudentInfo/>}/>
+
+       
     
 
 
