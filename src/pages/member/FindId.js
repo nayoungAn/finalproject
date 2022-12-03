@@ -34,7 +34,7 @@ function FindId() {
         <div className={FindCSS.findDiv}>
             
             <div className={FindCSS.findText}>
-                <p> ID를 잊으셨나요? <br/> 아래의 정보를 입력해주세요.</p>
+                <p> <a>아이디</a>를 잊으셨나요? <br/> 아래의 정보를 입력해주세요.</p>
             </div>
             
                 <div className={FindCSS.findInfo}>

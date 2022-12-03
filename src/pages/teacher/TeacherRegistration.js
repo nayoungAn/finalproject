@@ -105,6 +105,7 @@ function TeacherRegistration(){
                     />
 
                 <div
+                    
                     className={TeacherCSS.uploadBtn1}
                     onClick={ onClickImageUpload }
                     >  
@@ -113,10 +114,7 @@ function TeacherRegistration(){
                         src={ imageUrl }
                         alt="preview"
                     />}
-                
-                
-
-            </div>
+                 </div>
             <div className={TeacherCSS.member}>
                 <table>
                     <tbody>
@@ -134,6 +132,7 @@ function TeacherRegistration(){
                                 <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="남성"/> 남성</label>
 
                             </td>
+                            
                         </tr>
                         
                         <tr >
@@ -191,9 +190,13 @@ function TeacherRegistration(){
                     </tbody>
                 </table>
             </div>
+              
             <button
                 className={TeacherCSS.teaBtn}
-                onClick= {onClickTeacherRegistrationHandler}> 등록 </button>        
+                onClick= {onClickTeacherRegistrationHandler}
+                > 등록 
+            </button>   
+                
         </div>
        
     )

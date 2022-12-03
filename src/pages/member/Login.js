@@ -48,7 +48,8 @@ function Login() {
     return(
         <div className={ LoginCSS.backgroundDiv }>
         <div className={ LoginCSS.loginDiv }>
-            <img src="images/ono.png" alt="logo image"/>
+    
+            <img src="images/onologo.png" alt="logo image"/>
             <input
                 type="text"
                 name="memberId"
