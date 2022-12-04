@@ -37,8 +37,6 @@ h2{
 }
 
 
-
-
 .subjectInfoDiv input {
     margin-bottom: 0px;
     border-radius: 0px;
@@ -69,6 +67,8 @@ h2{
     height: 6.25em;
     border: 0;
     resize: none;
+    font-weight: bold;
+    font-size : 1em;
 }
 
 .subjectButtonDiv{

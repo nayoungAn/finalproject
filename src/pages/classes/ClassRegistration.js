@@ -1,6 +1,6 @@
 import ClassRegistrationCSS from './ClassRegistration.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callClassRegistAPI } from '../../api/ClassAPICalls';
 import { callClassListForAdminNoPagingAPI } from '../../api/ClassAPICalls';
@@ -14,8 +14,8 @@ function ClassRegistration() {
     const teachers = useSelector(state => state.teacherListReducer);
 
     const schedule = ['월','화','수','목','금','토','일']
-    const arr = [];
-    
+    const arr = []
+    const random = [1,2,3,4,5,6,7]
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [form, setForm] = useState({
@@ -91,31 +91,22 @@ function ClassRegistration() {
     
     return (
         <div>
-            <div>
-                <button
-                    onClick={() => navigate(-1)}
-                >
-                    취소
-                </button>
-                <button
-                    onClick={onClickClassRegistrationHandler}
-                >
-                    강의 등록
-                </button>
-            </div>
+            <h2 className={ClassRegistrationCSS.name}> 강의 등록</h2>
+            
             <div className={ClassRegistrationCSS.classSection}>
                 <div className={ClassRegistrationCSS.classInfoDiv}>
                     <table>
                     { Array.isArray(subjects) &&   Array.isArray(teachers) && (
                         <tbody>
                             <tr>
-                                <td><label>과목명</label></td>
-                                <td>
+                                <td className={ ClassRegistrationCSS.classTableTd}>
+                                <label>과목명</label></td>
+                                <td className={ ClassRegistrationCSS.subjectTabletd} >
                                     <select
                                         id="subjectList"
                                         name='subjectCode'
                                         placeholder='과목명'
-                                        className={ClassRegistrationCSS.classInfoInput}
+                                        className={ClassRegistrationCSS.subjectInfoInput}
                                         onChange={onChangeHandler}
                                     >
                                         <option>과목명</option>
@@ -126,15 +117,14 @@ function ClassRegistration() {
                                   ))}
                                     </select>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td><label> 강사명</label></td>
-                                <td>
+                                <td className={ ClassRegistrationCSS.classTableTd}>
+                                <label> 강사명</label></td>
+                                <td className={ ClassRegistrationCSS.subjectTabletd} >
                                     <select
                                         id="teacherList"
                                         name='memberCode'
                                         placeholder='강사명'
-                                        className={ClassRegistrationCSS.classInfoInput}
+                                        className={ClassRegistrationCSS.subjectInfoInput}
                                         onChange={onChangeHandler}
 
                                     >  <option>강사명</option>
@@ -145,21 +135,12 @@ function ClassRegistration() {
                                           ))}
                                     </select>
                                 </td>                              
+                                
                             </tr>
                             <tr>
-                                <td><label> 강의명</label></td>
-                                <td>
-                                    <input
-                                        name='className'
-                                        placeholder='강의명'
-                                        className={ClassRegistrationCSS.classInfoInput}
-                                        onChange={onChangeHandler}
-                                    />
-                                </td>
-                                </tr>
-                                <tr>
-                                <td><label>강의 회차</label></td>
-                                <td>
+                            <td className={ ClassRegistrationCSS.classTableTd}>
+                                <label>강의 회차</label></td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >
                                     <input
                                         name='classCircuit'
                                         placeholder='1회차'
@@ -168,10 +149,24 @@ function ClassRegistration() {
                                     />
                                 </td>
                            
+                            <td className={ ClassRegistrationCSS.classTableTd}>
+                                <label> 강의명</label></td>
+                                <td colSpan="2"
+                                className={ ClassRegistrationCSS.classTabletd} >
+                                    <input
+                                        name='className'
+                                        placeholder='강의명'
+                                        className={ClassRegistrationCSS.classInfoInput}
+                                        onChange={onChangeHandler}
+                                    />
+                                </td>
+                          
                             </tr>
+
                             <tr>
-                                <td><label>수강 정원</label></td>
-                                <td>
+                            <td className={ ClassRegistrationCSS.classTableTd}>
+                                    <label>수강 정원</label></td>
+                                    <td className={ ClassRegistrationCSS.classTabletd} >
                                     <input
                                         name='classQuota'
                                         placeholder='수강 정원'
@@ -179,11 +174,24 @@ function ClassRegistration() {
                                         onChange={onChangeHandler}
                                     />
                                 </td>
+                                <td className={ ClassRegistrationCSS.classTableTd} >
+                                    <label>수업료</label></td>
+                                    <td className={ ClassRegistrationCSS.classTabletd} >
+                                    <label>
+                                        <input
+                                            name="classPrice"
+                                            placeholder='800000'
+                                            className={ClassRegistrationCSS.classInfoInput}
+                                            onChange={onChangeHandler}
+                                        />
+                                    </label>
+                                </td>
+                           
                             </tr>
-
                             <tr>
-                                <td><label>수업일</label></td>
-                                <td>
+                            <td className={ ClassRegistrationCSS.classTableTd}>
+                                <label>수업일</label></td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >
                                     <label>
                                         <input
                                             name="classStartDate"
@@ -193,9 +201,7 @@ function ClassRegistration() {
                                         />
                                     </label>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >
                                     <label>
                                         <input
                                             name="classEndDate"
@@ -207,23 +213,11 @@ function ClassRegistration() {
                                         />
                                     </label>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td><label>수업료</label></td>
-                                <td>
-                                    <label>
-                                        <input
-                                            name="classPrice"
-                                            placeholder='800000'
-                                            className={ClassRegistrationCSS.classInfoInput}
-                                            onChange={onChangeHandler}
-                                        />
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>강의실</label></td>
-                                <td>
+                           
+                             
+                            <td className={ ClassRegistrationCSS.classTableTd}>
+                                    <label>강의실</label></td>
+                                    <td className={ ClassRegistrationCSS.classTabletd} >
                                     <label>
                                         <input
                                             name="classRoom"
@@ -233,10 +227,13 @@ function ClassRegistration() {
                                         />
                                     </label>
                                 </td>
-                            </tr>
+                               
+                            </tr>            
+
                             <tr>
-                                <td><label>강의 설명</label></td>
-                                <td>
+                            <td className={ ClassRegistrationCSS.classTableTd}>
+                                <label>강의 설명</label></td>
+                                <td colSpan="2">
                                     <textarea
                                         className={ClassRegistrationCSS.textAreaStyle}
                                         name='classDescription'
@@ -244,66 +241,94 @@ function ClassRegistration() {
                                     ></textarea>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><label>시간표</label></td>
+                        </tbody> )}
+                    
+                    </table>
+                    <div  >                  
+                          <table className={ClassRegistrationCSS.scheduleTable}>
+                        <tbody>
+                        <tr>
+                                <td colSpan="8"
+                                className={ ClassRegistrationCSS.classTableTd}>
+                                    <label>시간표</label></td>
                             </tr>
                             <tr>
-                                <td>요일</td>
-                                <td>월</td>
-                                <td>화</td>
-                                <td>수</td>
-                                <td>목</td>
-                                <td>금</td>
-                                <td>토</td>
-                                <td>일</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >요일</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >월</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >화</td>
+                                <td className={ ClassRegistrationCSS.classTabletd}  >수</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >목</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >금</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >토</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >일</td>
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)}  >
-                                <td>1교시</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >1교시</td>
                                 {schedule.map((item,idx) => (
-                                    <td key={uuid()}>
+                                    <td key={uuid()}  className={ClassRegistrationCSS.scheduleTd}>
                                     <input type="checkbox" key={idx}  value={item + ",1교시"}  
-                                    />
+                                    id={item + schedule[0]} />
+                                    <label htmlFor={item + schedule[0]}></label>
                                     </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)} >
-                                <td>2교시</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >2교시</td>
                                 {schedule.map((item,idx) => (
-                                    <td key={uuid()}>
+                                    <td key={uuid()} className={ClassRegistrationCSS.scheduleTd}>
                                     <input type="checkbox" key={idx}  value={item + ",2교시"}  
-                                    />
+                                   id={item + schedule[1]} />
+                                   <label htmlFor={item + schedule[1]}></label>
                                     </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)} >
-                                <td>3교시</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >3교시</td>
                             {schedule.map((item,idx) => (
-                                    <td key={uuid()}>
+                                    <td key={uuid()} className={ClassRegistrationCSS.scheduleTd}>
                                     <input type="checkbox" key={idx}  value={item + ",3교시"}  
-                                    />
+                                     id={item + schedule[2]} />
+                                     <label htmlFor={item + schedule[2]}></label>
                                     </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)} >
-                                <td>4교시</td>
+                                <td className={ ClassRegistrationCSS.classTabletd} >4교시</td>
                                 {schedule.map((item,idx) => (
-                                    <td key={uuid()}>
+                                    <td key={uuid()} className={ClassRegistrationCSS.scheduleTd}>
                                     <input type="checkbox" key={idx}  value={item + ",4교시"}  
-                                    />
+                                     id={item + schedule[3]} />
+                                     <label htmlFor={item + schedule[3]}></label>
                                     </td>))}
                             </tr>
                             <tr onClick={(event) => onClickCheckBox(event)} >
-                                <td>5교시</td>
+                                <td className={ ClassRegistrationCSS.classTabletd}  >5교시</td>
                                 {schedule.map((item,idx) => (
-                                    <td key={uuid()}>
+                                    <td key={uuid()} className={ClassRegistrationCSS.scheduleTd}>
                                     <input type="checkbox" key={idx}  value={item + ",5교시"}  
-                                    />
+                                     id={item + schedule[4]} />
+                                     <label htmlFor={item + schedule[4]}></label>
                                     </td>))}
                             </tr>
+                     
 
-
-                        </tbody> )}
+                        </tbody>
                     </table>
-
-                </div>
+                    </div>             
+                    </div>
+               </div>
+                <div>
+                <button
+                    onClick={() => navigate(-1)}
+                    className={ClassRegistrationCSS.btnCancle}   
+                >
+                    취소
+                </button>
+                <button
+                    onClick={onClickClassRegistrationHandler}
+                    className={ClassRegistrationCSS.btnRegist}   
+                >
+                    강의 등록
+                </button>
             </div>
+           
         </div>
     );
 

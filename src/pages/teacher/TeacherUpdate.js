@@ -122,7 +122,7 @@ function TeacherUpdate(){
     return (
         <div>
             <div >
-                <h2> 강사 상세 조회</h2>
+            <h2> 강사 상세 조회</h2>
             </div>        
             <div className={ TeacherUpdateCSS.teacherSection }>
                 <div className={ TeacherUpdateCSS.ImageInfoDiv }>
@@ -182,7 +182,8 @@ function TeacherUpdate(){
                                 </td>
                             </tr>    
                             <tr>
-                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>성별</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}>
+                                <label>성별</label></td>
                                 <td className= { TeacherUpdateCSS.teacherTableLabel }>
                                     <label>
                                         <input 
@@ -193,7 +194,7 @@ function TeacherUpdate(){
                                             readOnly={modifyMode ? false : true }
                                             checked={ (!modifyMode ? teacherDetail?.memberGender : form.memberGender) === '여성' ? true : false }
                                         /> 
-                                          
+                                    
                                     </label> &nbsp; 여성 &nbsp;
                                     <label>
                                         <input 
@@ -206,7 +207,8 @@ function TeacherUpdate(){
                                         /></label> 
                                         &nbsp; 남성
                                 </td>
-                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>최근 입사일</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}>
+                                <label>최근 입사일</label></td>
                                 <td className={ TeacherUpdateCSS.teacherTableTd} >
                                     <input 
                                         name='memberRegisterDate'
@@ -218,7 +220,8 @@ function TeacherUpdate(){
                                 </td>
                             </tr>    
                             <tr>
-                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>이메일</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}>
+                                <label>이메일</label></td>
                                 <td className={ TeacherUpdateCSS.teacherTableTd}>
                                     <input 
                                         name='memberEmail'
@@ -230,7 +233,8 @@ function TeacherUpdate(){
                                     />
                                 </td>
 
-                                <td className={ TeacherUpdateCSS.teacherTabletd}><label>근무상태</label></td>
+                                <td className={ TeacherUpdateCSS.teacherTabletd}>
+                                <label>근무상태</label></td>
                                 <td className= { TeacherUpdateCSS.teacherTableLabel } >
                                     <label>
                                         <input 
@@ -258,7 +262,7 @@ function TeacherUpdate(){
                             
                             <tr >
                                 <td className={ TeacherUpdateCSS.teacherTabletd}>
-                                    <label>휴대번호</label></td>
+                                <label>휴대번호</label></td>
                                 <td  className={ TeacherUpdateCSS.teacherTableTd} >
                                     <input 
                                         name='memberPhone'
@@ -270,7 +274,7 @@ function TeacherUpdate(){
                                     />
                                 </td>
                                 <td className={ TeacherUpdateCSS.teacherTabletd}>
-                                    <label>주소</label></td>
+                                <label>주소</label></td>
                                 <td  className={ TeacherUpdateCSS.teacherTableTd}>
                                     <input 
                                         name='memberAddress'
@@ -300,37 +304,34 @@ function TeacherUpdate(){
                             </tr>
                         )) 
                         }   
-                             
-                        </tbody>         
-                        <tfoot>
-                            <td></td><td></td><td></td>
-                        <button className={TeacherUpdateCSS.btnRegist}       
+                       
+                            </tbody>
+
+                    </table>
+                </div>        
+            </div>
+                    <button className={TeacherUpdateCSS.btnCancle}       
                     onClick={ () => navigate(-1) 
                     }            
                 >
                     돌아가기
                 </button>
-            {!modifyMode &&
+                {!modifyMode &&
                 <button 
                     onClick={ onClickModifyModeHandler }
                     className={TeacherUpdateCSS.btnRegist}
                 >
                     수정 모드
                 </button>
-            }
+
+            }  
             {modifyMode &&
-                <button 
+                <button  className={TeacherUpdateCSS.btnRegist}  
                     onClick={ onClickTeacherUpdateHandler }
                 >
-                    강사 수정 저장하기
+                    저장하기
                 </button>
             } 
-                        </tfoot>
-                    </table>
-             
-                </div>
-                
-            </div>
         </div>
     );
 

@@ -130,8 +130,7 @@ function SubjectManagement() {
                             <td>{ s.subjectLanguage }</td>
                             <td>{ s.subjectForm }</td>
                             <td><button className="deleteBtn"
-                  
-                >
+                >           
                     삭제
                 </button></td>
                         </tr>

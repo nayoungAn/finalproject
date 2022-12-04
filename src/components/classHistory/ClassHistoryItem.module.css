@@ -1,24 +1,32 @@
 .NavbarDiv {
   
-    border-bottom: solid 1px rgb(73, 106, 212);
+   
 }
 
 .NavlistUl {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
     min-width: 100px;
     list-style:none;
     padding-left:0px;    
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-left:20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right:10px;
+    border-bottom: solid 1px rgb(178, 179, 184);
 }
 
 .NavlistUl li {
     min-width: 100px;
     height: auto;
     text-align: left;
+}
+
+.NavlistUl li:hover, .NavlistUl li:focus, .NavlistUl li:active{
+    text-decoration: none;
+    color: rgb(73, 106, 212);
+    font-weight: bold;
 }
 
 a {
@@ -32,21 +40,3 @@ a:hover, a:focus, a:active{
     font-weight: bold;
 }
 
-button{
-    font-size: medium;
-    font-style:oblique;
-    background-color: rgb(73, 106, 212);
-    color: aliceblue;
-    cursor: pointer;
-    border-radius: 10px;
-    border-color: rgb(73, 106, 212);
-    padding: 3px;
-    padding-left: 7px;
-    padding-right: 7px;
-
-}
-
-button:hover{
-    transform:  scale(1.03);
-    
-}

@@ -50,25 +50,16 @@ function SubjectRegistration(){
 
     return (
         <div>
-            <div>
-                <button        
-                    onClick={ () => navigate(-1) }            
-                >
-                    취소
-                </button>
-                <button       
-                    onClick={ onClickSubjectRegistrationHandler }             
-                >
-                    과목 등록
-                </button>
-            </div>        
+          <h2> 과목 등록</h2>
             <div className={ SubjectRegistrationCSS.subjectSection }>
+            
                 <div className={ SubjectRegistrationCSS.subjectInfoDiv }>
                     <table>
-                        <tbody>
+                        <tbody>          
                             <tr>
-                                <td><label>과목명</label></td>
-                                <td>
+                                <td className={ SubjectRegistrationCSS.subjectTableTd}>
+                                <label>과목명</label></td>
+                                <td  className={ SubjectRegistrationCSS.subjectTabletd} >
                                     <input 
                                         name='subjectName'
                                         placeholder='과목명'
@@ -76,10 +67,9 @@ function SubjectRegistration(){
                                         onChange={ onChangeHandler }
                                     />
                                 </td>
-                            </tr>   
-                            <tr>
-                                <td><label> 수업 형태</label></td>
-                                <td>
+                                <td className={ SubjectRegistrationCSS.subjectTableTd}>
+                                <label> 수업 형태</label></td>
+                                <td className={ SubjectRegistrationCSS.subjectTabletd}>
                                     <input 
                                         name='subjectForm'
                                         placeholder='수업 형태'
@@ -87,10 +77,9 @@ function SubjectRegistration(){
                                         onChange={ onChangeHandler }
                                     />
                                 </td>
-                            </tr>     
-                            <tr>
-                                <td><label>언어</label></td>
-                                <td>
+                                <td className={ SubjectRegistrationCSS.subjectTableTd}>
+                                <label>언어</label></td>
+                                <td className={ SubjectRegistrationCSS.subjectTabletd}>
                                     <input 
                                         name='subjectLanguage'
                                         placeholder='언어'
@@ -100,8 +89,11 @@ function SubjectRegistration(){
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>교재</label></td>
-                                <td>
+                                <td className={ SubjectRegistrationCSS.subjectTableTd}>
+                                <label>교재</label>
+                                </td>
+                                <td colSpan="2" className={ SubjectRegistrationCSS.subjectTabletd}
+                                >
                                     <input 
                                         name='subjectBook'
                                         placeholder='교재'
@@ -109,10 +101,12 @@ function SubjectRegistration(){
                                         onChange={ onChangeHandler }
                                     />
                                 </td>
+                                
                             </tr>   
                             <tr>
-                                <td><label>과목 설명</label></td>
-                                <td>
+                                <td className={ SubjectRegistrationCSS.subjectTableTd}> 
+                                <label>과목 설명</label></td>
+                                <td colSpan="3"className={ SubjectRegistrationCSS.subjectTabletd}>
                                     <input 
                                         name='subjectDescription'
                                         placeholder='과목 설명'
@@ -122,8 +116,9 @@ function SubjectRegistration(){
                                 </td>
                             </tr>     
                             <tr>
-                                <td><label>과목 학습 목표</label></td>
-                                <td>
+                                <td className={ SubjectRegistrationCSS.subjectTableTd}>
+                                <label>과목 학습 목표</label></td>
+                                <td colSpan='4'className={ SubjectRegistrationCSS.subjectTabletd}>
                                     <textarea 
                                         className={ SubjectRegistrationCSS.textAreaStyle }
                                         name='subjectLearningObjectives'
@@ -135,6 +130,20 @@ function SubjectRegistration(){
                     </table>
                 </div>
             </div>
+            <div>
+                <button        
+                    onClick={ () => navigate(-1) 
+                    }        
+                    className={SubjectRegistrationCSS.btnCancle}      
+                >
+                    취소
+                </button>
+                <button    className={SubjectRegistrationCSS.btnRegist}     
+                    onClick={ onClickSubjectRegistrationHandler }             
+                >
+                    과목 등록
+                </button>
+            </div>        
         </div>
     );
 

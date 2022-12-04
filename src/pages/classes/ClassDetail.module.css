@@ -5,30 +5,11 @@
 }
 
 .DetailDiv div{
-    width: 550px;
-    height: 350px;
-}
-
-.imgDiv{
-    display: flex;    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
     width: 100%;
+    height: 350px;
+
 }
 
-.imgDiv img {
-    margin: 5px;
-    width: 70%;
-    height: 50%;
-}
-
-.imgDiv button {
-    margin: 5px;
-    height: 8%;
-    width: 80%;
-}
 
 .descriptionDiv{
     display: flex;    
@@ -42,4 +23,45 @@
 .descriptionTable{ 
     width: 100%;
     height: 100%;
+    border-spacing: 30px;
 }
+
+
+.memberTableTd{
+    width: 10%;
+    background-color: #FBF6FB;
+    border-radius: 0px;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.memberTabletd{
+    width: 10%;
+    background-color: #DDE7FF;
+    border-radius: 0px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* 
+.imgDiv{
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+} */
+
+.img {
+    margin: 5px;
+    width: 10%;
+    height: 50%;
+}
+
+/* .imgDiv button {
+    margin: 5px;
+    height: 8%;
+    width: 40%;
+} */

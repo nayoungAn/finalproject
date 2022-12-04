@@ -47,6 +47,7 @@ function ClassHistory() {
       <div className={ClassHistoryCSS.main}>
         <div className={ClassHistoryCSS.item1}>
           <h3>수강 관리</h3>
+          
           <input
             className={ClassHistoryCSS.InputStyle}
             type="text"
@@ -57,7 +58,12 @@ function ClassHistory() {
 
           
           <div>
-          <h4>이름 Id</h4>
+            <ul className={ ClassHistoryCSS.name }>
+            
+            <h5>이름</h5>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <h5>Id</h5>
+            </ul>
+
             {Array.isArray(classHistory) &&
               classHistory.map((member) => (
                 <ClassHistoryItem key={member.memberCode} member={member} />
@@ -74,7 +80,7 @@ function ClassHistory() {
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                // className={ SubjectManagementCSS.pagingBtn }
+                 className={ ClassHistoryCSS.pagingBtn }
               >
                 &lt;
               </button>
@@ -83,9 +89,10 @@ function ClassHistory() {
               <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
                   style={
-                    currentPage === num ? { backgroundColor: "orange" } : null
-                  }
-                  // className={ SubjectManagementCSS.pagingBtn }
+                    currentPage === num ? 
+                    { color : '#2F65EB', textDecoration : 'underline'} : null}
+                    className={ ClassHistoryCSS.pagingBtn }
+
                 >
                   {num}
                 </button>
@@ -93,7 +100,7 @@ function ClassHistory() {
             ))}
             {Array.isArray(classHistory) && (
               <button
-                // className={ SubjectManagementCSS.pagingBtn }
+                 className={ ClassHistoryCSS.pagingBtn }
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={
                   currentPage === pageInfo.maxPage || pageInfo.endPage === 1

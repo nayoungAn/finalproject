@@ -43,7 +43,7 @@ import AttendUpdate from "./pages/attend/AttendUpdate";
 import QnaDetail from "./pages/consultant/QnaDetail";
 import QnaRegistaration from "./pages/consultant/QnaRegistration";
 import QnaReDetail from "./pages/consultant/QnaReDetail";
-
+import ClassSearch from "./pages/classes/ClassSearch";
 function App() {
   return (
     <BrowserRouter>
@@ -71,6 +71,7 @@ function App() {
               <Route path="subject-registration" element={ <SubjectRegistration/> }/>
               <Route path="subject-update/:subjectCode" element={ <SubjectUpdate/> }/>
               <Route path="classes" element={ <ClassManagement/> }/>
+              <Route path="classes/search" element={ <ClassSearch/>} />
               <Route path="class-registration" element={ <ClassRegistration/> }/>
               <Route path="class-update/:classCode" element={ <ClassUpdate/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>

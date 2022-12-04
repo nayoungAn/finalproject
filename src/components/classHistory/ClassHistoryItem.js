@@ -1,5 +1,4 @@
 // import ProductCSS from './Product.module.css';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import ClassHistoryItemCSS from './ClassHistoryItem.module.css';
 import { callStudentManagerDetailForAdminAPI } from '../../api/StudentManagerDetailAPICall';
@@ -13,7 +12,6 @@ function ClassHistoryItem({ member : {memberCode,memberName, memberId}}) {
     
 
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     
@@ -34,11 +32,9 @@ function ClassHistoryItem({ member : {memberCode,memberName, memberId}}) {
         <div className = {ClassHistoryItemCSS.NavbarDiv}
         onClick={ () => onClickClassHistoryHandler(memberCode)} >
                  <ul className={ ClassHistoryItemCSS.NavlistUl }>
-                    
-            {/* // className={ ProductCSS.productDiv } */}
-        
-            <h5>{ memberName }         { memberId }</h5>
-            <h5></h5>
+            
+            <h5>{ memberName }</h5>&emsp;&emsp;
+            <h5> { memberId }</h5>
             </ul>
         </div>
     );

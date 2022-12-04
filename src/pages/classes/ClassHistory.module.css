@@ -3,14 +3,35 @@
     margin:0;
     box-sizing: border-box;
     }
-    .InputStyle {
-      width: 200px;
-      height: 25px;    
-      margin-left: 15px;
-      margin-right: 15px;
-      border-radius: 20px;
-      text-indent: 1em;
-}    
+    
+.InputStyle {
+  width: 200px;
+  height: 25px;    
+  margin-left: 20px;
+  margin-right: 15px;
+  margin-top:5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-color: white;
+  text-indent: 1em;
+  background-color: rgb(230, 230, 230);
+
+  border: 0;
+  outline: 0;
+
+}  
+
+.name{
+  margin-left: 20px;
+  margin-top: 20px;
+  border-top: 2px solid rgba(60, 63, 212, 0.945);
+  border-bottom: 2px solid rgba(60, 63, 212, 0.945);
+
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
     .main {
         width: 100%;
         height: 100%;
@@ -23,14 +44,19 @@
     }
     
     .item1 {
+      width:20%;
        height: 90%;
-        flex: 1;
+       margin-left:50px;
+       padding-right: 30px;
+      border-right: 1px solid rgba(191, 191, 192, 0.945);
+
         /* background-color:rgb(59, 85, 233) */
       }
 
     .submain {
       width: 80%;
       height: 90%;
+      margin-left:50px;
         flex-direction: column;
         align-items: center;
         overflow: auto;
@@ -49,3 +75,34 @@
 
         box-sizing: border-box;
       }
+
+      .pagingBtn{
+        margin: 5px;
+        border-radius: 25px;
+        border: 0;
+        outline: 0;
+        background-color: white;
+        font-weight: bold;
+        color:rgb(112, 112, 112);
+    }
+    
+    .pagingBtn:hover{
+        cursor: pointer;
+        background-color:  rgba(60, 63, 212, 0.945);
+    }
+    
+    .buttonDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .buttonDiv button {
+        width: 100px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: 25px;
+        height: 30px;
+        border-radius: 25px;
+        background-color: white;
+        font-weight: bold;
+    }
