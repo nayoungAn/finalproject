@@ -1,14 +1,15 @@
 .qnaDetailtableDiv {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    width: 850px;
-    margin: 10px;
+    width: 730px;
+    height: 800px;
+    background-color: #F6F9FF;
+    margin-left: 5px;
 }
 
 .qnaDetailtableCss{
-    width: 80%;
+    width: 90%;
     border-collapse: collapse;
     table-layout: fixed;
 }
@@ -21,22 +22,57 @@
     table-layout:fixed;
 }
 
+.qnaText{
+    background-color:#d7e4fe;
+    width: 100px;
+    height: 50px;
+}
+
+
 .contentTextArea{
     width: 90%;
     height: 250px;
     resize: none;
+    border: none;
 }
 
 .qnaDetailInput{
-    width: 87%;
+    border: none;
+    
 }
 
-.backBtn {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 250px;
-    border-radius: 25px;
-    background-color: white;
-    font-weight: bold;
+
+.qnaTableDiv{
+    width: 600px;
+    height: 700px;
+    display: flex;
+    margin-top: 50px;
+    background-color: #ffffff;
+    border-radius:10px;
+    box-shadow: 5px 5px 5px 5px rgba(34, 36, 38, 0.15);
+
+}
+
+.QnaBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    margin-left: 625px;
+    font-weight: bold;  
+}
+
+.QnaBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.QnaBtn:active{
+    position:relative;
+	top:1px;
 }

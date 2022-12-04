@@ -72,7 +72,6 @@ function Teacherclass() {
                             <td>{c.classEndDate}</td>
                             <td>{c.classStatus}</td>
                             <td>{c.member.memberName}</td>
-
                         </tr>
                     ))
                     }

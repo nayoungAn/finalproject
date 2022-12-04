@@ -1,9 +1,12 @@
-.bodyDiv{
+.StudentInfo{
+    width: 900px;
+}
+
+/* .bodyDiv{
     display: flex;
     flex-direction: column;
     margin-top: 15px;
     height: 100%;
-    
 }
 
 .buttonDiv{
@@ -13,34 +16,26 @@
 }
 .buttonDiv button {
     width: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-right: 25px;
     height: 30px;
     border-radius: 25px;
     background-color: white;
     font-weight: bold;
-}
+} */
 
-.classtable{
-    width: 730px;
+.StudentInfo{
+    width: 900px;
     text-align: center;
     border-style:none;
     border-collapse: collapse;
-   
     
 }
 
+ 
 
-.classtable th{
-    border-bottom: 3px solid #9fb2e7;
-    background-color: #F6F9FF;
-  
-} 
 
-.classtable td{
-    border-bottom: 0.5px solid gainsboro ;
-    cursor: pointer;
-
-}
 
 .teacherTable tr:hover { 
     background-color: #F5F5F5; 
@@ -64,4 +59,15 @@
     color: black;
     cursor: pointer;
    
+}
+
+.classhead th{
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
+  
+} 
+
+.memberinfo td{
+    border-bottom: 0.5px solid gainsboro ;
+
 }
