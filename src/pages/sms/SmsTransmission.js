@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { callSearchListForAdminAPI } from "../../api/SmsListAPICall";
+import { callSmsTransmissionAPI } from "../../api/SmsListAPICall";
 
 function SmsTransmission() {
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const sms = useSelector(state => state.smsListReducer);
+  const sms = useSelector((state) => state.smsListReducer);
   const [smsList, setSmsList] = useState(sms);
   console.log("smsTransmission", sms);
 
@@ -27,6 +28,18 @@ function SmsTransmission() {
     console.log("item = ", item);
   };
 
+  /* 전송 버튼 클릭 이벤트 */
+  const onClickSmsTransmissionHandler = () => {
+
+    dispatch(callSmsTransmissionAPI({
+        //?
+    }));
+
+    alert('전송이 완료 되었습니다.');
+    navigate("/ono/sms/", { replace : true });
+
+}
+
   useEffect(() => {
     dispatch(callSearchListForAdminAPI(searchValue));
   }, [searchValue]);
@@ -35,8 +48,7 @@ function SmsTransmission() {
     setSmsList(sms);
   }, [sms]);
 
-  useEffect(() => {
-  }, [checkedItemList]);
+  useEffect(() => {}, [checkedItemList]);
 
   return (
     <section className={SmsTransmissionCSS.container}>
@@ -90,12 +102,13 @@ function SmsTransmission() {
             <h4>발신번호</h4>
             <div>010-0000-0000</div>
           </div> */}
-        <div className={SmsTransmissionCSS.searchResult2}>
-          내용을 입력하세요
-        </div>
-
-        <div className={SmsTransmissionCSS.div2}>
-          <button type="submit">전송</button>
+        <div className={SmsTransmissionCSS.searchResult3}>
+          <div className={SmsTransmissionCSS.searchResult2}>
+            내용을 입력하세요
+          </div>
+          <div className={SmsTransmissionCSS.div2}>
+            <button onClick={ onClickSmsTransmissionHandler }>전송</button>
+          </div>
         </div>
 
         {/* </div> */}
