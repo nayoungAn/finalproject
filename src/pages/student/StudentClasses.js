@@ -42,7 +42,7 @@ function Teacherclass() {
 
     return (
         <>
-        <div> <h3>내 강의 조회</h3></div>
+        <div> <h3>내 강의 </h3></div>
 
         <div>
             

@@ -24,6 +24,10 @@
     width: 900px;
     margin : 10px;
 }
+.teacherTable th{
+    border-bottom: 1px solid #1c4bcc;
+    border-collapse: collapse;
+} 
 
 .teacherTable tr:hover { 
     background-color: #F5F5F5; 

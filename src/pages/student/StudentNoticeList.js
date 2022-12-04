@@ -55,6 +55,7 @@ function StudentNoticeList() {
 
     return (
         <>
+        <div> <h3>공지사항 </h3></div>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
             <div>
             <input

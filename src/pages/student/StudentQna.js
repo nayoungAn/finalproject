@@ -16,9 +16,7 @@ function StudentQna() {
     const qna = useSelector(state => state.studentQnaReducer);
     const qnaList = qna.data;
     const pageInfo = qna.pageInfo;
-    //const { searchValue } = useLocation();
     const [searchvalue, searchsetvalue] = useState('');
-    //const { value } = queryString.parse(searchvalue);
     console.log('value', searchvalue);
     console.log('subjectManagement', qnaList);
    
@@ -45,6 +43,11 @@ function StudentQna() {
         navigate(`/ono/student/studentQnadetail/${mtmCode}`, { replace : false });
     }
 
+    const onClickReTableTr = (mtmCode) => {
+        navigate(`/ono/student/studentReQnadetail/${mtmCode}`, { replace : false });
+    }
+
+
 
     const onClickQnaInsert = () => {
         console.log('[SubjectManagement] onClickSubjectInsert');
@@ -59,13 +62,10 @@ function StudentQna() {
     
     return(
         <>  
+            <div> <h3>1:1 상담 </h3></div>
             <div className={ StudentQnaCSS.qnaTableDiv }>
             <div>
-                <button
-                    onClick={ onClickQnaInsert }
-                >
-                    상담 등록
-                </button>
+               
                 <input
                     className={ HeaderCSS.InputStyle }
                     type="text"
@@ -95,6 +95,7 @@ function StudentQna() {
                         {
                             Array.isArray(qnaList) && qnaList.map(
                                 (qna) => (
+                                <>
                                     <tr
                                         key={ qna.mtmCode }
                                         onClick={ () => onClickTableTr(qna.mtmCode) }
@@ -105,12 +106,19 @@ function StudentQna() {
                                         <td>{ qna.mtmTitle }</td>
                                         <td>{ qna.member.memberName }</td>
                                         <td>{ qna.mtmDate?.split("T",1) }</td>
-                                        <td>{ qna.reList?.reCode }</td>
-                                        <td>{ qna.reList?.reTitle }</td>
-                                        <td>{ qna.reList?.member?.memberName }</td>
-                                        <td>{ qna.reList?.reDate.split(" 00:00:00",1)}</td>
+                                     
                                     </tr>
-                                    
+                                        <tr 
+                                        key={ qna?.reList?.reCode }
+                                        onClick={ () => onClickReTableTr(qna?.reList?.reCode)}>
+                                        <td>{ qna?.reList?.reCode }</td>
+                                        <td>{ qna.classes.className }</td>
+                                        <td>{ qna?.reList?.reTitle }</td>
+                                        <td>{ qna?.reList?.member.memberName }</td>
+                                        <td>{ qna?.reList?.reDate.split(" 00:00:00",1) }</td>
+                                       
+                                 </tr>
+                                 </>    
                                 )
 
                             )
@@ -121,8 +129,16 @@ function StudentQna() {
                         
                     </tbody>
                 </table>
+                <button
+                    onClick={ onClickQnaInsert }
+                >
+                    상담 등록
+                </button>
+                
             </div>
+            
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center"}}>
+                
                 {
                     Array.isArray(qnaList) &&
                     <button

@@ -59,27 +59,43 @@ function StudentClassesDetail(){
                 <td className={StudentClassesDetailCSS.note}>{classesDetail.subject.subjectDescription}</td>
             )}
             </div>
-
             <div>
-                <tr>
-                <th>자료목록</th>
-               
-                </tr>
-                <tr>
-                    <td>No.</td>
-                    <td>파일명</td>
-                    <td>첨부일자</td>
-                </tr>
-            </div>
-
+                <table className={ StudentClassesDetailCSS.studentClassTable }>
+                <colgroup>
+                    <col width="35%" />
+                    <col width="35%" />
+                    
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>요일</th>
+                        <th>시간</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <td>
+                            {classesDetail.classesScheduleList?.map((d) => d.dayName + " \n" )}
+                        </td>
+                        <td>{classesDetail.classesScheduleList?.map((t) => t.timeName + " \n") }</td>
+                </tbody>    
+                                    
+            </table>
                 </div>
 
-          
 
+                </div>
             </form>
+            
+            
+            <button
+                    
+                    onClick={ () => navigate(-1) }
+                >
+                    돌아가기
+                </button>
 
-           
-
+    
+          
         </>
     );
 

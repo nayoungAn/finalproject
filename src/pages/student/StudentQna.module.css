@@ -14,14 +14,19 @@
     table-layout: fixed;
 }
 
-.QnaTableCss th, td {
+.QnaTableCss  td {
     padding: 10px;
     height: 10px;
     text-align: center;
     word-break:break-all;
     table-layout:fixed;
+    
 }
 
+.qnaTableCss th{
+    border-bottom: 1px solid #1c4bcc;
+    border-collapse: collapse;
+} 
 .QnaTableCss tr:hover { 
     background-color: #F5F5F5; 
 }

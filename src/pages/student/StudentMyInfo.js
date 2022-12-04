@@ -113,6 +113,7 @@ function StudentMyInfo() {
 
     return (
         <>
+             <div> <h3>내 정보 </h3></div>
             <div>
             <div className={ StudentMyInfoCSS.subjectSection }>
                 <div className={ StudentMyInfoCSS.subjectInfoDiv }>
@@ -329,6 +330,12 @@ function StudentMyInfo() {
                     저장하기
                 </button>
             }
+             <button
+                           
+                onClick={ () => navigate(-1) }
+            >
+                돌아가기
+            </button>
             </div>        
         </div>
     </>
