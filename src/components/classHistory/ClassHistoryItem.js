@@ -33,7 +33,7 @@ function ClassHistoryItem({ member : {memberCode,memberName, memberId}}) {
         onClick={ () => onClickClassHistoryHandler(memberCode)} >
                  <ul className={ ClassHistoryItemCSS.NavlistUl }>
             
-            <h5>{ memberName }</h5>&emsp;&emsp;
+            <h5>{ memberName }</h5>&emsp;
             <h5> { memberId }</h5>
             </ul>
         </div>

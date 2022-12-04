@@ -1,12 +1,14 @@
 import SubjectRegistrationCSS from './SubjectRegistration.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { callSubjectRegistAPI } from '../../api/SubjectAPICalls';
 
 
 function SubjectRegistration(){
 
+    const subjects  = useSelector(state => state.subjectListReducer); 
+  
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [form, setForm] = useState({
@@ -41,13 +43,13 @@ function SubjectRegistration(){
         dispatch(callSubjectRegistAPI({
             form : formData
         }));
-
+        
         alert('과목이 등록되었습니다.');
         navigate("/ono/OpenClasses/subjects", { replace : true });
         // window.location.reload()
 
     }
-
+    console.log(subjects);  
     return (
         <div>
           <h2> 과목 등록</h2>

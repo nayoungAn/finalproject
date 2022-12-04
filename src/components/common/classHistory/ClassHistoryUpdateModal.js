@@ -1,5 +1,4 @@
 import ClassHistoryCSS from "./ClassHistoryModal.module.css";
-import ClassRegistrationCSS from "../../../pages/classes/ClassRegistration.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callClassHistoryUpdateAPI, callClassHistoryDetailAPI} from "../../../api/ClassHistoryAPICalls";
@@ -71,19 +70,20 @@ function ClassHistoryUpdateModal({ setClassHistoryUpdateModal, classHistoryCode,
 return (
     <div className={ClassHistoryCSS.modal}>
       <div className={ClassHistoryCSS.modalContainer}>
-        <div className={ClassHistoryCSS.loginModalDiv}>
+        <div className={ClassHistoryCSS.loginModal2Div}>
             {classList && classHistoryLists && (
           <table>
             {Array.isArray(classList) && (
               <tbody>
                 <tr>
-                  <td><label>강의명</label></td>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
+                  <label>강의명</label></td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <select
                       id="classList"
                       name='classCode'
                       placeholder='강의명'
-                      className={ClassRegistrationCSS.classInfoInput}
+                      className={ClassHistoryCSS.classInfoInput}
                       onChange={onChangeHandler}
                       value={form.classCode}
                     >
@@ -97,43 +97,43 @@ return (
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label> 과목명</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <input
                       name="subjectName"
                       placeholder="과목명"
-                      className={ClassRegistrationCSS.classInfoInput}
+                      className={ClassHistoryCSS.classInfoInput}
                       value={arr?.subject.subjectName || ''}
                       readOnly={true}
                     />
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수강 정원</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <input
                       name="classQuota"
                       placeholder="수강 정원"
-                      className={ClassRegistrationCSS.classInfoInput}
+                      className={ClassHistoryCSS.classInfoInput}
                       value={ctr|| ''}
                       readOnly = {true}
                     />
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수업일</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <label>
                       <input
                         name="classStartDate"
                         placeholder="2022-10-15"
-                        className={ClassRegistrationCSS.classInfoInput}
+                        className={ClassHistoryCSS.classInfoInput}
                         value={str || ''}
                         readOnly = {true}
                       />
@@ -141,15 +141,15 @@ return (
                   </td>
                   </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수업료</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <label>
                       <input
                         name="classPrice"
                         placeholder="800000"
-                        className={ClassRegistrationCSS.classInfoInput}
+                        className={ClassHistoryCSS.classInfoInput}
                         value={arr?.classPrice || ''}
                         readOnly = {true}
                       />
@@ -157,15 +157,15 @@ return (
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수강 시작일</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}> 
                     <label>
                       <input
                         name="startDate"
                         placeholder="2022-10-15"
-                        className={ClassRegistrationCSS.classInfoInput}
+                        className={ClassHistoryCSS.classInfoInput}
                         onChange={onChangeHandler}
                         value={form.startDate.split('T',1)}
                       />
@@ -173,13 +173,13 @@ return (
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수강 상태</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <select
                       name='classStatus'
-                      className={ClassRegistrationCSS.classInfoInput}
+                      className={ClassHistoryCSS.classInfoInput}
                       onChange={onChangeHandler}
                       value={form.classStatus}
                     >
@@ -195,23 +195,12 @@ return (
           </table>
           
           )}
-            <button  style={{
-                    border: "none",
-                    margin: 0,
-                    fontSize: "20px",
-                    height: "10px",
-                    color: "black"
-                  }}
-                  onClick={onClickUpdateHandler}>수정</button>
+            <button  
+                  onClick={onClickUpdateHandler}
+                  className={ClassHistoryCSS.btnRegist}>수정</button>
                 <button
-                  style={{
-                    border: "none",
-                    margin: 0,
-                    fontSize: "20px",
-                    height: "10px",
-                    color: "black"
-                  }}
                   onClick={() => setClassHistoryUpdateModal(false)}
+                  className={ClassHistoryCSS.btnCancle}
                 >
                   돌아가기
                 </button>

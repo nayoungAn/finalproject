@@ -9,18 +9,20 @@
     justify-content: center;
     align-items: center;
     z-index: 100;
+    
 }
 
 
 .modalContainer{
     position: absolute;
     width: 500px;
-    height: 500px;
+    height: 600px;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);    
     z-index: 500;
+
 }
 
 .loginModalDiv{    
@@ -31,10 +33,31 @@
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 0;
+    padding: 30px;
+    border-spacing: 5px;
     background-color: rgb(117, 124, 224);
     border: solid 1px black;
     border-radius: 25px;    
+    border-spacing: 10px;
+
+
+}
+
+
+.loginModal2Div{    
+    height: 550px;
+    width: 500px;
+    flex-wrap: wrap;
+    flex-direction: column; /*수평 정렬*/
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 30px;
+    border-spacing: 5px;
+    background-color: rgb(117, 124, 224);
+    border: solid 1px black;
+    border-radius: 25px;    
+    border-spacing: 10px;
 }
 
 .loginModalDiv input {
@@ -42,7 +65,7 @@
     margin-bottom: 5px;
     height: 30px;
     width: 250px;
-    border-radius: 25px;
+    border-radius: 10px;
     text-indent: 10px;
 }
 
@@ -56,3 +79,70 @@
     font-weight: bold;
 }
 
+
+.loginModal2Div input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
+.loginModal2Div button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 250px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.classInfoInput {    
+    width: 90%;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    background-color: white;
+    text-indent: 0.5em;
+    height:100%;
+}
+
+
+.ModalTd{
+    width: 30%;
+    background-color: #DDE7FF;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 20px;
+    border-top: 3px solid rgb(117, 124, 224);
+    border-bottom: 3px solid rgb(117, 124, 224);
+}
+
+.Modaltd{
+    width: 20%;
+    background-color: rgb(117, 124, 224);
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.btnRegist{
+  
+        border: none;
+        margin: 0;
+        font-size: 20px;
+        height: 10px;
+        color: black;
+}
+
+.btnCancle{
+    border: none;
+    margin: 0;
+    font-size: 20px;
+    height: 10px;
+    color: black;
+
+}

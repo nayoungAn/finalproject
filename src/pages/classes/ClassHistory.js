@@ -60,7 +60,7 @@ function ClassHistory() {
           <div>
             <ul className={ ClassHistoryCSS.name }>
             
-            <h5>이름</h5>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <h5>이름</h5>&emsp;
             <h5>Id</h5>
             </ul>
 
@@ -113,15 +113,18 @@ function ClassHistory() {
         </div>
         <div className={ClassHistoryCSS.submain}>
           <div className={ClassHistoryCSS.item2}>
-            <h4>원생 정보</h4>
+            <h2>원생 정보</h2>
             <ClassDetail />
           </div>
+          <button 
+            onClick={ () =>   setClassHistoryRegistModal(true)}
+            className={ClassHistoryCSS.btnRegist}
+            >수강 등록
+            </button>
           { classHistoryRegistModal ? <ClassHistoryRegistModal setClassHistoryRegistModal={ setClassHistoryRegistModal }/> : null }     
           <div className={ClassHistoryCSS.item3}>
-            <h4>수강 목록</h4>
-            <button onClick={ () =>   setClassHistoryRegistModal(true)}>수강 등록</button>
             <ClassHistoryList />
-            
+          
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ function ClassDetail() {
     const member = useSelector(state => state.studentManagerDetailReducer);
 
     console.log(member)
+    console.log(member.memberImageUrl)
     return (
         <> 
 
@@ -20,7 +21,8 @@ function ClassDetail() {
                        
                             <tr>
                                 <td rowSpan='5' className={ClassDetailCSS.img}>
-                                <img src={ member.memberImageUrl } alt="이미지"/></td>
+                                <img className={ClassDetailCSS.imgSize}
+                                src={ member.memberImageUrl} alt="이미지"/></td>
                                 <td className={ClassDetailCSS.memberTabletd}>이름 </td>
                                 <td className={ClassDetailCSS.memberTableTd}>{ member.memberName || '홍길동' }</td>                        
                                 <td className={ClassDetailCSS.memberTabletd}>아이디</td>
@@ -63,7 +65,7 @@ function ClassDetail() {
                             </tr>
                             <tr>
                             <td className={ClassDetailCSS.memberTabletd}>주소</td>
-                            <td className={ClassDetailCSS.memberTableTd}>
+                            <td colSpan="2" className={ClassDetailCSS.memberTableTd}>
                             { member.address || '서울시 종로구'}</td>
                             </tr>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import StudentManagerDetailCSS from './StudentManagerDetail.module.css';
+import ClassHistoryListCSS from './ClassHistory.module.css';
 import { callStudentManagerDetailForAdminAPI} from '../../api/StudentManagerDetailAPICall';
 import ClassHistoryUpdateModal from "../../components/common/classHistory/ClassHistoryUpdateModal";
 import uuid from 'react-uuid';
@@ -38,20 +38,21 @@ function ClassHistoryList() {
         startDate = { startDate }
         setClassHistoryUpdateModal={ setClassHistoryUpdateModal }/> : null }    
             <div>
-            <div className={ StudentManagerDetailCSS.subjectSection }>
-               
-                <div>
-                <table width="100%">
+            <div className={ ClassHistoryListCSS.classHistorySection }>         
+                <div>       
+                 <h3 className={ ClassHistoryListCSS.classHistoryname}>수강 목록</h3>
+                <table className={ClassHistoryListCSS.ClassHistoryTable} width="100%">
                 <colgroup>
-                    <col width="40%" />
+                    <col width="5%" />
+                    <col width="25%" />
+                    <col width="15%" />
+                    <col width="15%" />
                     <col width="10%" />
-                    <col width="20%" />
-                    <col width="20%" />
                     <col width="10%" />
-                    <col width="30%" />
                 </colgroup>
-                <thead>
+                <thead >
                     <tr>
+                        <th >No</th>
                         <th>강의명</th>
                         <th>강사명</th>
                         <th>강의실</th>
@@ -61,17 +62,18 @@ function ClassHistoryList() {
                     </tr>
                 </thead>
                 <tbody>
-                    { Array.isArray(studentDetail.lectureList) && studentDetail.lectureList.map((m) => (
+                    { Array.isArray(studentDetail.lectureList) && studentDetail.lectureList.map((m,index) => (
                         <tr key={uuid()}>
+                            <td>{index + 1}</td>
                             <td>{ m.openClasses.className }</td>
                             <td>{ m.openClasses.member.memberName }</td>
                             <td>{ m.openClasses.classRoom }</td>
                             <td>{ m.startDate.split('T',1)}</td>
                             <td>{ m.openClasses.classPrice}</td>
                             <td>{ m.classStatus}</td>
-                            <td>{m.classHistoryCode}</td>
-                        <td><button onClick={() => {onClickUpdateHandler(m.classHistoryCode,
-                           m.openClasses.classCode, m.classStatus,  m.startDate)}}>수정</button></td>
+                        <button onClick={() => {onClickUpdateHandler(m.classHistoryCode,
+                           m.openClasses.classCode, m.classStatus,  m.startDate)}}
+                           className={ClassHistoryListCSS.btnModify}>수정</button>
                         </tr>
                     )) 
                     }

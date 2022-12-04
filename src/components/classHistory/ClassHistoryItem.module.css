@@ -3,6 +3,9 @@
    
 }
 
+h5{
+    min-width: 100px;
+}
 .NavlistUl {
     display: flex;
     align-items: center;
@@ -14,19 +17,21 @@
     margin-top: 20px;
     margin-bottom: 20px;
     margin-right:10px;
+  
     border-bottom: solid 1px rgb(178, 179, 184);
 }
 
 .NavlistUl li {
-    min-width: 100px;
+    min-width: 150px;
     height: auto;
     text-align: left;
 }
 
-.NavlistUl li:hover, .NavlistUl li:focus, .NavlistUl li:active{
+.NavlistUl:hover, .NavlistUl:focus, .NavlistUl:active{
     text-decoration: none;
     color: rgb(73, 106, 212);
     font-weight: bold;
+    cursor: pointer;
 }
 
 a {

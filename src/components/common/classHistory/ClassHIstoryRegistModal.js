@@ -1,5 +1,4 @@
 import ClassHistoryCSS from "./ClassHistoryModal.module.css";
-import ClassRegistrationCSS from "../../../pages/classes/ClassRegistration.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callClassHistoryRegistAPI } from "../../../api/ClassHistoryAPICalls";
@@ -75,14 +74,16 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
             {Array.isArray(classList) && (
               <tbody>
                 <tr>
-                  <td><label>강의명</label></td>
-                  <td>
+                  <td  className={ClassHistoryCSS.ModalTd}>
+                  <label>강의명</label></td>
+                  <td  className={ClassHistoryCSS.Modaltd}>
                     <select
                       id="classList"
                       name='classCode'
                       placeholder='강의명'
-                      className={ClassRegistrationCSS.classInfoInput}
+                      className={ClassHistoryCSS.classInfoInput}
                       onChange={onChangeHandler}
+                      
                     >
                       <option>강의명</option>
                       {classList.map((item, idx) => (
@@ -94,43 +95,43 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label> 과목명</label>
-                  </td>
-                  <td>
+                  </td >
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <input
                       name="subjectName"
                       placeholder="과목명"
-                      className={ClassRegistrationCSS.classInfoInput}
+                      className={ClassHistoryCSS.classInfoInput}
                       value={arr?.subject.subjectName || ''}
                       readOnly={true}
                     />
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수강 정원</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <input
                       name="classQuota"
                       placeholder="수강 정원"
-                      className={ClassRegistrationCSS.classInfoInput}
+                      className={ClassHistoryCSS.classInfoInput}
                       value={ctr|| ''}
                       readOnly = {true}
                     />
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수업일</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <label>
                       <input
                         name="classStartDate"
                         placeholder="2022-10-15"
-                        className={ClassRegistrationCSS.classInfoInput}
+                        className={ClassHistoryCSS.classInfoInput}
                       value={`${arr?.subject.subjectName || ''}`}
                         readOnly = {true}
                       />
@@ -138,15 +139,15 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                   </td>
                   </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수업료</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <label>
                       <input
                         name="classPrice"
                         placeholder="800000"
-                        className={ClassRegistrationCSS.classInfoInput}
+                        className={ClassHistoryCSS.classInfoInput}
                         value={arr?.classPrice || ''}
                         readOnly = {true}
                       />
@@ -154,15 +155,15 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={ClassHistoryCSS.ModalTd}>
                     <label>수강 시작일</label>
                   </td>
-                  <td>
+                  <td className={ClassHistoryCSS.Modaltd}>
                     <label>
                       <input
                         name="startDate"
                         placeholder="2022-10-15"
-                        className={ClassRegistrationCSS.classInfoInput}
+                        className={ClassHistoryCSS.classInfoInput}
                         onChange={onChangeHandler}
                       />
                     </label>
@@ -174,23 +175,13 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
           </table>
           
           )}
-            <button  style={{
-                    border: "none",
-                    margin: 0,
-                    fontSize: "20px",
-                    height: "10px",
-                    color: "black"
-                  }}
-                  onClick={onClickRegistHandler}>등록</button>
+            <button  
+                  onClick={onClickRegistHandler}
+                  className={ClassHistoryCSS.btnRegist}>등록</button>
                 <button
-                  style={{
-                    border: "none",
-                    margin: 0,
-                    fontSize: "20px",
-                    height: "10px",
-                    color: "black"
-                  }}
+                 
                   onClick={() => setClassHistoryRegistModal(false)}
+                  className={ClassHistoryCSS.btnCancle}
                 >
                   돌아가기
                 </button>
