@@ -103,7 +103,7 @@ function StudentQnaDetail() {
            <div>
             <div className={ StudentQnaDtailCSS.subjectSection }>
                 <div className={ StudentQnaDtailCSS.subjectInfoDiv }>
-                    <table>
+                    <table className={ StudentQnaDtailCSS.contentsCategory }>
                         <tbody>
                             <tr>
                                 <td><label>번호</label></td>
@@ -184,31 +184,38 @@ function StudentQnaDetail() {
                     </table>
                 </div>
             </div>
-            <div>
+            <div className={StudentQnaDtailCSS.subjectButtonDiv}>
                 <button        
+                    className={StudentQnaDtailCSS.deleteBtn}
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기
                 </button>
             {!modifyMode &&
                 <button 
+                    className={StudentQnaDtailCSS.registBtn}
                     onClick={ onClickModifyModeHandler }
                 >
                     수정 모드
                 </button>
             }
+             {modifyMode &&
+            <button
+                    className={StudentQnaDtailCSS.deleteBtn}
+                    onClick={ onClickDeleteHandler }
+                >
+                    삭제
+                </button>  
+            } 
             {modifyMode &&
                 <button 
+                    className={StudentQnaDtailCSS.registBtn}
                     onClick={ onClickStudentQnaUpdateHandler }
                 >
                     저장하기
                 </button>
             }
-            <button
-                    onClick={ onClickDeleteHandler }
-                >
-                    삭제
-                </button>   
+           
             </div>        
         </div>
     </>

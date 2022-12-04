@@ -64,19 +64,21 @@ function StudentQna() {
         <>  
             <div> <h3>1:1 상담 </h3></div>
             <div className={ StudentQnaCSS.qnaTableDiv }>
-            <div>
-               
-                <input
-                    className={ HeaderCSS.InputStyle }
+            <div className={StudentQnaCSS.search}>
+            <input
+                    className={ StudentQnaCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ searchvalue }
                     onChange={ onSearchChangeHandler }
-                />
-            </div>            
+                    
+            />
+             <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+           
+            </div>
                 <table className={ StudentQnaCSS.qnaTableCss}>
                     <colgroup>
-                        <col width="3%" />
+                        <col width="5%" />
                         <col width="20%" />
                         <col width="40%" />
                         <col width="15%" />
@@ -130,6 +132,7 @@ function StudentQna() {
                     </tbody>
                 </table>
                 <button
+                    className={ StudentQnaCSS.registBtn}
                     onClick={ onClickQnaInsert }
                 >
                     상담 등록

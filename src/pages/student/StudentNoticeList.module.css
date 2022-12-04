@@ -25,7 +25,8 @@
     margin : 10px;
 }
 .teacherTable th{
-    border-bottom: 1px solid #1c4bcc;
+    border-top: 3px solid #4D62CC;
+    border-bottom: 3px solid #4D62CC;
     border-collapse: collapse;
 } 
 

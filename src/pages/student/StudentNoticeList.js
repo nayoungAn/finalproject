@@ -75,7 +75,7 @@ function StudentNoticeList() {
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>번호</th>
+                        <th>No</th>
                         <th>제목</th>
                         <th>등록일</th>
                         <th>작성자</th>
