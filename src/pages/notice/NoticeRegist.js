@@ -8,7 +8,6 @@ function NoticeRegist() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const noticeDetail = useSelector(state => state.noticeReducer);
 
     const [form, setForm] = useState({
         noticeTitle : '',
@@ -20,7 +19,6 @@ function NoticeRegist() {
             ...form,
             [e.target.name] : e.target.value
         });
-        console.log(e.target.value);
     }
 
     /* 등록 버튼 */
@@ -30,8 +28,6 @@ function NoticeRegist() {
 
         formData.append("noticeTitle", form.noticeTitle);
         formData.append("noticeContent", form.noticeContent);
-        formData.append("noticeDate", form.noticeDate);
-        formData.append("memberName", form.memberName);
         
         dispatch(callNoticeRegistAPI({
             form : formData
@@ -44,7 +40,7 @@ function NoticeRegist() {
         <>
         <div>
         <div className={ NoticeDetailCSS.subjectSection }>
-            <div className={ NoticeDetailCSS.subjectInfoDiv }>
+            <div className={ NoticeDetailCSS.noticeInfoDiv }>
                 <table>
                     <tbody>
                         <tr>
@@ -55,7 +51,7 @@ function NoticeRegist() {
                                 <input 
                                     name='noticeTitle'
                                     placeholder='제목'
-                                    className={ NoticeDetailCSS.subjectInfoInput }
+                                    className={ NoticeDetailCSS.noticeInfoInput }
                                     onChange={ onChangeHandler }
                                     value={ (form.noticeTitle) || '' }
                                 />
@@ -69,7 +65,7 @@ function NoticeRegist() {
                                 <input 
                                     name='noticeContent'
                                     placeholder='내용'
-                                    className={ NoticeDetailCSS.subjectInfoInput }
+                                    className={ NoticeDetailCSS.noticeInfoInput }
                                     onChange={ onChangeHandler }
                                     value={ (form.noticeContent) || '' }
                                 />

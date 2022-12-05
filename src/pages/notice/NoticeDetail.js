@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { callNoticeDetailAPI } from '../../api/NoticeAPICalls';
 import { callNoticeUpdateAPI } from '../../api/NoticeAPICalls';
-import NoticeDetailCSS from './NoticeDetail.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
-import LoginModal from '../../components/common/LoginModal';
+import NoticeDetailCSS from './NoticeDetail.module.css';
 
 function NoticeDetail() {
 
@@ -19,6 +18,14 @@ function NoticeDetail() {
     /* 읽기모드와 수정모드를 구분 */
     const [modifyMode, setModifyMode] = useState(false);
 
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
+
     useEffect(
         () => {
             dispatch(callNoticeDetailAPI({
@@ -28,8 +35,6 @@ function NoticeDetail() {
         []
     );
 
-    console.log(noticeDetail);
-    
     /* 입력 양식의 값 변경될 때 */
     const onChangeHandler = (e) => {
         setForm({
@@ -72,22 +77,25 @@ function NoticeDetail() {
         <>
             <div>
             <div className={ NoticeDetailCSS.subjectSection }>
-                <div className={ NoticeDetailCSS.subjectInfoDiv }>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><label>번호</label></td>
-                                <td><label>제목</label></td>
-                                <td><label>작성일</label></td>
-                                <td><label>작성자</label></td>
+                <div className={ NoticeDetailCSS.noticeInfoDiv }>
+                    <table className={ NoticeDetailCSS.noticeTable}>
+                        <thead>
+                            <tr>    
+                                <th><label>번호</label></th>
+                                <th><label>제목</label></th>
+                                <th><label>작성일</label></th>
+                                <th><label>작성자</label></th>
                                 
                             </tr>    
+                        </thead>
+                        <tbody>
+                            
                             <tr>
                             <td>
                                     <input 
                                         name='noticeCode'
                                         placeholder='번호'
-                                        className={ NoticeDetailCSS.subjectInfoInput }
+                                        className={ NoticeDetailCSS.noticeInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (noticeDetail.noticeCode) || '' }
                                         readOnly={ true }
@@ -98,7 +106,7 @@ function NoticeDetail() {
                                     <input 
                                         name='noticeTitle'
                                         placeholder='제목'
-                                        className={ NoticeDetailCSS.subjectInfoInput }
+                                        className={ NoticeDetailCSS.noticeInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? noticeDetail.noticeTitle : form.noticeTitle) || '' }
                                         readOnly={ modifyMode ? false : true }
@@ -110,7 +118,7 @@ function NoticeDetail() {
                                         <input 
                                             name="noticeDate"  
                                             placeholder='작성일'
-                                            className={ NoticeDetailCSS.subjectInfoInput }
+                                            className={ NoticeDetailCSS.noticeInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (noticeDetail.noticeDate) || '' }
                                             readOnly={ true }
@@ -123,7 +131,7 @@ function NoticeDetail() {
                                         <input 
                                             name="memberName"  
                                             placeholder='작성자'
-                                            className={ NoticeDetailCSS.subjectInfoInput }
+                                            className={ NoticeDetailCSS.noticeInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (noticeDetail.member?.memberName) || '' }
                                             readOnly={ true }
@@ -133,15 +141,12 @@ function NoticeDetail() {
                                 </td>
                             </tr>    
                             <tr>
-                                <td colSpan={4}><label>내용</label></td>
-                            </tr>
-                            <tr>
                                 <td colSpan={4}>
                                     <label>
                                         <textarea
                                             name="noticeContent"  
                                             placeholder='내용'
-                                            className={ NoticeDetailCSS.subjectContentInput }
+                                            className={ NoticeDetailCSS.noticeContentInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? noticeDetail.noticeContent : form.noticeContent) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -156,25 +161,31 @@ function NoticeDetail() {
             </div>
             <div>
                 <button        
-                    onClick={ () => navigate(-1) }            
-                >
-                    돌아가기
+                            onClick={ () => navigate(-1) }            
+                        >
+                            돌아가기
                 </button>
-            {!modifyMode &&
-                <button 
-                    onClick={ onClickModifyModeHandler }
-                >
-                    수정 모드
-                </button>
+            </div>
+            { decoded === "ROLE_ADMIN" &&
+                <div>
+                    
+                    
+                {!modifyMode &&
+                    <button 
+                        onClick={ onClickModifyModeHandler }
+                    >
+                        수정 모드
+                    </button>
+                }
+                {modifyMode &&
+                    <button 
+                        onClick={ onClickSubjectUpdateHandler }
+                    >
+                        저장하기
+                    </button>
+                }
+                </div>        
             }
-            {modifyMode &&
-                <button 
-                    onClick={ onClickSubjectUpdateHandler }
-                >
-                    저장하기
-                </button>
-            }
-            </div>        
         </div>
     </>
     );
