@@ -3,49 +3,56 @@
     margin-right: 10%;
 }
 
-.studentClassTable td {
-    word-break:break-all;
-}
-
-.subjectSection{
+.studentSection{
     border: 1px solid black;
     display: flex;
     flex-direction: column;
 }
 
-.subjectInfoDiv{
+.studentInfoDiv{
     display: flex;
     width: 750px;
     
 }
 
-.subjectInfoDiv table {
+.studentInfoDiv table {
     width: 100%;
 }
 
-
-.studentInfoInput {    
-    width: 80%;
+.studentInfoInput {  
+    width : 80%;  
     margin: 0;
     padding: 0;
     border-radius: 5px;
     background-color: white;
     text-indent: 0.5em;
-    float: left;
+    
 }
 
-.memberImage{
+
+.studentImage{
     margin-top: 5px;
     width: 150px;
-    height: 150px;    
+    height: 150px;   
 }
 
-.memberImageButton{
+.studentImageDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+}
+
+.studentImageButton{
     margin-top: 5px;
     margin-bottom: 5px;
+    padding : 0px;
     height: 150px;
     width: 150px;
-    border-width: 0;
+    border : 0px;
+    border-radius: 0px;
     background-color: white;
-    color: white;
+    color : white;
 }
