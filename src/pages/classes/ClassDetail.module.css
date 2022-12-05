@@ -1,0 +1,74 @@
+.DetailDiv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+.DetailDiv div{
+    width: 100%;
+    height: 350px;
+
+}
+
+
+.descriptionDiv{
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.descriptionTable{ 
+    width: 100%;
+    height: 100%;
+    border-spacing: 30px;
+}
+
+
+.memberTableTd{
+    width: 10%;
+    background-color: #FBF6FB;
+    border-radius: 0px;
+ 
+    font-size: 15px;
+    border-radius: 5px;
+
+}
+
+.memberTabletd{
+    width: 10%;
+    background-color: #DDE7FF;
+    border-radius: 0px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+/* 
+.imgDiv{
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+} */
+
+.img {
+    margin: 5px;
+    width: 10%;
+    height: 30%;
+}
+
+.imgSize{
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+}
+
+/* .imgDiv button {
+    margin: 5px;
+    height: 8%;
+    width: 40%;
+} */

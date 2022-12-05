@@ -13,6 +13,7 @@ function NoticeList() {
     const [search, setSearch] = useState('');
     console.log('noticeList', noticeList);
 
+
     const pageInfo = notice.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,7 +24,7 @@ function NoticeList() {
             pageNumber.push(i);
         }
     }
-    // window.location.reload()
+    
     useEffect(
         () => {         
             dispatch(callNoticeListAPI({
@@ -45,20 +46,18 @@ function NoticeList() {
     }
 
     const onClickNoticeDelete = (noticeCode) => {
-        console.log('[SubjectManagement] onClickSubjectDelete');
+
         {
             dispatch(callNoticeDeleteAPI({
                 noticeCode : noticeCode
             }));
-            console.log("삭제");
+
             alert('공지사항이 삭제되었습니다.');
                 window.location.reload();
         }
     }
 
     const onClickTableTr = (e, noticeCode) => {
-
-        console.log(e.target.className);
         
         if(e.target.className !== "deleteBtn")
                 {
@@ -91,12 +90,13 @@ function NoticeList() {
             />
              <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
             </div>            
-            <table className={ NoticeListmoduleCSS.teacherTable }>
+            <table className={ NoticeListmoduleCSS.noticeTable }>
                 <colgroup>
                     <col width="5%" />
-                    <col width="55%" />
+                    <col width="40%" />
+                    <col width="25%" />
+                    <col width="20%" />
                     <col width="10%" />
-                    <col width="30%" />
                 </colgroup>
                 <thead>
                     <tr>
@@ -104,7 +104,7 @@ function NoticeList() {
                         <th>제목</th>
                         <th>등록일</th>
                         <th>작성자</th>
-                        
+                        <th>삭제</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -119,9 +119,9 @@ function NoticeList() {
                             <td>{ n.member.memberName }</td>
                             <td><button className="deleteBtn"
                   
-                >
-                    삭제
-                </button></td>
+                            >
+                                삭제
+                            </button></td>
                         </tr>
                     )) 
                     }
@@ -143,7 +143,7 @@ function NoticeList() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ? {Color : 'black' } : null}
                     className={ NoticeListmoduleCSS.pagingBtn }
                 >
                     {num}

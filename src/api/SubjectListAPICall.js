@@ -48,6 +48,30 @@ export const callSubjectListForAdminAPI = ({currentPage = 1}) => {
 
 }
 
+export const callSubjectListForAdminNoPagingAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/subjects-management-nopaging`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[SubjectAPIcalls] callSubjectListForAdminAPInopaging result : ', result);
+            dispatch({ type: GET_SUBJECTS, payload: result.data });
+        }
+    }
+
+}
+
 export const callSubjectDetailForAdminAPI = ({subjectCode}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/subjects-management/${subjectCode}`;
@@ -70,7 +94,6 @@ export const callSubjectDetailForAdminAPI = ({subjectCode}) => {
         }
     }
 }
-
 
 
 

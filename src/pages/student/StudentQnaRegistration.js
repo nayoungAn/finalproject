@@ -53,11 +53,13 @@ function StudentQnaRegistration() {
     }
 
     return(
-         
+        
         <div>
            
             <div className={ StudentQnaRegistrationCSS.qnaSection }>
+                <h3></h3>
                 <div className={ StudentQnaRegistrationCSS.qnaInfoDiv }>
+              
                     <table>
                     { Array.isArray(classes) && (
                         <tbody>
@@ -85,7 +87,7 @@ function StudentQnaRegistration() {
                                    <td>
                                        <input 
                                            name='mtmTitle'
-                                           placeholder='상담일'
+                                           placeholder='제목'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
                                       
@@ -95,9 +97,9 @@ function StudentQnaRegistration() {
                                <tr>
                                    <th>내용</th>
                                    <td>
-                                       <input 
+                                       <textarea 
                                            name='mtmDescription'
-                                           placeholder='이름'
+                                           placeholder='내용'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
                                         
@@ -111,7 +113,7 @@ function StudentQnaRegistration() {
                 </div>
                 
             </div>
-            <div>
+            <div className={StudentQnaDtailCSS.subjectButtonDiv}    >
                 <br></br>
                 <button
                      className={StudentQnaDtailCSS.deleteBtn}        

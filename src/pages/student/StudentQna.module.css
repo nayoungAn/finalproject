@@ -45,21 +45,16 @@
 
 .registBtn {
 
-    border:1px solid #2F65EB;
-    display:inline-block;
-    color:#ffffff;
-    font-family:arial;
-    font-size:13px;
-    font-weight:bold;
-    font-style:normal;
-    height:40px;
-    line-height:30px;
-    width:80px;
-    text-decoration:none;
-    text-align:center;
-    margin: 5px 5px 5px 5px;
-    background-color:#2F65EB;
-    border-radius: 5px;
+    width: 80px;
+    height: 40px;
+    margin-top: 20px;
+    margin-right:10px;
+    background-color:  #2f59ca;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: auto;  
+    font-weight: bold;
+    float:right;
 }
 
 .InputStyle {
