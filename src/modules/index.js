@@ -58,7 +58,6 @@ const rootReducer = combineReducers({
     studentInfoReducer,
     attachReducer
 
-
 });
 
 export default rootReducer;
