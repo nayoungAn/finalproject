@@ -1,4 +1,4 @@
-import { GET_SMS, PUT_SMS } from "../modules/SmsListModule";
+import { GET_SMS, POST_SMS } from "../modules/SmsListModule";
 
 // 조회
 export const callSearchListForAdminAPI = (search) => {
@@ -25,24 +25,30 @@ export const callSearchListForAdminAPI = (search) => {
 }
 
 // 전송?
-export const callSmsTransmissionAPI = () => {
+export const callSmsTransmissionAPI = ({memberList, msgContent}) => {
   const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/sms`;
-
+  console.log("memberList =", memberList);
+  console.log("msgContent =", msgContent)
   return async (dispatch, getState) => {
-
     const result = await fetch(requestURL, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "*/*",
         "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-      }
+      },
+      body: JSON.stringify(
+        {
+          memberList: memberList,
+          msgContent: msgContent
+        }
+      )
     })
-    .then((response) => response.json());
+  //   .then((response) => response.json());
 
-    if (result.status === 200) {
-      console.log('[SmsAPIcalls] callSmsTransmissionAPI result : ', result);
-      dispatch({ type: PUT_SMS, payload: result.data });
-    }
+  //   if (result.status === 200) {
+  //     console.log('[SmsAPIcalls] callSmsTransmissionAPI result : ', result);
+  //     dispatch({ type: POST_SMS, payload: result });
+  //   }
   }
 }

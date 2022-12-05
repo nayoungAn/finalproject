@@ -193,9 +193,8 @@ function StudentManagerRegist() {
                                         >
                                         <img 
                                             className={ StudentManagerRegistCSS.studentImage } 
-                                            src={ (imageUrl == null) ? 
-                                                (imageUrl == "http://localhost:8001/memberimgs/null") ?
-                                                process.env.PUBLIC_URL +'/logo/nopicture.png' : imageUrl : imageUrl } 
+                                            src={ (imageUrl == '') ? 
+                                                process.env.PUBLIC_URL +'/logo/nopicture.png' : imageUrl } 
                                             alt="preview"
                                         />
                                         </button>

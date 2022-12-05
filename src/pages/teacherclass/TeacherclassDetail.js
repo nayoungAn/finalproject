@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callteacherClasssDetailAPI } from "../../api/TeacherClassAPICall";
+
 import TeacherClassDetailCSS from "./TeacherclassDetail.module.css";
 
 
@@ -80,36 +81,42 @@ function TeacherclassDetail() {
                 )}
                 </div>
 
-                <div>
+                <div >
                     <tr>
                     <th>자료목록</th>
                     </tr>
 
-                    <tr>
-                        <td>No.</td>
-                        <td>파일명</td>
-                        <td>첨부일자</td>
-                    </tr>
 
-                    <div className={TeacherClassDetailCSS.List}> 
+                    <div className={TeacherClassDetailCSS.List}>
+                        <table className={TeacherClassDetailCSS.attachtable}>
+                            <tr>
+                                <td>No.</td>
+                                <td>파일명</td>
+                                <td>첨부일자</td>
+                            </tr>
+
+                   
                     {
                         Array.isArray(attachList) && attachList.map(
                            (attach) => (
                             <tr
-                            key={ attach.openClasses.classCode}
+                            key={ attach.openClasses.classCode }
                             >
                                 <td>{attach.attachCode}</td>
                                 <td>{attach.attachNote}</td>
                                 <td>{attach.attachDate}</td>
-
                             </tr>
                            ) )                        
-                     }
-                     </div>
+                    }
+
+                        </table>
+
                     
 
+                    </div>
 
-                </div>
+
+                    </div>
 
                     </div>
 

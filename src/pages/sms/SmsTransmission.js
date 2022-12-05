@@ -11,7 +11,12 @@ function SmsTransmission() {
   const dispatch = useDispatch();
   const sms = useSelector((state) => state.smsListReducer);
   const [smsList, setSmsList] = useState(sms);
-  console.log("smsTransmission", sms);
+  const [msgContent, setMsgContent] = useState();
+
+  const msgHandler = (e) => {
+    const {value} = e.target;
+    setMsgContent(value)
+  }
 
   const onClickSmsInsert = () => {
     navigate("/ono/sms", { replace: false });
@@ -22,18 +27,39 @@ function SmsTransmission() {
     const { value } = e.target;
     setSearchValue(value);
   };
-  let checkedItemList = [];
 
-  const checkHandler = (item) => {
-    console.log("item = ", item);
+  const checkHandler = (id) => {
+    const settedList = smsList.map((item) => {
+      if(item.memberCode === parseInt(id)){
+        const NList = {
+          ...item,
+          isChecked: !item.isChecked
+        }
+        console.log("NList =", NList)
+        return NList
+      } else {
+        return item
+      }
+    })
+    setSmsList(settedList);
   };
+
+  console.log("smsList = ",smsList)
 
   /* 전송 버튼 클릭 이벤트 */
   const onClickSmsTransmissionHandler = () => {
-
+    const putList = [];
+    smsList.map((item) => {
+      if(item.isChecked) {
+        putList.push(item)
+      } 
+    })
+    console.log("putList =",putList)
     dispatch(callSmsTransmissionAPI({
-        //?
-    }));
+        memberList: putList,
+        msgContent: msgContent
+      }
+    ));
 
     alert('전송이 완료 되었습니다.');
     navigate("/ono/sms/", { replace : true });
@@ -43,12 +69,6 @@ function SmsTransmission() {
   useEffect(() => {
     dispatch(callSearchListForAdminAPI(searchValue));
   }, [searchValue]);
-
-  useEffect(() => {
-    setSmsList(sms);
-  }, [sms]);
-
-  useEffect(() => {}, [checkedItemList]);
 
   return (
     <section className={SmsTransmissionCSS.container}>
@@ -76,18 +96,34 @@ function SmsTransmission() {
                 onChange={onSearchChangeHandler}
               ></input>
               {/* <button onClick={onClickSmsInsert}>확인</button> */}
-              {sms.map((item) => {
-                return (
-                  <div
-                    className={SmsTransmissionCSS.searchResult1}
-                    key={item.member.memberCode}
-                    isChecked={false}
-                    onClick={() => checkHandler(item)}
-                  >
-                    {item.member.memberName} {item.member.memberPhone}{" "}
-                    {item.openClasses.className}
-                  </div>
-                );
+              {smsList.map((item) => {
+                if(item.isChecked){
+                  return (
+                    <div
+                      className={SmsTransmissionCSS.searchResult1}
+                      key={item.memberCode}
+                      ischecked={item.isChecked}
+                      onClick={() => {checkHandler(item.memberCode)}}
+                      style={{backgroundColor: "#eee"}}
+                    >
+                      {item.memberName} {item.memberPhone}{" "}
+                      {item.className}
+                    </div>
+                  )
+                } else {
+                  return (
+                    <div
+                      className={SmsTransmissionCSS.searchResult1}
+                      key={item.memberCode}
+                      ischecked={item.isChecked}
+                      onClick={() => {checkHandler(item.memberCode)}}
+                      style={{backgroundColor: "transparent"}}
+                    >
+                      {item.memberName} {item.memberPhone}{" "}
+                      {item.className}
+                    </div>
+                  )
+                }
               })}
             </div>
           </div>
@@ -103,9 +139,8 @@ function SmsTransmission() {
             <div>010-0000-0000</div>
           </div> */}
         <div className={SmsTransmissionCSS.searchResult3}>
-          <div className={SmsTransmissionCSS.searchResult2}>
-            내용을 입력하세요
-          </div>
+          <textarea className={SmsTransmissionCSS.searchResult2} name={"messageContent"} value={msgContent} placeholder= "내용을 입력하세요." onChange={(e) => msgHandler(e)}>
+          </textarea>
           <div className={SmsTransmissionCSS.div2}>
             <button onClick={ onClickSmsTransmissionHandler }>전송</button>
           </div>

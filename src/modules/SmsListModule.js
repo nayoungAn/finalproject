@@ -5,20 +5,31 @@ const initialState = [];
 
 /* 액션 */
 export const GET_SMS = "sms/GET_SMS";
-export const PUT_SMS = 'sms/PUT_SMS';
+export const POST_SMS = 'sms/POST_SMS';
 
 const actions = createActions({
   [GET_SMS]: () => {},
-  [PUT_SMS]: () => {},
+  [POST_SMS]: () => {},
 });
 
 /* 리듀서 */
 const smsListReducer = handleActions(
   {
     [GET_SMS]: (state, { payload }) => {
-      return payload;
+      const settedList = [];
+      payload.map((item) => {
+        const list = {
+          memberCode: item.member.memberCode,
+          memberName: item.member.memberName,
+          memberPhone: item.member.memberPhone,
+          className: item.openClasses.className,
+          isChecked: false
+        }
+        settedList.push(list);
+      })
+      return settedList;
     },
-    [PUT_SMS] : (state, { payload }) => {
+    [POST_SMS] : (state, { payload }) => {
       return payload;
     },
   },

@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callQnaReDetailAPI, callQnaUpdateAPI,callQnaDeleteAPI } from "../../api/QnaAPICalls";
-import QnaRegistrationCSS from './QnaRegistration.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
-import QnaDetailCSS from "./QnaDetail";
+import QnaReDetailCSS from "./QnaReDetail.module.css";
 function QnaReDetail() {
     
     const dispatch = useDispatch();
@@ -58,8 +57,6 @@ function QnaReDetail() {
         dispatch(callQnaUpdateAPI({
             form : form
         }));
-        alert('답글이 수정 되었습니다.');  
-        navigate(-1);
        
     } 
 
@@ -70,8 +67,6 @@ function QnaReDetail() {
                 reCode: reCode
             }));
             
-            alert('답글이 삭제 되었습니다.');  
-            navigate(-1);
             
     }
     
@@ -82,69 +77,74 @@ function QnaReDetail() {
         <>
            
             { qnaDetail &&
-                <div className = { QnaDetailCSS.qnaDetailtableDiv }>
-                    <table className={ QnaDetailCSS.qnaDetailtableCss }>
+                  <div className = { QnaReDetailCSS.qnaDetailtableDiv }>
+                      <div className= { QnaReDetailCSS.qnaTableDiv}>
+                        <table className={ QnaReDetailCSS.qnaDetailtableCss }>
                         <colgroup>
                             <col width="20%" />
                             <col width="80%" />
                         </colgroup>
                         <tbody>
+                            <div className={QnaReDetailCSS.qnaInputDiv}>
                             <tr>
-                                <td>
-                                    <input 
-                                        className={ QnaDetailCSS.qnaDetailInput }
-                                        name= 'reTitle'
-                                        placeholder='제목'
-                                        readOnly={modifyMode ? false : true}
-                                        style={ !modifyMode ? { backgroundColor: 'white'} : null}
-                                        onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? qnaDetail.reTitle : form.reTitle) || ''}
-                                   />
-                                </td>
+                                    <td>
+                                        <input 
+                                            name= 'reCode'
+                                            placeholder='제목'
+                                            readOnly={modifyMode ? false : true}
+                                            onChange={ onChangeHandler }
+                                            value={ (!modifyMode ? qnaDetail.reCode : form.reCode) || ''}
+                                    />
+                                    </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <input 
-                                        className={ QnaDetailCSS.qnaDetailInput }
-                                        placeholder='작성자'
-                                        readOnly={true}
-                                        style={  { backgroundColor: 'white'} }
-                                        value={ qnaDetail && qnaDetail.member?.memberName || ''}
-                                   />
-                                </td>
+                                    <td>
+                                        <input 
+                                            name= 'reTitle'
+                                            placeholder='제목'
+                                            readOnly={modifyMode ? false : true}
+                                            onChange={ onChangeHandler }
+                                            value={ (!modifyMode ? qnaDetail.reTitle : form.reTitle) || ''}
+                                    />
+                                    </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <input 
-                                        className={ QnaDetailCSS.qnaDetailInput }
-                                        placeholder='작성일'
-                                        readOnly={true}
-                                        style={  { backgroundColor: 'white'} }
-                                        value={ qnaDetail && qnaDetail.reDate || ''}
-                                   />
-                                </td>
+                                    <td>
+                                        <input 
+                                            placeholder='작성자'
+                                            readOnly={true}
+                                            value={ qnaDetail && qnaDetail.member?.memberName || ''}
+                                    />
+                                    </td>
                             </tr>
                             <tr>
-                                 <td colSpan={2}>
-                                    <textarea
-                                        name='reContent'
-                                        className={ QnaDetailCSS.contentTextArea }
-                                        readOnly={modifyMode ? false : true}
-                                        style={ !modifyMode ? { backgroundColor: 'white'} : null}
-                                        onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? qnaDetail.reContent : form.reContent) || ''}
-                                    >                                    
-                                    </textarea>
-                                </td>
+                                    <td>
+                                        <input 
+                                            placeholder='작성일'
+                                            readOnly={true}
+                                            value={ qnaDetail && qnaDetail.reDate || ''}
+                                    />
+                                    </td>
                             </tr>
-                        </tbody> 
-                    </table>
+                             </div>
+                                   
+                                        <textarea
+                                            name='reContent'
+                                            readOnly={modifyMode ? false : true}
+                                            onChange={ onChangeHandler }
+                                            value={ (!modifyMode ? qnaDetail.reContent : form.reContent) || ''}
+                                        >                                    
+                                        </textarea>
+                                   
+                            </tbody> 
+                        </table>
+                    </div>
                 </div>
                 }
                 {  qnaDetail &&
-                    <div className={ QnaDetailCSS.buttonDivCss} >
+                    <div className={ QnaReDetailCSS.buttonDivCss} >
                         <button
-                            className={ QnaDetailCSS.backBtn }
+                            className={ QnaReDetailCSS.backBtn }
                             onClick={ () => navigate(-1) }
                         >
                             돌아가기
@@ -155,7 +155,7 @@ function QnaReDetail() {
                            
                              <div>{!modifyMode &&
                                   <button
-                                    className={ QnaDetailCSS.backBtn }
+                                    className={ QnaReDetailCSS.backBtn }
                                     onClick={ onClickModifyModeHandler }
                                   >
                                     수정모드
@@ -163,7 +163,7 @@ function QnaReDetail() {
                                 }
                                 {modifyMode &&
                                     <button
-                                        className={ QnaDetailCSS.backBtn }
+                                        className={ QnaReDetailCSS.backBtn }
                                         onClick={ onClickQnaUpdateHandler }
                                     >
                                         답글 수정 저장
@@ -175,9 +175,11 @@ function QnaReDetail() {
                                         답글 삭제
                                     </button>   
                             </div>
+                            
                           :null  
                         }
                     </div>
+                    
 
                 }    
         </>

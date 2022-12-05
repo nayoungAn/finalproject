@@ -41,7 +41,7 @@ function NoticeRegist() {
         <div>
         <div className={ NoticeDetailCSS.subjectSection }>
             <div className={ NoticeDetailCSS.noticeInfoDiv }>
-                <table>
+                <table className={ NoticeDetailCSS.noticeRegistTable }>
                     <tbody>
                         <tr>
                             <td><label>제목</label></td>
@@ -51,7 +51,7 @@ function NoticeRegist() {
                                 <input 
                                     name='noticeTitle'
                                     placeholder='제목'
-                                    className={ NoticeDetailCSS.noticeInfoInput }
+                                    className={ NoticeDetailCSS.noticeRegistTitle }
                                     onChange={ onChangeHandler }
                                     value={ (form.noticeTitle) || '' }
                                 />
@@ -62,10 +62,10 @@ function NoticeRegist() {
                         </tr>
                         <tr>
                             <td>
-                                <input 
+                                <textarea 
                                     name='noticeContent'
                                     placeholder='내용'
-                                    className={ NoticeDetailCSS.noticeInfoInput }
+                                    className={ NoticeDetailCSS.noticeRegistContent }
                                     onChange={ onChangeHandler }
                                     value={ (form.noticeContent) || '' }
                                 />

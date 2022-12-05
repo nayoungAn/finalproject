@@ -43,7 +43,7 @@ function StudentInfo() {
 
     return (
         <>
-        <div> <h3>원생조회</h3></div>
+        <div> <h3>원생조회</h3> </div>
 
         <div>
             
@@ -106,6 +106,7 @@ function StudentInfo() {
                 </button>
             </li>
             ))}
+
 
             { Array.isArray(studentList) &&
             <button 

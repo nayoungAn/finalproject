@@ -60,6 +60,18 @@
     width: 200px;
 }
 
+.InputStyle {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+.search{
+    margin-left: 630px;
+    position: relative;
+    width: 200px;
+}
 .search img {
     position : absolute;
     width: 17px;
@@ -67,3 +79,13 @@
     right: 12px;
     margin: 0;
   }
+
+.noticeHeader div {
+    display: inline-block;
+    flex-direction: row;
+}
+
+
+
+
+

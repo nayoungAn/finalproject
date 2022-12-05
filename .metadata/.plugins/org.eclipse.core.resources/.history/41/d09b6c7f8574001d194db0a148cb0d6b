@@ -1,0 +1,33 @@
+package com.greedy.onoff.re.dto;
+
+
+import java.sql.Date;
+
+
+import com.greedy.onoff.member.dto.MemberDto;
+
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ReDto {
+	
+<<<<<<< HEAD
+	private Long reCode;
+=======
+
+  	private Long reCode;
+>>>>>>> branch 'main' of https://github.com/nayoungAn/final-project.git
+    private String reTitle;
+    private String reContent;
+    private Date reDate;
+    private String reStatus;
+    private MemberDto member;
+    private Long mtmCode;
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'main' of https://github.com/nayoungAn/final-project.git
+}

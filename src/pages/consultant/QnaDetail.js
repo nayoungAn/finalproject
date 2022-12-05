@@ -11,8 +11,7 @@ function QnaDetail() {
     const params = useParams();
     const mtmCode = params.mtmCode;
     const qnaDetail = useSelector(state => state.qnaReducer);
-    const [ modifyMode, setModifyMode ] = useState(false);
-    const [ form, setForm ] = useState({});
+ 
     const token = decodeJwt(window.localStorage.getItem("accessToken"));  
     
 
@@ -49,83 +48,76 @@ function QnaDetail() {
             { qnaDetail &&
                 <div className = { QnaDetailCSS.qnaDetailtableDiv }>
                     <div className= { QnaDetailCSS.qnaTableDiv}>
-                    <table className={ QnaDetailCSS.qnaDetailtableCss }>
+                     <table className={ QnaDetailCSS.qnaDetailtableCss }>
                         <colgroup>
                             <col width="20%" />
                             <col width="80%" />
                         </colgroup>
                         <tbody>
+                            <div className={QnaDetailCSS.qnaInputDiv}>
                             <tr>
-                                <td>
-                                    <div className={ QnaDetailCSS.qnaText }>
-                                     제목
-                                    
+                                <td> 
                                     <input 
-                                        className={ QnaDetailCSS.qnaDetailInput }
+                                        name= 'mtmCode'
+                                        value={ qnaDetail.mtmCode }
+                                   />
+                                  
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td> 
+                                    <input 
                                         name= 'mtmTitle'
-                                        placeholder='제목'
                                         value={ qnaDetail.mtmTitle }
                                    />
-                                     </div>
-                                  
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div className={ QnaDetailCSS.qnaText }>
-                                      작성자
-                                    </div>
                                     <input 
-                                        className={ QnaDetailCSS.qnaDetailInput }
-                                        placeholder='작성자'
+                                        name= 'memberName'
                                         value={ qnaDetail.member?.memberName }
                                    />
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <td>
-                                     <div className={ QnaDetailCSS.qnaText }>
-                                         작성일
-                                     </div>
+                                
                                     <input 
-                                        className={ QnaDetailCSS.qnaDetailInput }
-                                        placeholder='작성일'
+                                        name= 'mtmDate'
                                         value={ qnaDetail.mtmDate }
                                    />
                                 </td>
                             </tr>
-                            <tr>
-                                 <td colSpan={2}>
+                            </div>
                                     <textarea
                                         name='mtmDescription'
                                         className={ QnaDetailCSS.contentTextArea }
                                         value={ qnaDetail.mtmDescription} 
                                     >                                    
                                     </textarea>
-                                </td>
-                            </tr>
                         </tbody> 
                     </table>
                     </div>
                 </div>
                 }
+                 <div className={ QnaDetailCSS.buttonDivCss} >
                 {  qnaDetail &&
-                    <div className={ QnaDetailCSS.buttonDivCss} >
                         <button
                             className={ QnaDetailCSS.backBtn }
                             onClick={ () => navigate(-1) }
                         >
                             돌아가기
                         </button>
-                    </div>
-
                 }  
                  <button
                 className={ QnaDetailCSS.QnaBtn}
                 onClick={ onClickHandler }
                  >
                     답글 등록
-                 </button>  
+                 </button> 
+                 </div>  
         </>
     )
 

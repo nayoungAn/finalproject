@@ -66,14 +66,15 @@ import QnaReDetail from "./pages/consultant/QnaReDetail"
 
 import QnaDetail from "./pages/consultant/QnaDetail";
 import QnaRegistration from "./pages/consultant/QnaRegistration";
+
 import ClassSearch from "./pages/classes/ClassSearch";
+
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
       <Route path="/" element={ <Login/>}/>
-
       <Route path="findmeminfo" element= { <FindMemLayout/>}>
         <Route index element={ <Navigate to= "/findmeminfo/find-pwd" replace/> }/>
         <Route path="find-id" element={ <FindId/>}/>
@@ -116,6 +117,8 @@ function App() {
 
 
        </Route>
+       
+         <Route path="teacherclass" element={<Teacherclass/>}>
 
        <Route path="teacherclass" element={<Teacherclass/>}/>
         <Route path="tea" element={<TeacherClassLayout/>}>
@@ -130,7 +133,10 @@ function App() {
               <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> }/>
         </Route>
 
-        <Route path="teacherclass" element={<Teacherclass/>}>
+      
+        
+        
+        
         </Route> 
 
         {/* 원생 */}
@@ -146,16 +152,11 @@ function App() {
           <Route path="studentNoticeDetail/:noticeCode" element={ <StudentNoticeDetail/> }/>
           <Route path="StudentReQnaDetail/:mtmCode" element={ <StudentReQnaDetail/> }/>
         </Route>
-          
-          
         <Route path="studentinfo" element={<StudentInfo/>}/>
-
-        <Route path="acc" element={<AccManagement />}/>
-        
-        <Route path="acc-update/:accCode" element={<AccUpdate />}/>
         
         <Route path="sms" element={<SmsTransmission />}/>
-      </Route>
+        
+        </Route>
       </Routes>
     </BrowserRouter>
   );
