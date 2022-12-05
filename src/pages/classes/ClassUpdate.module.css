@@ -1,27 +1,67 @@
-.subjectSection{
+.classSection{
     display: flex;
     flex-direction: row;
     width:100%;
     background-color: #4574eb;
     margin-top: 30px;
-    height:80%;
+    height:90%;
     border-radius: 10px;
-    
+    margin-left:0px;
 }
 
-h2{
-    margin-top: 20px;
+.name{
+
+    margin-left: 0px;
 }
 
-.subjectInfoDiv{
-    display: flex;
+.subjectInfoInput{
+    width:100%;
+    height:35px;
+    border-radius: 5px;
+}
+
+.subjectTabletd {    
+
+    background-color: #4574eb;
+    border-radius: 5px;
+}
+
+
+.classInfoDiv{
     width : 100%;
-    height: 100%;
+    height: 60%;
   
 }
 
-.subjectTableTd{
-    width: 15%;
+.scheduleTable{
+    height:100%;
+    border-spacing: 40px;
+
+}
+
+.scheduleTd{
+ background-color: #4574eb;
+ border-radius: 5px;
+}
+
+input[type=checkbox] + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #bcbcbc;
+    cursor: pointer;
+}
+
+input[type=checkbox]:checked + label {
+    background-color: white;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.classTableTd{
+    width: 10%;
     background-color: #DDE7FF;
     border-radius: 0px;
     font-weight: bold;
@@ -29,8 +69,8 @@ h2{
     border-radius: 5px;
 }
 
-.subjectTabletd{
-    width: 20%;
+.classTabletd{
+    width: 10%;
     background-color: white;
     border-radius: 0px;
     font-weight: bold;
@@ -39,9 +79,7 @@ h2{
 }
 
 
-
-
-.subjectInfoDiv input {
+.classInfoDiv input {
     margin-bottom: 0px;
     border-radius: 0px;
     background-color: white;
@@ -51,8 +89,9 @@ h2{
     font-weight: bold;
 }
 
-.subjectInfoInput {    
-    width: 80%;
+.classInfoInput {    
+    width: 100%;
+    height:100%;
     margin: 0;
     padding: 0;
     border-radius: 10px;
@@ -60,9 +99,10 @@ h2{
     text-indent: 0.5em;
 }
 
-.subjectInfoDiv table {
+.classInfoDiv table {
     width: 100%;
-    border-spacing: 40px;
+    border-spacing: 25px;
+    height:60%;
 
 }
 
@@ -71,13 +111,15 @@ h2{
     height: 6.25em;
     border: 0;
     resize: none;
+    font-weight: bold;
+    font-size : 1.1em;
 }
 
-.subjectButtonDiv{
+.classButtonDiv{
     display: flex;
     justify-content: flex-end;
 }
-.subjectButtonDiv button{
+.classButtonDiv button{
     margin: 5px;    
     margin-top: 15px;
     margin-bottom: 15px;
@@ -88,11 +130,12 @@ h2{
     font-weight: bold;
 }
 
+
 .btnRegist{
     width: 100px;
     height: 50px;
     
-    margin-right: 10px;
+    margin-right: 30px;
     margin-left : 10px;
     margin-top : 20px;
     background-color:  #2F65EB;
@@ -106,7 +149,7 @@ h2{
 .btnCancle{
     width: 100px;
     height: 50px;
-    margin-right: 10px;
+    margin-right: 0px;
     margin-left : 10px;
     margin-top:20px;
     color: black;;

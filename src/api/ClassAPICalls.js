@@ -50,7 +50,31 @@ export const callClassListForAdminAPI = ({currentPage = 1}) => {
 
 }
 
-export const callClassRegistAPI = ({form}) => {
+export const callClassListForAdminNoPagingAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/classes-management-nopaging
+    `;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[ClassAPICalls] callClassListForAdminNoPagingAPI result : ', result);
+            dispatch({ type: GET_CLASSES, payload: result.data });
+        }
+    }
+
+}
+export const callClassRegistAPI = ({form, classesScheduleList, subjectCode, memberCode}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/classes`;
 
@@ -59,10 +83,29 @@ export const callClassRegistAPI = ({form}) => {
         const result = await fetch(requestURL, {
             method : "POST",
             headers : {
+                "Content-Type" : "application/json",
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
-            body : form
+            body : JSON.stringify({
+                    subject :  {
+                        subjectCode : subjectCode
+                    },
+                    member :  {
+                        memberCode : memberCode
+                    },
+                    className : form.className,
+                    classQuota : form.classQuota,
+                    classPrice : form.classPrice,
+                    classStartDate : form.classStartDate,
+                    classEndDate : form.classEndDate,
+                    classRoom : form.classRoom,
+                    classStatus :form.classStatus,
+                    classCircuit : form.classCircuit,
+                    classDescription : form.classDescription,
+                    classStudents : form.classStudents,
+                    classesScheduleList : classesScheduleList
+                })
         })
         .then(response => response.json());
 
@@ -97,7 +140,7 @@ export const callClassDetailForAdminAPI = ({classCode}) => {
     }
 }
 
-export const callClassUpdateAPI = ({form}) => {
+export const callClassUpdateAPI = ({form,classesScheduleList,memberCode,subjectCode}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/classes`;
 
@@ -111,20 +154,26 @@ export const callClassUpdateAPI = ({form}) => {
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
             body : JSON.stringify({
-                memberName: form.member.memberName,
-                subjectName : form.subject.subjectName,
+                subject :  {
+                    subjectCode : subjectCode
+                },
+                member :  {
+                    memberCode : memberCode
+                },
                 classCode : form.classCode,
                 className : form.className,
                 classQuota : form.classQuota,
                 classPrice : form.classPrice,
-                classStartDate: form.classStartDate,
-                classEndDate : form.classEndDate,
+                classStartDate : form.classStartDate.toString(),
+                classEndDate : form.classEndDate.toString(),
                 classRoom : form.classRoom,
-                classDescription : form.classDescription,
+                classStatus :form.classStatus,
                 classCircuit : form.classCircuit,
-                classesScheduleList : form.classesScheduleList
+                classDescription : form.classDescription,
+                classStudents : form.classStudents,
+                classesScheduleList : classesScheduleList
             })
-        })
+            })
         .then(response => response.json());
 
         if(result.status === 200) {
@@ -133,7 +182,6 @@ export const callClassUpdateAPI = ({form}) => {
         }
     }
 }
-
 
 
 

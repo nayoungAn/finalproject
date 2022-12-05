@@ -1,6 +1,6 @@
-import SubjectRegistrationCSS from './SubjectRegistration.module.css';
+import SubjectUpdateCSS from './SubjectUpdate.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callSubjectUpdateAPI } from '../../api/SubjectAPICalls';
 import { callSubjectDetailForAdminAPI } from '../../api/SubjectListAPICall';
@@ -70,116 +70,92 @@ function SubjectUpdate(){
     return (
         <div>
             <div>
-                <button        
-                    onClick={ () => navigate(-1) }            
-                >
-                    돌아가기
-                </button>
-            {!modifyMode &&
-                <button 
-                    onClick={ onClickModifyModeHandler }
-                >
-                    수정 모드
-                </button>
-            }
-            {modifyMode &&
-                <button 
-                    onClick={ onClickSubjectUpdateHandler }
-                >
-                    과목 수정 저장하기
-                </button>
-            }
+                <h2> 과목 상세 조회 </h2>
+             
             </div>        
-            <div className={ SubjectRegistrationCSS.subjectSection }>
-                <div className={ SubjectRegistrationCSS.subjectInfoDiv }>
+            <div className={ SubjectUpdateCSS.subjectSection }>
+                <div className={ SubjectUpdateCSS.subjectInfoDiv }>
                     <table>
                         <tbody>
                             <tr>
-                                <td><label>과목명</label></td>
-                                <td>
+                                <td className={ SubjectUpdateCSS.subjectTableTd}>
+                                <label>과목명</label></td>
+                                <td className={ SubjectUpdateCSS.subjectTabletd}>
                                     <input 
                                         name='subjectName'
                                         placeholder='과목명'
-                                        className={ SubjectRegistrationCSS.subjectInfoInput }
+                                        className={ SubjectUpdateCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? subjectDetail.subjectName : form.subjectName) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
-                            </tr>    
-                            <tr>
-                                <td><label>수업 형태</label></td>
-                                <td>
+                                <td className={ SubjectUpdateCSS.subjectTableTd}>
+                                <label>수업 형태</label></td>
+                                <td className={ SubjectUpdateCSS.subjectTabletd}>
                                     <input 
                                         name='subjectForm'
                                         placeholder='수업 형태'
-                                        className={ SubjectRegistrationCSS.subjectInfoInput }
+                                        className={ SubjectUpdateCSS.subjectInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? subjectDetail.subjectForm : form.subjectForm) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     />
                                 </td>
-                            </tr>    
-                            <tr>
-                                <td><label>언어</label></td>
-                                <td>
+                                <td className={ SubjectUpdateCSS.subjectTableTd}>
+                                <label>언어</label></td>
+                                <td className={ SubjectUpdateCSS.subjectTabletd}>
                                     <label>
                                         <input 
                                             name="subjectLanguage"  
                                             placeholder='언어'
-                                            className={ SubjectRegistrationCSS.subjectInfoInput }
+                                            className={ SubjectUpdateCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? subjectDetail.subjectLanguage : form.subjectLanguage) || '' }
                                             readOnly={ modifyMode ? false : true }
-                                            style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
                                     </label>
                                 </td>
                             </tr>    
                             <tr>
-                                <td><label>교재</label></td>
-                                <td>
-                                    <label>
+                                <td className={ SubjectUpdateCSS.subjectTableTd}>
+                                <label>교재</label>
+                                </td>
+                                <td colSpan="2" className={ SubjectUpdateCSS.subjectTabletd}>
                                         <input 
                                             name="subjectBook"  
                                             placeholder='교재'
-                                            className={ SubjectRegistrationCSS.subjectInfoInput }
+                                            className={ SubjectUpdateCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? subjectDetail.subjectBook : form.subjectBook) || '' }
                                             readOnly={ modifyMode ? false : true }
-                                            style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
-                                    </label>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>과목 설명</label></td>
-                                <td>
-                                    <label>
+                                <td className={ SubjectUpdateCSS.subjectTableTd}> 
+                                <label>과목 설명</label></td>
+                                <td colSpan="3"className={ SubjectUpdateCSS.subjectTabletd}>
                                         <input 
                                             name="subjectDescription"  
                                             placeholder='과목 설명'
-                                            className={ SubjectRegistrationCSS.subjectInfoInput }
+                                            className={ SubjectUpdateCSS.subjectInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? subjectDetail.subjectDescription : form.subjectDescription) || '' }
                                             readOnly={ modifyMode ? false : true }
-                                            style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
-                                    </label>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>과목 학습 목표</label></td>
-                                <td>
+                            <td className={ SubjectUpdateCSS.subjectTableTd}>
+                                <label>과목 학습 목표</label></td>
+                                <td colSpan='4'className={ SubjectUpdateCSS.subjectTabletd}>
                                     <textarea 
-                                        className={ SubjectRegistrationCSS.textAreaStyle }
+                                        className={ SubjectUpdateCSS.textAreaStyle }
                                         name='subjectLearningObjectives'
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? subjectDetail.subjectLearningObjectives : form.subjectLearningObjectives) || '' }
                                         readOnly={ modifyMode ? false : true }
-                                        style={ !modifyMode ? { backgroundColor : 'gray'} : null }
                                     ></textarea>
                                 </td>
                             </tr> 
@@ -188,6 +164,28 @@ function SubjectUpdate(){
                     </table>
                 </div>
             </div>
+            <button        
+            className={SubjectUpdateCSS.btnCancle}
+                    onClick={ () => navigate(-1) }            
+                >
+                    돌아가기
+                </button>
+            {!modifyMode &&
+                <button 
+                    onClick={ onClickModifyModeHandler }
+                    className={SubjectUpdateCSS.btnRegist}
+                >
+                    수정 모드
+                </button>
+            }
+            {modifyMode &&
+                <button 
+                className={SubjectUpdateCSS.btnRegist} 
+                    onClick={ onClickSubjectUpdateHandler }
+                >
+                    수정하기
+                </button>
+            }
         </div>
     );
 

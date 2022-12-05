@@ -39,8 +39,6 @@ h2{
 }
 
 
-
-
 .subjectInfoDiv input {
     margin-bottom: 0px;
     border-radius: 0px;
@@ -71,6 +69,8 @@ h2{
     height: 6.25em;
     border: 0;
     resize: none;
+    font-weight: bold;
+    font-size : 1em;
 }
 
 .subjectButtonDiv{
@@ -82,6 +82,30 @@ h2{
     margin-top: 15px;
     margin-bottom: 15px;
     height: 25px;
+    width: 150px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.subjectImageDiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subjectImage{
+    margin-top: 5px;
+    width: 80%;
+    height: 90%;    
+}
+
+.subjectImageButton{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
     width: 150px;
     border-radius: 25px;
     background-color: white;

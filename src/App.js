@@ -27,8 +27,7 @@ import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import StudentManagerList from "./pages/studentManager/StudentManagerList";
 import StudentManagerDetail from "./pages/studentManager/StudentManagerDetail";
 import QnaTeacher from "./pages/consultant/QnaTeacher";
-import QnaDetail from "./pages/consultant/QnaDetail";
-import QnaRegistration from "./pages/consultant/QnaRegistration";
+
 
 
 import TeacherSearch from "./pages/teacher/TeacherSearch";
@@ -63,16 +62,19 @@ import SmsTransmission from "./pages/sms/SmsTransmission";
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import Attend from "./pages/attend/Attend";
 import AttendUpdate from "./pages/attend/AttendUpdate";
-
+import QnaDetail from "./pages/consultant/QnaDetail";
+import QnaRegistaration from "./pages/consultant/QnaRegistration";
+import QnaReDetail from "./pages/consultant/QnaReDetail";
+import ClassSearch from "./pages/classes/ClassSearch";
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
       <Route path="/" element={ <Login/>}/>
-     
+
       <Route path="findmeminfo" element= { <FindMemLayout/>}>
-        <Route index element={ <Navigate to= "/findmeminfo/find-id" replace/> }/>
+        <Route index element={ <Navigate to= "/findmeminfo/find-pwd" replace/> }/>
         <Route path="find-id" element={ <FindId/>}/>
         <Route path="find-pwd" element={ <FindPwd/>}/>
       </Route>
@@ -81,7 +83,7 @@ function App() {
         <Route path="notice" index element= { <NoticeList/> }/>
         <Route path="notice/:noticeCode" element= { <NoticeDetail/> }/>
         <Route path="notice-regist" element= { <NoticeRegist/> }/>
-        
+
         <Route path="student-manager" element= { <StudentManagerList/> }/>
         <Route path="student-manager/:memberCode" element= { <StudentManagerDetail/> }></Route>
 
@@ -92,6 +94,7 @@ function App() {
               <Route path="subject-registration" element={ <SubjectRegistration/> }/>
               <Route path="subject-update/:subjectCode" element={ <SubjectUpdate/> }/>
               <Route path="classes" element={ <ClassManagement/> }/>
+              <Route path="classes/search" element={ <ClassSearch/>} />
               <Route path="class-registration" element={ <ClassRegistration/> }/>
               <Route path="class-update/:classCode" element={ <ClassUpdate/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>
@@ -107,11 +110,11 @@ function App() {
             <Route path="consMain" element={ <ConsMain/> }/>
             <Route path="cons-registration" element={ <ConsRegistration/> }/>
             <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
-        </Route>
 
-    
-        <Route path="teacherclass" element={<Teacherclass/>}/>
 
+       </Route>
+
+       <Route path="teacherclass" element={<Teacherclass/>}/>
         <Route path="tea" element={<TeacherClassLayout/>}>
               <Route index element={ <Navigate to="teacherclass/:classCode" replace/> } />
               <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>} />
@@ -161,8 +164,6 @@ function App() {
         
         <Route path="sms" element={<SmsTransmission />}/>
         
-          
-      </Route>
       </Routes>
     </BrowserRouter>
   );
