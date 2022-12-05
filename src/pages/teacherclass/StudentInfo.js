@@ -1,20 +1,19 @@
-import { callSearchTeacherClassAPI } from"../../api/TeacherClassAPICall";
+import StudentInfoCSS from'./StudentInfo.module.css';
+import {callStudentInfoAPI} from '../../api/StudentInfoAPICall';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from "react-redux";
 import { useState,useEffect } from "react";
-import TeacherClassCSS from './Teacherclass.module.css';
 
 
-function Teacherclass() {
+function StudentInfo() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const classes = useSelector(state => state.teacherClassReducer);
-    const classesList = classes.data
+    const studentinfo = useSelector(state => state.studentInfoReducer);
+    const studentList = studentinfo.data;
  
-    console.log('classesList', classesList);
 
-    const pageInfo = classes.pageInfo;
+    const pageInfo = studentinfo.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -27,7 +26,7 @@ function Teacherclass() {
     
     useEffect(
         () => {         
-            dispatch(callSearchTeacherClassAPI({
+            dispatch(callStudentInfoAPI({
                 currentPage: currentPage,
             }));            
             
@@ -36,42 +35,44 @@ function Teacherclass() {
     );
 
     const onClickTeacherclass =(classCode)=> {
-        navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
+        navigate(`/ono/studentinfo/${classCode}`, {replace:false})
     }
+
+
 
 
     return (
         <>
-        <div> <h3>내 강의 조회</h3></div>
+        <div> <h3>원생조회</h3></div>
 
         <div>
             
-            <table className={TeacherClassCSS.classtable}>
-                <thead className={TeacherClassCSS.classhead}>
+            <table className={StudentInfoCSS.StudentInfo}>
+                <thead className={StudentInfoCSS.classhead}>
                     <tr>
                         <th>No.</th>
-                        <th>강의명</th>
-                        <th>시작일</th>
-                        <th>종료일</th>
-                        <th>강의진행상태</th>
-                        <th>담당강사</th>
+                        <th>학생명</th>
+                        <th>이메일</th>
+                        <th>연락처</th>
+                        <th>강의수강상태</th>
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody className={StudentInfoCSS.memberinfo}>
                     {
-                        Array.isArray(classesList) && classesList.map(
-                            (c) => (
+                        Array.isArray(studentList) && studentList.map(
+                            (m) => (
                             <tr
-                            key={ c.classCode }
-                            onClick={ () => onClickTeacherclass(c.classCode)}
+                            key={ m.memberName }
+                            onClick={ () => onClickTeacherclass(m.memberName)}
                     >
-                            <td>{c.classCode}</td>
-                            <td>{c.className}</td>
-                            <td>{c.classStartDate}</td>
-                            <td>{c.classEndDate}</td>
-                            <td>{c.classStatus}</td>
-                            <td>{c.member.memberName}</td>
+                            <td>{m.memberCode}</td>
+                            <td>{m.memberName}</td>
+                            <td>{m.memberEmail}</td>
+                            <td>{m.memberPhone}</td>
+                            <td>{m.memberStatus}</td>
+                           
+
                         </tr>
                     ))
                     }
@@ -82,12 +83,12 @@ function Teacherclass() {
 
         <div style={{listStyleType: 'none', display:'flex'}}>
             {
-                Array.isArray(classesList)
+                Array.isArray(studentList)
                 && 
                 <button
                     onClick={()=> setCurrentPage(currentPage -1)}
                     disabled={ currentPage === 1}
-                    className={ TeacherClassCSS.pagingBtn }
+                    className={ StudentInfoCSS.pagingBtn }
                     >
                         &lt;
 
@@ -99,16 +100,16 @@ function Teacherclass() {
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
                     style={ currentPage === num ? {backgroundColor : 'transparent' } : null}
-                    className={ TeacherClassCSS.pagingBtn }
+                    className={ StudentInfoCSS.pagingBtn }
                 >
                     {num}
                 </button>
             </li>
             ))}
 
-            { Array.isArray(classesList) &&
+            { Array.isArray(studentList) &&
             <button 
-                className={ TeacherClassCSS.pagingBtn }
+                className={ StudentInfoCSS.pagingBtn }
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
             >
@@ -119,8 +120,9 @@ function Teacherclass() {
 
         </div>
 
-
         </>
+
     );
 }
-export default Teacherclass;
+
+export default StudentInfo;

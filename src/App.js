@@ -22,24 +22,25 @@ import NoticeRegist from "./pages/notice/NoticeRegist";
 import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import SubjectSearch from "./pages/classes/SubjectSearch";
-
-import FindMemLayout from "./layouts/FineMemLayout";
+import FindMemLayout from "./layouts/FindMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import StudentManagerList from "./pages/studentManager/StudentManagerList";
 import StudentManagerDetail from "./pages/studentManager/StudentManagerDetail";
-
 import QnaTeacher from "./pages/consultant/QnaTeacher";
 import QnaDetail from "./pages/consultant/QnaDetail";
 import QnaRegistration from "./pages/consultant/QnaRegistration";
 
+
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
-
 import ConsRegistration from "./pages/cons/ConsRegistration";
+
 import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
 import Teacherclass from "./pages/teacherclass/Teacherclass";
+import AttachRegist from "./pages/teacherclass/AttachRegist";
+import StudentInfo from "./pages/teacherclass/StudentInfo";
+
 import AccManagement from "./pages/acc/AccManagement";
-import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
 
@@ -57,7 +58,11 @@ import StudentNoticeList from "./pages/student/StudentNoticeList";
 import StudentNoticeDetail from "./pages/student/StudentNoticeDetail";
 import StudentReQnaDetail from "./pages/student/StudentReQnaDetail";
 
+import SmsTransmission from "./pages/sms/SmsTransmission";
 
+import TeacherClassLayout from "./layouts/TeacherClassLayout";
+import Attend from "./pages/attend/Attend";
+import AttendUpdate from "./pages/attend/AttendUpdate";
 
 
 function App() {
@@ -103,15 +108,21 @@ function App() {
             <Route path="cons-registration" element={ <ConsRegistration/> }/>
             <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
         </Route>
-        
+
+    
+        <Route path="teacherclass" element={<Teacherclass/>}/>
+
         <Route path="tea" element={<TeacherClassLayout/>}>
               <Route index element={ <Navigate to="teacherclass/:classCode" replace/> } />
               <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>} />
-              <Route path="qna/:classCode" element={ <QnaTeacher/> }/>
+              <Route pate="teacherclass/:classCode/attach" element={<AttachRegist/>}/> 
+              <Route path="qna/:classCode" element={ <QnaTeacher/>} />
               <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
-              <Route path="qnaReply" element={ <QnaRegistration/>} />
+              <Route path="qnaReDetail/:reCode" element={ <QnaReDetail/> }/>
+              <Route path="qnaReply" element={ <QnaRegistaration/>} />
+              <Route path="attend/:classCode" element={ <Attend/> } />
+              <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> }/>
         </Route>
-
 
         <Route path="teacherclass" element={<Teacherclass/>}>
         </Route> 
@@ -140,6 +151,17 @@ function App() {
         </Route>
           
         
+      </Route>
+      
+        <Route path="studentinfo" element={<StudentInfo/>}/>
+
+        <Route path="acc" element={<AccManagement />}/>
+        
+        <Route path="acc-update/:accCode" element={<AccUpdate />}/>
+        
+        <Route path="sms" element={<SmsTransmission />}/>
+        
+          
       </Route>
       </Routes>
     </BrowserRouter>

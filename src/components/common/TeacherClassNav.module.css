@@ -1,0 +1,24 @@
+
+.TeaClassNavUl{
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style:none; 
+    margin-left: 70px;
+    margin-top: 80px;
+    margin-right: 565px;
+} 
+
+.TeaClassNavUl button{
+    background-color: #F8F8F8;
+    color: black;
+    border: 1px solid rgb(167, 162, 162);
+    padding: 9px;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.TeaClassNavUl button:hover{
+    background-color: #2F65EB;
+    color: #F8F8F8;
+}

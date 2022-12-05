@@ -1,4 +1,4 @@
-import LoginModalCSS from './LoginModal.module.css';
+import LoginModalCSS from "../LoginModal.module.css";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { callLoginAPI } from '../../api/MemberAPICalls'

@@ -4,21 +4,21 @@ import QnaRegistrationCSS from "./QnaRegistration.module.css";
 import { useState } from 'react';
 import { callQnaResistAPI } from '../../api/QnaAPICalls';
 
+
 function QnaRegistration() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const qnaDetail = useSelector(state => state.qnaReducer);
     const classes = useSelector(state => state.teacherClassReducer);
-    
+   
+    console.log('qnaDetail.mtmCode', qnaDetail.mtmCode)
     const [ form, setForm ] = useState({
-        classCode : classes.classCode,
-        mtmTitle : '',
-        mtmDescription :'', 
-        mtmRefer : '',
-        answerCode : 0,
+        mtmCode : qnaDetail.mtmCode,
+        reTitle : '',
+        reContent :'', 
     });
 
-    console.log('qna 리듀서', classes);
 
     const onChangeHandler = (e) => {
         setForm({
@@ -32,6 +32,8 @@ function QnaRegistration() {
             form : form
         }));
         navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false });
+        alert('답변이 등록 되었습니다');
+        window.location.reload();
     }
 
     return(
@@ -48,21 +50,18 @@ function QnaRegistration() {
                             <tr>
                                 <td>
                                     <input
-                                        name='mtmTitle'
+                                        name='reTitle'
                                         placeholder='제목을 입력하세요'
                                         className={ QnaRegistrationCSS.qnaInfoInput }
                                         onChange={ onChangeHandler }
                                     />    
                                 </td>
                             </tr>
-                            <tr >
-                                <th>클래스명</th>
-                                <td>{ classes.className }</td>
-                            </tr>
+                           
                             <tr>
                                 <td>
                                     <textarea
-                                        name='mtmDescription'
+                                        name='reContent'
                                         placeholder='내용을 입력하세요'
                                         className={ QnaRegistrationCSS.textAreaStyle }
                                         onChange={ onChangeHandler }

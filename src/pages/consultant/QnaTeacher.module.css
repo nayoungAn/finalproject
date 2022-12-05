@@ -1,47 +1,67 @@
-.QnaTableDiv {
+.bodyDiv{
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
-    width: 850px;
+    margin-top: 15px;
     height: 100%;
-    margin: 10px;
+    
 }
 
-.QnaTableCss{
-    width: 80%;
-    border-collapse: collapse;
-    table-layout: fixed;
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
-
-.QnaTableCss th, td {
-    padding: 10px;
-    height: 10px;
-    text-align: center;
-    word-break:break-all;
-    table-layout:fixed;
-}
-
-.QnaTableCss tr:hover { 
-    background-color: #F5F5F5; 
-}
-
-.QnaTableCss tr {
-    cursor: pointer;
-}
-
-.pagingDiv{
-    height: 50px
-}
-
-.pagingBtn{
-    margin: 5px;
+.buttonDiv button {
+    width: 100px;
+    margin-right: 25px;
+    height: 30px;
     border-radius: 25px;
     background-color: white;
     font-weight: bold;
 }
 
-.pagingBtn:hover{
+.classtable{
+    width: 730px;
+    text-align: center;
+    border-style:none;
+    border-collapse: collapse;
+   
+    
+}
+
+
+.classtable th{
+    border-bottom: 3px solid #9fb2e7;
+    background-color: #F6F9FF;
+  
+} 
+
+.classtable td{
+    border-bottom: 0.5px solid gainsboro ;
     cursor: pointer;
-    background-color: burlywood;
+
+}
+
+.teacherTable tr:hover { 
+    background-color: #F5F5F5; 
+}
+
+.teacherTable tr {
+    cursor: pointer;
+}
+
+
+.pagingBtn{
+    margin: 5px;
+    color:rgb(119, 119, 119);
+    border-style: none;
+    background-color: transparent;
+    font-weight: bold;
+    
+}
+
+.pagingBtn:hover{
+    color: black;
+    cursor: pointer;
+   
 }
