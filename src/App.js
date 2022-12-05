@@ -46,12 +46,14 @@ import AttendUpdate from "./pages/attend/AttendUpdate";
 import QnaDetail from "./pages/consultant/QnaDetail";
 import QnaRegistaration from "./pages/consultant/QnaRegistration";
 import QnaReDetail from "./pages/consultant/QnaReDetail";
+import Error from "./pages/error/Error";
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
       <Route path="/" element={ <Login/>}/>
+      <Route paht="/error" element={ <Error/>}/>
      
       <Route path="findmeminfo" element= { <FindMemLayout/>}>
         <Route index element={ <Navigate to= "/findmeminfo/find-id" replace/> }/>
@@ -107,10 +109,6 @@ function App() {
         </Route>
 
         <Route path="studentinfo" element={<StudentInfo/>}/>
-
-       
-    
-
 
         <Route path="acc" element={<AccManagement />}/>
         

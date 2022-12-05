@@ -2,7 +2,6 @@
 import { POST_FIND_ID, POST_LOGIN} from "../modules/MemberModule";
 import { useNavigate } from "react-router-dom"
 import swal from "sweetalert2";
-import { useHistory } from "react-router-dom";
 
 //로그인
 export const callLoginAPI = ({form}) => {
@@ -20,7 +19,7 @@ export const callLoginAPI = ({form}) => {
             },
             body : JSON.stringify({
                 memberId: form.memberId,
-                memberPassword: form.memberPassword
+                memberPassword: form.memberPassword,
             })
         })
         .then(response => response.json());
@@ -40,6 +39,16 @@ export const callLogoutAPI = () => {
     return async (dispatch, getState) => {
         dispatch({ type: POST_LOGIN, payload:''});
         console.log('[MemberAPICalls] callLogoutAPI result : SUCCESS');
+        swal.fire({
+            title: "로그아웃", 
+            text: `로그아웃 후 메인으로 이동합니다.`,
+            icon: "success",
+            confirmButtonText: "확인",
+            
+        })
+        .then(() => {
+            window.location.href = "/";
+         })
     }
 }
 
