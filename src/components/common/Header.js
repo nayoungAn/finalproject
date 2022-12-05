@@ -28,8 +28,6 @@ function Header(){
     const onClickLogoutHandler = () => {
         window.localStorage.removeItem('accessToken');
         dispatch(callLogoutAPI());
-        alert('로그아웃 후 메인으로 이동합니다.');
-        navigate('/', { replace : true });
     }
 
     const onClickSmsPageHandler = () => {

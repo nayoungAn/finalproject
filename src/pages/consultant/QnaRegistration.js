@@ -32,8 +32,6 @@ function QnaRegistration() {
             form : form
         }));
         navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false });
-        alert('답변이 등록 되었습니다');
-        window.location.reload();
     }
 
     return(

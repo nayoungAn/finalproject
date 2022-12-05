@@ -13,9 +13,6 @@ function FindMemInfoNav(){
         navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
     }
 
-    const onClickAttendHandler =() => {
-        navigate(`/ono/tea/attend/${params.classCode}`, {replace:false})
-    }
 
     return(
         
@@ -23,7 +20,6 @@ function FindMemInfoNav(){
             <ul className={TeacherClassCSS.TeaClassNavUl}>
                 <li onClick={onClickTeacherclassHandler}><button>강의정보</button></li>
                 <li onClick={onClickQanclassHandler}><button>1:1 상담</button></li>
-                <li onClick={onClickAttendHandler}><button>출석부</button></li> 
             </ul>
         </>
     );

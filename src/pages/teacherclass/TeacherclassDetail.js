@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callteacherClasssDetailAPI } from "../../api/TeacherClassAPICall";
+
 import TeacherClassDetailCSS from "./TeacherclassDetail.module.css";
 
 

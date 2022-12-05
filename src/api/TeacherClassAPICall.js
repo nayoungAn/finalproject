@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { GET_CLASS,GET_CLASSES } from "../modules/TeacherClassModule";
 
 // 내강의 조회(강사)
 export const callSearchTeacherClassAPI = ({currentPage = 1}) => {
 
+    const navigate = useNavigate;
     const requestURL =`http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/teacherclass?page=${currentPage}`
 
     return async (dispatch, getState) => {
