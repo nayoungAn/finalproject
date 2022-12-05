@@ -1,0 +1,87 @@
+.QnaTableDiv {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.qnaTableCss{
+   width: 900px;
+    margin : 10px;
+}
+
+.QnaTableCss  td {
+    padding: 10px;
+    height: 10px;
+    text-align: center;
+    word-break:break-all;
+    table-layout:fixed;
+    
+}
+
+.qnaTableCss th{
+    border-top: 3px solid #4D62CC;
+    border-bottom: 3px solid #4D62CC;
+    border-collapse: collapse;
+} 
+.QnaTableCss tr:hover { 
+    background-color: #F5F5F5; 
+}
+
+.QnaTableCss tr {
+    cursor: pointer;
+}
+
+.pagingDiv{
+    height: 50px
+}
+
+.pagingBtn{
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.pagingBtn:hover{
+    cursor: pointer;
+    background-color: burlywood;
+}
+
+.registBtn {
+
+    border:1px solid #4D62CC;
+    display:inline-block;
+    color:#ffffff;
+    font-family:arial;
+    font-size:13px;
+    font-weight:bold;
+    font-style:normal;
+    height:40px;
+    line-height:30px;
+    width:80px;
+    text-decoration:none;
+    text-align:center;
+    margin: 5px 5px 5px 5px;
+    background-color:#4D62CC;
+    border-radius: 5px;
+}
+
+ .InputStyle {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+.search{
+    position: relative;
+    width: 200px;
+}
+
+.search img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 12px;
+    margin: 0;
+  }

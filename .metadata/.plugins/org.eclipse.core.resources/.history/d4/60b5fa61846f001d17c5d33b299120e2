@@ -1,0 +1,19 @@
+package com.greedy.onoff.classes.dto;
+
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ClassesScheduleDto {
+	
+	private Long scheduleCode;
+<<<<<<< HEAD
+	//private OpenClassesDto openClasses;
+=======
+	private Long classCode;
+>>>>>>> branch 'main' of https://github.com/nayoungAn/final-project.git
+	private String dayName;
+	private String timeName;
+}

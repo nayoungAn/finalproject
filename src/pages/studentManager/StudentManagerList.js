@@ -2,27 +2,32 @@ import StudentListmoduleCSS from './StudentManagerList.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
+import { decodeJwt } from '../../utils/tokenUtils';
+import Login from '../../pages/member/Login';
+
 import { callStudentManagerListAPI } from '../../api/StudentManagerAPICalls';
 
 function StudentList() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const student  = useSelector(state => state.studentManagerReducer);      
     const studentList = student.data;
-    console.log('studentList', studentList);
-
     const pageInfo = student.pageInfo;
 
+    const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [login, setLogin] = useState(false);
 
     const pageNumber = [];
+    
     if(pageInfo){
         for(let i = pageInfo.startPage ; i <= pageInfo.endPage ; i++){
             pageNumber.push(i);
         }
     }
-    // window.location.reload()
+
     useEffect(
         () => {         
             dispatch(callStudentManagerListAPI({
@@ -34,19 +39,54 @@ function StudentList() {
     );
 
     const onClickNoticeInsert = () => {
+
+        // 1. 로그인 상태인지 확인
+        const token = decodeJwt(window.localStorage.getItem("accessToken"));
+        console.log('[onClickNoticeInsert] token : ', token);
+
+        if(!token) {
+            alert("조회 전 로그인이 필요합니다.");
+            setLogin(true);
+            return;
+        }
+
+        // 2. 토큰이 만료 되었을 때 다시 로그인
+        if(token.exp * 1000 < Date.now()) {
+            setLogin(true);
+            return;
+        }
+
         navigate("/ono/student-regist", {replace : false})
     }
 
-    const onClickTableTr = (e, noticeCode) => {
+    const onClickTableTr = (e, memberCode) => {
 
-        console.log(e.target.className);
+        navigate(`/ono/student-manager/${memberCode}`, { replace: false })
 
-        navigate(`/ono/student-manager/${noticeCode}`, { replace: false })
-        console.log("상세조회");
+    }
+
+    /* 검색 키워드 입력 시 입력 값 상태 저장 */
+    const onSearchChangeHandler = (e) => {
+        setSearch(e.target.value);
+    }
+
+    /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
+    const onEnterKeyHandler = (e) => {
+        if(e.key == 'Enter') {
+
+            navigate(`/ono/student-manager/search?value=${search}`, { replace : false });
+        }
+    }
+
+    /* 검색 버튼 클릭시 검색 화면으로 넘어가는 처리 */
+    const onClickSearchHandler = () => {
+        
+        navigate(`/ono/student-manager/search?value=${search}`, { replace : false });
     }
 
     return (
         <>
+        { login ? <Login/> : null }
         <div className={ StudentListmoduleCSS.bodyDiv }>
             <div>
                 <button
@@ -54,14 +94,28 @@ function StudentList() {
                 >
                     등록하기
                 </button>
+                
+                <input
+                    className={ StudentListmoduleCSS.InputStyle }
+                    type="text"
+                    placeholder="검색"
+                    value={ search }
+                    onKeyUp={ onEnterKeyHandler }
+                    onChange={ onSearchChangeHandler }
+                />
+                <button
+                    onClick={ onClickSearchHandler }
+                >
+                    검색하기
+                </button>
             </div>            
             <table className={ StudentListmoduleCSS.studentTable }>
                 <colgroup>
-                    <col width="5%" />
-                    <col width="20%" />
                     <col width="10%" />
-                    <col width="30%" />
                     <col width="35%" />
+                    <col width="15%" />
+                    <col width="20%" />
+                    <col width="20%" />
                     
                 </colgroup>
                 <thead>

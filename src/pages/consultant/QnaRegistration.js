@@ -81,4 +81,5 @@ function QnaRegistration() {
     
 }
 
+
 export default QnaRegistration;

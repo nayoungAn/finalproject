@@ -13,7 +13,6 @@ function TeacherSearch() {
     const navigate = useNavigate();
     const { search } = useLocation();
     const { value } = queryString.parse(search);
-    console.log('value', value);
 
     const dispatch = useDispatch();
     const teachers  = useSelector(state => state.teacherListReducer);      
@@ -40,7 +39,6 @@ function TeacherSearch() {
     );
 
     const onClickTeacherInsert = () => {
-        console.log('[TeacherManagement] onClickTeacherInsert');
         navigate("/ono/teacher/regist", { replace: false })
     }
 
@@ -58,27 +56,25 @@ function TeacherSearch() {
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
-            console.log('Enter key', searchValue);
 
             navigate(`/ono/teachers/search?value=${searchValue}`, { replace : false });
         }
     }
+    const onClickSearch = () => {
+        navigate(`/ono/teachers/search?value=${searchValue}`, { replace : false });
+    }
+    
 
     return (
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
+            <h2>검색된 결과 : {value}</h2>
+            <button className={TeacherManagementCSS.btnSearch}
+             onClick = { () => onClickSearch()}>검색</button>
 
-                <button
-                 onClick={ onClickTeacherInsert }> 강사등록 </button>
-
-                <button        
-                    onClick={ () => navigate("/ono/teacher") }            
-                >
-                    돌아가기
-                </button>
                  <input
-                    className={ HeaderCSS.InputStyle }
+                    className={ TeacherManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ searchValue }
@@ -93,9 +89,9 @@ function TeacherSearch() {
                     <col width="5%" />
                     <col width="15%" />
                     <col width="10%" />
-                    <col width="20%" />
-                    <col width="20%" />
                     <col width="10%" />
+                    <col width="20%" />
+                    <col width="20%" />
                     <col width="10%" />
                 </colgroup>
                 <thead>
@@ -127,7 +123,20 @@ function TeacherSearch() {
                     )) 
                     }
                 </tbody>                    
-            </table>         
+            </table>  
+            <div>     
+            <button        
+                    onClick={ () => navigate("/ono/teacher")}
+                    className={TeacherManagementCSS.btnCancle}           
+                >
+                    돌아가기
+                </button>  
+            <button
+                 onClick={ onClickTeacherInsert } 
+                 className={TeacherManagementCSS.btnRegist}> 
+                  강사등록 </button>
+                
+              
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(teacherList) &&
@@ -142,7 +151,8 @@ function TeacherSearch() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ?
+                        {color : '#2F65EB', textDecoration : 'underline'} : null}
                     className={ TeacherManagementCSS.pagingBtn }
                 >
                     {num}
@@ -158,6 +168,7 @@ function TeacherSearch() {
                 &gt;
             </button>
             }
+        </div>
         </div>
         </>
     );

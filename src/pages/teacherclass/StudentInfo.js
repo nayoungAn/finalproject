@@ -58,20 +58,20 @@ function StudentInfo() {
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody className={StudentInfoCSS.memberinfo}>
                     {
                         Array.isArray(studentList) && studentList.map(
                             (m) => (
                             <tr
-                            key={ m.memberName }
-                            onClick={ () => onClickTeacherclass(m.memberName)}
+                           
+                            key={ m.memberCode }
+                            onClick={ () => onClickTeacherclass(m.memberCode)}
                     >
                             <td>{m.memberCode}</td>
                             <td>{m.memberName}</td>
                             <td>{m.memberEmail}</td>
                             <td>{m.memberPhone}</td>
                             <td>{m.memberStatus}</td>
-                           
 
                         </tr>
                     ))

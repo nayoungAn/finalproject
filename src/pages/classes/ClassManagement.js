@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import { callClassListForAdminAPI } from '../../api/ClassAPICalls';
-import HeaderCSS from "../../components/common/Header";
 
 function ClassManagement() {
     
@@ -12,10 +11,10 @@ function ClassManagement() {
     const classes  = useSelector(state => state.classReducer);      
     const classList = classes.data;
     const [search, setSearch] = useState('');
+    /* 정렬 규칙 */ 
+    const orderBy = ['월','화','수','목','금','토','일'];
+
     
-
-
-
     const pageInfo = classes.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +37,6 @@ function ClassManagement() {
     );
 
     const onClickClassInsert = () => {
-        console.log('[ClassManagement] onClickClassInsert');
         navigate("/ono/OpenClasses/class-registration", { replace: false })
     }
 
@@ -56,24 +54,26 @@ function ClassManagement() {
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
-            console.log('Enter key', search);
 
-            navigate(`/ono/classes/search?value=${search}`, { replace : false });
+            navigate(`/ono/OpenClasses/classes/search?value=${search}`, { replace : false });
         }
     }
 
+    const onClickSearch = () => {
+        navigate(`/ono/OpenClasses/classes/search?value=${search}`, { replace : false });
+    }
+    
     return (
         <>
        
         <div className={ ClassManagementCSS.bodyDiv }>
             <div>
-                <button
-                    onClick={ onClickClassInsert }
-                >
-                    과목 등록
-                </button>
+                <h2>강의 목록</h2>
+                <button className={ ClassManagementCSS.btnSearch } onClick = { () => onClickSearch()}>검색</button>
+
+              
                 <input
-                    className={ HeaderCSS.InputStyle }
+                    className={ ClassManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ search }
@@ -84,10 +84,10 @@ function ClassManagement() {
             <table className={ ClassManagementCSS.classTable }>
                 <colgroup>
                     <col width="10%" />
-                    <col width="30%" />
+                    <col width="15%" />
                     <col width="40%" />
                     <col width="10%" />
-                    <col width="20%" />
+                    <col width="10%" />
                     <col width="10%" />
                 </colgroup>
                 <thead>
@@ -109,17 +109,22 @@ function ClassManagement() {
                             <td>{ c.classCode }</td>
                             <td>{ c.member.memberName }</td>
                             <td>{ c.className }</td>
-                            
-                            <td>{ c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])}</td> 
+                           <td>{c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])
+                            .sort((a, b) => orderBy.indexOf(a) - orderBy.indexOf(b)) + ""} </td> 
                             <td>{ c.classRoom }</td>
                             <td>{ c.classStudents + "/" + c.classQuota}</td>
                         </tr>
-                    )) 
+                    )) /* 수강일 중복 삭제 및 정렬 */ 
                     }
                 </tbody>                    
             </table>         
-            
-        </div>
+            <button
+                    onClick={ onClickClassInsert }
+                    className={ClassManagementCSS.btnRegist}
+                >
+                    강의 등록
+                </button>
+     
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(classList) &&
             <button 
@@ -133,7 +138,8 @@ function ClassManagement() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ?
+                        { color : '#2F65EB', textDecoration : 'underline'} : null}
                     className={ ClassManagementCSS.pagingBtn }
                 >
                     {num}
@@ -149,6 +155,7 @@ function ClassManagement() {
                 &gt;
             </button>
             }
+        </div>
         </div>
         </>
     );
