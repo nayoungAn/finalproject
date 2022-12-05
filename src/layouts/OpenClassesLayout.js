@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import OpenClassesLayoutCSS from './OpenClassesLayout.module.css';
-import OpenClassesNavbar from '../components/common/OpenClassesNavbar';
+import OpenClassesNavbar from '../components/common/classes/OpenClassesNavbar';
 
 function OpenClassesLayout(){
 

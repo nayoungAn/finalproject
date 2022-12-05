@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { callLogoutAPI } from "../../api/MemberAPICalls";
 import LoginModal from '../LoginModal';
 import { decodeJwt } from '../../utils/tokenUtils';
-
 function Header(){
 
     /* localStorage에 저장된 토큰 정보가 있으면 로그인 한 상태이다. */
@@ -16,7 +15,7 @@ function Header(){
         const temp = decodeJwt(isLogin);
         decoded = temp.auth[0];
     }
-
+   
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loginModal, setLoginModal] = useState(false);

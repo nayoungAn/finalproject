@@ -5,35 +5,37 @@
 }
 
 .div1 {
-  height: 60%;
+  height: 100%;
   display: flex;
-  background-color: red;
+  background-color: #2F65EB;;
 }
 
 .div2 {
-  height: 40%;
+  height: 10%;
+  /* display: flex; */
+  align-items: center;
   background-color: orange;
+  justify-content: center;
+  float: right;
+  bottom: 100px;
 }
 
-.div3 {
+/* .div3 {
   background-color: greenyellow;
-}
+} */
 
-.div4 {
-  background-color: blue;
-}
-
-.div5 {
-  width: 50%;
+/* .div4 {
+  height: 50%;
+  width: 100%;
   background-color: green;
-}
+} */
 
 .section {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   height: 100%;
-  background-color: navy;
+  background-color: red;
 }
 
 .container {
@@ -46,22 +48,46 @@
   width: 100%;
 }
 
-.selectBox {
+/* .selectBox {
   width: 30%;
   text-align: end;
-}
+} */
 
 .inputBox {
-  width: 70%;
+  overflow-x: auto;
+  overflow-y: scroll;
+  width: 100%;
+  
 }
 
 .searchInput {
+  overflow-x: auto;
+  overflow-y: scroll;
   border: 1px solid black;
-  width: 80%;
+  width: 100%;
 }
 
-.searchResult {
+.searchResult1 {
   border: 1px solid black;
-  height: 90%;
-  width: 80%;
+  width: 100%;
+}
+
+.searchResult2 {
+  float: right;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: scroll;
+  background-color: white;
+  border: 1px solid black;
+  height: 650px;
+  width: 500px;
+}
+
+.searchResult3{
+  height: 500px;
+  width: 500px;
+}
+
+.button1{
+  width: 100px;
 }

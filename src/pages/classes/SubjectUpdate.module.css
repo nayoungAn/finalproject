@@ -1,0 +1,144 @@
+.subjectSection{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    background-color: #4574eb;
+    margin-top: 30px;
+    height:80%;
+    border-radius: 10px;
+    
+}
+
+h2{
+    margin-top: 20px;
+}
+
+.subjectInfoDiv{
+    display: flex;
+    width : 100%;
+    height: 100%;
+  
+}
+
+.subjectTableTd{
+    width: 15%;
+    background-color: #DDE7FF;
+    border-radius: 0px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.subjectTabletd{
+    width: 20%;
+    background-color: white;
+    border-radius: 0px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+
+.subjectInfoDiv input {
+    margin-bottom: 0px;
+    border-radius: 0px;
+    background-color: white;
+    width : 100%;
+    font-size: 15px;
+    border : 0; 
+    font-weight: bold;
+}
+
+.subjectInfoInput {    
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    background-color: white;
+    text-indent: 0.5em;
+}
+
+.subjectInfoDiv table {
+    width: 100%;
+    border-spacing: 40px;
+
+}
+
+.textAreaStyle {
+    width: 100%;
+    height: 6.25em;
+    border: 0;
+    resize: none;
+    font-weight: bold;
+    font-size : 1em;
+}
+
+.subjectButtonDiv{
+    display: flex;
+    justify-content: flex-end;
+}
+.subjectButtonDiv button{
+    margin: 5px;    
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 25px;
+    width: 150px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.subjectImageDiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subjectImage{
+    margin-top: 5px;
+    width: 80%;
+    height: 90%;    
+}
+
+.subjectImageButton{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 150px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.btnRegist{
+    width: 100px;
+    height: 50px;
+    
+    margin-right: 10px;
+    margin-left : 10px;
+    margin-top : 20px;
+    background-color:  #2F65EB;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: auto;  
+    font-weight: bold;
+    float:right;
+}
+
+.btnCancle{
+    width: 100px;
+    height: 50px;
+    margin-right: 10px;
+    margin-left : 10px;
+    margin-top:20px;
+    color: black;;
+    background-color:  #d6d9db;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: auto;  
+    font-weight: bold;
+    float:right;
+    border: 0;
+}

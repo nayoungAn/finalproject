@@ -1,13 +1,13 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callteacherClasssDetailAPI } from "../../api/TeacherClassAPICall";
-import TeacherClassDetailCSS from './TeacherclassDetail.module.css';
-//import TeacherClassNav from "../../components/common/TeacherClassNav"
+import TeacherClassDetailCSS from "./TeacherclassDetail.module.css";
 
-function TeacherclassDetail(){
-    
-  //  const navigate = useNavigate();
+
+function TeacherclassDetail() {
+
+
     const dispatch = useDispatch();
     const classesDetail = useSelector(state => state.teacherClassReducer);
     const classDetail = classesDetail.openClasses;
@@ -121,7 +121,6 @@ function TeacherclassDetail(){
 
             </>
         );
-
 
 
 
