@@ -138,14 +138,6 @@ function App() {
         
         </Route> 
 
- 
-
-        <Route path="acc" element={<AccManagement />}>
-        </Route>
-        <Route path="acc-update/:accCode" element={<AccUpdate />} />
-        <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
-
-
         {/* 원생 */}
         <Route path="student" element={<StudentLayout/>}>
           <Route index element={ <Navigate to="studentMyInfo" replace /> } />
