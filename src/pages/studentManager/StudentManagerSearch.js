@@ -18,15 +18,12 @@ function StudentManagerSearch() {
     const [searchValue, setSearchValue] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
 
-    
-    // window.location.reload()
     useEffect(
         () => {         
             dispatch(callSearchListAPI({
                 search : value,
                 currentPage: currentPage
             }));            
-            
         }
         ,[currentPage, value]    
     );
@@ -46,25 +43,26 @@ function StudentManagerSearch() {
 
     const onClickTableTr = (e, noticeCode) => {
 
-        console.log(e.target.className);
-
         navigate(`/ono/student-manager/${noticeCode}`, { replace: false })
-        console.log("상세조회");
+
     }
 
     /* 검색 키워드 입력 시 입력 값 상태 저장 */
     const onSearchChangeHandler = (e) => {
         setSearchValue(e.target.value);
-        console.log(e.target.value);
     }
 
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
-            console.log('Enter key', searchValue);
-
             navigate(`/ono/student-manager/search?value=${searchValue}`, { replace : false });
         }
+    }
+
+    /* 검색 버튼 클릭시 검색 화면으로 넘어가는 처리 */
+    const onClickSearchHandler = () => {
+        
+        navigate(`/ono/student-manager/search?value=${searchValue}`, { replace : false });
     }
 
     return (
@@ -76,11 +74,6 @@ function StudentManagerSearch() {
                 >
                     등록하기
                 </button>
-                <button
-                    
-                >
-                    검색하기
-                </button>
                 <input
                     className={ StudentListmoduleCSS.InputStyle }
                     type="text"
@@ -89,14 +82,19 @@ function StudentManagerSearch() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
+                <button
+                    onClick={ onClickSearchHandler }
+                >
+                    검색하기
+                </button>
             </div>            
             <table className={ StudentListmoduleCSS.studentTable }>
                 <colgroup>
-                    <col width="5%" />
-                    <col width="20%" />
                     <col width="10%" />
-                    <col width="30%" />
                     <col width="35%" />
+                    <col width="15%" />
+                    <col width="20%" />
+                    <col width="20%" />
                     
                 </colgroup>
                 <thead>

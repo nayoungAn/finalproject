@@ -5,16 +5,21 @@ const initialState = [];
 
 /* 액션 */
 export const GET_CLASS = "student/GET_CLASS";
+export const GET_CHECKEMAIL = "student/GET_CHECKEMAIL";
 
 
 const actions = createActions({
-    [GET_CLASS]: () => {}
+    [GET_CLASS]: () => {},
+    [GET_CHECKEMAIL]: () => {}
 });
 
 /* 리듀서 */
 const studentManagerDetailReducer = handleActions(
     {
         [GET_CLASS] : (state, { payload }) => {
+            return payload;
+        },
+        [GET_CHECKEMAIL] : (state, { payload }) => {
             return payload;
         }
 

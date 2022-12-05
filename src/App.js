@@ -34,15 +34,12 @@ import Teacherclass from "./pages/teacherclass/Teacherclass";
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
 
-import SmsManagement from "./pages/sms/SmsManagement";
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import StudentManagerSearch from "./pages/studentManager/StudentManagerSearch";
 import StudentManagerRegist from "./pages/studentManager/StudentManagerRegist";
 
 
 import SmsTransmission from "./pages/sms/SmsTransmission";
-
-import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import Attend from "./pages/attend/Attend";
 import AttendUpdate from "./pages/attend/AttendUpdate";
 import QnaDetail from "./pages/consultant/QnaDetail";

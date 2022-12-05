@@ -37,7 +37,7 @@ const rootReducer = combineReducers({
     teacherClassReducer,
     studentManagerDetailReducer,
     attendReducer,
-    attendCheckReducer,
+    attendCheckReducer
 
 
 });

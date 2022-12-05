@@ -118,14 +118,30 @@ function StudentManagerDetail() {
                 <div className={ StudentManagerDetailCSS.subjectInfoDiv }>
                     
                     <table className={ StudentManagerDetailCSS.studentTable }>
+                    <colgroup>
+                    <col width="15%" />
+                    <col width="35%" />
+                    <col width="15%" />
+                    <col width="35%" />
+                    
+                    </colgroup>
                     { studentDetail.memberInfo  && studentDetail.lectureList && ( <tbody>
                             <tr>
-                                <td>
-                                { studentInfo && <img 
-                                    className={ StudentManagerDetailCSS.productImage } 
-                                    src={ (imageUrl == null) ? studentInfo.memberImageUrl : imageUrl } 
-                                    alt="preview"
-                                />}
+                                <td colSpan={4}>
+                                { studentInfo && 
+                                <button
+                                    className={ StudentManagerDetailCSS.memberImageButton }
+                                    onClick={ onClickImageUpload }
+                                    disabled={ !modifyMode }
+                                >
+                                    <img 
+                                        className={ StudentManagerDetailCSS.memberImage } 
+                                        src={ (imageUrl == null) ? 
+                                            (studentInfo.memberImageUrl == "http://localhost:8001/memberimgs/null") ?
+                                             process.env.PUBLIC_URL +'/logo/nopicture.png' : studentInfo.memberImageUrl : imageUrl } 
+                                        alt="preview"
+                                    />
+                                </button>}
                                 
                                 <input                
                                     style={ { display: 'none' }}
@@ -134,42 +150,31 @@ function StudentManagerDetail() {
                                     accept='image/jpg,image/png,image/jpeg,image/gif'
                                     onChange={ onChangeImageUpload }
                                     ref={ imageInput }
-                                />
-                                </td>
-                                <td>
-                                <button 
-                                    className={ StudentManagerDetailCSS.productImageButton }
-                                    onClick={ onClickImageUpload } 
-                                    style={ !modifyMode ? { backgroundColor : 'gray'} : null }
-                                    disabled={ !modifyMode }
-                                >
-                                    이미지 업로드
-                                    </button>
-                                </td>
+                                /><br/>
+                                <label hidden={ !modifyMode ? true : false }>사진클릭시 수정</label>
                                 
-                            </tr>
+                                </td>
+                            </tr>   
                             <tr>
-                                <td><label>이름</label></td>
-                                <td><label>생년월일</label></td>
-
-                            </tr>    
-                            <tr>
+                            <td><label>이름</label></td>
                             <td>
                                     <input 
                                         name='memberName'
                                         placeholder='이름'
-                                        className={ StudentManagerDetailCSS.subjectInfoInput }
+                                        className={ StudentManagerDetailCSS.studentInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? studentInfo.memberName : form.memberName) || '' }
                                         readOnly={ modifyMode ? false : true }
                                         style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
                                 </td>
+                                <td><label>생년월일</label></td>
                                 <td>
+                                    
                                     <input 
                                         name='memberBirthday'
                                         placeholder='생년월일'
-                                        className={ StudentManagerDetailCSS.subjectInfoInput }
+                                        className={ StudentManagerDetailCSS.studentInfoInput }
                                         onChange={ onChangeHandler }
                                         value={ (!modifyMode ? studentInfo.memberBirthday : form.memberBirthday) || '' }
                                         readOnly={ modifyMode ? false : true }
@@ -179,16 +184,13 @@ function StudentManagerDetail() {
                                 
                             </tr>    
                             <tr>
-                                <td><label>등록일</label></td>
-                                <td><label>아이디</label></td>
-                            </tr>
-                            <tr>
+                            <td><label>등록일</label></td>
                             <td>
                                     <label>
                                         <input 
                                             name="noticeRegisterDate"  
                                             placeholder='등록일'
-                                            className={ StudentManagerDetailCSS.subjectInfoInput }
+                                            className={ StudentManagerDetailCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (studentInfo.memberRegisterDate) || '' }
                                             readOnly={ true }
@@ -196,12 +198,13 @@ function StudentManagerDetail() {
                                             /> 
                                     </label>
                                 </td>
+                                <td><label>아이디</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberId"  
                                             placeholder='아이디'
-                                            className={ StudentManagerDetailCSS.subjectInfoInput }
+                                            className={ StudentManagerDetailCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberId : form.memberId) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -211,12 +214,7 @@ function StudentManagerDetail() {
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>성별</label></td>
-                                <td><label>이메일</label></td>
-                            </tr>
-
-                            <tr>
-                                
+                            <td><label>성별</label></td>
                                 <td>
                                     <label>
                                         <input 
@@ -239,12 +237,13 @@ function StudentManagerDetail() {
                                             checked={ (!modifyMode ? studentInfo.memberGender : form.memberGender) === '여성' ? true : false }
                                         /> 여성</label>
                                 </td>
+                                <td><label>이메일</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberEmail"  
                                             placeholder='이메일'
-                                            className={ StudentManagerDetailCSS.subjectInfoInput }
+                                            className={ StudentManagerDetailCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberEmail : form.memberEmail) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -254,18 +253,13 @@ function StudentManagerDetail() {
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>전화번호</label></td>
-                                <td><label>주소</label></td>
-                            </tr>
-
-                            <tr>
-                                
+                            <td><label>전화번호</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberPhone"  
                                             placeholder='전화번호'
-                                            className={ StudentManagerDetailCSS.subjectInfoInput }
+                                            className={ StudentManagerDetailCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberPhone : form.memberPhone) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -273,12 +267,13 @@ function StudentManagerDetail() {
                                             /> 
                                     </label>
                                 </td>
+                                <td><label>주소</label></td>
                                 <td>
                                     <label>
                                         <input 
                                             name="memberAddress"  
                                             placeholder='주소'
-                                            className={ StudentManagerDetailCSS.subjectInfoInput }
+                                            className={ StudentManagerDetailCSS.studentInfoInput }
                                             onChange={ onChangeHandler } 
                                             value={ (!modifyMode ? studentInfo.memberAddress : form.memberAddress) || '' }
                                             readOnly={ modifyMode ? false : true }
@@ -287,15 +282,15 @@ function StudentManagerDetail() {
                                     </label>
                                 </td>
                             </tr>
-                          </tbody>              )}        
+                          </tbody> )}        
                     </table>
                 </div>
                 <div>
                 <table className={ StudentManagerDetailCSS.studentClassTable }>
                 <colgroup>
-                    <col width="40%" />
-                    <col width="30%" />
-                    <col width="10%" />
+                    <col width="35%" />
+                    <col width="35%" />
+                    <col width="5%" />
                     <col width="10%" />
                     
                 </colgroup>
@@ -314,10 +309,10 @@ function StudentManagerDetail() {
                             <td>{ m.openClasses.className }</td>
                             <td>{ m.openClasses.classRoom }</td>
                             <td>
-                                { m.openClasses.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [] )}
+                                { m.openClasses.classesScheduleList.map((d) => d.dayName + "\n")}
                                 
                             </td>
-                            <td>{ m.openClasses.classesScheduleList.map((t) => t.timeName)}</td>
+                            <td>{ m.openClasses.classesScheduleList.map((t) => t.timeName + "\n") }</td>
                             
 
                         </tr>

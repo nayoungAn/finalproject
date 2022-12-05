@@ -3,103 +3,56 @@
     margin-right: 10%;
 }
 
-.subjectSection{
+.studentSection{
     border: 1px solid black;
     display: flex;
     flex-direction: column;
 }
 
-.subjectInfoDiv{
+.studentInfoDiv{
     display: flex;
     width: 750px;
     
 }
 
-.subjectInfoInput {    
-    width: 80%;
+.studentInfoDiv table {
+    width: 100%;
+}
+
+.studentInfoInput {  
+    width : 80%;  
     margin: 0;
     padding: 0;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: white;
     text-indent: 0.5em;
+    
 }
 
-.subjectInfoDiv table {
-    width: 100%;
-}
 
-.subjectContentInput {
-    height: 400px;
-    width : 720px;
-}
-
-.textAreaStyle {
-    width: 100%;
-    height: 6.25em;
-    border: 1px solid black;
-    border-radius: 10px;
-    resize: none;
-}
-
-.subjectButtonDiv{
-    display: flex;
-    justify-content: flex-end;
-}
-.subjectButtonDiv button{
-    margin: 5px;    
-    margin-top: 15px;
-    margin-bottom: 15px;
-    height: 25px;
+.studentImage{
+    margin-top: 5px;
     width: 150px;
-    border-radius: 25px;
-    background-color: white;
-    font-weight: bold;
+    height: 150px;   
 }
 
-.subjectImageDiv{
+.studentImageDiv{
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto;
+    justify-content: center;
 }
 
-.subjectImage{
-    margin-top: 5px;
-    width: 80%;
-    height: 90%;    
-}
-
-.subjectImageButton{
+.studentImageButton{
     margin-top: 5px;
     margin-bottom: 5px;
-    height: 30px;
+    padding : 0px;
+    height: 150px;
     width: 150px;
-    border-radius: 25px;
+    border : 0px;
+    border-radius: 0px;
     background-color: white;
-    font-weight: bold;
-}
-
-.productImage{
-    margin-top: 5px;
-    width: 80%;
-    height: 90%;    
-}
-
-.productImageDiv{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.productImageButton{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 150px;
-    border-radius: 25px;
-    background-color: white;
-    font-weight: bold;
+    color : white;
 }
