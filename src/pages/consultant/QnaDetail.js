@@ -5,18 +5,17 @@ import { callQnaDetailAPI, callQnaUpdateAPI,callQnaDeleteAPI } from "../../api/Q
 import QnaRegistrationCSS from './QnaRegistration.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 import QnaDetailCSS from "./QnaDetail";
-function OnaDetail() {
+function QnaDetail() {
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
     const mtmCode = params.mtmCode;
     const qnaDetail = useSelector(state => state.qnaReducer);
-    const classes = useSelector(state => state.teacherClassReducer);
     const [ modifyMode, setModifyMode ] = useState(false);
     const [ form, setForm ] = useState({});
     const token = decodeJwt(window.localStorage.getItem("accessToken"));  
-   
+    
 
     //상담 글 상세 조회
     useEffect(
@@ -35,55 +34,13 @@ function OnaDetail() {
     const onClickHandler = () => {
         if(qnaDetail.answerCode === 1){
                 alert('답변 완료 된 상담 글입니다.');
-                navigate(`/ono/tea/qnaDetail/${mtmCode}`, { replace : false });
+                navigate(`/ono/tea/qna/${mtmCode}`, { replace : false });
         }else{
                 navigate(`/ono/tea/qnaReply`, { replace : false });
                 }
+           
         }
 
-     const onChangeHandler = (e) => {
-        setForm({
-            ...form,
-            [e.target.name] : e.target.value
-        });
-    }
-    
-    //답글 수정 
-    const onClickModifyModeHandler = () => {
-        setModifyMode(true);
-        setForm({
-            mtmCode : qnaDetail.mtmCode,
-            mtmTitle : qnaDetail.mtmTitle,
-            mtmDescription : qnaDetail.mtmDescription
-        })
-    }
-    
-    //답글 수정 저장
-    const onClickQnaUpdateHandler = (e) => {
-        setForm({
-            ...form,
-            [e.target.name] : e.target.value
-        });
-
-        dispatch(callQnaUpdateAPI({
-            form : form
-        }));
-        alert('답글이 수정 되었습니다.');  
-
-        navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false });       
-    } 
-
-    //답글 삭제
-    const onClickDeleteHandler = () => {
-
-            dispatch(callQnaDeleteAPI({
-                mtmCode : mtmCode
-            }));
-            
-            alert('답글이 삭제 되었습니다.');  
-
-            navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false }); 
-    }
     
     console.log("로그인 멤버 코드", qnaDetail.member?.memberName )
     console.log("토큰", token.sub)
@@ -109,10 +66,7 @@ function OnaDetail() {
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         name= 'mtmTitle'
                                         placeholder='제목'
-                                        readOnly={modifyMode ? false : true}
-                                        style={ !modifyMode ? { backgroundColor: 'white'} : null}
-                                        onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? qnaDetail.mtmTitle : form.mtmTitle) || ''}
+                                        value={ qnaDetail.mtmTitle }
                                    />
                                 </td>
                             </tr>
@@ -121,9 +75,7 @@ function OnaDetail() {
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         placeholder='작성자'
-                                        readOnly={true}
-                                        style={  { backgroundColor: 'white'} }
-                                        value={ qnaDetail && qnaDetail.member?.memberName || ''}
+                                        value={ qnaDetail.member?.memberName }
                                    />
                                 </td>
                             </tr>
@@ -132,9 +84,7 @@ function OnaDetail() {
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         placeholder='작성일'
-                                        readOnly={true}
-                                        style={  { backgroundColor: 'white'} }
-                                        value={ qnaDetail && qnaDetail.mtmDate || ''}
+                                        value={ qnaDetail.mtmDate }
                                    />
                                 </td>
                             </tr>
@@ -143,10 +93,7 @@ function OnaDetail() {
                                     <textarea
                                         name='mtmDescription'
                                         className={ QnaDetailCSS.contentTextArea }
-                                        readOnly={modifyMode ? false : true}
-                                        style={ !modifyMode ? { backgroundColor: 'white'} : null}
-                                        onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? qnaDetail.mtmDescription : form.mtmDescription) || ''}
+                                        value={ qnaDetail.mtmDescription} 
                                     >                                    
                                     </textarea>
                                 </td>
@@ -163,34 +110,6 @@ function OnaDetail() {
                         >
                             돌아가기
                         </button>
-                        { token &&
-                            (token.sub === qnaDetail.member?.memberId)
-                            ?
-                           
-                             <div>{!modifyMode &&
-                                  <button
-                                    className={ QnaDetailCSS.backBtn }
-                                    onClick={ onClickModifyModeHandler }
-                                  >
-                                    수정모드
-                                  </button>
-                                }
-                                {modifyMode &&
-                                    <button
-                                        className={ QnaDetailCSS.backBtn }
-                                        onClick={ onClickQnaUpdateHandler }
-                                    >
-                                        답글 수정 저장
-                                    </button>
-                                }
-                                    <button
-                                        onClick={ onClickDeleteHandler }
-                                    >
-                                        답글 삭제
-                                    </button>   
-                            </div>
-                          :null  
-                        }
                     </div>
 
                 }    
@@ -199,4 +118,4 @@ function OnaDetail() {
 
 }
 
-export default OnaDetail;
+export default QnaDetail;
