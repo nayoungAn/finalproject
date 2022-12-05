@@ -10,6 +10,8 @@ function TeacherclassDetail(){
   //  const navigate = useNavigate();
     const dispatch = useDispatch();
     const classesDetail = useSelector(state => state.teacherClassReducer);
+    const classDetail = classesDetail.openClasses;
+    const attachList = classesDetail.attachList;
     console.log("classesDetail", classesDetail);
     const params = useParams();
 
@@ -31,44 +33,50 @@ function TeacherclassDetail(){
                     <div className={TeacherClassDetailCSS.balance}>
                     <tr>
                 <th>강의명</th>
-                {classesDetail.member &&(
+                {classDetail &&(
                     <td className={TeacherClassDetailCSS.classtitle}>
-                        {classesDetail.className}</td>
+                        {classDetail.className}</td>
                 )}
                 
                 <th>담당강사</th>
-                {classesDetail.member &&(
+                {classesDetail.member ? (
                     <td className={TeacherClassDetailCSS.classteacher}>
-                        {classesDetail.member.memberName}</td>
-                )}
+                        {classDetail.member.memberName}</td>
+                ) : <td className={TeacherClassDetailCSS.classteacher}>
+                test</td>}
                 </tr>
 
                 <tr>
 
                 <th>수업기간</th>
-                <div className={TeacherClassDetailCSS.period}>
-                <td>{classesDetail.classStartDate}</td>
-                <td>~</td>
-                <td>{classesDetail.classEndDate}</td>
-                </div>
-                
-                
-              
-
+                {classDetail &&(
+                    <div className={TeacherClassDetailCSS.period}>
+                    <td>{classDetail.classStartDate}</td>
+                    <td>~</td>
+                    <td>{classDetail.classEndDate}</td>
+                    </div>
+                )}
+  
                 </tr>
 
                 <tr>
                     <th>수강 모집인원</th>
-                    <td className={TeacherClassDetailCSS.quota}>{classesDetail.classQuota}</td>
+                    {classDetail &&(
+                        <td className={TeacherClassDetailCSS.quota}>{classDetail.classQuota}</td>
+                    )}
+                    
                     
                     <th>강의실</th>
-                    <td className={TeacherClassDetailCSS.classRoom}>{classesDetail.classRoom}</td>
+                    {classDetail &&(
+                        <td className={TeacherClassDetailCSS.classRoom}>{classDetail.classRoom}</td>
+                    )}
+                    
                 </tr>
 
                 <div className={TeacherClassDetailCSS.classnote}>
                 <th>강의설명</th>
-                 {classesDetail.subject &&(
-                    <td className={TeacherClassDetailCSS.note}>{classesDetail.subject.subjectDescription}</td>
+                 {classDetail &&(
+                    <td className={TeacherClassDetailCSS.note}>{classDetail.subject.subjectDescription}</td>
                 )}
                 </div>
 
@@ -77,14 +85,30 @@ function TeacherclassDetail(){
                     <th>자료목록</th>
                     </tr>
 
-                    <div className={TeacherClassDetailCSS.List}>
                     <tr>
                         <td>No.</td>
                         <td>파일명</td>
                         <td>첨부일자</td>
                     </tr>
-                    </div>
+
+                    <div className={TeacherClassDetailCSS.List}> 
+                    {
+                        Array.isArray(attachList) && attachList.map(
+                           (attach) => (
+                            <tr
+                            key={ attach.openClasses.classCode}
+                            >
+                                <td>{attach.attachCode}</td>
+                                <td>{attach.attachNote}</td>
+                                <td>{attach.attachDate}</td>
+
+                            </tr>
+                           ) )                        
+                     }
+                     </div>
                     
+
+
                 </div>
 
                     </div>
