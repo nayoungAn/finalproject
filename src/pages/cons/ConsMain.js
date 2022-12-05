@@ -60,8 +60,8 @@ function ConsMain(){
                     <col width="5%" />
                     <col width="15%" />
                     <col width="15%" />
-                    <col width="35%" />
-                    <col width="45%" />
+                    <col width="30%" />
+                    <col width="50%" />
                 </colgroup>
                 <thead>
                     <tr>
@@ -112,7 +112,7 @@ function ConsMain(){
                 pageNumber.map((num) => (
                     <li key={num} onClick={ () => setCurrentPage(num)}>
                         <button
-                            style={ currentPage === num ? { backgroundColor : 'orange'} : null }
+                            style={ currentPage === num ? { backgroundColor : 'transparent'} : null }
                             className={ consCSS.pagingBtn} 
                         >
                             {num}

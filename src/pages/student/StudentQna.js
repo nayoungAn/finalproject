@@ -156,7 +156,7 @@ function StudentQna() {
                 pageNumber.map((num) => (
                     <li key={num} onClick={ () => setCurrentPage(num) }>
                         <button
-                            style={ currentPage === num ? { backgroundColor : 'orange'} : null }
+                            style={ currentPage === num ? { backgroundColor : 'transparent'} : null }
                             className={ StudentQnaCSS.pagingBtn }
                         >
                             {num}
