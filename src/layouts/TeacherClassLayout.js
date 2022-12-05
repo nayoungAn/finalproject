@@ -1,5 +1,6 @@
 
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/common/Footer';
 import TeacherClassNav from '../components/common/TeacherClassNav'
 function FindMemLayout(){
 
@@ -10,6 +11,7 @@ function FindMemLayout(){
             <main>
                 <Outlet/>
             </main>
+            
 
         </>
     );
