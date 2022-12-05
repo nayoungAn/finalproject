@@ -78,6 +78,8 @@ function Attend() {
                         수정 저장
                     </button>    
                 }
+                   
+                
                <table className={ AttendCSS.attendTable }>
                     <colgroup>
                         <col width="10%" />
@@ -153,8 +155,10 @@ function Attend() {
                     </tbody>
                </table>
             </div>
+            
+           
         </>
     );    
 
-}               
+                        }                
 export default Attend;

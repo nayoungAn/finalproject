@@ -1,5 +1,5 @@
 import OpenClassesNavbarCSS from './OpenClassesNavbar.module.css';
-import { decodeJwt } from '../../utils/tokenUtils';
+import { decodeJwt } from '../../../utils/tokenUtils';
 import { Navigate, NavLink } from 'react-router-dom';
 
 function OpenClassesNavbar() {

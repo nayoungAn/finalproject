@@ -9,7 +9,6 @@ function AttendUpdate() {
     const attend = useSelector(state => state.attendReducer);
     const params = useParams();
     const attendCheck = useSelector(state => state.attendCheckReducer);
-
     const [checkedList, setCheckedList ] = useState([]);
     
     const checkList = [
@@ -28,6 +27,7 @@ function AttendUpdate() {
         }
     };
 
+  
 
     useEffect(
         () => {
@@ -64,6 +64,8 @@ function AttendUpdate() {
                                 key={ a.classHistoryCode }
                             >   
                                 <td>{ a.member.memberName  }</td>
+                               
+                        
                            <td> 
                                     {checkList.map(item => {
                                         return(

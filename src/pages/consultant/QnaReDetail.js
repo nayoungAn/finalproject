@@ -60,6 +60,7 @@ function QnaReDetail() {
         }));
         alert('답글이 수정 되었습니다.');  
         navigate(-1);
+       
     } 
 
     //답글 삭제
@@ -71,6 +72,7 @@ function QnaReDetail() {
             
             alert('답글이 삭제 되었습니다.');  
             navigate(-1);
+            
     }
     
     console.log("로그인 멤버 코드", qnaDetail.member?.memberName )

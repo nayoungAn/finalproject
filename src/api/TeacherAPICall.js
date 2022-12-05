@@ -14,6 +14,7 @@ export const callTeacherRegistAPI = ({form}) =>{
                 "Accept": "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             },
+            
             body : form
         })
         .then(response => response.json());

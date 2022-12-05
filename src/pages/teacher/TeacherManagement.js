@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import { callTeacherListForAdminAPI } from '../../api/TeacherListAPICall';
-import HeaderCSS from "../../components/common/Header";
 
 
 function TeacherManagement() {
@@ -14,7 +13,6 @@ function TeacherManagement() {
     const memberList = members.data;
     const [search, setSearch] = useState('');
     
-    console.log('memberManagement', memberList);
 
     const pageInfo = members.pageInfo;
 
@@ -45,10 +43,9 @@ function TeacherManagement() {
     }
 
     const onClickTeacherInsert = () => {
-        console.log('[TeacherManagement] onClickTeacherInsert');
         navigate ('/ono/teacher/regist', {replace : true})
     }
-
+ 
 /* 검색 키워드 입력 시 입력 값 상태 저장 */
 const onSearchChangeHandler = (e) => {
     setSearch(e.target.value);
@@ -56,38 +53,39 @@ const onSearchChangeHandler = (e) => {
 /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
 const onEnterKeyHandler = (e) => {
     if(e.key == 'Enter') {
-        console.log('Enter key', search);
 
         navigate(`/ono/teachers/search?value=${search}`, { replace : false });
     }
 }
-
+const onClickSearch = () => {
+    navigate(`/ono/teachers/search?value=${search}`, { replace : false });
+}
 
 
     return (
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
-
-                <button
-                 onClick={ onClickTeacherInsert }> 강사등록 </button>
+            <h2> 강사 목록</h2>
+              <button className={TeacherManagementCSS.btnSearch} onClick = { () => onClickSearch()}>검색</button>
              <input
-                    className={ HeaderCSS.InputStyle }
+                    className={ TeacherManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ search }
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
+
                 </div>            
                 <table className={ TeacherManagementCSS.teacherTable }>
                 <colgroup>
                     <col width="5%" />
                     <col width="15%" />
                     <col width="10%" />
-                    <col width="20%" />
-                    <col width="20%" />
                     <col width="10%" />
+                    <col width="20%" />
+                    <col width="20%" />
                     <col width="10%" />
                 </colgroup>
                 <thead>
@@ -113,15 +111,15 @@ const onEnterKeyHandler = (e) => {
                             <td>{ m.memberBirthday }</td>
                             <td>{ m.memberPhone }</td>
                             <td>{ m.memberEmail }</td>
-                            <td>{ m.memberStatus }</td>
-                           
+                            <td>{ m.memberStatus }</td>         
                         </tr>
                     )) 
                     }
                 </tbody>                    
             </table>         
-            
-        </div>
+            <button
+                 onClick={ onClickTeacherInsert } className={TeacherManagementCSS.btnRegist}> 강사등록 </button>
+      
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(memberList) &&
             <button 
@@ -135,7 +133,8 @@ const onEnterKeyHandler = (e) => {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ?
+                         {color : '#2F65EB', textDecoration : 'underline'} : null}
                     className={ TeacherManagementCSS.pagingBtn }
                 >
                     {num}
@@ -150,7 +149,7 @@ const onEnterKeyHandler = (e) => {
             >
                 &gt;
             </button>
-            }
+            }  </div>
         </div>
         </>
     );

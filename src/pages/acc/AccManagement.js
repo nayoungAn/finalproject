@@ -24,6 +24,7 @@ function AccManagement() {
     }
   }
 
+  /* */
   useEffect(
     () => {
         dispatch(callSearchListForAdminAPI({
@@ -49,7 +50,96 @@ function AccManagement() {
 
   return (
     <>
-      
+      <div className={AccManagementCSS.bodyDiv}>
+        <h4>상태 조회</h4>
+        <input
+          className={HeaderCSS.InputStyle}
+          type="text"
+          placeholder="조회할 상태를 입력하세요."
+          value={ searchValue }
+          onChange={ onSearchChangeHandler }
+        />
+      </div>
+      <table className={AccManagementCSS.accTable}>
+        <colgroup>
+          <col width="10%" /> 
+          <col width="10%" />
+          <col width="15%" />
+          <col width="20%" />
+          <col width="15%" />
+          <col width="10%" />
+          <col width="10%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>목록</th>
+            <th>이름</th>
+            <th>번호</th>
+            <th>과목</th>
+            <th>금액</th>
+            <th>일자</th>
+            <th>방법</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(accList) &&
+            accList.map((s) => (
+              <tr
+                key={s.accCode}
+                onClick={(event) => onClickTableTr(event, s.accCode)}
+              >
+                <td>{s.accCode}</td>
+                <td>{s.classesHistory.member.memberName}</td>
+                <td>{s.classesHistory.member.memberPhone}</td>
+                <td>{s.classesHistory.openClasses.className}</td>
+                <td>{s.classesHistory.openClasses.classPrice}</td>
+                <td>{s.accDate}</td>
+                <td>{s.accOption}</td>
+                <td>{s.accStatus}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+
+      <div
+        style={{
+          listStyleType: "none",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {Array.isArray(accList) && (
+          <button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={AccManagementCSS.pagingBtn}
+          >
+            &lt;
+          </button>
+        )}
+        {pageNumber.map((num) => (
+          <li key={num} onClick={() => setCurrentPage(num)}>
+            <button
+              style={currentPage === num ? { backgroundColor: "orange" } : null}
+              className={AccManagementCSS.pagingBtn}
+            >
+              {num}
+            </button>
+          </li>
+        ))}
+        {Array.isArray(accList) && (
+          <button
+            className={AccManagementCSS.pagingBtn}
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={
+              currentPage === pageInfo.maxPage || pageInfo.endPage === 1
+            }
+          >
+            &gt;
+          </button>
+        )}
+      </div>
     </>
   );
 }

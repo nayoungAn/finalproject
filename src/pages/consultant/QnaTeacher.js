@@ -8,12 +8,11 @@ function QnaTeacher() {
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams();
     const [ currentPage, setCurrentPage ] = useState(1);
     const qna = useSelector(state => state.qnaListReducer);
     const qnaList = qna.data;
     const pageInfo = qna.pageInfo;
-
+  
     const pageNumber = [];
     if(pageInfo) {
         for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
@@ -83,6 +82,7 @@ function QnaTeacher() {
                                 )
                             )
                         }
+                         
                     </tbody>
                 </table>
        

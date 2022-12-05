@@ -1,8 +1,6 @@
 import { createActions, handleActions } from "redux-actions";
-
 /* 초기값 */
 const initialState = [];
-
 /* 액션 */
 export const GET_STUDENTLIST = "student/GET_STUDENTLIST";
 export const GET_STUDENT = 'student/GET_STUDENT';
@@ -18,7 +16,6 @@ const actions = createActions({
     [GET_CHECKID]: () => {},
     
 });
-
 /* 리듀서 */
 const studentManagerReducer = handleActions(
     {
@@ -40,5 +37,4 @@ const studentManagerReducer = handleActions(
     },
     initialState
 );
-
 export default studentManagerReducer;

@@ -22,18 +22,16 @@ import NoticeRegist from "./pages/notice/NoticeRegist";
 import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
 import SubjectSearch from "./pages/classes/SubjectSearch";
-
-import FindMemLayout from "./layouts/FineMemLayout";
+import FindMemLayout from "./layouts/FindMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import StudentManagerList from "./pages/studentManager/StudentManagerList";
 import StudentManagerDetail from "./pages/studentManager/StudentManagerDetail";
-
 import QnaTeacher from "./pages/consultant/QnaTeacher";
-import QnaDetail from "./pages/consultant/QnaDetail";
+
+
 
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
-
 import ConsRegistration from "./pages/cons/ConsRegistration";
 
 import TeacherclassDetail from "./pages/teacherclass/TeacherclassDetail";
@@ -42,10 +40,9 @@ import AttachRegist from "./pages/teacherclass/AttachRegist";
 import StudentInfo from "./pages/teacherclass/StudentInfo";
 
 import AccManagement from "./pages/acc/AccManagement";
-import AccRegistration from "./pages/acc/AccRegistration";
 import AccUpdate from "./pages/acc/AccUpdate";
 import SmsManagement from "./pages/sms/SmsManagement";
-import QnaRegistration from "./pages/consultant/QnaRegistration";
+
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import StudentManagerSearch from "./pages/studentManager/StudentManagerSearch";
 import StudentManagerRegist from "./pages/studentManager/StudentManagerRegist";
@@ -66,21 +63,20 @@ import SmsTransmission from "./pages/sms/SmsTransmission";
 import Attend from "./pages/attend/Attend";
 import AttendUpdate from "./pages/attend/AttendUpdate";
 
-
-import SmsTransmission from "./pages/sms/SmsTransmission";
-import Attend from "./pages/attend/Attend";
-import AttendUpdate from "./pages/attend/AttendUpdate";
+import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import QnaDetail from "./pages/consultant/QnaDetail";
+import QnaRegistaration from "./pages/consultant/QnaRegistration";
 import QnaReDetail from "./pages/consultant/QnaReDetail";
+import ClassSearch from "./pages/classes/ClassSearch";
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
       <Route path="/" element={ <Login/>}/>
-     
+
       <Route path="findmeminfo" element= { <FindMemLayout/>}>
-        <Route index element={ <Navigate to= "/findmeminfo/find-id" replace/> }/>
+        <Route index element={ <Navigate to= "/findmeminfo/find-pwd" replace/> }/>
         <Route path="find-id" element={ <FindId/>}/>
         <Route path="find-pwd" element={ <FindPwd/>}/>
       </Route>
@@ -89,7 +85,7 @@ function App() {
         <Route path="notice" index element= { <NoticeList/> }/>
         <Route path="notice/:noticeCode" element= { <NoticeDetail/> }/>
         <Route path="notice-regist" element= { <NoticeRegist/> }/>
-        
+
         <Route path="student-manager" element= { <StudentManagerList/> }/>
         <Route path="student-manager/:memberCode" element= { <StudentManagerDetail/> }></Route>
         <Route path="student-manager/search" element={ <StudentManagerSearch/> }/>
@@ -102,6 +98,7 @@ function App() {
               <Route path="subject-registration" element={ <SubjectRegistration/> }/>
               <Route path="subject-update/:subjectCode" element={ <SubjectUpdate/> }/>
               <Route path="classes" element={ <ClassManagement/> }/>
+              <Route path="classes/search" element={ <ClassSearch/>} />
               <Route path="class-registration" element={ <ClassRegistration/> }/>
               <Route path="class-update/:classCode" element={ <ClassUpdate/> }/>
               <Route path="classHistory" element={ <ClassHistory/> }/>
@@ -117,26 +114,59 @@ function App() {
             <Route path="consMain" element={ <ConsMain/> }/>
             <Route path="cons-registration" element={ <ConsRegistration/> }/>
             <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
-        </Route>
-        
 
-        <Route path="teacherclass" element={<Teacherclass/>}/>
+
+       </Route>
+
+       <Route path="teacherclass" element={<Teacherclass/>}/>
         <Route path="tea" element={<TeacherClassLayout/>}>
               <Route index element={ <Navigate to="teacherclass/:classCode" replace/> } />
               <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>} />
-              <Route path="qna/:classCode" element={ <QnaTeacher/> }/>
+              <Route pate="teacherclass/:classCode/attach" element={<AttachRegist/>}/> 
+              <Route path="qna/:classCode" element={ <QnaTeacher/>} />
               <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
-              <Route path="qnaReply" element={ <QnaRegistration/>} />
+              <Route path="qnaReDetail/:reCode" element={ <QnaReDetail/> }/>
+              <Route path="qnaReply" element={ <QnaRegistaration/>} />
+              <Route path="attend/:classCode" element={ <Attend/> } />
+              <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> }/>
         </Route>
 
-        <Route path="acc" element={<AccManagement />}/>
-       
+        <Route path="teacherclass" element={<Teacherclass/>}>
+        </Route> 
+ 
+
+
+        <Route path="acc" element={<AccManagement />}>
+        </Route>
         <Route path="acc-update/:accCode" element={<AccUpdate />} />
         <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
-        <Route path="sms" element={<SmsManagement />} >
-          
+        <Route path="sms" element={<SmsManagement />} ></Route>
+       
+
+        {/* 원생 */}
+        <Route path="student" element={<StudentLayout/>}>
+          <Route index element={ <Navigate to="studentMyInfo" replace /> } />
+          <Route path="studentMyInfo" element={ <StudentMyInfo/> }/>
+          <Route path="studentClasses" element={ <StudentClasses/> }/>
+          <Route path="studentClassesDetail/:classCode" element={ <StudentClassesDetail/> }/>
+          <Route path="studentQna" element={ <StudentQna/> }/>
+          <Route path="studentQnadetail/:mtmCode" element={ <StudentQnaDetail/> }/>
+          <Route path="studentQnaRegistration" element={ <StudentQnaRegistration/> }/>
+          <Route path="studentnotice" element={ <StudentNoticeList/> }/>
+          <Route path="studentNoticeDetail/:noticeCode" element={ <StudentNoticeDetail/> }/>
+          <Route path="StudentReQnaDetail/:mtmCode" element={ <StudentReQnaDetail/> }/>
         </Route>
+          
+        
       </Route>
+      
+        <Route path="studentinfo" element={<StudentInfo/>}/>
+
+        <Route path="acc" element={<AccManagement />}/>
+        
+        <Route path="acc-update/:accCode" element={<AccUpdate />}/>
+        
+        <Route path="sms" element={<SmsTransmission />}/>
         
       </Routes>
     </BrowserRouter>

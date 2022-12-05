@@ -15,7 +15,6 @@ function QnaDetail() {
     const [ form, setForm ] = useState({});
     const token = decodeJwt(window.localStorage.getItem("accessToken"));  
     
-    
 
     //상담 글 상세 조회
     useEffect(

@@ -1,66 +1,70 @@
-import ClassManagementCSS from './ClassManagement.module.css';
+import queryString from 'query-string';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from "react";
-import { callClassListForAdminAPI } from '../../api/ClassAPICalls';
+import { useLocation } from 'react-router-dom';
+import ClassManagementCSS from './ClassManagement.module.css';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { callSearchClassListAPI } from '../../api/ClassAPICalls';
 
-function ClassManagement() {
-    
+
+function ClassSearch() {
+
+    const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
+    const { search } = useLocation();
+    const { value } = queryString.parse(search);
     const dispatch = useDispatch();
     const classes  = useSelector(state => state.classReducer);      
     const classList = classes.data;
-    const [search, setSearch] = useState('');
     /* 정렬 규칙 */ 
     const orderBy = ['월','화','수','목','금','토','일'];
 
-    
+    const [currentPage, setCurrentPage] = useState(1);
     const pageInfo = classes.pageInfo;
 
-    const [currentPage, setCurrentPage] = useState(1);
-
+    /* 페이징 버튼 */
     const pageNumber = [];
-    if(pageInfo){
-        for(let i = pageInfo.startPage ; i <= pageInfo.endPage ; i++){
+    if(pageInfo) {
+        for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
             pageNumber.push(i);
         }
     }
-
     useEffect(
-        () => {         
-            dispatch(callClassListForAdminAPI({
-                currentPage: currentPage
-            }));            
-            
+        () => {
+            dispatch(callSearchClassListAPI({
+                search : value,
+                currentPage : currentPage
+            }));
         }
-        ,[currentPage]    
+        , [currentPage, value]
     );
 
     const onClickClassInsert = () => {
         navigate("/ono/OpenClasses/class-registration", { replace: false })
     }
 
+
     const onClickTableTr = (classCode) => {
 
-    navigate(`/ono/OpenClasses/class-update/${classCode}`, { replace: false })
+        navigate(`/ono/OpenClasses/class-update/${classCode}`, { replace: false })
+        
     
+        }
 
+     /* 검색 키워드 입력 시 입력 값 상태 저장 */
+     const onSearchChangeHandler = (e) => {
+        setSearchValue(e.target.value);
     }
 
-       /* 검색 키워드 입력 시 입력 값 상태 저장 */
-       const onSearchChangeHandler = (e) => {
-        setSearch(e.target.value);
-    }
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
 
-            navigate(`/ono/OpenClasses/classes/search?value=${search}`, { replace : false });
+            navigate(`/ono/OpenClasses/classes/search?value=${searchValue}`, { replace : false });
         }
     }
-
     const onClickSearch = () => {
-        navigate(`/ono/OpenClasses/classes/search?value=${search}`, { replace : false });
+        navigate(`/ono/OpenClasses/classes/search?value=${searchValue}`, { replace : false });
     }
     
     return (
@@ -76,7 +80,7 @@ function ClassManagement() {
                     className={ ClassManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
-                    value={ search }
+                    value={ searchValue }
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
@@ -110,21 +114,28 @@ function ClassManagement() {
                             <td>{ c.member.memberName }</td>
                             <td>{ c.className }</td>
                            <td>{c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])
-                            .sort((a, b) => orderBy.indexOf(a) - orderBy.indexOf(b)) + ""} </td> 
+                            .sort((a, b) => orderBy.indexOf(a) - orderBy.indexOf(b)) + " "} </td> 
                             <td>{ c.classRoom }</td>
                             <td>{ c.classStudents + "/" + c.classQuota}</td>
                         </tr>
                     )) /* 수강일 중복 삭제 및 정렬 */ 
                     }
                 </tbody>                    
-            </table>         
+            </table>       
+            <div>            <button        
+                    onClick={ () => navigate("/ono/OpenClasses/classes") }
+                    className={ClassManagementCSS.btnCancle}           
+            
+                >
+                    돌아가기
+                </button>     
             <button
                     onClick={ onClickClassInsert }
                     className={ClassManagementCSS.btnRegist}
                 >
                     강의 등록
                 </button>
-     
+                    </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(classList) &&
             <button 
@@ -138,7 +149,7 @@ function ClassManagement() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ?
+                      style={ currentPage === num ?
                         { color : '#2F65EB', textDecoration : 'underline'} : null}
                     className={ ClassManagementCSS.pagingBtn }
                 >
@@ -161,4 +172,4 @@ function ClassManagement() {
     );
 }
 
-export default ClassManagement;
+export default ClassSearch;

@@ -5,11 +5,11 @@ function FindMemInfoNav(){
      const params = useParams();
      const navigate = useNavigate()
 
-    const onClickQanclassHandlerHandler = () => {
+    const onClickQanclassHandler = () => {
         navigate(`/ono/tea/qna/${params.classCode}`, {replace:false})
     }
 
-    const onClickTeacherclassHandlerHandler =  (classCode)  => {
+    const onClickTeacherclassHandler = (classCode) => {
         navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
     }
 
