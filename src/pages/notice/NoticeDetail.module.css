@@ -67,3 +67,23 @@
    border-bottom: 3px solid rgba(60, 63, 212, 0.945);
    color:rgba(60, 63, 212, 0.945);
 }
+
+.noticeRegistTable {
+    border : 1px solid;
+}
+
+.noticeRegistTable td{
+    text-align: left;
+    word-break:break-all;
+}
+
+.noticeRegistContent {
+    height : 350px;
+    width : 100%;
+    border-radius: 5px;
+}
+
+.noticeRegistTitle {
+    width : 100%;
+    border-radius: 5px;
+}
