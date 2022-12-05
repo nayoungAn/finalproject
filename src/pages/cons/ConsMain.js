@@ -45,7 +45,8 @@ function ConsMain(){
              pageNumber.push(i);
          }
      }
-     const onClickConsInsert = () => {
+     
+    const onClickConsInsert = () => {
         console.log('[SubjectManagement] onClickSubjectInsert');
         navigate("/ono/cons/cons-registration", { replace: false })
     }

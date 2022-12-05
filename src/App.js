@@ -2,10 +2,13 @@ import {  BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/member/Login";
 import Layout from "./layouts/Layout.js";
 import OpenClassesLayout from "./layouts/OpenClassesLayout";
+
 import ConsLayout from "./layouts/ConsLayout";
 import ConsMain from "./pages/cons/ConsMain";
 import ConsDetail from "./pages/cons/ConsDetail";
+import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectUpdate from "./pages/classes/SubjectUpdate"
+
 import ClassManagement from "./pages/classes/ClassManagement";
 import ClassUpdate from "./pages/classes/ClassUpdate";
 
@@ -18,13 +21,15 @@ import NoticeDetail from "./pages/notice/NoticeDetail";
 import NoticeRegist from "./pages/notice/NoticeRegist";
 import TeacherRegistration from "./pages/teacher/TeacherRegistration";
 import SubjectRegistration from "./pages/classes/SubjectRegistration";
-import SubjectManagement from "./pages/classes/SubjectManagement";
 import SubjectSearch from "./pages/classes/SubjectSearch";
 import FindMemLayout from "./layouts/FindMemLayout";
 import TeacherUpdate from "./pages/teacher/TeacherUpdate";
 import StudentManagerList from "./pages/studentManager/StudentManagerList";
 import StudentManagerDetail from "./pages/studentManager/StudentManagerDetail";
 import QnaTeacher from "./pages/consultant/QnaTeacher";
+import QnaDetail from "./pages/consultant/QnaDetail";
+import QnaRegistration from "./pages/consultant/QnaRegistration";
+
 
 import TeacherSearch from "./pages/teacher/TeacherSearch";
 import ClassRegistration from "./pages/classes/ClassRegistration";
@@ -37,15 +42,28 @@ import StudentInfo from "./pages/teacherclass/StudentInfo";
 
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
+import SmsManagement from "./pages/sms/SmsManagement";
+
+import TeacherClassLayout from "./layouts/TeacherClassLayout";
+
+//원생
+import StudentLayout from "./layouts/StudentLayout";
+import StudentClasses from "./pages/student/StudentClasses";
+import StudentClassesDetail from "./pages/student/StudentClassesDetail";
+import StudentMyInfo from "./pages/student/StudentMyInfo";
+import StudentQna from "./pages/student/StudentQna";
+import StudentQnaDetail from "./pages/student/StudentQnaDetail";
+import StudentQnaRegistration from "./pages/student/StudentQnaRegistration";
+import StudentNoticeList from "./pages/student/StudentNoticeList";
+import StudentNoticeDetail from "./pages/student/StudentNoticeDetail";
+import StudentReQnaDetail from "./pages/student/StudentReQnaDetail";
 
 import SmsTransmission from "./pages/sms/SmsTransmission";
 
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import Attend from "./pages/attend/Attend";
 import AttendUpdate from "./pages/attend/AttendUpdate";
-import QnaDetail from "./pages/consultant/QnaDetail";
-import QnaRegistaration from "./pages/consultant/QnaRegistration";
-import QnaReDetail from "./pages/consultant/QnaReDetail";
+
 
 function App() {
   return (
@@ -89,11 +107,11 @@ function App() {
             <Route path="consMain" element={ <ConsMain/> }/>
             <Route path="cons-registration" element={ <ConsRegistration/> }/>
             <Route path="consdetail/:consCode" element={ <ConsDetail/> }/>
-
         </Route>
-        
+
     
         <Route path="teacherclass" element={<Teacherclass/>}/>
+
         <Route path="tea" element={<TeacherClassLayout/>}>
               <Route index element={ <Navigate to="teacherclass/:classCode" replace/> } />
               <Route path="teacherclass/:classCode" element={<TeacherclassDetail/>} />
@@ -106,11 +124,36 @@ function App() {
               <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> }/>
         </Route>
 
-        <Route path="studentinfo" element={<StudentInfo/>}/>
+        <Route path="teacherclass" element={<Teacherclass/>}>
+        </Route> 
+ 
 
+
+        <Route path="acc" element={<AccManagement />}>
+        </Route>
+        <Route path="acc-update/:accCode" element={<AccUpdate />} />
+        <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
+        <Route path="sms" element={<SmsManagement />} ></Route>
        
-    
 
+        {/* 원생 */}
+        <Route path="student" element={<StudentLayout/>}>
+          <Route index element={ <Navigate to="studentMyInfo" replace /> } />
+          <Route path="studentMyInfo" element={ <StudentMyInfo/> }/>
+          <Route path="studentClasses" element={ <StudentClasses/> }/>
+          <Route path="studentClassesDetail/:classCode" element={ <StudentClassesDetail/> }/>
+          <Route path="studentQna" element={ <StudentQna/> }/>
+          <Route path="studentQnadetail/:mtmCode" element={ <StudentQnaDetail/> }/>
+          <Route path="studentQnaRegistration" element={ <StudentQnaRegistration/> }/>
+          <Route path="studentnotice" element={ <StudentNoticeList/> }/>
+          <Route path="studentNoticeDetail/:noticeCode" element={ <StudentNoticeDetail/> }/>
+          <Route path="StudentReQnaDetail/:mtmCode" element={ <StudentReQnaDetail/> }/>
+        </Route>
+          
+        
+      </Route>
+      
+        <Route path="studentinfo" element={<StudentInfo/>}/>
 
         <Route path="acc" element={<AccManagement />}/>
         
@@ -120,9 +163,7 @@ function App() {
         
           
       </Route>
-
       </Routes>
-
     </BrowserRouter>
   );
 }

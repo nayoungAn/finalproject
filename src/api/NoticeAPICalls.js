@@ -1,9 +1,9 @@
 import { GET_NOTICE, GET_NOTICELIST, PUT_NOTICE ,DELETE_NOTICE, POST_NOTICE } from "../modules/NoticeModule";
 
-//로그인
-export const callNoticeListAPI = ({currentPage = 1}) => {
 
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/notice?page=${currentPage}`;
+export const callNoticeListAPI = ({value,currentPage = 1}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/notice?search=${value}&page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
@@ -25,6 +25,8 @@ export const callNoticeListAPI = ({currentPage = 1}) => {
     }
 
 }
+
+
 
 export const callNoticeUpdateAPI = ({form}) => {
 
