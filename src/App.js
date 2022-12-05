@@ -145,9 +145,6 @@ function App() {
           <Route path="studentNoticeDetail/:noticeCode" element={ <StudentNoticeDetail/> }/>
           <Route path="StudentReQnaDetail/:mtmCode" element={ <StudentReQnaDetail/> }/>
         </Route>
-          
-        
-      </Route>
       
         <Route path="studentinfo" element={<StudentInfo/>}/>
 
@@ -157,6 +154,7 @@ function App() {
         
         <Route path="sms" element={<SmsTransmission />}/>
         
+        </Route>
       </Routes>
     </BrowserRouter>
   );
