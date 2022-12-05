@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
 import { callNoticeListAPI, callNoticeDeleteAPI } from '../../api/NoticeAPICalls';
+import { decodeJwt } from '../../utils/tokenUtils';
 
 function NoticeList() {
 
@@ -20,6 +21,14 @@ function NoticeList() {
         for(let i = pageInfo.startPage ; i <= pageInfo.endPage ; i++){
             pageNumber.push(i);
         }
+    }
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
     }
     
     useEffect(
@@ -64,11 +73,12 @@ function NoticeList() {
         <>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
             <div>
-                <button
+            { decoded === "ROLE_ADMIN" && <button
                     onClick={ onClickNoticeInsert }
                 >
                     작성하기
                 </button>
+            }
             </div>            
             <table className={ NoticeListmoduleCSS.noticeTable }>
                 <colgroup>

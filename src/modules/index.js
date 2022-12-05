@@ -26,7 +26,6 @@ import classHistoryRefreshReducer from "./ClassHistoryRefreshModule";
 import teacherHistoryReducer from "./TeacherHistoryModule";
 import attachReducer from "./AttachModule";
 import studentInfoReducer from "./StudentInfoModule";
-import studentManagerDetailReducer from "./StudentManagerDetailModule";
 
 
 const rootReducer = combineReducers({
