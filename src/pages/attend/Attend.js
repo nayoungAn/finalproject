@@ -1,7 +1,7 @@
 import { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callAttendAPI, callAttendCheckAPI, callAttendUpdateAPI } from "../../api/AttendAPICalls";
+import { callAttendAPI, callAttendUpdateAPI } from "../../api/AttendAPICalls";
 import AttendCSS from "./Attend.module.css";
 function Attend() {
 
@@ -13,7 +13,6 @@ function Attend() {
     const [ form, setForm ] = useState({});
  
     console.log('attend', attend);
-    console.log('attendhistory', attend.historyList);
     console.log('attendCheck', attendCheck);
 
     const[modifyMode, setModifyMode] = useState(false);
@@ -21,9 +20,6 @@ function Attend() {
     useEffect(
         () => {
             dispatch(callAttendAPI({
-                classCode : params.classCode
-            }));
-            dispatch(callAttendCheckAPI({
                 classCode : params.classCode
             }));
             },[]
@@ -39,6 +35,7 @@ function Attend() {
     const onClickModifyModeHandler = () => {
         setModifyMode(true);
         setForm({
+            attendCode : attendCheck.attendCode,
             attendStatus : attendCheck.attendStatus
         })
     }
@@ -81,105 +78,83 @@ function Attend() {
                         수정 저장
                     </button>    
                 }
-                   
-            </div>
-            <div className={ AttendCSS.AttendHistoryTable }>
-                <div>
-                    <table className={ AttendCSS.attendTable }>
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="10%" />
-                                <col width="70%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>원생</th>
-                                    
-                                </tr>
-                            </thead>
-                            
-                            <tbody>
-                                { Array.isArray(attend.historyList) && attend.historyList.map((a) =>(
-                                    <tr
-                                        key={ a.classHistoryCode }
-                                    >   
-                                        <td> 
-                                            <input
-                                                type="text"
-                                                readOnly={true}
-                                                value={ a.member.memberCode || ''}/></td>
-                                        <td> 
-                                            <input
-                                                type="text"
-                                                readOnly={true}
-                                                value={ a.member.memberName  || ''}/></td> 
-                                        <td> 
-                                            <label>
-                                                <input 
-                                                id={ a.classHistoryCode}
-                                                type="checkbox"
-                                                name="attendStatus"  
-                                                onChange={ onChangeHandler } 
-                                                value="출석"
-                                                readOnly={modifyMode ? false : true }
-                                                checked={(form.attendStatus) === '출석' ? true : false}
-                                                /> 출석</label> &nbsp;
-                                            
-                                            <label>
-                                                <input 
-                                                id={ a.classHistoryCode}
-                                                type="checkbox"
-                                                name="attendStatus"  
-                                                onChange={ onChangeHandler } 
-                                                value="지각"
-                                                readOnly={modifyMode ? false : true }
-                                                checked={(form.attendStatus) === '지각' ? true : false}
-                                                /> 지각 </label> &nbsp;
-                                            
-                                            <label>
-                                                <input 
-                                                id={ a.classHistoryCode}
-                                                type="checkbox"
-                                                name="attendStatus"  
-                                                onChange={ onChangeHandler } 
-                                                value="결석"
-                                                readOnly={modifyMode ? false : true }
-                                                checked={(form.attendStatus) === '결석' ? true : false}
-                                                /> 결석</label> &nbsp;
-                                            
-                                        </td> 
-                                    </tr>
-                                ))}
-                                    
-                            </tbody>
-                    </table>
-                </div>
-                <div>
-                    <table className={ AttendCSS.attendTable }>
-                        <thead>
+               <table className={ AttendCSS.attendTable }>
+                    <colgroup>
+                        <col width="10%" />
+                        <col width="80%" />
+                        <col width="80%" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>원생</th>
                             <th>출석 상태</th>
-                        </thead>
-                        <tbody>
-                            
-                            { attendCheck && attendCheck.map((c) =>(
-                                <tr
-                                    key={ c.attendCode }
-                                >   
-                                    <td>{ c.attendStatus  }</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                        </tr>
+                    </thead>
                     
-
-                </div>
+                    <tbody>
+                        { Array.isArray(attend) && attend.map((a) =>(
+                            <tr
+                                key={ a.classHistoryCode }
+                            >   
+                                <td> 
+                                    <input
+                                        type="text"
+                                        readOnly={true}
+                                        value={ a && a.member.memberCode || ''}/></td>
+                                <td> 
+                                    <input
+                                        type="text"
+                                        readOnly={true}
+                                        value={ a && a.member.memberName  || ''}/></td>  
+                            </tr>
+                        ))}
+                        {modifyMode &&
+                            <td> 
+                             <label>
+                                <input 
+                                    type="radio"
+                                     name="attendStatus"  
+                                     onChange={ onChangeHandler } 
+                                     value="출석"
+                                     readOnly={modifyMode ? false : true }
+                                     checked={(!modifyMode ? attendCheck?.attendStaus : form.attendStatus) === '출석' ? true : false}
+                                     /> 출석</label> &nbsp;
+                            
+                             <label>
+                                <input 
+                                    type="radio"
+                                     name="attendStatus"  
+                                     onChange={ onChangeHandler } 
+                                     value="지각"
+                                     readOnly={modifyMode ? false : true }
+                                     checked={(!modifyMode ? attendCheck?.attendStaus : form.attendStatus) === '지각' ? true : false}
+                                     /> 지각 </label> &nbsp;
+                            
+                             <label>
+                                <input 
+                                    type="radio"
+                                     name="attendStatus"  
+                                     onChange={ onChangeHandler } 
+                                     value="결석"
+                                     readOnly={modifyMode ? false : true }
+                                     checked={(!modifyMode ? attendCheck?.attendStaus : form.attendStatus) === '결석' ? true : false}
+                                     /> 결석</label> &nbsp;
+                            
+                             </td>
+                             }
+                        { Array.isArray(attendCheck) && attendCheck.map((c) =>(
+                            <tr
+                                key={ c.attendCode }
+                            >   
+                                <td>{ c.attendStatus  }</td>
+                            </tr>
+                        ))}
+                    </tbody>
+               </table>
             </div>
-           
         </>
     );    
 
-                        }                
+}               
 export default Attend;
-
-

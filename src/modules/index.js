@@ -14,6 +14,17 @@ import accReducer from "./AccModule";
 import smsListReducer from "./SmsListModule";
 import teacherClassReducer from "./TeacherClassModule";
 import qnaReducer from "./QnaModule";
+import studentQnaReducer from "./StudentQnaModule";
+import studentQnaListReducer from "./StudentQnaListModule";
+import studentClassReducer from "./StudentClassesModule";
+import studentMyInfoModuleReducer from "./StudentMyInfoModule";
+import attendReducer from "./AttendModule";
+import attendCheckReducer from "./AttendCheckModule";
+import attachReducer from "./AttachModule";
+import studentInfoReducer from "./StudentInfoModule";
+import studentManagerDetailReducer from "./StudentManagerDetailModule";
+import attendReducer from "./AttendModule";
+import attendCheckReducer from "./AttendCheckModule";
 
 import studentManagerDetailReducer from "./StudentManagerDetailModule";
 import attendReducer from "./AttendModule";
@@ -35,9 +46,15 @@ const rootReducer = combineReducers({
     classReducer,
     smsListReducer,
     teacherClassReducer,
-    studentManagerDetailReducer,
+    studentQnaReducer,
+    studentClassReducer,
+    studentMyInfoModuleReducer,
+    studentQnaListReducer,
     attendReducer,
-    attendCheckReducer
+    attendCheckReducer,
+    attachReducer,
+    studentInfoReducer,
+    studentManagerDetailReducer,
 
 
 });

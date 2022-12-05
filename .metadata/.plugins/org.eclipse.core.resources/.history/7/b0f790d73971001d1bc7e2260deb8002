@@ -1,0 +1,5 @@
+package com.greedy.onoff.student.repository;
+
+public interface StudentReRepository {
+
+}

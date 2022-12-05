@@ -8,11 +8,12 @@ function QnaTeacher() {
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const params = useParams();
     const [ currentPage, setCurrentPage ] = useState(1);
     const qna = useSelector(state => state.qnaListReducer);
     const qnaList = qna.data;
     const pageInfo = qna.pageInfo;
-  
+
     const pageNumber = [];
     if(pageInfo) {
         for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
@@ -39,68 +40,52 @@ function QnaTeacher() {
 
     return(
         <>  
-            <div className={ QnaTeacherCSS.qnaTableDiv }>
-                <table className={ QnaTeacherCSS.qnaTableCss}>
-
-                    <thead>
-                    <colgroup>
-                        <col width="4%" />
-                        <col width="20%" />
-                        <col width="30%" />
-                        <col width="15%" />
-                        <col width="20%" />
-                    </colgroup>
-                        <tr>
-                            <th>No</th>
-                            <th>강의명</th>
-                            <th>상담 제목</th>
-                            <th>작성자</th>
-                            <th>작성날짜</th>
-                        </tr>
-                    </thead>
+           <table className={QnaTeacherCSS.classtable}>
+                <thead className={QnaTeacherCSS.classhead}>
+                    <tr>
+                        <th>No</th>
+                        <th>강의명</th>
+                        <th>상담 제목</th>
+                        <th>작성자</th>
+                        <th>작성날짜</th>
+                    </tr>
+                </thead>
                     
-                    <tbody>
-                    
-                    <colgroup>
-                        <col width="4%"/>
-                        <col width="15%" />
-                        <col width="30%" />
-                        <col width="15%" />
-                        <col width="20%" />
-                    </colgroup>
-                        {
-                            Array.isArray(qnaList) && qnaList.map(
-                                (qna) => (<>
-                                    <tr
-                                        key={ qna.mtmReCode }
-                                        onClick={ () => onClickTableTr(qna.mtmCode) }
+                <tbody>
+                 
+                    {
+                        Array.isArray(qnaList) && qnaList.map(
+                            (qna) => (
+                            <>
+                                <tr
+                                    key={ qna.mtmReCode }
+                                    onClick={ () => onClickTableTr(qna.mtmCode) }
                                         
-                                    >
-                                        <td>{ qna.mtmCode }</td>
-                                        <td>{ qna.classes.className }</td>
-                                        <td>{ qna.mtmTitle }</td>
-                                        <td>{ qna.member.memberName }</td>
-                                        <td>{ qna.mtmDate }</td>
-                                    </tr>    
+                                >
+                                    <td>{ qna.mtmCode }</td>
+                                    <td>{ qna.classes.className }</td>
+                                    <td>{ qna.mtmTitle }</td>
+                                    <td>{ qna.member.memberName }</td>
+                                    <td>{ qna.mtmDate }</td>
+                                </tr>    
                                   
-                                    <tr 
-                                        key={ qna?.reList?.reCode }
-                                        onClick={ () => onClickReTableTr(qna?.reList?.reCode)}>
+                                <tr 
+                                    key={ qna?.reList?.reCode }
+                                    onClick={ () => onClickReTableTr(qna?.reList?.reCode)}>
 
-                                        <td>{ qna?.reList?.reCode }</td>
-                                        <td>{ qna?.reList?.reTitle }</td>
-                                        <td>{ qna?.reList?.member.memberName }</td>
-                                        <td>{ qna?.reList?.reDate }</td>
+                                    <td>{ qna?.reList?.reCode }</td>
+                                    <td>{ qna?.reList?.reTitle }</td>
+                                    <td>{ qna?.reList?.member.memberName }</td>
+                                    <td>{ qna?.reList?.reDate }</td>
                                       
-                                    </tr>
-                                    </>
+                                </tr>
+                            </>
                                 )
                             )
                         }
-                         
                     </tbody>
                 </table>
-            </div>
+       
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center", marginTop: "80px"}}>
                 {
                     Array.isArray(qnaList) &&

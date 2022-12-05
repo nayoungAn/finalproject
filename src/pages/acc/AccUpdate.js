@@ -7,14 +7,14 @@ import { callAccDetailForAdminAPI } from "../../api/AccListAPICall";
 
 function AccUpdate() {
   const params = useParams();
-  const accDetail = useSelector((state) => state.accListReducer);
+  const accDetail = useSelector(state => state.accListReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState({});
 
   console.log('acc 리듀서', accDetail);
 
-  /* 읽기모드와 수정모드를 구분 */
+  /* 상세 조회와 수정을 구분 */
   const [modifyMode, setModifyMode] = useState(false);
 
   /* 최초 랜더링 시 수납 상세 정보 조회 */
@@ -33,11 +33,15 @@ function AccUpdate() {
     });
   }
 
-  /* 수정 모드 변경 이벤트 */
+  /* 수정 진행 시 변경되는 이벤트 */
   const onClickModifyModeHandler = () => {
     setModifyMode(true);
     setForm({
       accCode: accDetail.accCode,
+      memberName: accDetail.memberName,
+      memberPhone: accDetail.memberPhone,
+      className: accDetail.className,
+      classPrice: accDetail.classPrice,
       // memberCode: accDetail.memberCode,
       memberName: accDetail.memberName,
       memberPhone: accDetail.memberPhone,
@@ -54,17 +58,6 @@ function AccUpdate() {
 
   /* 수납 수정 저장 버튼 클릭 이벤트 */
   const onClickAccUpdateHandler = () => {
-    // const formData = new FormData();
-    // formData.append("accCode", form.accCode);
-    // // formData.append("memberName", form.memberName);
-    // // formData.append("memberPhone", form.memberPhone);
-    // // formData.append("className", form.className);
-    // // formData.append("classPrice", form.classPrice);
-    // formData.append("accDate", form.accDate);
-    // formData.append("accOption", form.accOption);
-    // formData.append("accStatus", form.accStatus);
-    // formData.append("accContent", form.accContent);
-
     dispatch(callAccUpdateAPI({
         form: form
       }));
@@ -218,7 +211,7 @@ function AccUpdate() {
                       placeholder="수납메모"
                       className={AccUpdateCSS.subjectInfoInput}
                       onChange={onChangeHandler}
-                      value={(!modifyMode ? accDetail.accContent : form.accContent) || 0}
+                      value={(!modifyMode ? accDetail.accContent : form.accContent) || ""}
                       readOnly={modifyMode ? false : true}
                       style={!modifyMode ? { backgroundColor: "gray" } : null}
                     />

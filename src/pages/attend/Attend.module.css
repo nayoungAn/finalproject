@@ -7,11 +7,13 @@
     height: 100%;
     margin: 10px;
 }
+
 .attendTableCss{
     width: 80%;
     border-collapse: collapse;
     table-layout: fixed;
 }
+
 .attendTableCss th, td {
     padding: 10px;
     height: 10px;
@@ -19,25 +21,31 @@
     word-break:break-all;
     table-layout:fixed;
 }
+
 .attendTableCss tr:hover { 
     background-color: #F5F5F5; 
 }
+
 .attendTableCss tr {
     cursor: pointer;
 }
+
 .pagingDiv{
     height: 50px
 }
+
 .pagingBtn{
     margin: 5px;
     border-radius: 25px;
     background-color: white;
     font-weight: bold;
 }
+
 .pagingBtn:hover{
     cursor: pointer;
     background-color: rgb(168, 214, 238);
 }
+
 
 .AttendHistoryTable > div{
     float: left;

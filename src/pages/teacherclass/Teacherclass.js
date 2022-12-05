@@ -72,7 +72,6 @@ function Teacherclass() {
                             <td>{c.classEndDate}</td>
                             <td>{c.classStatus}</td>
                             <td>{c.member.memberName}</td>
-
                         </tr>
                     ))
                     }
@@ -99,7 +98,7 @@ function Teacherclass() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'blue' } : null}
+                    style={ currentPage === num ? {backgroundColor : 'transparent' } : null}
                     className={ TeacherClassCSS.pagingBtn }
                 >
                     {num}

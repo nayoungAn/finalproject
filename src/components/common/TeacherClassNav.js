@@ -1,14 +1,15 @@
 import { NavLink, useNavigate, useParams } from "react-router-dom";
+import TeacherClassCSS from "./TeacherClassNav.module.css";
 
 function FindMemInfoNav(){
      const params = useParams();
      const navigate = useNavigate()
 
-    const onClickQanclassHandler = () => {
+    const onClickQanclassHandlerHandler = () => {
         navigate(`/ono/tea/qna/${params.classCode}`, {replace:false})
     }
 
-    const onClickTeacherclassHandler = (classCode) => {
+    const onClickTeacherclassHandlerHandler =  (classCode)  => {
         navigate(`/ono/tea/teacherclass/${classCode}`, {replace:false})
     }
 
@@ -19,11 +20,10 @@ function FindMemInfoNav(){
     return(
         
         <>
-            <ul>
-                <li onClick={onClickTeacherclassHandler}>강의정보</li>
-                <li onClick={onClickQanclassHandler}>1:1 상담</li>
-                <li onClick={onClickAttendHandler}>출석부</li> 
-
+            <ul className={TeacherClassCSS.TeaClassNavUl}>
+                <li onClick={onClickTeacherclassHandler}><button>강의정보</button></li>
+                <li onClick={onClickQanclassHandler}><button>1:1 상담</button></li>
+                <li onClick={onClickAttendHandler}><button>출석부</button></li> 
             </ul>
         </>
     );
