@@ -117,8 +117,8 @@ function App() {
 
 
        </Route>
-       
-         <Route path="teacherclass" element={<Teacherclass/>}>
+
+       <Route path="studentinfo" element={<StudentInfo/>} />
 
        <Route path="teacherclass" element={<Teacherclass/>}/>
         <Route path="tea" element={<TeacherClassLayout/>}>
@@ -137,8 +137,6 @@ function App() {
         
         
         
-        </Route> 
-
         {/* 원생 */}
         <Route path="student" element={<StudentLayout/>}>
           <Route index element={ <Navigate to="studentMyInfo" replace /> } />
@@ -152,11 +150,17 @@ function App() {
           <Route path="studentNoticeDetail/:noticeCode" element={ <StudentNoticeDetail/> }/>
           <Route path="StudentReQnaDetail/:mtmCode" element={ <StudentReQnaDetail/> }/>
         </Route>
-        <Route path="studentinfo" element={<StudentInfo/>}/>
         
+        
+        <Route path="acc" element={<AccManagement/>} />
+
+        <Route path="acc-update/:accCode" element={<AccUpdate/>} />
+
         <Route path="sms" element={<SmsTransmission />}/>
         
-        </Route>
+        </Route> 
+
+       
       </Routes>
     </BrowserRouter>
   );
