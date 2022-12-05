@@ -53,25 +53,19 @@ function ConsMain(){
 
     return (
         <>
-             <div className={ consCSS.bodyDiv }>
-            <div>
-                <button
-                    onClick={ onClickConsInsert }
-                >
-                    과목 등록
-                </button>
-            </div>            
+            <h3>등록상담</h3>
+             <div className={ consCSS.bodyDiv }>  
             <table className={ consCSS.consTable }>
                 <colgroup>
-                    <col width="10%" />
-                    <col width="20%" />
-                    <col width="20%" />
-                    <col width="20%" />
-                    <col width="40%" />
+                    <col width="5%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="35%" />
+                    <col width="45%" />
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>상담번호</th>
+                        <th>No</th>
                         <th>상담일</th>
                         <th>이름</th>
                         <th>제목</th>
@@ -93,7 +87,14 @@ function ConsMain(){
                     )) 
                     }
                 </tbody>                    
-            </table>         
+            </table> 
+            <div>
+                <button
+                    onClick={ onClickConsInsert }
+                >
+                    상담 등록
+                </button>
+            </div>                  
             
         </div>
             <div style={ { listStyleType: 'none', display: 'flex'} }>

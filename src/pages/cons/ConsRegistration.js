@@ -62,7 +62,7 @@ function ConsRegistration(){
                 <button       
                     onClick={ onClickConsRegistrationHandler }             
                 >
-                    과목 등록
+                    상담 등록
                 </button>
             </div>        
             <div className={ ConsRegistrationCSS.subjectSection }>
@@ -98,7 +98,7 @@ function ConsRegistration(){
                                    <td>
                                        <input 
                                            name='consGender'
-                                           placeholder='이름'
+                                           placeholder='성별'
                                            className={ ConsRegistrationCSS.subjectInfoInput }
                                            onChange={ onChangeHandler }
                                      
@@ -110,7 +110,7 @@ function ConsRegistration(){
                                    <td>
                                        <input 
                                            name='consBirth'
-                                           placeholder='이름'
+                                           placeholder='생년월일'
                                            className={ ConsRegistrationCSS.subjectInfoInput }
                                            onChange={ onChangeHandler }
                                           
@@ -130,29 +130,30 @@ function ConsRegistration(){
                                    </td>
                                </tr>
                                <tr>
-                                   <th>내용</th>
-                                   <td>
-                                       <input 
-                                           name='consDescription'
-                                           placeholder='이름'
-                                           className={ ConsRegistrationCSS.subjectInfoInput }
-                                           onChange={ onChangeHandler }
-                                           
-                                       />
-                                   </td>
-                               </tr>
-                               <tr>
                                    <th>전화번호</th>
                                    <td>
                                        <input 
                                            name='consPhone'
-                                           placeholder='이름'
+                                           placeholder='전화번호'
                                            className={ ConsRegistrationCSS.subjectInfoInput }
                                            onChange={ onChangeHandler }
                                       
                                        />
                                    </td>
                                </tr>
+                                <tr>
+                                <td><label>내용</label></td>
+                                <td colSpan={4}>
+                                    <label>
+                                        <textarea
+                                            name="consDescription"  
+                                            placeholder='내용'
+                                            className={ ConsRegistrationCSS.subjectInfoInput }
+                                            onChange={ onChangeHandler } 
+                                            /> 
+                                    </label>
+                                </td>
+                            </tr>    
                         </tbody>                        
                     </table>
                 </div>

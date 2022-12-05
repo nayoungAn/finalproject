@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import StudentQnaRegistrationCSS from "./StudentQnaRegistration.module.css";
 import {callQnaRegsistAPI} from "../../api/StudentAPICalls";
 import { callClassHistoryListForMemberNoPagingAPI } from '../../api/StudentAPICalls';
+import StudentQnaDtailCSS from "./StudentQnaDetail.module.css";
 
 function StudentQnaRegistration() {
 
@@ -61,7 +62,7 @@ function StudentQnaRegistration() {
                     { Array.isArray(classes) && (
                         <tbody>
                             <tr>
-                                <td><label>과목명</label></td>
+                                <th><label>과목명</label></th>
                                 <td>
                                     <select
                                         id="classList"
@@ -112,15 +113,17 @@ function StudentQnaRegistration() {
             </div>
             <div>
                 <br></br>
-                <button        
+                <button
+                     className={StudentQnaDtailCSS.deleteBtn}        
                     onClick={ () => navigate(-1) }            
                 >
                     취소
                 </button>
                 <button       
+                    className={StudentQnaDtailCSS.registBtn}
                     onClick={ onClickQnaRegistrationHandler }             
                 >
-                    1:1상담 등록
+                    상담 등록
                 </button>
             </div>        
         </div>

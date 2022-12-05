@@ -10,6 +10,7 @@ function NoticeList() {
     const dispatch = useDispatch();
     const notice  = useSelector(state => state.noticeReducer);      
     const noticeList = notice.data;
+    const [search, setSearch] = useState('');
     console.log('noticeList', noticeList);
 
     const pageInfo = notice.pageInfo;
@@ -26,13 +27,19 @@ function NoticeList() {
     useEffect(
         () => {         
             dispatch(callNoticeListAPI({
+                value : search,
                 currentPage: currentPage,
             }));            
             
         }
-        ,[currentPage]    
+        ,[currentPage, search]    
     );
 
+     /* 검색 키워드 입력 시 입력 값 상태 저장 */
+     const onSearchChangeHandler = (e) => {
+        setSearch(e.target.value);
+    }
+    
     const onClickNoticeInsert = () => {
         navigate("/ono/notice-regist", {replace : false})
     }
@@ -72,6 +79,17 @@ function NoticeList() {
                 >
                     작성하기
                 </button>
+            </div>
+            <div className={NoticeListmoduleCSS.search}>
+            <input
+                    className={ NoticeListmoduleCSS.InputStyle }
+                    type="text"
+                    placeholder="검색"
+                    value={ search }
+                    onChange={ onSearchChangeHandler }
+                    
+            />
+             <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
             </div>            
             <table className={ NoticeListmoduleCSS.teacherTable }>
                 <colgroup>

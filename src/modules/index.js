@@ -43,7 +43,7 @@ const rootReducer = combineReducers({
     studentQnaReducer,
     studentClassReducer,
     studentMyInfoModuleReducer,
-    studentQnaListReducer
+    studentQnaListReducer,
     attendReducer,
     attendCheckReducer,
     attachReducer,
