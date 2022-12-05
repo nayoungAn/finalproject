@@ -7,14 +7,17 @@
 .div1 {
   height: 100%;
   display: flex;
-  background-color: red;
+  background-color: #2F65EB;;
 }
 
 .div2 {
-  height: 100%;
-  display: flex;
+  height: 10%;
+  /* display: flex; */
   align-items: center;
   background-color: orange;
+  justify-content: center;
+  float: right;
+  bottom: 100px;
 }
 
 /* .div3 {
@@ -32,7 +35,7 @@
   /* align-items: center;
   justify-content: center; */
   height: 100%;
-  background-color: navy;
+  background-color: red;
 }
 
 .container {
@@ -51,24 +54,40 @@
 } */
 
 .inputBox {
+  overflow-x: auto;
+  overflow-y: scroll;
   width: 100%;
+  
 }
 
 .searchInput {
+  overflow-x: auto;
+  overflow-y: scroll;
   border: 1px solid black;
-  width: 80%;
+  width: 100%;
 }
 
 .searchResult1 {
   border: 1px solid black;
   width: 100%;
-  /* overflow: auto */
 }
 
 .searchResult2 {
-  background-color: blue;
+  float: right;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: scroll;
+  background-color: white;
   border: 1px solid black;
+  height: 650px;
+  width: 500px;
+}
+
+.searchResult3{
   height: 500px;
   width: 500px;
-  /* overflow-y:auto */
+}
+
+.button1{
+  width: 100px;
 }
