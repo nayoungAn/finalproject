@@ -104,6 +104,7 @@ export const callStudentManagerRegistAPI = ({form}) =>{
             dispatch({ type: POST_STUDENT, payload: result.data});
         }
     }
+}
 
 //아이디 체크 API
 export const callMemberIdCheckAPI = ({memberId}) => {

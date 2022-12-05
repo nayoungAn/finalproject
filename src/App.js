@@ -41,7 +41,6 @@ import StudentInfo from "./pages/teacherclass/StudentInfo";
 
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
-import SmsManagement from "./pages/sms/SmsManagement";
 
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import StudentManagerSearch from "./pages/studentManager/StudentManagerSearch";
@@ -60,25 +59,6 @@ import StudentNoticeDetail from "./pages/student/StudentNoticeDetail";
 import StudentReQnaDetail from "./pages/student/StudentReQnaDetail";
 
 import SmsTransmission from "./pages/sms/SmsTransmission";
-import Attend from "./pages/attend/Attend";
-import AttendUpdate from "./pages/attend/AttendUpdate";
-
-
-//원생
-import StudentLayout from "./layouts/StudentLayout";
-import StudentClasses from "./pages/student/StudentClasses";
-import StudentClassesDetail from "./pages/student/StudentClassesDetail";
-import StudentMyInfo from "./pages/student/StudentMyInfo";
-import StudentQna from "./pages/student/StudentQna";
-import StudentQnaDetail from "./pages/student/StudentQnaDetail";
-import StudentQnaRegistration from "./pages/student/StudentQnaRegistration";
-import StudentNoticeList from "./pages/student/StudentNoticeList";
-import StudentNoticeDetail from "./pages/student/StudentNoticeDetail";
-import StudentReQnaDetail from "./pages/student/StudentReQnaDetail";
-
-import SmsTransmission from "./pages/sms/SmsTransmission";
-
-import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import Attend from "./pages/attend/Attend";
 import AttendUpdate from "./pages/attend/AttendUpdate";
 
@@ -151,15 +131,6 @@ function App() {
 
         <Route path="teacherclass" element={<Teacherclass/>}>
         </Route> 
- 
-
-
-        <Route path="acc" element={<AccManagement />}>
-        </Route>
-        <Route path="acc-update/:accCode" element={<AccUpdate />} />
-        <Route path="acc-Registration/:accCode" element={<AccRegistration />} />
-        <Route path="sms" element={<SmsManagement />} ></Route>
-       
 
         {/* 원생 */}
         <Route path="student" element={<StudentLayout/>}>
