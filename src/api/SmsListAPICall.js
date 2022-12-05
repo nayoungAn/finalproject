@@ -1,33 +1,35 @@
-import { GET_SMS, GET_SMSS } from "../modules/SmsListModule";
+import { GET_SMS, PUT_SMS } from "../modules/SmsListModule";
 
-export const callSearchListForAdminAPI = ({ search, currentPage = 1 }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/sms/search?search=${search}&page=${currentPage}`;
+// 조회
+export const callSearchListForAdminAPI = (search) => {
+  console.log(search);
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/sms?search=${search}`;
 
   return async (dispatch, getState) => {
-
     const result = await fetch(requestURL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Accept" : "*/*",
-        "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-      }
-    })
-    .then((response) => response.json());
+        Accept: "*/*",
+        Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
+      },
+    }).then((response) => response.json());
 
     if (result.status === 200) {
-      console.log("[SmsAPIcalls] callSearchListForAdminAPI RESULT : ", result);
-      dispatch({ type: GET_SMSS, payload: result.data });
+      console.log("[SmsAPIcalls] callSmsAPI RESULT : ", result);
+      dispatch({ type: GET_SMS, payload: result.data });
     }
-  }
-}
+  };
+};
 
-export const callSmsListForAdminAPI = ({ currentPage = 1 }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/sms/sms-transmission?page=${currentPage}`;
+// 전송?
+export const callSmsTransmissionAPI = () => {
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/sms`;
 
   return async (dispatch, getState) => {
+
     const result = await fetch(requestURL, {
-      method: "GET",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "Accept": "*/*",
@@ -37,8 +39,8 @@ export const callSmsListForAdminAPI = ({ currentPage = 1 }) => {
     .then((response) => response.json());
 
     if (result.status === 200) {
-      console.log("[SmsAPIcalls] callSmsListForAdminAPI result : ", result);
-      dispatch({ type: GET_SMS, payload: result.data });
+      console.log('[SmsAPIcalls] callSmsTransmissionAPI result : ', result);
+      dispatch({ type: PUT_SMS, payload: result.data });
     }
   }
 }

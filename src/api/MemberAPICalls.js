@@ -2,6 +2,7 @@
 import { POST_FIND_ID, POST_LOGIN} from "../modules/MemberModule";
 import { useNavigate } from "react-router-dom"
 import swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 //로그인
 export const callLoginAPI = ({form}) => {
@@ -70,11 +71,11 @@ export const callFindIdAPI = ({form}) => {
                 title: "아이디 찾기 완료", 
                 text: `가입된 아이디는 ${result.data.memberId} 입니다.`,
                 icon: "success",
-                Button: "로그인으로 이동",
+                confirmButtonText: "로그인",
+                
             })
             .then(() => {
-                navigate(`/`, { replace: true});
-              
+                window.location.href = "/";
              })
         } else{
             swal.fire({
@@ -115,10 +116,9 @@ export const callFindPwdAPI = ({form}) => {
                 title: "발송 완료", 
                 text: `임시 비밀번호가 발급되었습니다. 메일함을 확인해 주세요`,
                 icon: "success",
-                Button: "로그인으로 이동",
+                confirmButtonText: "확인",
             })
             .then(() => {
-                navigate(`/`, { replace: true});
               
              })
         } else{

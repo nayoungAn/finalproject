@@ -11,18 +11,20 @@
     box-sizing: border-box;
     font-family: 'GmarketSansMedium';
     }
-    
-    .main {
-        width: 100%;
-        height: 78vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        overflow: auto;
-    }
+
+
+.main {
+    width: 100%;
+    height: 78vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
     
     .wrapper{
         height: auto;
         min-height: 100%;
     }
    
+

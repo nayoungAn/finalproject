@@ -2,7 +2,8 @@ import AccManagementCSS from "./AccManagement.module.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { callAccListForAdminAPI } from "../../api/AccListAPICall";
+import { callSearchListForAdminAPI } from "../../api/AccListAPICall";
+import HeaderCSS from "../../components/common/Header";
 
 function AccManagement() {
   const navigate = useNavigate();
@@ -12,80 +13,95 @@ function AccManagement() {
   console.log("accManagement", accList);
 
   const pageInfo = acc.pageInfo;
-
+  const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  /* 페이지 클릭 시 이동 */
   const pageNumber = [];
   if (pageInfo) {
     for (let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
       pageNumber.push(i);
     }
   }
-  //window.location.reload()
-  useEffect(() => {
-    dispatch(
-      callAccListForAdminAPI({
-        currentPage: currentPage,
-      })
-    );
-  }, [currentPage]);
 
-  //   const onClickAccInsert = () => {
-  //     console.log("[AccManagement] onClickAccInsert");
-  //     navigate("/ono/acc/acc-update", { replace: false });
-  //   };
+  /* */
+  useEffect(
+    () => {
+        dispatch(callSearchListForAdminAPI({
+            searchValue : searchValue,
+            currentPage : currentPage
+        }));
+    }
+    , [currentPage, searchValue]
+);
 
+  /* 테이블 클릭 시 상세 조회 */
   const onClickTableTr = (s, accCode) => {
     console.log(s.target.accCode);
     navigate(`/ono/acc-update/${accCode}`, { replace: false });
     console.log("상세조회");
   };
 
+  /* 검색 키워드 입력 시 입력 값 상태 저장 */
+  const onSearchChangeHandler = (e) => {
+    setSearchValue(e.target.value);
+    console.log(searchValue)
+  };
+
   return (
     <>
       <div className={AccManagementCSS.bodyDiv}>
-        <table className={AccManagementCSS.productTable}>
-          <colgroup>
-            <col width="10%" />
-            <col width="10%" />
-            <col width="10%" />
-            <col width="10%" />
-            <col width="10%" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>수납번호</th>
-              <th>이름</th>
-              <th>번호</th>
-              <th>과목</th>
-              <th>수강료</th>
-              <th>수납일</th>
-              <th>결제방법</th>
-              <th>수납상태</th>
-              {/*<th>수납메모</th>*/}
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(accList) &&
-              accList.map((s) => (
-                <tr
-                  key={s.accCode}
-                  onClick={(event) => onClickTableTr(event, s.accCode)}
-                >
-                  <td>{s.accCode}</td>
-                  <td>{s.classesHistory.member.memberName}</td>
-                  <td>{s.classesHistory.member.memberPhone}</td>
-                  <td>{s.classesHistory.openClasses.className}</td>
-                  <td>{s.classesHistory.openClasses.classPrice}</td>
-                  <td>{s.accDate}</td>
-                  <td>{s.accOption}</td>
-                  <td>{s.accStatus}</td>
-                  {/*<td>{s.accContent}</td>*/}
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <h4>상태 조회</h4>
+        <input
+          className={HeaderCSS.InputStyle}
+          type="text"
+          placeholder="조회할 상태를 입력하세요."
+          value={ searchValue }
+          onChange={ onSearchChangeHandler }
+        />
       </div>
+      <table className={AccManagementCSS.accTable}>
+        <colgroup>
+          <col width="10%" /> 
+          <col width="10%" />
+          <col width="15%" />
+          <col width="20%" />
+          <col width="15%" />
+          <col width="10%" />
+          <col width="10%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>목록</th>
+            <th>이름</th>
+            <th>번호</th>
+            <th>과목</th>
+            <th>금액</th>
+            <th>일자</th>
+            <th>방법</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(accList) &&
+            accList.map((s) => (
+              <tr
+                key={s.accCode}
+                onClick={(event) => onClickTableTr(event, s.accCode)}
+              >
+                <td>{s.accCode}</td>
+                <td>{s.classesHistory.member.memberName}</td>
+                <td>{s.classesHistory.member.memberPhone}</td>
+                <td>{s.classesHistory.openClasses.className}</td>
+                <td>{s.classesHistory.openClasses.classPrice}</td>
+                <td>{s.accDate}</td>
+                <td>{s.accOption}</td>
+                <td>{s.accStatus}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+
       <div
         style={{
           listStyleType: "none",

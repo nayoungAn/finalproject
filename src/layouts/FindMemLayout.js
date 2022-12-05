@@ -1,16 +1,19 @@
-import FidMemInfoNav from '../components/common/FindMemInfoNav'
+import FindMemInfoNav from '../components/common/FindMemInfoNav'
 import { Outlet } from 'react-router-dom';
+import FindMemCSS from './FindMemLayout.module.css';
 function FindMemLayout(){
 
     return(
         
         <> 
-            <FidMemInfoNav/>
-            
-            <main>
+            <div className={FindMemCSS.backgroundDiv}>
+                <div className={FindMemCSS.findDiv}>
+            <FindMemInfoNav/>
+            <main className={FindMemCSS.main}>
                 <Outlet/>
             </main>
-
+            </div>
+            </div>
         </>
     );
 }

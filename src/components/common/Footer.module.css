@@ -1,10 +1,13 @@
 .footerDiv {
-    border-top: solid 1px black;
     display: 'flex';
-    flex-direction: 'center'
+    flex-direction: 'center';
+    background-color: #DCE3EA;
+    
 
 }
 
 h3{
     padding: 15px;
+    font-size: 15px;
+    color: white
 }

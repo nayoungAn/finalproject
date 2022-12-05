@@ -1,4 +1,4 @@
-import { useEffect ,useState} from "react";
+import { useEffect ,useState, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { callAttendCheckAPI } from "../../api/AttendAPICalls";
@@ -9,20 +9,30 @@ function AttendUpdate() {
     const attend = useSelector(state => state.attendReducer);
     const params = useParams();
     const attendCheck = useSelector(state => state.attendCheckReducer);
-    const [checkValue, setCheckValue ] = useState(false);
-
+    const [checkedList, setCheckedList ] = useState([]);
     
-    const onChangeCheckHandler = () => {
-     
-    }
+    const checkList = [
+        { id: 0, data: '출석' },
+        { id: 1, data: '지각' },
+        { id: 2, data: '결석' },
+    ]
 
-    
+ 
+    const onCheckedElement = (checked, item) =>{
+        if(checked) {
+            setCheckedList([...checkedList, item]);
+          
+        } else if(!checked){
+            setCheckedList(checkedList.filter(el => el !== item));
+        }
+    };
+
+  
 
     useEffect(
         () => {
             dispatch(callAttendCheckAPI({
                 classCode : params.classCode
-                
             }))
         }
         ,[]
@@ -54,25 +64,78 @@ function AttendUpdate() {
                                 key={ a.classHistoryCode }
                             >   
                                 <td>{ a.member.memberName  }</td>
-                                <td> <input type="checkbox" id="btn1" name="checkWrap" value="출석" />
-                                     <label htmlFor="btn1">출석</label>
-                                     <input type="checkbox" id="btn2" name="checkWrap" value="지각" />
-                                     <label htmlFor="btn2">지각</label>
-                                     <input type="checkbox" id="btn3" name="checkWrap" value="결석" />
-                                     <label htmlFor="btn3">결석</label></td>
-                            </tr>
-                        ))}
+                               
+                        
+                           <td> 
+                                    {checkList.map(item => {
+                                        return(
+                                            <label key={item.id}>
+                                                <input
+                                                name="check"
+                                                type="checkbox"
+                                                value={item.data}
+                                                onChange={e => {
+                                                    onCheckedElement(e.target.checked, e.target.value);
+                                                }}
+                                                checked={checkedList.includes(item.data) ? true : false}/>
+                                                { item.data }
+                                            </label>
+                                                )
+                                        }) 
+                                        
+                                    }
+                                </td>
+                         
+                        
                             
-                            
-                           
-                        { Array.isArray(attendCheck) && attendCheck.map((c) =>(
-                            <tr
-                                key={ c.attendCode }
-                            >   
-                                <td> </td>
-                                <td>{ c.attendStatus  }</td>
+                            {checkedList.map(item => {
+                                return(
+                                    <td key={item} 
+                                     >
+                                        { item } 
+                                    </td>
+                                    
+                                )
+                            })}
                             </tr>
-                        ))}
+                             ))}
+                            
+                       {/*{ Array.isArray(attendCheck) && attendCheck.map((c) =>(
+                           <tr>
+                           <td> 
+                                    {checkList.map(item => {
+                                        return(
+                                            <label key={item.id}>
+                                                <input
+                                                name="check"
+                                                type="checkbox"
+                                                value={item.data}
+                                                onChange={e => {
+                                                    onCheckedElement(e.target.checked, e.target.value);
+                                                }}
+                                                checked={checkedList.includes(item.data) ? true : false}/>
+                                                { item.data }
+                                            </label>
+                                                )
+                                        }) 
+                                        
+                                    }
+                                </td>
+                         
+                        
+                            {checkedList.length === 0 && (
+                                <td> 미입력 </td>
+                            )}
+                            {checkedList.map(item => {
+                                return(
+                                    <td key={item} 
+                                     valu={checkedList.includes(item.data) ? true : false} >
+                                        { item } 
+                                    </td>
+                                )
+                            })}
+                            </tr>
+                        ))}*/}
                     </tbody>
                </table>
             </div>  

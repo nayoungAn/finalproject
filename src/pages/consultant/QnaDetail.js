@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { callQnaDetailAPI, callQnaUpdateAPI,callQnaDeleteAPI } from "../../api/QnaAPICalls";
-import QnaRegistrationCSS from './QnaRegistration.module.css';
+import { callQnaDetailAPI } from "../../api/QnaAPICalls";
 import { decodeJwt } from '../../utils/tokenUtils';
-import QnaDetailCSS from "./QnaDetail";
+import QnaDetailCSS from "./QnaDetail.module.css";
 function QnaDetail() {
     
     const dispatch = useDispatch();
@@ -34,8 +33,8 @@ function QnaDetail() {
     const onClickHandler = () => {
         if(qnaDetail.answerCode === 1){
                 alert('답변 완료 된 상담 글입니다.');
-                navigate(`/ono/tea/qna/${mtmCode}`, { replace : false });
-        }else{
+                navigate(-1);
+        }else {
                 navigate(`/ono/tea/qnaReply`, { replace : false });
                 }
            
@@ -47,13 +46,9 @@ function QnaDetail() {
     return(
 
         <>
-           <button
-                onClick={ onClickHandler }
-            >
-                    답글 등록
-            </button>
             { qnaDetail &&
                 <div className = { QnaDetailCSS.qnaDetailtableDiv }>
+                    <div className= { QnaDetailCSS.qnaTableDiv}>
                     <table className={ QnaDetailCSS.qnaDetailtableCss }>
                         <colgroup>
                             <col width="20%" />
@@ -62,16 +57,24 @@ function QnaDetail() {
                         <tbody>
                             <tr>
                                 <td>
+                                    <div className={ QnaDetailCSS.qnaText }>
+                                     제목
+                                    
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         name= 'mtmTitle'
                                         placeholder='제목'
                                         value={ qnaDetail.mtmTitle }
                                    />
+                                     </div>
+                                  
                                 </td>
                             </tr>
                             <tr>
                                 <td>
+                                    <div className={ QnaDetailCSS.qnaText }>
+                                      작성자
+                                    </div>
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         placeholder='작성자'
@@ -81,6 +84,9 @@ function QnaDetail() {
                             </tr>
                             <tr>
                                 <td>
+                                     <div className={ QnaDetailCSS.qnaText }>
+                                         작성일
+                                     </div>
                                     <input 
                                         className={ QnaDetailCSS.qnaDetailInput }
                                         placeholder='작성일'
@@ -100,6 +106,7 @@ function QnaDetail() {
                             </tr>
                         </tbody> 
                     </table>
+                    </div>
                 </div>
                 }
                 {  qnaDetail &&
@@ -112,7 +119,13 @@ function QnaDetail() {
                         </button>
                     </div>
 
-                }    
+                }  
+                 <button
+                className={ QnaDetailCSS.QnaBtn}
+                onClick={ onClickHandler }
+                 >
+                    답글 등록
+                 </button>  
         </>
     )
 

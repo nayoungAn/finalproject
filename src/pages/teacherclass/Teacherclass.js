@@ -52,7 +52,6 @@ function Teacherclass() {
               <th>담당강사</th>
             </tr>
           </thead>
-
           <tbody>
             {Array.isArray(classesList) &&
               classesList.map((c) => (

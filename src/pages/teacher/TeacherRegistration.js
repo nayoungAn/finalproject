@@ -1,20 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callTeacherRegistAPI } from "../../api/TeacherAPICall";
+import TeacherCSS from "./TeacherRegistration.module.css";
 
 function TeacherRegistration(){
 
+  
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const imageInput = useRef();
     const [ image, setImage ] = useState(null);
     const [ imageUrl, setImageUrl] = useState('');
-    const [ form, setForm] = useState({
-
+    const member = useSelector(state => state.teacherListReducer);
+    const memberInfo = member.data;
+    console.log("memberInfo", memberInfo)
+    console.log("member", member)
+    
+    const [ form, setForm ] = useState({
+    
         memberName: '',
         memberBirthday: '',
-        memberId : '',
+        memberId :'',
         memberPassword: '',
         memberGender: '',
         memberEmail: '',
@@ -54,6 +61,8 @@ function TeacherRegistration(){
         });
     }
 
+ 
+
 
     const onClickTeacherRegistrationHandler = () => {
 
@@ -83,13 +92,9 @@ function TeacherRegistration(){
     }
 
     return(
-        <div>
+        
+        <div className={TeacherCSS.tea}>
             <p> 강사 등록 </p>
-            <div>
-                { imageUrl && <img
-                    src={ imageUrl }
-                    alt="preview"
-                />}
                 <input
                     style={ { display: 'none' }}
                     type="file"
@@ -97,17 +102,22 @@ function TeacherRegistration(){
                     accept='image/jpg,image/png,image/jpeg,image/gif'
                     onChange={ onChangeImageUpload }   
                     ref={ imageInput }
-                />
+                    />
 
-                <button
+                <div
+                    
+                    className={TeacherCSS.uploadBtn1}
                     onClick={ onClickImageUpload }
-                > 업로드 </button>
-
-            </div>
-            <div>
+                    >  
+                    { imageUrl && <img
+                        className={TeacherCSS.uploadBtn2}
+                        src={ imageUrl }
+                        alt="preview"
+                    />}
+                 </div>
+            <div className={TeacherCSS.member}>
                 <table>
                     <tbody>
-
                         <tr>
                             <td><label> 이름 </label></td>
                             <td>
@@ -116,12 +126,29 @@ function TeacherRegistration(){
                                     onChange={ onChangeHandler }
                                 />
                             </td>
+                            <td><label> 성별 </label></td>
+                            <td>
+                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="여성"/> 여성</label> &nbsp;
+                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="남성"/> 남성</label>
+
+                            </td>
+                            
                         </tr>
-                        <tr>
+                        
+                        <tr >
                             <td><label> 생년월일 </label></td>
                             <td>
                                 <input
+                                    type="date"
                                     name='memberBirthday'
+                                    onChange={ onChangeHandler }
+                                />
+                            </td>
+                            <td><label> 이메일 </label></td>
+                            <td>
+                                <input
+                                    type="email"
+                                    name='memberEmail'
                                     onChange={ onChangeHandler }
                                 />
                             </td>
@@ -131,6 +158,13 @@ function TeacherRegistration(){
                             <td>
                                 <input
                                     name='memberId'
+                                    onChange={ onChangeHandler }
+                                />
+                            </td>
+                            <td><label> 휴대번호 </label></td>
+                            <td>
+                                <input
+                                    name='memberPhone'
                                     onChange={ onChangeHandler }
                                 />
                             </td>
@@ -144,34 +178,6 @@ function TeacherRegistration(){
                                     onChange={ onChangeHandler }
                                 />
                             </td>
-                        </tr>
-                        <tr>
-                            <td><label> 성별 </label></td>
-                            <td>
-                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="여성"/> 여성</label> &nbsp;
-                                <label><input type="radio" name="memberGender"  onChange={ onChangeHandler } value="남성"/> 남성</label>
-                        
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label> 이메일 </label></td>
-                            <td>
-                                <input
-                                    name='memberEmail'
-                                    onChange={ onChangeHandler }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label> 휴대번호 </label></td>
-                            <td>
-                                <input
-                                    name='memberPhone'
-                                    onChange={ onChangeHandler }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
                             <td><label> 주소 </label></td>
                             <td>
                                 <input
@@ -180,12 +186,19 @@ function TeacherRegistration(){
                                 />
                             </td>
                         </tr>
+                      
                     </tbody>
                 </table>
             </div>
+              
             <button
-                onClick= {onClickTeacherRegistrationHandler}> 등록 </button>        
+                className={TeacherCSS.teaBtn}
+                onClick= {onClickTeacherRegistrationHandler}
+                > 등록 
+            </button>   
+                
         </div>
+       
     )
 }
 

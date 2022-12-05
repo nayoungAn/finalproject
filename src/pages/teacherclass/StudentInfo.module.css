@@ -1,0 +1,73 @@
+.StudentInfo{
+    width: 900px;
+}
+
+/* .bodyDiv{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    height: 100%;
+}
+
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.buttonDiv button {
+    width: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 25px;
+    height: 30px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+} */
+
+.StudentInfo{
+    width: 900px;
+    text-align: center;
+    border-style:none;
+    border-collapse: collapse;
+    
+}
+
+ 
+
+
+
+.teacherTable tr:hover { 
+    background-color: #F5F5F5; 
+}
+
+.teacherTable tr {
+    cursor: pointer;
+}
+
+
+.pagingBtn{
+    margin: 5px;
+    color:rgb(119, 119, 119);
+    border-style: none;
+    background-color: transparent;
+    font-weight: bold;
+    
+}
+
+.pagingBtn:hover{
+    color: black;
+    cursor: pointer;
+   
+}
+
+.classhead th{
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
+  
+} 
+
+.memberinfo td{
+    border-bottom: 0.5px solid gainsboro ;
+
+}

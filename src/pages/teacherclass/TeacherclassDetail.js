@@ -38,7 +38,6 @@ function TeacherclassDetail() {
               </td>
             )}
           </tr>
-
           <tr>
             <th>수업기간</th>
             <div className={TeacherClassDetailCSS.period}>
