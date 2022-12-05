@@ -66,7 +66,7 @@ function StudentNoticeDetail() {
                                             name="noticeDate"  
                                             placeholder='작성일'
                                             className={ NoticeDetailCSS.subjectInfoInput }
-                                            value={ (noticeDetail.noticeDate) || '' }
+                                            value={ (noticeDetail.noticeDate?.split("00:00:00",1)) || '' }
                                             readOnly={ true }
                                             
                                             /> 

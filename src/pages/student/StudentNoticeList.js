@@ -57,15 +57,17 @@ function StudentNoticeList() {
         <>
         <div> <h3>공지사항 </h3></div>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
-            <div>
+        <div className={NoticeListmoduleCSS.search}>
             <input
-                    className={ HeaderCSS.InputStyle }
+                    className={ NoticeListmoduleCSS.InputStyle }
                     type="text"
                     placeholder="검색"
                     value={ search }
                     onChange={ onSearchChangeHandler }
-                />
-            </div>            
+                    
+            />
+             <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>
             <table className={ NoticeListmoduleCSS.teacherTable }>
                 <colgroup>
                     <col width="5%" />
@@ -114,7 +116,7 @@ function StudentNoticeList() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ? {backgroundColor : 'transparent' } : null}
                     className={ NoticeListmoduleCSS.pagingBtn }
                 >
                     {num}
@@ -125,6 +127,7 @@ function StudentNoticeList() {
             <button 
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
+                className={ NoticeListmoduleCSS.pagingBtn }
             >
                 &gt;
             </button>

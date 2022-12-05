@@ -1,7 +1,7 @@
 .bodyDiv{
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+    
 }
 
 .buttonDiv{
@@ -20,14 +20,19 @@
     font-weight: bold;
 }
 
+.teacherTable td{
+    border-bottom: 0.5px solid gainsboro ;
+    }
+
 .teacherTable{
     width: 900px;
-    margin : 10px;
+    text-align: center;
+    border-style:none;
+    border-collapse: collapse;
 }
 .teacherTable th{
-    border-top: 3px solid #4D62CC;
-    border-bottom: 3px solid #4D62CC;
-    border-collapse: collapse;
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
 } 
 
 .teacherTable tr:hover { 
@@ -40,12 +45,35 @@
 
 .pagingBtn{
     margin: 5px;
-    border-radius: 25px;
-    background-color: white;
+    color:rgb(119, 119, 119);
+    border-style: none;
+    background-color: transparent;
     font-weight: bold;
+    
 }
 
 .pagingBtn:hover{
+    color: black;
     cursor: pointer;
-    background-color: burlywood;
+   
 }
+.InputStyle {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.search{
+    position: relative;
+    width: 200px;
+}
+
+.search img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 12px;
+    margin: 0;
+  }

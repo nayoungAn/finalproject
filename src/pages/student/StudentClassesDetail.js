@@ -31,7 +31,7 @@ function StudentClassesDetail(){
                 <tr>
             <th>강의명</th>
                 <td className={StudentClassesDetailCSS.classtitle}>
-                    {classesDetail.classCode}</td>
+                    {classesDetail.className}</td>
             <th>담당강사</th>
                 <td className={StudentClassesDetailCSS.classteacher}>
                     {classesDetail.member?.memberName}</td>

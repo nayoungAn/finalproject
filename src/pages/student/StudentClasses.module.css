@@ -12,8 +12,6 @@
 }
 .buttonDiv button {
     width: 100px;
-    margin-top: 5px;
-    margin-bottom: 5px;
     margin-right: 25px;
     height: 30px;
     border-radius: 25px;
@@ -24,16 +22,19 @@
 .classtable{
     width: 900px;
     text-align: center;
+    border-style:none;
+    border-collapse: collapse;
     
 }
 
 .classtable th{
-    border-top: 3px solid #4D62CC;
-    border-bottom: 3px solid #4D62CC;
-    border-collapse: collapse;
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
 } 
 
-
+.classtable td{
+border-bottom: 0.5px solid gainsboro ;
+}
 
 .teacherTable tr:hover { 
     background-color: #F5F5F5; 
@@ -45,12 +46,15 @@
 
 .pagingBtn{
     margin: 5px;
-    border-radius: 25px;
-    background-color: white;
+    color:rgb(119, 119, 119);
+    border-style: none;
+    background-color: transparent;
     font-weight: bold;
+    
 }
 
 .pagingBtn:hover{
+    color: black;
     cursor: pointer;
-    background-color: rgb(37, 169, 221);
+   
 }

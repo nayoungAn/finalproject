@@ -41,10 +41,11 @@ import StudentInfo from "./pages/teacherclass/StudentInfo";
 
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
-
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import StudentManagerSearch from "./pages/studentManager/StudentManagerSearch";
 import StudentManagerRegist from "./pages/studentManager/StudentManagerRegist";
+
+
 
 //원생
 import StudentLayout from "./layouts/StudentLayout";
@@ -61,10 +62,10 @@ import StudentReQnaDetail from "./pages/student/StudentReQnaDetail";
 import SmsTransmission from "./pages/sms/SmsTransmission";
 import Attend from "./pages/attend/Attend";
 import AttendUpdate from "./pages/attend/AttendUpdate";
+import QnaReDetail from "./pages/consultant/QnaReDetail"
 
 import QnaDetail from "./pages/consultant/QnaDetail";
-import QnaRegistaration from "./pages/consultant/QnaRegistration";
-import QnaReDetail from "./pages/consultant/QnaReDetail";
+import QnaRegistration from "./pages/consultant/QnaRegistration";
 
 import ClassSearch from "./pages/classes/ClassSearch";
 
@@ -127,7 +128,7 @@ function App() {
               <Route path="qna/:classCode" element={ <QnaTeacher/>} />
               <Route path="qnaDetail/:mtmCode" element={ <QnaDetail/> }/>
               <Route path="qnaReDetail/:reCode" element={ <QnaReDetail/> }/>
-              <Route path="qnaReply" element={ <QnaRegistaration/>} />
+              <Route path="qnaReply" element={ <QnaRegistration/>} />
               <Route path="attend/:classCode" element={ <Attend/> } />
               <Route path="attendUpdate/:classCode" element={ <AttendUpdate/> }/>
         </Route>
@@ -149,7 +150,6 @@ function App() {
           <Route path="studentNoticeDetail/:noticeCode" element={ <StudentNoticeDetail/> }/>
           <Route path="StudentReQnaDetail/:mtmCode" element={ <StudentReQnaDetail/> }/>
         </Route>
-      
         
         
         <Route path="acc" element={<AccManagement/>} />

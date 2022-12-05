@@ -1,12 +1,20 @@
 .bodyDiv{
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+  
 }
 
 .noticeTable{
     width: 900px;
-    margin : 10px;
+    text-align: center;
+    border-style:none;
+    border-collapse: collapse;
+}
+
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .noticeTable tr:hover { 
@@ -18,20 +26,13 @@
 }
 
 .noticeTable td {
-    padding-top:10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(168, 165, 165, 0.945);
-    border-radius: 0%;
+    border-bottom: 0.5px solid gainsboro ;
 
 }
 
 .noticeTable th {
-    cursor: pointer;
-    padding-top : 10px;
-   padding-bottom: 10px;
-   border-top: 3px solid rgba(60, 63, 212, 0.945);
-   border-bottom: 3px solid rgba(60, 63, 212, 0.945);
-   color:rgba(60, 63, 212, 0.945);
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
 }
 
 .pagingBtn{
@@ -44,7 +45,19 @@
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: white;
+    background-color: burlywood;
+}
+
+.InputStyle {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+.search{
+    position: relative;
+    width: 200px;
 }
 
 .InputStyle {

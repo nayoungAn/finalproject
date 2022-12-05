@@ -115,6 +115,7 @@ function StudentReQnaDetail() {
             </div>
             <div>
                 <button        
+                className={StudentQnaDtailCSS.deleteBtn}
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기

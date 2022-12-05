@@ -79,8 +79,8 @@ function StudentQna() {
                 <table className={ StudentQnaCSS.qnaTableCss}>
                     <colgroup>
                         <col width="5%" />
-                        <col width="20%" />
-                        <col width="40%" />
+                        <col width="30%" />
+                        <col width="35%" />
                         <col width="15%" />
                         <col width="50%" />
                     </colgroup>
@@ -114,7 +114,7 @@ function StudentQna() {
                                         key={ qna?.reList?.reCode }
                                         onClick={ () => onClickReTableTr(qna?.reList?.reCode)}>
                                         <td>{ qna?.reList?.reCode }</td>
-                                        <td>{ qna.classes.className }</td>
+                                        <td></td>
                                         <td>{ qna?.reList?.reTitle }</td>
                                         <td>{ qna?.reList?.member.memberName }</td>
                                         <td>{ qna?.reList?.reDate.split(" 00:00:00",1) }</td>
@@ -147,7 +147,7 @@ function StudentQna() {
                     <button
                         onClick={ () => setCurrentPage(currentPage - 1) }
                         disabled={ currentPage === 1 }
-                        className={ StudentQnaCSS.pageBtn}
+                        className={ StudentQnaCSS.pagingBtn}
                     >
                          &lt;
                     </button>    
@@ -156,7 +156,7 @@ function StudentQna() {
                 pageNumber.map((num) => (
                     <li key={num} onClick={ () => setCurrentPage(num) }>
                         <button
-                            style={ currentPage === num ? { backgroundColor : 'orange'} : null }
+                            style={ currentPage === num ? { backgroundColor : 'transparent'} : null }
                             className={ StudentQnaCSS.pagingBtn }
                         >
                             {num}

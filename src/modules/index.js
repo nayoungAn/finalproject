@@ -20,7 +20,7 @@ import studentClassReducer from "./StudentClassesModule";
 import studentMyInfoModuleReducer from "./StudentMyInfoModule";
 import attendReducer from "./AttendModule";
 import attendCheckReducer from "./AttendCheckModule";
-import studentManagerDetailReducer from "./StudentMangerDetailModule";
+import studentManagerDetailReducer from "./StudentManagerDetailModule";
 import classHistoryReducer from "./ClassHistoryModule";
 import classHistoryRefreshReducer from "./ClassHistoryRefreshModule";
 import teacherHistoryReducer from "./TeacherHistoryModule";
