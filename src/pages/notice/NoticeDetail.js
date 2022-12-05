@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { callNoticeDetailAPI } from '../../api/NoticeAPICalls';
 import { callNoticeUpdateAPI } from '../../api/NoticeAPICalls';
+import { decodeJwt } from '../../utils/tokenUtils';
 import NoticeDetailCSS from './NoticeDetail.module.css';
 
 function NoticeDetail() {
@@ -16,6 +17,14 @@ function NoticeDetail() {
 
     /* 읽기모드와 수정모드를 구분 */
     const [modifyMode, setModifyMode] = useState(false);
+
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
 
     useEffect(
         () => {
@@ -152,25 +161,31 @@ function NoticeDetail() {
             </div>
             <div>
                 <button        
-                    onClick={ () => navigate(-1) }            
-                >
-                    돌아가기
+                            onClick={ () => navigate(-1) }            
+                        >
+                            돌아가기
                 </button>
-            {!modifyMode &&
-                <button 
-                    onClick={ onClickModifyModeHandler }
-                >
-                    수정 모드
-                </button>
+            </div>
+            { decoded === "ROLE_ADMIN" &&
+                <div>
+                    
+                    
+                {!modifyMode &&
+                    <button 
+                        onClick={ onClickModifyModeHandler }
+                    >
+                        수정 모드
+                    </button>
+                }
+                {modifyMode &&
+                    <button 
+                        onClick={ onClickSubjectUpdateHandler }
+                    >
+                        저장하기
+                    </button>
+                }
+                </div>        
             }
-            {modifyMode &&
-                <button 
-                    onClick={ onClickSubjectUpdateHandler }
-                >
-                    저장하기
-                </button>
-            }
-            </div>        
         </div>
     </>
     );

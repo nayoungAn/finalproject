@@ -41,8 +41,6 @@ import StudentInfo from "./pages/teacherclass/StudentInfo";
 
 import AccManagement from "./pages/acc/AccManagement";
 import AccUpdate from "./pages/acc/AccUpdate";
-
-
 import TeacherClassLayout from "./layouts/TeacherClassLayout";
 import StudentManagerSearch from "./pages/studentManager/StudentManagerSearch";
 import StudentManagerRegist from "./pages/studentManager/StudentManagerRegist";

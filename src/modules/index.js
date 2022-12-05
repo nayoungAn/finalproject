@@ -28,7 +28,6 @@ import attachReducer from "./AttachModule";
 import studentInfoReducer from "./StudentInfoModule";
 
 
-
 const rootReducer = combineReducers({
     memberReducer,
     consReducer,
