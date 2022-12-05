@@ -20,7 +20,6 @@ function TeacherUpdate(){
 
 
     if(teacherHistory){
-        console.log("강사이력 조회", teacherHistory)
     }
         /* 읽기모드와 수정모드를 구분 */
     const [modifyMode, setModifyMode] = useState(false);

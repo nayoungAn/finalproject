@@ -16,7 +16,7 @@ function Header(){
         const temp = decodeJwt(isLogin);
         decoded = temp.auth[0];
     }
-
+   
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loginModal, setLoginModal] = useState(false);

@@ -13,7 +13,6 @@ function TeacherSearch() {
     const navigate = useNavigate();
     const { search } = useLocation();
     const { value } = queryString.parse(search);
-    console.log('value', value);
 
     const dispatch = useDispatch();
     const teachers  = useSelector(state => state.teacherListReducer);      
@@ -40,7 +39,6 @@ function TeacherSearch() {
     );
 
     const onClickTeacherInsert = () => {
-        console.log('[TeacherManagement] onClickTeacherInsert');
         navigate("/ono/teacher/regist", { replace: false })
     }
 
@@ -58,7 +56,6 @@ function TeacherSearch() {
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
-            console.log('Enter key', searchValue);
 
             navigate(`/ono/teachers/search?value=${searchValue}`, { replace : false });
         }

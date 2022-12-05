@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ClassDetailCSS from './ClassDetail.module.css';
-import { decodeJwt } from '../../utils/tokenUtils';
 
 function ClassDetail() {
 
     const member = useSelector(state => state.studentManagerDetailReducer);
 
-    console.log(member)
-    console.log(member.memberImageUrl)
     return (
         <> 
 

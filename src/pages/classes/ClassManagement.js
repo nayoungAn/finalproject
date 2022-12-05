@@ -37,7 +37,6 @@ function ClassManagement() {
     );
 
     const onClickClassInsert = () => {
-        console.log('[ClassManagement] onClickClassInsert');
         navigate("/ono/OpenClasses/class-registration", { replace: false })
     }
 
@@ -55,7 +54,6 @@ function ClassManagement() {
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
-            console.log('Enter key', search);
 
             navigate(`/ono/OpenClasses/classes/search?value=${search}`, { replace : false });
         }

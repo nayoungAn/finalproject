@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callClassHistoryRegistAPI } from "../../../api/ClassHistoryAPICalls";
 import { callClassListForAdminNoPagingAPI } from "../../../api/ClassAPICalls";
-import { callStudentManagerDetailAPI } from "../../../api/ClassHistoryRefreshAPICalls"
 function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
 
   const classList = useSelector((state) => state.classReducer);
@@ -57,7 +56,6 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
        var ctr = arr?.classStudents
        ctr += " / ";
        ctr += arr?.classQuota
-       console.log(ctr)
     }
     }
 

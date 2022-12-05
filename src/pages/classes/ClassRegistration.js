@@ -12,9 +12,10 @@ import uuid from "react-uuid"
 function ClassRegistration() {
     const subjects = useSelector(state => state.subjectListReducer);
     const teachers = useSelector(state => state.teacherListReducer);
-
+    const classes  = useSelector(state => state.classReducer);    
     const schedule = ['월','화','수','목','금','토','일']
     const arr = []
+    const brr = []
     const random = [1,2,3,4,5,6,7]
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -31,7 +32,6 @@ function ClassRegistration() {
         classCircuit: '',
         classesScheduleList:[]
     });
-    console.log(arr)
     useEffect(
         () => {
             dispatch(callClassListForAdminNoPagingAPI({
@@ -53,9 +53,11 @@ function ClassRegistration() {
 
     }
 
+  
+
     /* 강의 등록 버튼 클릭 이벤트 */
     const onClickClassRegistrationHandler = () => {
-
+ 
         dispatch(callClassRegistAPI({
             form: form,
             classesScheduleList : arr,
@@ -66,6 +68,7 @@ function ClassRegistration() {
         alert('강의가 등록되었습니다.');
         navigate("/ono/OpenClasses/classes", { replace: true });
     }
+    
     /* 스케쥴 리스트 */
     const onClickCheckBox = (e) => {
         if (e.target.checked) {

@@ -1,6 +1,6 @@
 import ClassUpdateCSS from './ClassUpdate.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callClassUpdateAPI } from '../../api/ClassAPICalls';
 import { callClassDetailForAdminAPI } from '../../api/ClassAPICalls';
@@ -95,25 +95,20 @@ function ClassUpdate() {
                 arr.push(a)
       
             }
-            // console.log(arr)
             }
     /* 수정 시 스케쥴 저장 */
     const onClickCheckBox = (e) => {
         if( modifyMode == true){
         if (e.target.checked) {
             const b = e.target.value.split(",");
-            console.log(b[0], b[1])
             let dayList = new Object();
             dayList.dayName = b[0]
             dayList.timeName = b[1]
-            console.log(dayList)
             scheduleList.push(dayList)
     
-            console.log(scheduleList)
         }
         /* 체크를 해제할 경우 배열에서 제거 */
         else {
-            console.log("체크해제가 되었다.");
             const b = e.target.value.split(",");
             for (var i = 0; i < scheduleList.length; i++) {
                 if (scheduleList[i].dayName === b[0] && scheduleList[i].timeName === b[1]) {
@@ -121,7 +116,6 @@ function ClassUpdate() {
                     i--;
                 }
             }
-            console.log(scheduleList)
          }
         }
     }

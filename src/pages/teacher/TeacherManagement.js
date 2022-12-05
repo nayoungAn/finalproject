@@ -13,7 +13,6 @@ function TeacherManagement() {
     const memberList = members.data;
     const [search, setSearch] = useState('');
     
-    console.log('memberManagement', memberList);
 
     const pageInfo = members.pageInfo;
 
@@ -43,7 +42,6 @@ function TeacherManagement() {
     }
 
     const onClickTeacherInsert = () => {
-        console.log('[TeacherManagement] onClickTeacherInsert');
         navigate ('/ono/teacher/regist', {replace : true})
     }
  
@@ -54,7 +52,6 @@ const onSearchChangeHandler = (e) => {
 /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
 const onEnterKeyHandler = (e) => {
     if(e.key == 'Enter') {
-        console.log('Enter key', search);
 
         navigate(`/ono/teachers/search?value=${search}`, { replace : false });
     }

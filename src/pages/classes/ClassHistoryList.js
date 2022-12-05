@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import ClassHistoryListCSS from './ClassHistory.module.css';
-import { callStudentManagerDetailForAdminAPI} from '../../api/StudentManagerDetailAPICall';
 import ClassHistoryUpdateModal from "../../components/common/classHistory/ClassHistoryUpdateModal";
 import uuid from 'react-uuid';
 function ClassHistoryList() {
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
     const studentDetail = useSelector(state => state.classHistoryRefreshReducer);
     const [classHistoryUpdateModal, setClassHistoryUpdateModal] = useState(false);
     const [classHistoryCode, setClassHistoryCode] = useState(0);
@@ -17,8 +14,6 @@ function ClassHistoryList() {
     const [startDate, setStartDate] = useState(0);
 
 
-    const studentInfo = studentDetail.memberInfo;
-    const classHistory = studentDetail.lectureList
     
     /* 수정 버튼 클릭시 해당 수강 이력 코드를 보내줌 */ 
     const onClickUpdateHandler = (classHistoryCode,classCode,classStatus,startDate) => {

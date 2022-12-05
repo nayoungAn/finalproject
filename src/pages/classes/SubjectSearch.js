@@ -14,7 +14,6 @@ function SubjectSearch() {
     const { search } = useLocation();
     const { value } = queryString.parse(search);
     const deleteSubjects = useSelector(state => state.subjectReducer);
-    console.log('value', value);
 
     const dispatch = useDispatch();
     const subjects  = useSelector(state => state.subjectListReducer);      
@@ -41,12 +40,10 @@ function SubjectSearch() {
     );
 
     const onClickSubjectInsert = () => {
-        console.log('[SubjectManagement] onClickSubjectInsert');
         navigate("/ono/OpenClasses/subject-registration", { replace: false })
     }
 
     const onClickSubjectDelete = (subjectCode) => {
-        console.log('[SubjectManagement] onClickSubjectDelete');
         
             dispatch(callSubjectDeleteAPI({
                 subjectCode : subjectCode
@@ -61,7 +58,6 @@ function SubjectSearch() {
 
   const onClickTableTr = (e, subjectCode) => {
 
-        console.log(e.target.className);
         
 
         e.target.className != "deleteBtn" ?  navigate(`/ono/OpenClasses/subject-update/${subjectCode}`, { replace: false })
@@ -78,7 +74,6 @@ function SubjectSearch() {
     /* enter 키 입력 시 검색 화면으로 넘어가는 처리 */
     const onEnterKeyHandler = (e) => {
         if(e.key == 'Enter') {
-            console.log('Enter key', searchValue);
 
             navigate(`/ono/OpenClasses/search?value=${searchValue}`, { replace : false });
         }
