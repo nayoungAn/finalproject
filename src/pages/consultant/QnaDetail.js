@@ -86,7 +86,7 @@ function QnaDetail() {
                                 
                                     <input 
                                         name= 'mtmDate'
-                                        value={ qnaDetail.mtmDate }
+                                        value={ qnaDetail.mtmDate?.split("T",1) }
                                    />
                                 </td>
                             </tr>
