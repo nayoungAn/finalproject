@@ -76,13 +76,13 @@ function AccManagement() {
       
       <table className={AccManagementCSS.accTable}>
         <colgroup>
-          <col width="10%" /> 
-          <col width="10%" />
+          <col width="9%" /> 
+          <col width="7%" />
           <col width="15%" />
           <col width="20%" />
           <col width="15%" />
-          <col width="10%" />
-          <col width="10%" />
+          <col width="13%" />
+          <col width="11%" />
         </colgroup>
         <thead>
           <tr>
