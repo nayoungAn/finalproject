@@ -83,6 +83,7 @@ function NoticeList() {
                         </button>
                     }
                 </div>
+                <h2>공지사항</h2>
                 <div className={NoticeListmoduleCSS.search}>
                     
                     <input
@@ -106,11 +107,13 @@ function NoticeList() {
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>번호</th>
+                        <th>No</th>
                         <th>제목</th>
                         <th>등록일</th>
                         <th>작성자</th>
+                        { decoded === "ROLE_ADMIN" &&
                         <th>삭제</th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -123,10 +126,12 @@ function NoticeList() {
                             <td>{ n.noticeTitle }</td>
                             <td>{ n.noticeDate }</td>
                             <td>{ n.member.memberName }</td>
+                            { decoded === "ROLE_ADMIN" &&
                             <td><button className="deleteBtn"
                             >
                                 삭제
                             </button></td>
+                            }
                         </tr>
                     ))
                     }
@@ -146,7 +151,7 @@ function NoticeList() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {Color : 'black' } : null}
+                    style={ currentPage === num ?{ color: "#2F65EB", textDecorationLine: "none"  } : null}
                     className={ NoticeListmoduleCSS.pagingBtn }
                 >
                     {num}
@@ -157,6 +162,7 @@ function NoticeList() {
             <button
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
+                className={ NoticeListmoduleCSS.pagingBtn }
             >
                 &gt;
             </button>

@@ -28,8 +28,9 @@ function TeacherclassDetail() {
     );
 
         return (
+            
             <>
-           
+                
                 <form className={TeacherClassDetailCSS.background}>
                     <div className={TeacherClassDetailCSS.balance}>
                     <tr>
@@ -125,7 +126,7 @@ function TeacherclassDetail() {
                 </form>
 
                
-
+                     
             </>
         );
 

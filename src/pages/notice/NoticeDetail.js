@@ -159,8 +159,9 @@ function NoticeDetail() {
                     </table>
                 </div>
             </div>
-            <div>
+            <div className={NoticeDetailCSS.backBtn}>
                 <button        
+                          
                             onClick={ () => navigate(-1) }            
                         >
                             돌아가기

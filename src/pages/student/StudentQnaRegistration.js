@@ -55,7 +55,7 @@ function StudentQnaRegistration() {
     return(
         
         <div>
-           
+           <div> <h2>상담 등록</h2>
             <div className={ StudentQnaRegistrationCSS.qnaSection }>
                 <h3></h3>
                 <div className={ StudentQnaRegistrationCSS.qnaInfoDiv }>
@@ -111,21 +111,21 @@ function StudentQnaRegistration() {
                     </table>
                     
                 </div>
-                
+                </div>
             </div>
             <div className={StudentQnaDtailCSS.subjectButtonDiv}    >
                 <br></br>
-                <button
-                     className={StudentQnaDtailCSS.deleteBtn}        
-                    onClick={ () => navigate(-1) }            
-                >
-                    취소
-                </button>
                 <button       
                     className={StudentQnaDtailCSS.registBtn}
                     onClick={ onClickQnaRegistrationHandler }             
                 >
                     상담 등록
+                </button>
+                <button
+                    className={StudentQnaDtailCSS.backBtn}        
+                    onClick={ () => navigate(-1) }            
+                >
+                    취소
                 </button>
             </div>        
         </div>

@@ -5,7 +5,7 @@
 }
 
 .noticeTable{
-    width: 900px;
+    width:1100px;
     text-align: center;
     border-style:none;
     border-collapse: collapse;
@@ -14,7 +14,7 @@
 .buttonDiv{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    
 }
 
 .noticeTable tr:hover { 
@@ -26,6 +26,8 @@
 }
 
 .noticeTable td {
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-bottom: 0.5px solid gainsboro ;
 
 }
@@ -36,48 +38,49 @@
 }
 
 .pagingBtn{
+   
     margin: 5px;
-    border-radius: 25px;
-    background-color: white;
-    color: gray;
+    color:rgb(119, 119, 119);
+    border-style: none;
+    background-color: transparent;
     font-weight: bold;
+    
 }
 
 .pagingBtn:hover{
+    color: black;
     cursor: pointer;
-    background-color: burlywood;
 }
 
-.InputStyle {
-    width: 100%;
-    border: 1px solid #bbb;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 14px;
-}
+
 .search{
     position: relative;
     width: 200px;
 }
 
 .InputStyle {
+    margin-top: 10px;
     width: 100%;
     border: 1px solid #bbb;
     border-radius: 8px;
     padding: 10px 12px;
     font-size: 14px;
+   
 }
 .search{
-    margin-left: 630px;
+    margin-left: 790px;
+    margin-bottom: 20px;
     position: relative;
     width: 200px;
 }
 .search img {
+    
     position : absolute;
     width: 17px;
     top: 10px;
     right: 12px;
-    margin: 0;
+    margin-top: 10px;
+
   }
 
 .noticeHeader div {
@@ -85,6 +88,9 @@
     flex-direction: row;
 }
 
+.noticeHeader h2 {
+    margin-top: 40px;
+}
 
 
 
