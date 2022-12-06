@@ -66,18 +66,18 @@ const onClickSearch = () => {
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
-            <h2> 강사 목록</h2>
-              <button className={TeacherManagementCSS.btnSearch} onClick = { () => onClickSearch()}>검색</button>
-             <input
-                    className={ TeacherManagementCSS.InputStyle }
-                    type="text"
-                    placeholder="검색"
-                    value={ search }
-                    onKeyUp={ onEnterKeyHandler }
-                    onChange={ onSearchChangeHandler }
-                />
+                <h2> 강사 목록</h2>
+                <button className={TeacherManagementCSS.btnSearch} onClick = { () => onClickSearch()}>검색</button>
+                    <input
+                        className={ TeacherManagementCSS.InputStyle }
+                        type="text"
+                        placeholder="검색"
+                        value={ search }
+                        onKeyUp={ onEnterKeyHandler }
+                        onChange={ onSearchChangeHandler }
+                    />
 
-                </div>            
+            </div>            
                 <table className={ TeacherManagementCSS.teacherTable }>
                 <colgroup>
                     <col width="5%" />
