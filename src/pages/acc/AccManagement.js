@@ -50,16 +50,30 @@ function AccManagement() {
 
   return (
     <>
-      <div className={AccManagementCSS.bodyDiv}>
-        <h4>상태 조회</h4>
-        <input
-          className={HeaderCSS.InputStyle}
-          type="text"
-          placeholder="조회할 상태를 입력하세요."
-          value={ searchValue }
-          onChange={ onSearchChangeHandler }
-        />
+     <div className={AccManagementCSS.acctitle}>
+        <div className={AccManagementCSS.accDetail}>
+        <h2>수납목록</h2>
+        </div>
+          
       </div>
+      
+      <div className={AccManagementCSS.bodyDiv}>
+
+    
+
+      <div className={AccManagementCSS.search}>
+        
+            <input
+                    className={ AccManagementCSS.InputStyle }
+                    type="text"
+                    placeholder="조회할 상태를 입력하세요."
+                    value={ searchValue }
+                    onChange={ onSearchChangeHandler }
+            />
+             <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>
+      </div>
+      
       <table className={AccManagementCSS.accTable}>
         <colgroup>
           <col width="10%" /> 
@@ -121,7 +135,7 @@ function AccManagement() {
         {pageNumber.map((num) => (
           <li key={num} onClick={() => setCurrentPage(num)}>
             <button
-              style={currentPage === num ? { backgroundColor: "orange" } : null}
+              style={currentPage === num ? { backgroundColor: "transparent" } : null}
               className={AccManagementCSS.pagingBtn}
             >
               {num}

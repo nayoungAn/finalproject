@@ -10,13 +10,15 @@ function SmsTransmission() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sms = useSelector((state) => state.smsListReducer);
-  const [smsList, setSmsList] = useState(sms);
+  const [smsList, setSmsList] = useState();
   const [msgContent, setMsgContent] = useState();
-
+  console.log("searchValue =", searchValue);
+  console.log("sms =", sms);
+  console.log("smsList = ", smsList);
   const msgHandler = (e) => {
-    const {value} = e.target;
-    setMsgContent(value)
-  }
+    const { value } = e.target;
+    setMsgContent(value);
+  };
 
   const onClickSmsInsert = () => {
     navigate("/ono/sms", { replace: false });
@@ -25,50 +27,60 @@ function SmsTransmission() {
   /* 검색 키워드 입력 시 입력 값 상태 저장 */
   const onSearchChangeHandler = (e) => {
     const { value } = e.target;
-    setSearchValue(value);
+    console.log("value =", value);
+    if (!value) {
+      setSearchValue("");
+      setSmsList([]);
+    } else {
+      setSearchValue(value);
+    }
   };
 
   const checkHandler = (id) => {
     const settedList = smsList.map((item) => {
-      if(item.memberCode === parseInt(id)){
+      if (item.memberCode === parseInt(id)) {
         const NList = {
           ...item,
-          isChecked: !item.isChecked
-        }
-        console.log("NList =", NList)
-        return NList
+          isChecked: !item.isChecked,
+        };
+        console.log("NList =", NList);
+        return NList;
       } else {
-        return item
+        return item;
       }
-    })
+    });
     setSmsList(settedList);
   };
 
-  console.log("smsList = ",smsList)
+  console.log("smsList = ", smsList);
 
   /* 전송 버튼 클릭 이벤트 */
   const onClickSmsTransmissionHandler = () => {
     const putList = [];
     smsList.map((item) => {
-      if(item.isChecked) {
-        putList.push(item)
-      } 
-    })
-    console.log("putList =",putList)
-    dispatch(callSmsTransmissionAPI({
-        memberList: putList,
-        msgContent: msgContent
+      if (item.isChecked) {
+        putList.push(item);
       }
-    ));
+    });
+    console.log("putList =", putList);
+    dispatch(
+      callSmsTransmissionAPI({
+        memberList: putList,
+        msgContent: msgContent,
+      })
+    );
 
-    alert('전송이 완료 되었습니다.');
-    navigate("/ono/sms/", { replace : true });
-
-}
+    alert("전송이 완료 되었습니다.");
+    navigate("/ono/sms/", { replace: true });
+  };
 
   useEffect(() => {
     dispatch(callSearchListForAdminAPI(searchValue));
-  }, [searchValue]);
+  },[searchValue])
+
+  useEffect(() => {
+    setSmsList(sms);
+  }, [sms]);
 
   return (
     <section className={SmsTransmissionCSS.container}>
@@ -93,36 +105,42 @@ function SmsTransmission() {
                 type="text"
                 placeholder="검색어를 입력하세요."
                 value={searchValue}
-                onChange={onSearchChangeHandler}
+                onChange={(e) => {
+                  onSearchChangeHandler(e);
+                }}
               ></input>
               {/* <button onClick={onClickSmsInsert}>확인</button> */}
-              {smsList.map((item) => {
-                if(item.isChecked){
+              {smsList?.map((item) => {
+                console.log(item);
+                if (item.isChecked) {
                   return (
                     <div
                       className={SmsTransmissionCSS.searchResult1}
                       key={item.memberCode}
                       ischecked={item.isChecked}
-                      onClick={() => {checkHandler(item.memberCode)}}
-                      style={{backgroundColor: "#eee"}}
+                      onClick={() => {
+                        checkHandler(item.memberCode);
+                      }}
+                      style={{ backgroundColor: "#8499ca" }}
                     >
-                      {item.memberName} {item.memberPhone}{" "}
-                      {item.className}
+                      {item.memberName} {item.memberPhone} {item.className}
                     </div>
-                  )
+                  );
                 } else {
                   return (
                     <div
                       className={SmsTransmissionCSS.searchResult1}
                       key={item.memberCode}
                       ischecked={item.isChecked}
-                      onClick={() => {checkHandler(item.memberCode)}}
-                      style={{backgroundColor: "transparent"}}
+                      onClick={() => {
+                        checkHandler(item.memberCode);
+                        
+                      }}
+                      style={{backgroundColor: "transparent" }}
                     >
-                      {item.memberName} {item.memberPhone}{" "}
-                      {item.className}
+                      {item.memberName} {item.memberPhone} {item.className}
                     </div>
-                  )
+                  );
                 }
               })}
             </div>
@@ -139,10 +157,21 @@ function SmsTransmission() {
             <div>010-0000-0000</div>
           </div> */}
         <div className={SmsTransmissionCSS.searchResult3}>
-          <textarea className={SmsTransmissionCSS.searchResult2} name={"messageContent"} value={msgContent} placeholder= "내용을 입력하세요." onChange={(e) => msgHandler(e)}>
-          </textarea>
+          <textarea
+            className={SmsTransmissionCSS.searchResult2}
+            name={"messageContent"}
+            value={msgContent}
+            placeholder="내용을 입력하세요."
+            onChange={(e) => msgHandler(e)}
+          ></textarea>
           <div className={SmsTransmissionCSS.div2}>
-            <button onClick={ onClickSmsTransmissionHandler }>전송</button>
+            <button className={SmsTransmissionCSS.btn}
+              onClick={() => {
+                onClickSmsTransmissionHandler();
+              }}
+            >
+              전송
+            </button>
           </div>
         </div>
 
