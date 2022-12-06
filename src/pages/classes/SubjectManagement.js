@@ -43,9 +43,9 @@ function SubjectManagement() {
       })
     );
 
-    deleteSubjects.subjectCode === null
-      ? alert("과목이 삭제되었습니다.")
-      : alert("등록된 강의로 인하여 삭제 실패하였습니다.");
+   
+      alert("과목이 삭제되었습니다.")
+ 
   };
   const onClickTableTr = (e, subjectCode) => {
     e.target.className != "deleteBtn"

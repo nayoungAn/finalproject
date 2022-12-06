@@ -1,5 +1,7 @@
 import { GET_QNAS } from "../modules/QnaListModule";
 import { GET_QNA, POST_QNA ,PUT_QNA, DELETE_QNA } from "../modules/QnaModule";
+import swal from "sweetalert2";
+import { useNavigate } from "react-router-dom"
 
 export const callQnaListAPI = ({classCode, currentPage}) => {
 
@@ -19,7 +21,6 @@ export const callQnaListAPI = ({classCode, currentPage}) => {
 
         if(result.status === 200) {
             console.log('[QnaAPICalls] callQnaListAPI result : ', result);
-
             dispatch({ type: GET_QNAS, payload: result.data });
         }
     }
@@ -105,6 +106,20 @@ export const callQnaResistAPI = ({form}) => {
         if(result.status === 200) {
             console.log('[QnaAPICalls] callQnaResistAPI result.data : ', result.data);
             dispatch({ type: POST_QNA, payload: result.data });
+            swal.fire({
+                title: "답글 등록", 
+                text: `정상적으로 등록되었습니다.`,
+                icon: "success",
+                confirmButtonText: "확인",
+                
+            })
+        } else{
+            swal.fire({
+                title: "등록 실패",
+                text: '등록에 실패하였습니다.',
+                icon: "error"
+            });
+        
         }
 
     }
@@ -137,6 +152,20 @@ export const callQnaUpdateAPI = ({form}) => {
         if(result.status === 200){
             console.log('[QnaAPICalls] callQnaUpdateAPI result.data : ', result.data);
             dispatch({ type: PUT_QNA, payload: result.data });
+            swal.fire({
+                title: "답글 수정", 
+                text: `정상적으로 수정되었습니다.`,
+                icon: "success",
+                confirmButtonText: "확인",
+                
+            })
+            } else{
+            swal.fire({
+                title: "수정 실패",
+                text: '수정에 실패하였습니다.',
+                icon: "error"
+            });
+        
         }
     }
 
@@ -145,6 +174,7 @@ export const callQnaUpdateAPI = ({form}) => {
 export const callQnaDeleteAPI = ({reCode}) =>{
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/myclass/qnaReply/${reCode}`
 
+   
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
@@ -161,6 +191,23 @@ export const callQnaDeleteAPI = ({reCode}) =>{
         if(result.status === 200){
             console.log('[QnaAPICalls] callQnaUpdateAPI result.data : ', result.data);
             dispatch({ type: DELETE_QNA, payload: result.data });
+            swal.fire({
+                title: "답글 삭제", 
+                text: `답글을 삭제하시겠습니까?`,
+                icon: "success",
+                confirmButtonText: "확인",
+                cancelButtonText: '취소',
+                
+            })
+            .then(() => {
+            })
+        } else{
+            swal.fire({
+                title: "삭제 실패",
+                text: '삭제 실패, 다시 시도하세요',
+                icon: "error"
+            });
+        
         }
     }
 }

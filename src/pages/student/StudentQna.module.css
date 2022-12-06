@@ -5,25 +5,20 @@
 }
 
 .qnaTableCss{
-   width: 900px;
-    margin : 10px;
+    width: 900px;
+    text-align: center;
+    border-style:none;
+    border-collapse: collapse;
 }
 
-.QnaTableCss  td {
-    padding: 10px;
-    height: 10px;
-    text-align: center;
-    word-break:break-all;
-    table-layout:fixed;
-    
-}
+
 
 .qnaTableCss th{
-    border-top: 3px solid #4D62CC;
-    border-bottom: 3px solid #4D62CC;
-    border-collapse: collapse;
+    border-top: 2px solid #2f59ca;
+    border-bottom: 2px solid #2f59ca;
+  
 } 
-.QnaTableCss tr:hover { 
+.qnaTableCss tr:hover { 
     background-color: #F5F5F5; 
 }
 
@@ -37,19 +32,20 @@
 
 .pagingBtn{
     margin: 5px;
-    border-radius: 25px;
-    background-color: white;
+    color:rgb(119, 119, 119);
+    border-style: none;
+    background-color: transparent;
     font-weight: bold;
 }
 
 .pagingBtn:hover{
+    color: black;
     cursor: pointer;
-    background-color: burlywood;
 }
 
 .registBtn {
 
-    border:1px solid #4D62CC;
+    border:1px solid #2F65EB;
     display:inline-block;
     color:#ffffff;
     font-family:arial;
@@ -62,16 +58,18 @@
     text-decoration:none;
     text-align:center;
     margin: 5px 5px 5px 5px;
-    background-color:#4D62CC;
+    background-color:#2F65EB;
     border-radius: 5px;
+    float: right;
 }
 
- .InputStyle {
+.InputStyle {
     width: 100%;
     border: 1px solid #bbb;
     border-radius: 8px;
     padding: 10px 12px;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 .search{
     position: relative;

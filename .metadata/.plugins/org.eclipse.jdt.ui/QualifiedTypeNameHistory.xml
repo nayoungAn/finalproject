@@ -8,4 +8,13 @@
     <fullyQualifiedTypeName name="com.greedy.onoff.student.repository.StudentReRepository"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="com.greedy.onoff.member.entity.Member"/>
+    <fullyQualifiedTypeName name="com.greedy.onoff.student.repository.StudentMyInfoRepository"/>
+    <fullyQualifiedTypeName name="com.greedy.onoff.member.exception.FindMemberFaildeException"/>
+    <fullyQualifiedTypeName name="com.greedy.onoff.util.FileUploadUtils"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+    <fullyQualifiedTypeName name="com.greedy.onoff.notice.entity.Notice"/>
 </qualifiedTypeNameHistroy>

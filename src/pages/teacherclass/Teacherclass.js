@@ -85,7 +85,7 @@ function Teacherclass() {
         {pageNumber.map((num) => (
           <li key={num} onClick={() => setCurrentPage(num)}>
             <button
-              style={currentPage === num ? { backgroundColor: "blue" } : null}
+              style={currentPage === num ? { backgroundColor: "transparent" } : null}
               className={TeacherClassCSS.pagingBtn}
             >
               {num}

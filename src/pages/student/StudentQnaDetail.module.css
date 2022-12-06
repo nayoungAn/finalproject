@@ -1,11 +1,11 @@
 .subjectSection{
     
-    border: 1px solid #cfcfcf;
     display: flex;
     flex-direction: row;
 }
 
 .subjectInfoDiv{
+    margin-top: 50px;
     display: flex;
     width: 750px;
     
@@ -13,8 +13,7 @@
 
 .contentsCategory {
 
-    border-left: 1px solid #cfcfcf;
-    border-right: 1px solid #cfcfcf;
+    border: 2px solid #cfcfcf;
     padding-top: 30px;
     width: 1200px;
 
@@ -42,12 +41,13 @@
 .textAreaStyle {
     width: 100%;
     height: 6.25em;
-    border: 1px solid #cfcfcf;
+    border: 2px solid #cfcfcf;
     border-radius: 10px;
     resize: none;
 }
 
 .subjectButtonDiv{
+    margin-top: 10px;
     justify-content: center;
     display: flex;
     justify-content: center;
@@ -71,7 +71,7 @@
     border-radius: 5px;
 }
 .registBtn {
-    border:1px solid #4D62CC;
+    border:1px solid #2F65EB;
     display:inline-block;
     color:#ffffff;
     font-family:arial;
@@ -84,7 +84,7 @@
     text-decoration:none;
     text-align:center;
     margin: 5px 5px 5px 5px;
-    background-color:#4D62CC;
+    background-color:#2F65EB;
     border-radius: 5px;
 }
 

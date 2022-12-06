@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import StudentQnaRegistrationCSS from "./StudentQnaRegistration.module.css";
 import {callQnaRegsistAPI} from "../../api/StudentAPICalls";
 import { callClassHistoryListForMemberNoPagingAPI } from '../../api/StudentAPICalls';
+import StudentQnaDtailCSS from "./StudentQnaDetail.module.css";
 
 function StudentQnaRegistration() {
 
@@ -52,16 +53,18 @@ function StudentQnaRegistration() {
     }
 
     return(
-         
+        
         <div>
            
             <div className={ StudentQnaRegistrationCSS.qnaSection }>
+                <h3></h3>
                 <div className={ StudentQnaRegistrationCSS.qnaInfoDiv }>
+              
                     <table>
                     { Array.isArray(classes) && (
                         <tbody>
                             <tr>
-                                <td><label>과목명</label></td>
+                                <th><label>과목명</label></th>
                                 <td>
                                     <select
                                         id="classList"
@@ -84,7 +87,7 @@ function StudentQnaRegistration() {
                                    <td>
                                        <input 
                                            name='mtmTitle'
-                                           placeholder='상담일'
+                                           placeholder='제목'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
                                       
@@ -94,9 +97,9 @@ function StudentQnaRegistration() {
                                <tr>
                                    <th>내용</th>
                                    <td>
-                                       <input 
+                                       <textarea 
                                            name='mtmDescription'
-                                           placeholder='이름'
+                                           placeholder='내용'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
                                         
@@ -110,17 +113,19 @@ function StudentQnaRegistration() {
                 </div>
                 
             </div>
-            <div>
+            <div className={StudentQnaDtailCSS.subjectButtonDiv}    >
                 <br></br>
-                <button        
+                <button
+                     className={StudentQnaDtailCSS.deleteBtn}        
                     onClick={ () => navigate(-1) }            
                 >
                     취소
                 </button>
                 <button       
+                    className={StudentQnaDtailCSS.registBtn}
                     onClick={ onClickQnaRegistrationHandler }             
                 >
-                    1:1상담 등록
+                    상담 등록
                 </button>
             </div>        
         </div>

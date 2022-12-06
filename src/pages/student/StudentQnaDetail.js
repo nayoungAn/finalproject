@@ -104,6 +104,7 @@ function StudentQnaDetail() {
             <div className={ StudentQnaDtailCSS.subjectSection }>
                 <div className={ StudentQnaDtailCSS.subjectInfoDiv }>
                     <table className={ StudentQnaDtailCSS.contentsCategory }>
+                        
                         <tbody>
                             <tr>
                                 <td><label>번호</label></td>

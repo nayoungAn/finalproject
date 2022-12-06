@@ -35,6 +35,7 @@
     margin-bottom: 30px;
     margin-right: 5px;
     background-color:  #2F65EB;
+    
     font-weight: bold;
     font-size: 0.9em;
     margin-left: auto;  
@@ -107,7 +108,7 @@
     cursor: pointer;
     padding-top : 10px;
    padding-bottom: 10px;
-   border-top: 3px solid rgba(60, 63, 212, 0.945);
+   border-top: 3px solid #2f59ca;
    border-bottom: 3px solid rgba(60, 63, 212, 0.945);
    color:rgba(60, 63, 212, 0.945);
 }

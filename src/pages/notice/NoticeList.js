@@ -6,17 +6,18 @@ import { callNoticeListAPI, callNoticeDeleteAPI } from '../../api/NoticeAPICalls
 import { decodeJwt } from '../../utils/tokenUtils';
 
 function NoticeList() {
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const notice  = useSelector(state => state.noticeReducer);      
+    const notice  = useSelector(state => state.noticeReducer);
     const noticeList = notice.data;
+    const [search, setSearch] = useState('');
+    console.log('noticeList', noticeList);
 
     const pageInfo = notice.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
-
     const pageNumber = [];
+
     if(pageInfo){
         for(let i = pageInfo.startPage ; i <= pageInfo.endPage ; i++){
             pageNumber.push(i);
@@ -30,40 +31,41 @@ function NoticeList() {
         const temp = decodeJwt(isLogin);
         decoded = temp.auth[0];
     }
-    
+
     useEffect(
-        () => {         
+        () => {
             dispatch(callNoticeListAPI({
+                value : search,
                 currentPage: currentPage,
-            }));            
-            
+            }));
         }
-        ,[currentPage]    
+        ,[currentPage, search]
     );
+     /* 검색 키워드 입력 시 입력 값 상태 저장 */
+     const onSearchChangeHandler = (e) => {
+        setSearch(e.target.value);
+    }
 
     const onClickNoticeInsert = () => {
         navigate("/ono/notice-regist", {replace : false})
     }
 
     const onClickNoticeDelete = (noticeCode) => {
-
         {
             dispatch(callNoticeDeleteAPI({
                 noticeCode : noticeCode
             }));
-
             alert('공지사항이 삭제되었습니다.');
                 window.location.reload();
         }
     }
 
     const onClickTableTr = (e, noticeCode) => {
-        
         if(e.target.className !== "deleteBtn")
                 {
                     navigate(`/ono/notice/${noticeCode}`, { replace: false })
                     console.log("상세조회");
-                }     
+                }
         else {
             onClickNoticeDelete(noticeCode);
         }
@@ -72,14 +74,28 @@ function NoticeList() {
     return (
         <>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
-            <div>
-            { decoded === "ROLE_ADMIN" && <button
-                    onClick={ onClickNoticeInsert }
-                >
-                    작성하기
-                </button>
-            }
-            </div>            
+            <div className={ NoticeListmoduleCSS.noticeHeader }>
+                <div>
+                    { decoded === "ROLE_ADMIN" && <button
+                            onClick={ onClickNoticeInsert }
+                        >
+                            작성하기
+                        </button>
+                    }
+                </div>
+                <div className={NoticeListmoduleCSS.search}>
+                    
+                    <input
+                            className={ NoticeListmoduleCSS.InputStyle }
+                            type="text"
+                            placeholder="검색"
+                            value={ search }
+                            onChange={ onSearchChangeHandler }
+                    />
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+                </div>
+            </div>
+            
             <table className={ NoticeListmoduleCSS.noticeTable }>
                 <colgroup>
                     <col width="5%" />
@@ -108,22 +124,19 @@ function NoticeList() {
                             <td>{ n.noticeDate }</td>
                             <td>{ n.member.memberName }</td>
                             <td><button className="deleteBtn"
-                  
                             >
                                 삭제
                             </button></td>
                         </tr>
-                    )) 
+                    ))
                     }
-                </tbody>    
-                                    
-            </table>         
-            
+                </tbody>
+            </table>
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(noticeList) &&
-            <button 
-                onClick={() => setCurrentPage(currentPage - 1)} 
+            <button
+                onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
                 className={ NoticeListmoduleCSS.pagingBtn }
             >
@@ -141,8 +154,8 @@ function NoticeList() {
             </li>
             ))}
             { Array.isArray(noticeList) &&
-            <button 
-                onClick={() => setCurrentPage(currentPage + 1)} 
+            <button
+                onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
             >
                 &gt;
@@ -152,6 +165,4 @@ function NoticeList() {
         </>
     );
 }
-
-
 export default NoticeList;

@@ -53,8 +53,8 @@ th{
 }
 
 .classnote{
- width: 700px;
- padding: 20px;
+    width: 700px;
+    padding: 20px;
 }
 
 .note{
@@ -68,5 +68,12 @@ th{
 .List{
     background-color: white;
     border-radius: 15px;
+    
+}
+
+.attachtable{
+    
+    width: 500px;
+    align-items: center;
     
 }
