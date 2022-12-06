@@ -67,7 +67,7 @@ function SubjectRegistration() {
   };
   return (
     <div>
-      <h2> 과목 등록</h2>
+      <h2 className={SubjectRegistrationCSS.h2}> 과목 등록</h2>
       <div className={SubjectRegistrationCSS.subjectSection}>
         <div className={SubjectRegistrationCSS.subjectInfoDiv}>
           <table>
@@ -161,15 +161,15 @@ function SubjectRegistration() {
       <div>
         <button
           onClick={() => navigate(-1)}
-          className={SubjectRegistrationCSS.btnCancle}
+          className={SubjectRegistrationCSS.CancelBtn}
         >
           취소
         </button>
         <button
-          className={SubjectRegistrationCSS.btnRegist}
+          className={SubjectRegistrationCSS.RegistBtn}
           onClick={onClickSubjectRegistrationHandler}
         >
-          과목 등록
+          등록
         </button>
       </div>
     </div>

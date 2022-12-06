@@ -38,8 +38,9 @@ function NoticeRegist() {
 
     return (
         <>
-        <div>
+        <div> <h2 className={ NoticeDetailCSS.h2}> 공지사항 등록</h2>
         <div className={ NoticeDetailCSS.subjectSection }>
+           
             <div className={ NoticeDetailCSS.noticeInfoDiv }>
                 <table className={ NoticeDetailCSS.noticeRegistTable }>
                     <tbody>
@@ -77,15 +78,19 @@ function NoticeRegist() {
         </div>
         <div>
             <button        
-                onClick={ () => navigate(-1) }            
+                onClick={ () => navigate(-1) }    
+                className={NoticeDetailCSS.btnCancle}   
+                style={{marginTop : '20px'}}     
             >
                 돌아가기
             </button>
         
             <button 
                 onClick={ onClickSubjectUpdateHandler }
+                className={ NoticeDetailCSS.RegistBtn}
+                style={{marginTop : '20px'}}
             >
-                저장하기
+                저장
             </button>
         </div>        
     </div>

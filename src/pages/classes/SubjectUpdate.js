@@ -70,7 +70,7 @@ function SubjectUpdate(){
     return (
         <div>
             <div>
-                <h2> 과목 상세 조회 </h2>
+                <h2 className={SubjectUpdateCSS.h2}> 과목 상세 조회 </h2>
              
             </div>        
             <div className={ SubjectUpdateCSS.subjectSection }>
@@ -165,7 +165,7 @@ function SubjectUpdate(){
                 </div>
             </div>
             <button        
-            className={SubjectUpdateCSS.btnCancle}
+            className={SubjectUpdateCSS.CancelBtn}
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기
@@ -173,17 +173,17 @@ function SubjectUpdate(){
             {!modifyMode &&
                 <button 
                     onClick={ onClickModifyModeHandler }
-                    className={SubjectUpdateCSS.btnRegist}
+                    className={SubjectUpdateCSS.ModifyBtn}
                 >
                     수정 모드
                 </button>
             }
             {modifyMode &&
                 <button 
-                className={SubjectUpdateCSS.btnRegist} 
+                className={SubjectUpdateCSS.RegistBtn} 
                     onClick={ onClickSubjectUpdateHandler }
                 >
-                    수정하기
+                    수정
                 </button>
             }
         </div>

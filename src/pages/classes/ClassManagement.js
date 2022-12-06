@@ -59,18 +59,15 @@ function ClassManagement() {
         }
     }
 
-    const onClickSearch = () => {
-        navigate(`/ono/OpenClasses/classes/search?value=${search}`, { replace : false });
-    }
+
     
     return (
         <>
        
         <div className={ ClassManagementCSS.bodyDiv }>
             <div>
-                <h2>강의 목록</h2>
-                <button className={ ClassManagementCSS.btnSearch } onClick = { () => onClickSearch()}>검색</button>
-
+                <h2 className={ClassManagementCSS.h2}>강의 목록</h2>
+                <div className={ClassManagementCSS.search}>
               
                 <input
                     className={ ClassManagementCSS.InputStyle }
@@ -80,6 +77,8 @@ function ClassManagement() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
+                   <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+                </div>
             </div>            
             <table className={ ClassManagementCSS.classTable }>
                 <colgroup>
@@ -92,7 +91,7 @@ function ClassManagement() {
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>강의번호</th>
+                        <th>No</th>
                         <th>강사명</th> 
                         <th>강의명</th>
                         <th>수강일</th>
@@ -120,9 +119,9 @@ function ClassManagement() {
             </table>         
             <button
                     onClick={ onClickClassInsert }
-                    className={ClassManagementCSS.btnRegist}
+                    className={ClassManagementCSS.RegistBtn}
                 >
-                    강의 등록
+                    등록
                 </button>
      
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>

@@ -119,10 +119,10 @@ function TeacherUpdate(){
     }
 
     return (
+        <>
         <div>
-            <div >
-            <h2> 강사 상세 조회</h2>
-            </div>        
+            <h2 className={ TeacherUpdateCSS.h2}> 강사 상세 조회</h2>
+        
             <div className={ TeacherUpdateCSS.teacherSection }>
                 <div className={ TeacherUpdateCSS.ImageInfoDiv }>
                     <div className={ TeacherUpdateCSS.teacherImageDiv }>
@@ -286,8 +286,7 @@ function TeacherUpdate(){
                                 </td>
                             </tr> 
                             <tr >
-                                 <td style={{backgroundColor : '#BFC6CD',
-                                fontWeight : 'bold'}}>강사 이력</td>
+                                 <td className={ TeacherUpdateCSS.teacherTabletd}>강사 이력</td>
                             </tr>
                             <tr>
                             <td  className={ TeacherUpdateCSS.teacherHistoryTableTd} >입사일</td>
@@ -309,29 +308,32 @@ function TeacherUpdate(){
                     </table>
                 </div>        
             </div>
-                    <button className={TeacherUpdateCSS.btnCancle}       
-                    onClick={ () => navigate(-1) 
-                    }            
+            <div>
+            <button        
+                    onClick={ () => navigate(-1) }   
+                    className={ TeacherUpdateCSS.CancelBtn}                
                 >
                     돌아가기
                 </button>
-                {!modifyMode &&
+            {!modifyMode &&
                 <button 
                     onClick={ onClickModifyModeHandler }
-                    className={TeacherUpdateCSS.btnRegist}
+                    className={ TeacherUpdateCSS.ModifyBtn}
                 >
                     수정 모드
                 </button>
-
-            }  
+            }
             {modifyMode &&
-                <button  className={TeacherUpdateCSS.btnRegist}  
+                <button 
                     onClick={ onClickTeacherUpdateHandler }
+                    className={ TeacherUpdateCSS.RegistBtn}
                 >
-                    저장하기
+                    저장
                 </button>
             } 
         </div>
+        </div>
+        </>
     );
 
 }

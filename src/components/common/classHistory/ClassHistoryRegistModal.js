@@ -173,16 +173,17 @@ function ClassHistoryRegistModal({ setClassHistoryRegistModal }) {
           </table>
           
           )}
-            <button  
-                  onClick={onClickRegistHandler}
-                  className={ClassHistoryCSS.btnRegist}>등록</button>
+        
                 <button
                  
                   onClick={() => setClassHistoryRegistModal(false)}
-                  className={ClassHistoryCSS.btnCancle}
+                  className={ClassHistoryCSS.CancelBtn}
                 >
                   돌아가기
                 </button>
+                <button  
+                  onClick={onClickRegistHandler}
+                  className={ClassHistoryCSS.RegistBtn}>등록</button>
         </div>
       
       </div>

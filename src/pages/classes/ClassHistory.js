@@ -46,17 +46,17 @@ function ClassHistory() {
     <>
       <div className={ClassHistoryCSS.main}>
         <div className={ClassHistoryCSS.item1}>
-          <h3>수강 관리</h3>
-          
-          <input
-            className={ClassHistoryCSS.InputStyle}
-            type="text"
-            placeholder="검색"
-            value={searchValue}
-            onChange={onSearchChangeHandler}
-          />
-
-          
+          <h2 className={ClassHistoryCSS.h2}>수강 관리</h2>
+          <div className={ClassHistoryCSS.search}>
+                <input
+                    className={ ClassHistoryCSS.InputStyle }
+                    type="text"
+                    placeholder="검색"
+                    value={ searchValue }
+                    onChange={ onSearchChangeHandler }
+                />
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>       
           <div>
             <ul className={ ClassHistoryCSS.name }>
             
@@ -113,7 +113,7 @@ function ClassHistory() {
         </div>
         <div className={ClassHistoryCSS.submain}>
           <div className={ClassHistoryCSS.item2}>
-            <h2>원생 정보</h2>
+            <h2 className={ClassHistoryCSS.studentH2}>원생 정보</h2>
             <ClassDetail />
           </div>
           <button 

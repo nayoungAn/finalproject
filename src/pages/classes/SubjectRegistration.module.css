@@ -9,8 +9,8 @@
     
 }
 
-h2{
-    margin-top: 20px;
+.h2{
+    margin-top: 50px;
 }
 
 .subjectInfoDiv{
@@ -88,33 +88,91 @@ h2{
     font-weight: bold;
 }
 
-.btnRegist{
-    width: 100px;
-    height: 50px;
+
+.RegistBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;  
+    margin-left: auto;
+    width:80px;
+    height:40px;
     
-    margin-right: 10px;
-    margin-left : 10px;
-    margin-top : 20px;
-    background-color:  #2F65EB;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-left: auto;  
-    font-weight: bold;
-    float:right;
+    
 }
 
-.btnCancle{
-    width: 100px;
-    height: 50px;
+.RegistBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.RegistBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.ModifyBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;
+    margin-left: auto;
+    width:115px;
+    height:40px;
+}
+
+.ModifyBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.ModifyBtn:active{
+    position:relative;
+	top:1px;
+}
+
+
+.CancelBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;
+    margin-left: 10px;
     margin-right: 10px;
-    margin-left : 10px;
-    margin-top:20px;
-    color: black;;
-    background-color:  #d6d9db;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-left: auto;  
-    font-weight: bold;
-    float:right;
-    border: 0;
+    width:115px;
+    height:40px;
+}
+
+.CancelBtn:hover{
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  white;
+}
+
+
+.CancelBtn:active{
+    position:relative;
+	top:1px;
 }

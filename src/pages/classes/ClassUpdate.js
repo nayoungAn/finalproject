@@ -126,8 +126,7 @@ function ClassUpdate() {
 
         <div>
             <div>
-            <h2 className={ClassUpdateCSS.name}> 강의 상세 조회</h2>
-
+            <h2 className={ClassUpdateCSS.h2}> 강의 상세 조회</h2>
                </div>
             <div className={ClassUpdateCSS.classSection}>
                 <div className={ClassUpdateCSS.classInfoDiv}>
@@ -396,7 +395,7 @@ function ClassUpdate() {
                 </div>
             </div>
             <button
-             className={ClassUpdateCSS.btnCancle}
+             className={ClassUpdateCSS.CancelBtn}
                     onClick={() => navigate(-1)}
                 >
                     돌아가기
@@ -404,7 +403,7 @@ function ClassUpdate() {
                 {!modifyMode &&
                     <button
                         onClick={onClickModifyModeHandler}
-                        className={ClassUpdateCSS.btnRegist}
+                        className={ClassUpdateCSS.ModifyBtn}
                     >
                         수정 모드
                     </button>
@@ -413,9 +412,9 @@ function ClassUpdate() {
                 {modifyMode &&
                     <button
                         onClick={onClickClassUpdateHandler}
-                        className={ClassUpdateCSS.btnRegist}
+                        className={ClassUpdateCSS.RegistBtn}
                     >
-                       수정하기
+                       수정
                     </button>
                 }
          
