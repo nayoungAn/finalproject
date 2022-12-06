@@ -90,7 +90,6 @@ function QnaReDetail() {
                                     <td>
                                         <input 
                                             name= 'reCode'
-                                            placeholder='제목'
                                             readOnly={modifyMode ? false : true}
                                             onChange={ onChangeHandler }
                                             value={ (!modifyMode ? qnaDetail.reCode : form.reCode) || ''}
@@ -105,6 +104,7 @@ function QnaReDetail() {
                                             readOnly={modifyMode ? false : true}
                                             onChange={ onChangeHandler }
                                             value={ (!modifyMode ? qnaDetail.reTitle : form.reTitle) || ''}
+                                            style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
                                     />
                                     </td>
                             </tr>
@@ -133,6 +133,7 @@ function QnaReDetail() {
                                             readOnly={modifyMode ? false : true}
                                             onChange={ onChangeHandler }
                                             value={ (!modifyMode ? qnaDetail.reContent : form.reContent) || ''}
+                                            className = { QnaReDetailCSS.contentTextArea }
                                         >                                    
                                         </textarea>
                                    
@@ -166,13 +167,14 @@ function QnaReDetail() {
                                         className={ QnaReDetailCSS.backBtn }
                                         onClick={ onClickQnaUpdateHandler }
                                     >
-                                        답글 수정 저장
+                                        저장
                                     </button>
                                 }
                                     <button
+                                        className={ QnaReDetailCSS.backBtn }
                                         onClick={ onClickDeleteHandler }
                                     >
-                                        답글 삭제
+                                        삭제
                                     </button>   
                             </div>
                             
