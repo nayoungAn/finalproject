@@ -57,6 +57,8 @@ function QnaReDetail() {
         dispatch(callQnaUpdateAPI({
             form : form
         }));
+        alert("답글이 수정되었습니다")
+        navigate(-1); 
        
     } 
 
@@ -66,6 +68,8 @@ function QnaReDetail() {
             dispatch(callQnaDeleteAPI({
                 reCode: reCode
             }));
+            alert("답글이 삭제되었습니다")
+            navigate(-1); 
             
             
     }
