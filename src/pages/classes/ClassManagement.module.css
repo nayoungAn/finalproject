@@ -125,8 +125,8 @@
     cursor: pointer;
     padding-top : 10px;
    padding-bottom: 10px;
-   border-top: 2px solid rgba(60, 63, 212, 0.945);
-   border-bottom: 2px solid rgba(60, 63, 212, 0.945);
+   border-top: 2px solid #2f59ca;
+   border-bottom: 2px solid #2f59ca;
 
 }
 
