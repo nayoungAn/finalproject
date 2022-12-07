@@ -132,7 +132,7 @@ function ConsRegistration(){
                                    </td>
                                </tr>
                                 <tr>
-                                <td><label>내용</label></td>
+                                <th>내용</th>
                                 <td colSpan={4}>
                                     <label>
                                         <textarea
