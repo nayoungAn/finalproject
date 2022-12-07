@@ -16,8 +16,7 @@ const actions = createActions({
 const smsListReducer = handleActions(
   {
     [GET_SMS]: (state, { payload }) => {
-      const settedList = [];
-      payload.map((item) => {
+      state = payload.map((item) => {
         const list = {
           memberCode: item.member.memberCode,
           memberName: item.member.memberName,
@@ -25,9 +24,10 @@ const smsListReducer = handleActions(
           className: item.openClasses.className,
           isChecked: false
         }
-        settedList.push(list);
+        return list
       })
-      return settedList;
+      console.log(state);
+      return state
     },
     [POST_SMS] : (state, { payload }) => {
       return payload;

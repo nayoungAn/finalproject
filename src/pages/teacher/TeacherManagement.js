@@ -77,6 +77,7 @@ const onEnterKeyHandler = (e) => {
                 </div>            
                 </div>       
                 <table className={ TeacherManagementCSS.teacherTable }>     
+
                 <colgroup>
                     <col width="5%" />
                     <col width="15%" />
