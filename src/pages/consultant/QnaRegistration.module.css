@@ -4,23 +4,25 @@
     flex-direction: row;
 }
 
+
 .qnaInfoDiv{
     display: flex;
-    width: 350px;
+    flex-direction: column;
+    margin-top: 15px;
+    height: 100%;
 }
 
 .qnaInfoInput {    
-    width: 80%;
-    margin: 0;
-    padding: 0;
-    border-radius: 10px;
-    background-color: white;
-    text-indent: 0.5em;
-    margin-right: 100px;
+    border: 1px solid black;
+    height: 50px;
+    width: 450px;
+    align-content: center;
 }
 
 .qnaInfoDiv table {
-    width: 100%;
+    width: 600px;
+    border-style:none;
+    border-collapse: collapse;
 }
 
 .textAreaStyle {
@@ -30,10 +32,16 @@
     border-radius: 10px;
     resize: none;
 }
+.qnaInfoDiv textarea {
+    margin-top: 20px;
+    width: 450px;
+    height: 320px;
+}
 
 .qnaButtonDiv{
     display: flex;
     justify-content: flex-end;
+    margin-right: 500px;
 }
 .qnaButtonDiv button{
     margin: 5px;    
@@ -50,8 +58,8 @@
     margin-bottom: 300px;
     margin-top: 0px;
     display: flex;
-    margin-right: 10px;
-    float: right;
+    margin-left: 435px;
+    
 }
 
 .backBtn {
@@ -96,3 +104,9 @@
 	top:1px;
 }
 
+.qnaSection{
+    border: 2px solid #cfcfcf;
+    display: flex;
+    flex-direction: row;
+    margin-right: 120px;
+}

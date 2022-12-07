@@ -95,7 +95,6 @@ function StudentQnaRegistration() {
                                            placeholder='제목을 입력하세요.'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
-                                      
                                        />
                                    </td>
                                </tr>
