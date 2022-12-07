@@ -123,7 +123,7 @@ function NoticeDetail() {
                                             placeholder='작성일'
                                             className={ NoticeDetailCSS.noticeInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (noticeDetail.noticeDate) || '' }
+                                            value={ (noticeDetail.noticeDate)?.split(' 00',1) || '' }
                                             readOnly={ true }
                                             style={ modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
