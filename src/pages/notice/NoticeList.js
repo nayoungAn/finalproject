@@ -116,7 +116,7 @@ function NoticeList() {
                         >
                             <td>{ n.noticeCode }</td>
                             <td>{ n.noticeTitle }</td>
-                            <td>{ n.noticeDate }</td>
+                            <td>{ n.noticeDate.split("00:00:00",1) }</td>
                             <td>{ n.member.memberName }</td>
                             { decoded === "ROLE_ADMIN" &&
                             <td><button className="deleteBtn"

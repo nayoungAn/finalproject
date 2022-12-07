@@ -35,35 +35,43 @@ function QnaRegistration() {
     }
 
     return(
-        <div>
-            <div className={ QnaRegistrationCSS.QnaButtonDiv }>
+        
+        <div> 
+            <div className={ QnaRegistrationCSS.h2 }> 
                
+            <div className={ QnaRegistrationCSS.QnaButtonDiv }>
+          
+            <div className={ QnaRegistrationCSS.qnaSection }>
                 <div className={ QnaRegistrationCSS.qnaInfoDiv }>
                    <table>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <input
-                                        name='reTitle'
-                                        placeholder='제목을 입력하세요'
-                                        className={ QnaRegistrationCSS.qnaInfoInput }
-                                        onChange={ onChangeHandler }
-                                    />    
-                                </td>
-                            </tr>
-                           
-                            <tr>
-                                <td>
-                                    <textarea
-                                        name='reContent'
-                                        placeholder='내용을 입력하세요'
-                                        className={ QnaRegistrationCSS.textAreaStyle }
-                                        onChange={ onChangeHandler }
-                                    />    
-                                </td>
-                            </tr>
+                        <tr>
+                            <th>제목</th>
+                            <td>
+                                <input 
+                                    name='reTitle'
+                                    placeholder='제목을 입력하세요.'
+                                    className={ QnaRegistrationCSS.qnaInfoInput }
+                                    onChange={ onChangeHandler }
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>
+                                <textarea 
+                                    name='reContent'
+                                    placeholder='내용을 입력하세요.'
+                                    className={ QnaRegistrationCSS.qnaInfoInput }
+                                    onChange={ onChangeHandler }
+                                
+                                />
+                            </td>
+                        </tr>
                         </tbody>
                    </table>
+                   </div>
+                </div>
                 </div>
                 <div className={ QnaRegistrationCSS.buttonDivCss} >   
                 <button
