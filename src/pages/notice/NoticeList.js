@@ -166,10 +166,10 @@ function NoticeList() {
             ))}
             { Array.isArray(noticeList) &&
             <button
-            className={NoticeListmoduleCSS.pagingBtn}
+                className={NoticeListmoduleCSS.pagingBtn}
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                className={ NoticeListmoduleCSS.pagingBtn }
+                
             >
                 &gt;
             </button>

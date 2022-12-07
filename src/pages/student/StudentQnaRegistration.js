@@ -55,9 +55,9 @@ function StudentQnaRegistration() {
     return(
         
         <div>
-           <div> <h2>상담 등록</h2>
+           <div className={ StudentQnaRegistrationCSS.h2 }> 
+            <h2>상담 등록</h2>
             <div className={ StudentQnaRegistrationCSS.qnaSection }>
-                <h3></h3>
                 <div className={ StudentQnaRegistrationCSS.qnaInfoDiv }>
               
                     <table>
@@ -87,7 +87,7 @@ function StudentQnaRegistration() {
                                    <td>
                                        <input 
                                            name='mtmTitle'
-                                           placeholder='제목'
+                                           placeholder='제목을 입력하세요.'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
                                       
@@ -99,7 +99,7 @@ function StudentQnaRegistration() {
                                    <td>
                                        <textarea 
                                            name='mtmDescription'
-                                           placeholder='내용'
+                                           placeholder='내용을 입력하세요.'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
                                         
@@ -115,18 +115,20 @@ function StudentQnaRegistration() {
             </div>
             <div className={StudentQnaDtailCSS.subjectButtonDiv}    >
                 <br></br>
-                <button       
-                    className={StudentQnaDtailCSS.registBtn}
-                    onClick={ onClickQnaRegistrationHandler }             
-                >
-                    상담 등록
-                </button>
                 <button
+                    
                     className={StudentQnaDtailCSS.backBtn}        
                     onClick={ () => navigate(-1) }            
                 >
                     취소
                 </button>
+                <button       
+                    className={StudentQnaDtailCSS.registBtn}
+                    onClick={ onClickQnaRegistrationHandler }             
+                >
+                    등록
+                </button>
+               
             </div>        
         </div>
 

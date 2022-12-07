@@ -48,7 +48,7 @@ function Teacherclass() {
                 
                 <thead className={StudentClasses.classhead}>
                     <tr>
-                        <th>No.</th>
+                        <th>No</th>
                         <th>강의명</th>
                         <th>시작일</th>
                         <th>종료일</th>

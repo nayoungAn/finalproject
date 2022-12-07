@@ -101,7 +101,8 @@ function StudentQnaDetail() {
 
         <>
           { qna &&
-            <div> <h2>상담 상세조회</h2>
+            <div> 
+            <div className={ StudentQnaDtailCSS.h2 }> <h2>상담 상세조회 </h2></div>
             <div className={ StudentQnaDtailCSS.qnaDetailtableDiv }>
               
                 <div className={ StudentQnaDtailCSS.qnaTableDiv }>
