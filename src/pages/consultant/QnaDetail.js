@@ -103,20 +103,21 @@ function QnaDetail() {
                 </div>
                 }
                  <div className={ QnaDetailCSS.buttonDivCss} >
-                {  qnaDetail &&
-                        <button
-                            className={ QnaDetailCSS.backBtn }
-                            onClick={ () => navigate(-1) }
-                        >
-                            돌아가기
-                        </button>
-                }  
+               
                  <button
                 className={ QnaDetailCSS.QnaBtn}
                 onClick={ onClickHandler }
                  >
                     답글 등록
                  </button> 
+                
+                        <button
+                            className={ QnaDetailCSS.backBtn }
+                            onClick={ () => navigate(-1) }
+                        >
+                            돌아가기
+                        </button>
+                  
                  </div>  
         </>
     )

@@ -26,7 +26,8 @@
 	color:#f26666;
 	font-size:17px;
     padding:7px 20px;
-    font-weight: bold;  
+    font-weight: bold;
+    margin-right: 50px;  
 }
 .deleteBtn:hover {
     background-color:#f26666;
@@ -43,9 +44,9 @@
 	cursor:pointer;
 	color:#3f6fe9;
 	font-size:17px;
-	padding:5px 20px;
+	padding:7px 20px;
     font-weight: bold;  
-    margin-left: 20px;
+    margin-left: 70px;
     
 
 }
@@ -139,14 +140,14 @@
     margin-bottom: 300px;
     margin-top: 20px;
     display: flex;
-    margin-left: 320px;
+    margin-left: 300px;
 }
 
 .buttonDivCsss {
     margin-bottom: 300px;
     margin-top: 20px;
     display: flex;
-    margin-left: 470px;
+    margin-left: 480px;
 }
 
 .backBtns {
@@ -164,5 +165,10 @@
     background-color:#666666;
     border:1px solid #666666;
     color:  #fbfbfb;
+
+}
+
+.h2 h2{
+    margin-top: 40px;
 
 }

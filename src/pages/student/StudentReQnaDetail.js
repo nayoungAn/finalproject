@@ -36,7 +36,9 @@ function StudentReQnaDetail() {
     return(
 
         <>
-          <div> <h2>답변 상세조회</h2>
+        <div>
+          <div className={ StudentQnaDtailCSS.h2 }> <h2>답변 상세조회</h2>
+          </div>
             <div className={ StudentQnaDtailCSS.qnaDetailtableDiv }>
               
                 <div className={ StudentQnaDtailCSS.qnaTableDiv }>
@@ -103,7 +105,7 @@ function StudentReQnaDetail() {
                     돌아가기
                 </button>
             </div>        
-      
+            
     </>
     );
 

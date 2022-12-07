@@ -16,6 +16,7 @@
     border-radius: 10px;
     background-color: white;
     text-indent: 0.5em;
+    margin-right: 100px;
 }
 
 .qnaInfoDiv table {
@@ -45,4 +46,53 @@
     font-weight: bold;
 }
 
+.buttonDivCss{
+    margin-bottom: 300px;
+    margin-top: 0px;
+    display: flex;
+    margin-right: 10px;
+    float: right;
+}
+
+.backBtn {
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+    padding:7px 20px;
+    font-weight: bold;  
+    
+}
+.backBtn:hover {
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  #fbfbfb;
+
+}
+
+
+.registBtn {
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:7px 20px;
+    font-weight: bold;  
+    
+
+}
+.registBtn:hover {
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+.registBtn:active{
+    position:relative;
+	top:1px;
+}
 

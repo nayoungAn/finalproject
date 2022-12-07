@@ -25,7 +25,9 @@ function StudentClassesDetail(){
     );
     return (
         <>
-       
+            <div className={StudentClassesDetailCSS.h2}>
+            <h2>내 강의 상세조회</h2>
+            </div>
             <form className={StudentClassesDetailCSS.background}>
                 <div className={StudentClassesDetailCSS.balance}>
                 <tr>

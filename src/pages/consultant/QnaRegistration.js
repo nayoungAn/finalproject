@@ -37,11 +37,7 @@ function QnaRegistration() {
     return(
         <div>
             <div className={ QnaRegistrationCSS.QnaButtonDiv }>
-                <button
-                    onClick={ () => navigate(-1) }
-                >
-                    돌아가기
-                </button>
+               
                 <div className={ QnaRegistrationCSS.qnaInfoDiv }>
                    <table>
                         <tbody>
@@ -68,12 +64,21 @@ function QnaRegistration() {
                             </tr>
                         </tbody>
                    </table>
-                </div>     
+                </div>
+                <div className={ QnaRegistrationCSS.buttonDivCss} >   
                 <button
+                    className={ QnaRegistrationCSS.registBtn }
                     onClick={ onClickQnaRegistrationHandler }
                 >
-                    답변등록
+                    등록
                 </button>
+                <button
+                    className={ QnaRegistrationCSS.backBtn }
+                    onClick={ () => navigate(-1) }
+                >
+                    취소
+                </button>
+                </div>
             </div>
         </div>
     )

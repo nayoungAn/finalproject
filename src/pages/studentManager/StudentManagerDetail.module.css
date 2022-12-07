@@ -43,7 +43,8 @@
 .memberImage{
     margin-top: 5px;
     width: 150px;
-    height: 150px;    
+    height: 150px;   
+   
 }
 
 .memberImageButton{
@@ -54,18 +55,19 @@
     border-width: 0;
     background-color: white;
     color: white;
+    margin-right: 300px; 
 }
 
 
 
 .RegistBtn{
     background-color:#ffffff;
-	border-radius:10px;
-	border:1px solid #3f6fe9;
-	cursor:pointer;
-	color:#3f6fe9;
-	font-size:17px;
-	padding:5px 20px;
+   border-radius:10px;
+   border:1px solid #3f6fe9;
+   cursor:pointer;
+   color:#3f6fe9;
+   font-size:17px;
+   padding:5px 20px;
     font-weight: bold;
     margin-top : 20px;  
     margin-bottom: 20px;  
@@ -85,17 +87,17 @@
 
 .RegistBtn:active{
     position:relative;
-	top:1px;
+   top:1px;
 }
 
 .ModifyBtn{
     background-color:#ffffff;
-	border-radius:10px;
-	border:1px solid #3f6fe9;
-	cursor:pointer;
-	color:#3f6fe9;
-	font-size:17px;
-	padding:5px 20px;
+   border-radius:10px;
+   border:1px solid #3f6fe9;
+   cursor:pointer;
+   color:#3f6fe9;
+   font-size:17px;
+   padding:5px 20px;
     font-weight: bold;
     margin-top : 20px;  
     margin-bottom: 20px;
@@ -113,18 +115,18 @@
 
 .ModifyBtn:active{
     position:relative;
-	top:1px;
+   top:1px;
 }
 
 
 .CancelBtn{
     background-color:#ffffff;
-	border-radius:10px;
-	border:1px solid #666666;
-	cursor:pointer;
-	color:#666666;
-	font-size:17px;
-	padding:5px 20px;
+   border-radius:10px;
+   border:1px solid #666666;
+   cursor:pointer;
+   color:#666666;
+   font-size:17px;
+   padding:5px 20px;
     font-weight: bold;
     margin-top : 20px;  
     margin-bottom: 20px;
@@ -143,6 +145,5 @@
 
 .CancelBtn:active{
     position:relative;
-	top:1px;
+   top:1px;
 }
-

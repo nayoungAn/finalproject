@@ -144,6 +144,22 @@ function QnaReDetail() {
                 }
                 {  qnaDetail &&
                     <div className={ QnaReDetailCSS.buttonDivCss} >
+                        {!modifyMode &&
+                                  <button
+                                    className={ QnaReDetailCSS.registBtn }
+                                    onClick={ onClickModifyModeHandler }
+                                  >
+                                    수정모드
+                                  </button>
+                                }
+                                {modifyMode &&
+                                    <button
+                                        className={ QnaReDetailCSS.registBtn }
+                                        onClick={ onClickQnaUpdateHandler }
+                                    >
+                                        저장
+                                    </button>
+                                }
                         <button
                             className={ QnaReDetailCSS.backBtn }
                             onClick={ () => navigate(-1) }
@@ -154,28 +170,16 @@ function QnaReDetail() {
                             (token.sub === qnaDetail.member?.memberId)
                             ?
                            
-                             <div>{!modifyMode &&
-                                  <button
-                                    className={ QnaReDetailCSS.backBtn }
-                                    onClick={ onClickModifyModeHandler }
-                                  >
-                                    수정모드
-                                  </button>
-                                }
+                             <div>
+                                
                                 {modifyMode &&
                                     <button
-                                        className={ QnaReDetailCSS.backBtn }
-                                        onClick={ onClickQnaUpdateHandler }
-                                    >
-                                        저장
-                                    </button>
-                                }
-                                    <button
-                                        className={ QnaReDetailCSS.backBtn }
+                                        className={ QnaReDetailCSS.deleteBtn }
                                         onClick={ onClickDeleteHandler }
                                     >
                                         삭제
                                     </button>   
+                                }
                             </div>
                             
                           :null  

@@ -77,8 +77,9 @@
 	color:#3f6fe9;
 	font-size:17px;
 	padding:5px 20px;
-    font-weight: bold;  
-    margin-left: 20px;
+    font-weight: bold;
+  
+   
 }
 
 .QnaBtn:hover{
@@ -96,17 +97,17 @@
 .backBtn{
     background-color:#ffffff;
 	border-radius:10px;
-	border:1px solid #3f6fe9;
+	border:1px solid #666666;
 	cursor:pointer;
-	color:#3f6fe9;
+	color:#666666;
 	font-size:17px;
-	padding:5px 20px;
+	padding:7px 20px;
     font-weight: bold;  
 }
 
 .backBtn:hover{
-    background-color:#3f6fe9;
-    border:1px solid #3f6fe9;
+    background-color:#666666;
+    border:1px solid #666666;
     color:  #fbfbfb;
 }
 
@@ -119,5 +120,6 @@
     margin-bottom: 300px;
     margin-top: 20px;
     display: flex;
-    margin-left: 240px;
+    margin-left: 450px;
+    float: right;
 }

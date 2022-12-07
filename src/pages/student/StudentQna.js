@@ -136,7 +136,7 @@ function StudentQna() {
                     className={ StudentQnaCSS.registBtn}
                     onClick={ onClickQnaInsert }
                 >
-                    상담 등록
+                    등록
                 </button>
                 
             </div>
