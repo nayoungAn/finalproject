@@ -1,7 +1,16 @@
 .bodyDiv{
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
+    margin-left:100px;
 }
+
+.h2{
+    margin-top: 10px;
+    margin-bottom:50px;
+    
+}
+
 
 .buttonDiv{
     display: flex;
@@ -24,7 +33,7 @@ button {
 }
 
 .consTable{
-    width: 900px;
+    width: 1100px;
     text-align: center;
     border-style:none;
     border-collapse: collapse;
@@ -32,6 +41,8 @@ button {
 .consTable td{
     border-bottom: 0.5px solid gainsboro ;
     text-align: center;
+    padding-top:15px;
+    padding-bottom: 15px;
 }
 .consTable tr:hover { 
     background-color: #F5F5F5; 
@@ -46,20 +57,21 @@ button {
     cursor: pointer;
 }
 
+
 .pagingBtn{
     margin: 5px;
-    color:rgb(119, 119, 119);
-    border-style: none;
-    background-color: transparent;
+    border-radius: 25px;
+    border: 0;
+    outline: 0;
+    background-color: white;
     font-weight: bold;
+    color:rgb(112, 112, 112);
     
 }
-
 .pagingBtn:hover{
     color: black;
     cursor: pointer;
 }
-
 .InputStyle {
     width: 100%;
     border: 1px solid #bbb;
@@ -68,15 +80,33 @@ button {
     font-size: 14px;
     margin-bottom: 10px;
 }
-.search{
-    position: relative;
-    width: 200px;
+
+
+
+  
+  .RegistBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 10px;  
+    margin-left: auto;
+    width:80px;
+    
 }
 
-.search img {
-    position : absolute;
-    width: 17px;
-    top: 10px;
-    right: 12px;
-    margin: 0;
-  }
+.RegistBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.RegistBtn:active{
+    position:relative;
+	top:1px;
+}

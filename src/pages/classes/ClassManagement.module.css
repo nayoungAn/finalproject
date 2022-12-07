@@ -146,6 +146,6 @@
 }
 
 .pagingBtn:hover{
+    color: black;
     cursor: pointer;
-    background-color:  rgba(60, 63, 212, 0.945);
 }

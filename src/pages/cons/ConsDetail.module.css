@@ -4,6 +4,13 @@
     margin-top: 50px;
 }
 
+.h2{
+    margin-top: 40px;
+    margin-right:500px;
+    margin-bottom: 50px;
+}
+
+
 .DetailDiv div{
     width: 550px;
     height: 350px;
@@ -23,23 +30,6 @@
     height: 80%;
 }
 
-.consRegistBtn{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 100%;
-    border-radius: 25px;
-    font-weight: bold;
-}
-
-.consDeleteBtn{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 100%;
-    border-radius: 25px;
-    font-weight: bold;
-}
 
 .subjectInfoInput {    
     width: 80%;
@@ -49,3 +39,111 @@
     background-color: white;
     text-indent: 0.5em;
 }
+
+
+
+.RegistBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;  
+    margin-left: auto;
+    width:80px;
+    height:40px;
+    
+    
+}
+
+.RegistBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.RegistBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.ModifyBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    width:115px;
+    height:40px;
+}
+
+.ModifyBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.ModifyBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.CancelBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    width:115px;
+    height:40px;
+}
+
+.CancelBtn:hover{
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  white;
+}
+
+
+.CancelBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.deleteBtn {
+    background-color:#ffffff;
+   border-radius:10px;
+   border:1px solid #f26666;
+   cursor:pointer;
+   color:#f26666;
+   font-size:17px;
+    padding:7px 20px;
+    font-weight: bold;
+    margin-top:20px;
+
+}
+.deleteBtn:hover {
+    background-color:#f26666;
+    border:1px solid #f26666;
+    color:  #fbfbfb;
+
+}
+
+.buttonDiv {
+    margin-right: 80px;
+}
+

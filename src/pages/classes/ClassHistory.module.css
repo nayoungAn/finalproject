@@ -108,11 +108,10 @@
   color: rgb(112, 112, 112);
 }
 
-.pagingBtn:hover {
+.pagingBtn:hover{
+  color: black;
   cursor: pointer;
-  background-color: rgba(60, 63, 212, 0.945);
 }
-
 .buttonDiv {
   display: flex;
   flex-direction: row;

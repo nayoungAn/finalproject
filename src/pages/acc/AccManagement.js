@@ -50,13 +50,6 @@ function AccManagement() {
 
   return (
     <>
-     <div className={AccManagementCSS.acctitle}>
-        <div className={AccManagementCSS.accDetail}>
-        <h2>수납목록</h2>
-        </div>
-          
-      </div>
-      
       <div className={AccManagementCSS.bodyDiv}>
 
         <div>
