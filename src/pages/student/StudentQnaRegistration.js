@@ -13,6 +13,7 @@ function StudentQnaRegistration() {
     const navigate = useNavigate();
     const params = useParams();
     console.log(classes);
+    console.log('classes.mtmCode', classes.mtmCode)
 
     useEffect(
         () => {
@@ -23,6 +24,7 @@ function StudentQnaRegistration() {
 
     const [ form, setForm ] = useState({
         classCode: 0,
+        mtmCode : 0,
         mtmTitle : '',
         mtmDescription :'',
       
@@ -40,6 +42,7 @@ function StudentQnaRegistration() {
 
         const formData = new FormData();
         formData.append("classCode", form.classCode);
+        formData.append("mtmCode", form.mtmCode);
         formData.append("mtmTitle", form.mtmTitle);
         formData.append("mtmDescription", form.mtmDescription);
 
@@ -48,6 +51,8 @@ function StudentQnaRegistration() {
             classCode : form.openClasses?.classCode,
         }));
 
+        alert('상담이 등록 되었습니다.');  
+
         navigate(`/ono/student/studentQna`, {replace:false})
         window.location.reload();
     }
@@ -55,9 +60,9 @@ function StudentQnaRegistration() {
     return(
         
         <div>
-           
+           <div className={ StudentQnaRegistrationCSS.h2 }> 
+            <h2>상담 등록</h2>
             <div className={ StudentQnaRegistrationCSS.qnaSection }>
-                <h3></h3>
                 <div className={ StudentQnaRegistrationCSS.qnaInfoDiv }>
               
                     <table>
@@ -87,10 +92,9 @@ function StudentQnaRegistration() {
                                    <td>
                                        <input 
                                            name='mtmTitle'
-                                           placeholder='제목'
+                                           placeholder='제목을 입력하세요.'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
-                                      
                                        />
                                    </td>
                                </tr>
@@ -99,7 +103,7 @@ function StudentQnaRegistration() {
                                    <td>
                                        <textarea 
                                            name='mtmDescription'
-                                           placeholder='내용'
+                                           placeholder='내용을 입력하세요.'
                                            className={ StudentQnaRegistrationCSS.qnaInfoInput }
                                            onChange={ onChangeHandler }
                                         
@@ -111,12 +115,13 @@ function StudentQnaRegistration() {
                     </table>
                     
                 </div>
-                
+                </div>
             </div>
             <div className={StudentQnaDtailCSS.subjectButtonDiv}    >
                 <br></br>
                 <button
-                     className={StudentQnaDtailCSS.deleteBtn}        
+                    
+                    className={StudentQnaDtailCSS.backBtn}        
                     onClick={ () => navigate(-1) }            
                 >
                     취소
@@ -125,8 +130,9 @@ function StudentQnaRegistration() {
                     className={StudentQnaDtailCSS.registBtn}
                     onClick={ onClickQnaRegistrationHandler }             
                 >
-                    상담 등록
+                    등록
                 </button>
+               
             </div>        
         </div>
 

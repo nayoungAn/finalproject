@@ -76,8 +76,11 @@ function NoticeDetail() {
     return (
         <>
             <div>
+                <h2 className={NoticeDetailCSS.h2}> 공지사항 상세 조회</h2>
             <div className={ NoticeDetailCSS.subjectSection }>
+                
                 <div className={ NoticeDetailCSS.noticeInfoDiv }>
+                    
                     <table className={ NoticeDetailCSS.noticeTable}>
                         <thead>
                             <tr>    
@@ -120,7 +123,7 @@ function NoticeDetail() {
                                             placeholder='작성일'
                                             className={ NoticeDetailCSS.noticeInfoInput }
                                             onChange={ onChangeHandler } 
-                                            value={ (noticeDetail.noticeDate) || '' }
+                                            value={ (noticeDetail.noticeDate)?.split(' 00',1) || '' }
                                             readOnly={ true }
                                             style={ modifyMode ? { backgroundColor : 'gray'} : null }
                                             /> 
@@ -159,9 +162,10 @@ function NoticeDetail() {
                     </table>
                 </div>
             </div>
-            <div>
-                <button        
-                            onClick={ () => navigate(-1) }            
+            <div className={NoticeDetailCSS.backBtn}>
+                <button                  
+                     onClick={ () => navigate(-1) }  
+                     className={ NoticeDetailCSS.btnCancle}          
                         >
                             돌아가기
                 </button>
@@ -173,6 +177,7 @@ function NoticeDetail() {
                 {!modifyMode &&
                     <button 
                         onClick={ onClickModifyModeHandler }
+                        className={ NoticeDetailCSS.ModifyBtn}
                     >
                         수정 모드
                     </button>
@@ -180,8 +185,9 @@ function NoticeDetail() {
                 {modifyMode &&
                     <button 
                         onClick={ onClickSubjectUpdateHandler }
+                        className={ NoticeDetailCSS.RegistBtn}
                     >
-                        저장하기
+                        저장
                     </button>
                 }
                 </div>        

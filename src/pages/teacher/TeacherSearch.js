@@ -69,11 +69,9 @@ function TeacherSearch() {
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
             <div>
-            <h2>검색된 결과 : {value}</h2>
-            <button className={TeacherManagementCSS.btnSearch}
-             onClick = { () => onClickSearch()}>검색</button>
-
-                 <input
+            <h2 className={ TeacherManagementCSS.h2}>검색된 결과 : {value}</h2>
+            <div className={TeacherManagementCSS.search}>
+                <input
                     className={ TeacherManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
@@ -81,7 +79,8 @@ function TeacherSearch() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-             
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>
 
             </div>            
             <table className={ TeacherManagementCSS.teacherTable }>
@@ -127,14 +126,14 @@ function TeacherSearch() {
             <div>     
             <button        
                     onClick={ () => navigate("/ono/teacher")}
-                    className={TeacherManagementCSS.btnCancle}           
+                    className={TeacherManagementCSS.CancelBtn}           
                 >
                     돌아가기
                 </button>  
             <button
                  onClick={ onClickTeacherInsert } 
-                 className={TeacherManagementCSS.btnRegist}> 
-                  강사등록 </button>
+                 className={TeacherManagementCSS.RegistBtn}> 
+                  등록 </button>
                 
               
         </div>

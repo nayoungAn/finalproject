@@ -52,19 +52,9 @@ function ConsRegistration(){
     }
 
     return (
-        <div>
             <div>
-                <button        
-                    onClick={ () => navigate(-1) }            
-                >
-                    취소
-                </button>
-                <button       
-                    onClick={ onClickConsRegistrationHandler }             
-                >
-                    상담 등록
-                </button>
-            </div>        
+            <h2 className={ ConsRegistrationCSS.h2}> 공지사항 등록</h2>
+
             <div className={ ConsRegistrationCSS.subjectSection }>
                 <div className={ ConsRegistrationCSS.subjectInfoDiv }>
                     <table>
@@ -142,7 +132,7 @@ function ConsRegistration(){
                                    </td>
                                </tr>
                                 <tr>
-                                <td><label>내용</label></td>
+                                <th>내용</th>
                                 <td colSpan={4}>
                                     <label>
                                         <textarea
@@ -158,6 +148,20 @@ function ConsRegistration(){
                     </table>
                 </div>
             </div>
+            <div>
+            <button        
+                    onClick={ () => navigate(-1) }     
+                    className={ConsRegistrationCSS.btnCancle}         
+                >
+                    취소
+                </button>
+                <button       
+                    onClick={ onClickConsRegistrationHandler } 
+                    className={ ConsRegistrationCSS.RegistBtn}            
+                >
+                    등록
+                </button>
+                </div>
         </div>
     );
 

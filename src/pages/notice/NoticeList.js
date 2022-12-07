@@ -75,23 +75,16 @@ function NoticeList() {
         <>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
             <div className={ NoticeListmoduleCSS.noticeHeader }>
-                <div>
-                    { decoded === "ROLE_ADMIN" && <button
-                            onClick={ onClickNoticeInsert }
-                        >
-                            작성하기
-                        </button>
-                    }
-                </div>
-                <div className={NoticeListmoduleCSS.search}>
+                <h2 className={ NoticeListmoduleCSS.h2}>공지사항</h2>
+                    <div className={NoticeListmoduleCSS.search}>
                     
-                    <input
-                            className={ NoticeListmoduleCSS.InputStyle }
-                            type="text"
-                            placeholder="검색"
-                            value={ search }
-                            onChange={ onSearchChangeHandler }
-                    />
+                      <input
+                              className={ NoticeListmoduleCSS.InputStyle }
+                              type="text"
+                              placeholder="검색"
+                              value={ search }
+                              onChange={ onSearchChangeHandler }
+                      />
                 <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
                 </div>
             </div>
@@ -99,18 +92,20 @@ function NoticeList() {
             <table className={ NoticeListmoduleCSS.noticeTable }>
                 <colgroup>
                     <col width="5%" />
-                    <col width="40%" />
+                    <col width="30%" />
                     <col width="25%" />
                     <col width="20%" />
-                    <col width="10%" />
+                    <col width="7%" />
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>번호</th>
+                        <th>No</th>
                         <th>제목</th>
                         <th>등록일</th>
                         <th>작성자</th>
+                        { decoded === "ROLE_ADMIN" &&
                         <th>삭제</th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -121,19 +116,33 @@ function NoticeList() {
                         >
                             <td>{ n.noticeCode }</td>
                             <td>{ n.noticeTitle }</td>
-                            <td>{ n.noticeDate }</td>
+                            <td>{ n.noticeDate.split(' 00',1) }</td>
                             <td>{ n.member.memberName }</td>
+                            { decoded === "ROLE_ADMIN" &&
                             <td><button className="deleteBtn"
                             >
                                 삭제
                             </button></td>
+                            }
                         </tr>
                     ))
                     }
                 </tbody>
             </table>
-        </div>
-        <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+
+                    { decoded === "ROLE_ADMIN" && <button
+                            onClick={ onClickNoticeInsert }
+                            className={NoticeListmoduleCSS.NoticeBtn }
+                        >
+                            작성
+                        </button>
+                    }
+        <div style=
+        {{ listStyleType: "none",
+         display: "flex",
+          justifyContent: "center" 
+          }}
+          >
             { Array.isArray(noticeList) &&
             <button
                 onClick={() => setCurrentPage(currentPage - 1)}
@@ -146,7 +155,9 @@ function NoticeList() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {Color : 'black' } : null}
+                
+                    style={ currentPage === num ?{ color: "#2F65EB", textDecorationLine: "none"  } : null}
+                 
                     className={ NoticeListmoduleCSS.pagingBtn }
                 >
                     {num}
@@ -155,12 +166,14 @@ function NoticeList() {
             ))}
             { Array.isArray(noticeList) &&
             <button
+                className={NoticeListmoduleCSS.pagingBtn}
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
             >
                 &gt;
             </button>
             }
+        </div>
         </div>
         </>
     );

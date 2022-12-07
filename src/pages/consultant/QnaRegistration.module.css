@@ -4,22 +4,25 @@
     flex-direction: row;
 }
 
+
 .qnaInfoDiv{
     display: flex;
-    width: 350px;
+    flex-direction: column;
+    margin-top: 15px;
+    height: 100%;
 }
 
 .qnaInfoInput {    
-    width: 80%;
-    margin: 0;
-    padding: 0;
-    border-radius: 10px;
-    background-color: white;
-    text-indent: 0.5em;
+    border: 1px solid black;
+    height: 50px;
+    width: 450px;
+    align-content: center;
 }
 
 .qnaInfoDiv table {
-    width: 100%;
+    width: 600px;
+    border-style:none;
+    border-collapse: collapse;
 }
 
 .textAreaStyle {
@@ -29,10 +32,16 @@
     border-radius: 10px;
     resize: none;
 }
+.qnaInfoDiv textarea {
+    margin-top: 20px;
+    width: 450px;
+    height: 320px;
+}
 
 .qnaButtonDiv{
     display: flex;
     justify-content: flex-end;
+    margin-right: 500px;
 }
 .qnaButtonDiv button{
     margin: 5px;    
@@ -45,4 +54,59 @@
     font-weight: bold;
 }
 
+.buttonDivCss{
+    margin-bottom: 300px;
+    margin-top: 0px;
+    display: flex;
+    margin-left: 435px;
+    
+}
 
+.backBtn {
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+    padding:7px 20px;
+    font-weight: bold;  
+    
+}
+.backBtn:hover {
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  #fbfbfb;
+
+}
+
+
+.registBtn {
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:7px 20px;
+    font-weight: bold;  
+    
+
+}
+.registBtn:hover {
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+.registBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.qnaSection{
+    border: 2px solid #cfcfcf;
+    display: flex;
+    flex-direction: row;
+    margin-right: 120px;
+}

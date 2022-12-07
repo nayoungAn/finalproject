@@ -46,6 +46,12 @@ function Header(){
 
         return (
             <div>
+                <button 
+                    className={ HeaderCSS.logintext } 
+                    onClick={ onClickLogoutHandler }
+                >
+                    로그아웃
+                </button>
                  {decoded === "ROLE_ADMIN" && 
                     <button 
                     className={ HeaderCSS.logintext }
@@ -53,12 +59,7 @@ function Header(){
                 >SMS
                 </button>
                 }
-                <button 
-                    className={ HeaderCSS.logintext } 
-                    onClick={ onClickLogoutHandler }
-                >
-                    로그아웃
-                </button>
+             
                
             </div>
         );

@@ -85,20 +85,12 @@ function SmsTransmission() {
   return (
     <section className={SmsTransmissionCSS.container}>
       <div className={SmsTransmissionCSS.smsTitle}>
-        <h1>문자 서비스</h1>
+        <h1 className={SmsTransmissionCSS.h1}>문자 서비스</h1>
       </div>
       <article className={SmsTransmissionCSS.section}>
         <div className={SmsTransmissionCSS.backDiv}>
           <div className={SmsTransmissionCSS.div1}>
-            {/* <div className={SmsTransmissionCSS.selectBox}>
-              <select>
-                <option hidden selected>
-                  검색유형
-                </option>
-                <option>학생명</option>
-                <option>강의명</option>
-              </select>
-            </div> */}
+
             <div className={SmsTransmissionCSS.inputBox}>
               <input
                 className={SmsTransmissionCSS.searchInput}
@@ -109,7 +101,6 @@ function SmsTransmission() {
                   onSearchChangeHandler(e);
                 }}
               ></input>
-              {/* <button onClick={onClickSmsInsert}>확인</button> */}
               {smsList?.map((item) => {
                 console.log(item);
                 if (item.isChecked) {
@@ -165,7 +156,7 @@ function SmsTransmission() {
             onChange={(e) => msgHandler(e)}
           ></textarea>
           <div className={SmsTransmissionCSS.div2}>
-            <button className={SmsTransmissionCSS.btn}
+            <button className={SmsTransmissionCSS.RegistBtn}
               onClick={() => {
                 onClickSmsTransmissionHandler();
               }}

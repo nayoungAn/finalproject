@@ -100,128 +100,116 @@ function StudentQnaDetail() {
     return(
 
         <>
-           <div>
-            <div className={ StudentQnaDtailCSS.subjectSection }>
-                <div className={ StudentQnaDtailCSS.subjectInfoDiv }>
-                    <table className={ StudentQnaDtailCSS.contentsCategory }>
-                        
-                        <tbody>
+          { qna &&
+            <div> 
+            <div className={ StudentQnaDtailCSS.h2 }> <h2>상담 상세조회 </h2></div>
+            <div className={ StudentQnaDtailCSS.qnaDetailtableDiv }>
+              
+                <div className={ StudentQnaDtailCSS.qnaTableDiv }>
+                    
+                    <table className={ StudentQnaDtailCSS.qnaDetailtableCss }>
+     
+                    <div className={StudentQnaDtailCSS.qnaInputDiv}>
+              
                             <tr>
-                                <td><label>번호</label></td>
-                                <td><label>제목</label></td>
-                                <td><label>작성일</label></td>
-                                <td><label>작성자</label></td>
-                                
-                            </tr>    
-                            <tr>
-                            <td>
-                                    <input 
-                                        name='mtmCode'
-                                        placeholder='번호'
-                                        className={ StudentQnaDtailCSS.subjectInfoInput }
+                                <td>
+                                    <input
+                                      
+                                        name= 'mtmCode'
+                                        readOnly={modifyMode ? false : true}
                                         onChange={ onChangeHandler }
-                                        value={ (qna.mtmCode) || '' }
-                                        readOnly={ true }
-                                        style={ modifyMode ? { backgroundColor : 'gray'} : null }
+                                        value={ (!modifyMode ? qna.mtmCode : form.mtmCode) || ''}
                                     />
                                 </td>
-                                <td>
-                                    <input 
-                                        name='mtmTitle'
-                                        placeholder='제목'
-                                        className={ StudentQnaDtailCSS.subjectInfoInput }
-                                        onChange={ onChangeHandler }
-                                        value={ (!modifyMode ? qna.mtmTitle : form.mtmTitle) || '' }
-                                        readOnly={ modifyMode ? false : true }
-                                        style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
+                                 <td>
+                                        <input 
+                                            name= 'mtmTitle'
+                                            readOnly={modifyMode ? false : true}
+                                            onChange={ onChangeHandler }
+                                            value={ (!modifyMode ? qna.mtmTitle : form.mtmTitle) || ''}
                                     />
                                 </td>
-                                <td>
-                                    <label>
-                                        <input 
-                                            name="mtmDate"  
-                                            placeholder='작성일'
-                                            className={ StudentQnaDtailCSS.subjectInfoInput }
-                                            onChange={ onChangeHandler } 
-                                            value={ (qna.mtmDate?.split("T",1)) || '' }
-                                            readOnly={ true }
-                                            style={ modifyMode ? { backgroundColor : 'gray'} : null }
-                                            /> 
-                                    </label>
-                                </td>
-                                <td>
-                                    <label>
-                                        <input 
-                                            name="memberName"  
+                          
+                                 <td>
+                                    <input 
                                             placeholder='작성자'
-                                            className={ StudentQnaDtailCSS.subjectInfoInput }
-                                            onChange={ onChangeHandler } 
-                                            value={ (qna.member?.memberName) || '' }
-                                            readOnly={ true }
-                                            style={ modifyMode ? { backgroundColor : 'gray'} : null }
-                                            /> 
-                                    </label>
+                                            readOnly={true}
+                                            value={ qna && qna.member?.memberName || ''}
+                                    />
                                 </td>
-                            </tr>    
-                            <tr>
-                                <td colSpan={4}><label>내용</label></td>
-                            </tr>
-                            <tr>
-                                <td colSpan={4}>
-                                    <label>
+                                <td>
+                                        <input 
+                                            placeholder='작성일'
+                                            readOnly={true}
+                                            value={ qna && qna.mtmDate?.split("T",1) || ''}
+                                    />
+                                </td>
+                             </tr>
+                             </div>
+                                   
                                         <textarea
-                                            name="mtmDescription"  
-                                            placeholder='내용'
-                                            className={ StudentQnaDtailCSS.subjectContentInput }
-                                            onChange={ onChangeHandler } 
-                                            value={ (!modifyMode ? qna.mtmDescription : form.mtmDescription) || '' }
-                                            readOnly={ modifyMode ? false : true }
-                                            style={ modifyMode ? { backgroundColor : 'lightgray'} : null }
-                                            /> 
-                                    </label>
-                                </td>
-                            </tr>    
-                        </tbody>                        
-                    </table>
+                                            name='mtmDescription'
+                                            readOnly={modifyMode ? false : true}
+                                            onChange={ onChangeHandler }
+                                            value={ (!modifyMode ? qna.mtmDescription : form.mtmDescription) || ''}
+                                            className = { StudentQnaDtailCSS.contentTextArea }
+                                        >                                    
+                                        </textarea>
+                                   
+                           
+                        </table>
+                        
+                    </div>
                 </div>
-            </div>
-            <div className={StudentQnaDtailCSS.subjectButtonDiv}>
-                <button        
-                    className={StudentQnaDtailCSS.deleteBtn}
-                    onClick={ () => navigate(-1) }            
-                >
-                    돌아가기
-                </button>
-            {!modifyMode &&
-                <button 
-                    className={StudentQnaDtailCSS.registBtn}
-                    onClick={ onClickModifyModeHandler }
-                >
-                    수정 모드
-                </button>
-            }
-             {modifyMode &&
-            <button
-                    className={StudentQnaDtailCSS.deleteBtn}
-                    onClick={ onClickDeleteHandler }
-                >
-                    삭제
-                </button>  
-            } 
-            {modifyMode &&
-                <button 
-                    className={StudentQnaDtailCSS.registBtn}
-                    onClick={ onClickStudentQnaUpdateHandler }
-                >
-                    저장하기
-                </button>
-            }
-           
-            </div>        
-        </div>
-    </>
-    );
+                </div>
+                }
+                {  qna &&
+                    <div className={ StudentQnaDtailCSS.buttonDivCss} >
+                        
+                           
+                            
+                                {!modifyMode &&
+                                  <button
+                                    className={ StudentQnaDtailCSS.registBtn }
+                                    onClick={ onClickModifyModeHandler }
+                                  >
+                                    수정모드
+                                  </button>
+                                }
+                                
+                                {modifyMode &&
+                                    <button
+                                        className={ StudentQnaDtailCSS.registBtn }
+                                        onClick={ onClickStudentQnaUpdateHandler }
+                                    >
+                                        저장
+                                    </button>
+                                }
+                                    <button
+                                        className={ StudentQnaDtailCSS.backBtn }
+                                        onClick={ () => navigate(-1) }
+                                    >
+                                        돌아가기
+                                    </button>
+                                {modifyMode &&
+                                    <button
+                                        className={ StudentQnaDtailCSS.deleteBtn }
+                                        onClick={ onClickDeleteHandler }
+                                    >
+                                        삭제
+                                    </button>   
+                                }
+                          
+                            
+                 
+                        
+                    </div>
+                    
 
+                }   
+               
+        </>
+    );
 }
 
 export default StudentQnaDetail;

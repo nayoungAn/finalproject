@@ -78,23 +78,14 @@ function StudentList() {
         }
     }
 
-    /* 검색 버튼 클릭시 검색 화면으로 넘어가는 처리 */
-    const onClickSearchHandler = () => {
-        
-        navigate(`/ono/student-manager/search?value=${search}`, { replace : false });
-    }
 
     return (
         <>
         { login ? <Login/> : null }
         <div className={ StudentListmoduleCSS.bodyDiv }>
-            <div>
-                <button
-                    onClick={ onClickNoticeInsert }
-                >
-                    등록하기
-                </button>
-                
+        <div>
+            <h2 className={ StudentListmoduleCSS.h2}>원생 목록</h2>
+            <div className={StudentListmoduleCSS.search}>
                 <input
                     className={ StudentListmoduleCSS.InputStyle }
                     type="text"
@@ -103,24 +94,21 @@ function StudentList() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-                <button
-                    onClick={ onClickSearchHandler }
-                >
-                    검색하기
-                </button>
-            </div>            
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>       
+            </div>  
             <table className={ StudentListmoduleCSS.studentTable }>
                 <colgroup>
+                    <col width="5%" />
                     <col width="10%" />
-                    <col width="35%" />
+                    <col width="10%" />
                     <col width="15%" />
-                    <col width="20%" />
-                    <col width="20%" />
+                    <col width="10%" />
                     
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>번호</th>
+                        <th>No</th>
                         <th>이름</th>
                         <th>생년월일</th>
                         <th>전화번호</th>
@@ -146,8 +134,13 @@ function StudentList() {
                 </tbody>    
                                     
             </table>         
-            
-        </div>
+            <button
+                    onClick={ onClickNoticeInsert }
+                    className={StudentListmoduleCSS.RegistBtn }
+                >
+                    등록
+                </button>
+                
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(studentList) &&
             <button 
@@ -161,7 +154,10 @@ function StudentList() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ 
+                        currentPage === num ? 
+                          { color: "#2F65EB", textDecoration: "underline" }
+                    : null}
                     className={ StudentListmoduleCSS.pagingBtn }
                 >
                     {num}
@@ -170,12 +166,14 @@ function StudentList() {
             ))}
             { Array.isArray(studentList) &&
             <button 
+            className={StudentListmoduleCSS.pagingBtn}
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
             >
                 &gt;
             </button>
             }
+        </div>
         </div>
         </>
     );

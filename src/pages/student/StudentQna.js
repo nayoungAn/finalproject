@@ -62,8 +62,9 @@ function StudentQna() {
     
     return(
         <>  
-            <div> <h3>1:1 상담 </h3></div>
+           
             <div className={ StudentQnaCSS.qnaTableDiv }>
+            <div className={ StudentQnaCSS.h2 }> <h2>1:1 상담 </h2></div>
             <div className={StudentQnaCSS.search}>
             <input
                     className={ StudentQnaCSS.InputStyle }
@@ -135,7 +136,7 @@ function StudentQna() {
                     className={ StudentQnaCSS.registBtn}
                     onClick={ onClickQnaInsert }
                 >
-                    상담 등록
+                    등록
                 </button>
                 
             </div>

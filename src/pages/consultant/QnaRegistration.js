@@ -31,49 +31,64 @@ function QnaRegistration() {
         dispatch(callQnaResistAPI({
             form : form
         }));
-        navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false });
+        window.location.reload();
+        alert("답글이 등록되었습니다.")
+        navigate(-2);
     }
 
     return(
-        <div>
+        
+        <div> 
+            <div className={ QnaRegistrationCSS.h2 }> 
+               
             <div className={ QnaRegistrationCSS.QnaButtonDiv }>
-                <button
-                    onClick={ () => navigate(-1) }
-                >
-                    돌아가기
-                </button>
+          
+            <div className={ QnaRegistrationCSS.qnaSection }>
                 <div className={ QnaRegistrationCSS.qnaInfoDiv }>
                    <table>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <input
-                                        name='reTitle'
-                                        placeholder='제목을 입력하세요'
-                                        className={ QnaRegistrationCSS.qnaInfoInput }
-                                        onChange={ onChangeHandler }
-                                    />    
-                                </td>
-                            </tr>
-                           
-                            <tr>
-                                <td>
-                                    <textarea
-                                        name='reContent'
-                                        placeholder='내용을 입력하세요'
-                                        className={ QnaRegistrationCSS.textAreaStyle }
-                                        onChange={ onChangeHandler }
-                                    />    
-                                </td>
-                            </tr>
+                        <tr>
+                            <th>제목</th>
+                            <td>
+                                <input 
+                                    name='reTitle'
+                                    placeholder='제목을 입력하세요.'
+                                    className={ QnaRegistrationCSS.qnaInfoInput }
+                                    onChange={ onChangeHandler }
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>
+                                <textarea 
+                                    name='reContent'
+                                    placeholder='내용을 입력하세요.'
+                                    className={ QnaRegistrationCSS.qnaInfoInput }
+                                    onChange={ onChangeHandler }
+                                
+                                />
+                            </td>
+                        </tr>
                         </tbody>
                    </table>
-                </div>     
+                   </div>
+                </div>
+                </div>
+                <div className={ QnaRegistrationCSS.buttonDivCss} >   
                 <button
+                    className={ QnaRegistrationCSS.registBtn }
                     onClick={ onClickQnaRegistrationHandler }
                 >
-                    답변등록
+                    등록
                 </button>
+                <button
+                    className={ QnaRegistrationCSS.backBtn }
+                    onClick={ () => navigate(-1) }
+                >
+                    취소
+                </button>
+                </div>
             </div>
         </div>
     )

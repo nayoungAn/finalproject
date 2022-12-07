@@ -113,8 +113,9 @@ function StudentMyInfo() {
 
     return (
         <>
-             <div> <h3>내 정보 </h3></div>
-            <div>
+             
+            <div className={ StudentMyInfoCSS.h2 }>
+                <h2>내 정보</h2>
             <div className={ StudentMyInfoCSS.subjectSection }>
                 <div className={ StudentMyInfoCSS.subjectInfoDiv }>
                     
@@ -315,27 +316,29 @@ function StudentMyInfo() {
                 </div>
             </div>
             <div>
-              
+            <button
+                className={ StudentMyInfoCSS.backBtn }
+                onClick={ () => navigate(-1) }
+            >
+                돌아가기
+            </button>
             {!modifyMode &&
-                <button 
+                <button
+                    className={ StudentMyInfoCSS.QnaBtn } 
                     onClick={ onClickModifyModeHandler }
                 >
                     수정 모드
                 </button>
             }
             {modifyMode &&
-                <button 
+                <button
+                    className={ StudentMyInfoCSS.QnaBtn }   
                     onClick={ onClickSubjectUpdateHandler }
                 >
                     저장하기
                 </button>
             }
-             <button
-                           
-                onClick={ () => navigate(-1) }
-            >
-                돌아가기
-            </button>
+            
             </div>        
         </div>
     </>

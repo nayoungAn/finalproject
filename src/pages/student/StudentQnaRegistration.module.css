@@ -87,3 +87,25 @@
     background-color: white;
     font-weight: bold;
 }
+
+.backBtn {
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+    padding: 7px 20px;
+    font-weight: bold;  
+}
+.backBtn:hover {
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  #fbfbfb;
+
+}
+
+.h2 h2{
+    margin-top: 40px;
+
+}

@@ -63,19 +63,15 @@ function ClassSearch() {
             navigate(`/ono/OpenClasses/classes/search?value=${searchValue}`, { replace : false });
         }
     }
-    const onClickSearch = () => {
-        navigate(`/ono/OpenClasses/classes/search?value=${searchValue}`, { replace : false });
-    }
+
     
     return (
         <>
        
         <div className={ ClassManagementCSS.bodyDiv }>
             <div>
-                <h2>강의 목록</h2>
-                <button className={ ClassManagementCSS.btnSearch } onClick = { () => onClickSearch()}>검색</button>
-
-              
+            <h2 className={ ClassManagementCSS.h2}>검색된 결과 : {value}</h2>
+            <div className={ClassManagementCSS.search}>
                 <input
                     className={ ClassManagementCSS.InputStyle }
                     type="text"
@@ -84,7 +80,9 @@ function ClassSearch() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-            </div>            
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>
+            </div>        
             <table className={ ClassManagementCSS.classTable }>
                 <colgroup>
                     <col width="10%" />
@@ -122,18 +120,19 @@ function ClassSearch() {
                     }
                 </tbody>                    
             </table>       
-            <div>            <button        
+            <div>            
+                <button        
                     onClick={ () => navigate("/ono/OpenClasses/classes") }
-                    className={ClassManagementCSS.btnCancle}           
+                    className={ClassManagementCSS.CancelBtn}           
             
                 >
                     돌아가기
                 </button>     
             <button
                     onClick={ onClickClassInsert }
-                    className={ClassManagementCSS.btnRegist}
+                    className={ClassManagementCSS.RegistBtn}
                 >
-                    강의 등록
+                    등록
                 </button>
                     </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>

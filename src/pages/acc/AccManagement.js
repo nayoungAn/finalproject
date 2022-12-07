@@ -50,30 +50,23 @@ function AccManagement() {
 
   return (
     <>
-     <div className={AccManagementCSS.acctitle}>
-        <div className={AccManagementCSS.accDetail}>
-        <h2>수납목록</h2>
-        </div>
-          
-      </div>
-      
       <div className={AccManagementCSS.bodyDiv}>
 
-    
-
-      <div className={AccManagementCSS.search}>
-        
-            <input
+        <div>
+                <h2 className={AccManagementCSS.h2}>수납 목록</h2>
+                <div className={AccManagementCSS.search}>
+              
+                <input
                     className={ AccManagementCSS.InputStyle }
                     type="text"
-                    placeholder="조회할 상태를 입력하세요."
+                    placeholder="조회할 상태를 입력하세요"
                     value={ searchValue }
                     onChange={ onSearchChangeHandler }
-            />
-             <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
-            </div>
-      </div>
-      
+                />
+                   <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+                </div>
+            </div>      
+
       <table className={AccManagementCSS.accTable}>
         <colgroup>
           <col width="9%" /> 
@@ -121,6 +114,7 @@ function AccManagement() {
           listStyleType: "none",
           display: "flex",
           justifyContent: "center",
+          marginTop: "30px",
         }}
       >
         {Array.isArray(accList) && (
@@ -135,7 +129,10 @@ function AccManagement() {
         {pageNumber.map((num) => (
           <li key={num} onClick={() => setCurrentPage(num)}>
             <button
-              style={currentPage === num ? { backgroundColor: "transparent" } : null}
+
+              style={currentPage === num ? 
+                { color : '#2F65EB', textDecoration : 'underline'} : null}
+
               className={AccManagementCSS.pagingBtn}
             >
               {num}
@@ -153,6 +150,7 @@ function AccManagement() {
             &gt;
           </button>
         )}
+      </div>
       </div>
     </>
   );

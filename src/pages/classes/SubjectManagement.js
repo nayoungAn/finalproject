@@ -67,29 +67,24 @@ function SubjectManagement() {
     }
   };
 
-  const onClickSearch = () => {
-    navigate(`/ono/OpenClasses/search?value=${search}`, { replace: false });
-  };
+
 
   return (
     <>
       <div className={SubjectManagementCSS.bodyDiv}>
         <div>
           <h2>과목 목록</h2>
-          <button
-            className={SubjectManagementCSS.btnSearch}
-            onClick={() => onClickSearch()}
-          >
-            검색
-          </button>
-          <input
-            className={SubjectManagementCSS.InputStyle}
-            type="text"
-            placeholder="검색"
-            value={search}
-            onKeyUp={onEnterKeyHandler}
-            onChange={onSearchChangeHandler}
-          />
+          <div className={SubjectManagementCSS.search}>
+                <input
+                    className={ SubjectManagementCSS.InputStyle }
+                    type="text"
+                    placeholder="검색"
+                    value={ search }
+                    onKeyUp={ onEnterKeyHandler }
+                    onChange={ onSearchChangeHandler }
+                />
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>       
         </div>
         <table className={SubjectManagementCSS.subjectTable}>
           <colgroup>
@@ -102,7 +97,7 @@ function SubjectManagement() {
           </colgroup>
           <thead>
             <tr className={SubjectManagementCSS.subjectThead}>
-              <th>과목번호</th>
+              <th>No</th>
               <th>과목명</th>
               <th>과목 설명</th>
               <th>언어</th>
@@ -131,9 +126,9 @@ function SubjectManagement() {
         </table>
         <button
           onClick={onClickSubjectInsert}
-          className={SubjectManagementCSS.btnRegist}
+          className={SubjectManagementCSS.RegistBtn}
         >
-          과목 등록
+          등록
         </button>
 
         <div

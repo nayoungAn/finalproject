@@ -21,7 +21,7 @@
 }
 
 .classtable{
-    width: 900px;
+    width: 1100px;
     text-align: center;
     border-style:none;
     border-collapse: collapse;
@@ -35,6 +35,8 @@
 } 
 
 .classtable td{
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-bottom: 0.5px solid gainsboro ;
 
 }
@@ -61,4 +63,9 @@
     color: black;
     cursor: pointer;
    
+}
+
+.h2 h2{
+    margin-top: 40px;
+    margin-bottom: 50px;
 }

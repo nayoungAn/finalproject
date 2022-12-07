@@ -35,16 +35,13 @@ function Teacherclass() {
 
   return (
     <>
-      <div>
-        {" "}
-        <h3>내 강의 조회</h3>
-      </div>
-
-      <div>
+      <div className={TeacherClassCSS.h2}>
+      <h2>내 강의 조회</h2>
         <table className={TeacherClassCSS.classtable}>
           <thead className={TeacherClassCSS.classhead}>
+          
             <tr>
-              <th>No.</th>
+              <th>No</th>
               <th>강의명</th>
               <th>시작일</th>
               <th>종료일</th>
@@ -85,7 +82,7 @@ function Teacherclass() {
         {pageNumber.map((num) => (
           <li key={num} onClick={() => setCurrentPage(num)}>
             <button
-              style={currentPage === num ? { backgroundColor: "transparent" } : null}
+              style={currentPage === num ? { color: "#2F65EB"} : null}
               className={TeacherClassCSS.pagingBtn}
             >
               {num}

@@ -3,58 +3,43 @@
     flex-direction: column;
     margin-top: 15px;
     height: 10%;
-    margin-top:30px;
-    margin-left: 850px;
+
+    margin-left:100px;
+}
+.h2{
+    margin-top: 30px;
+    
     
 }
 
-.acctitle{
-    
-    width: 1100px;
-    display: flex;
-    justify-content : center;
+.InputStyle {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 13px;
+    font-size: 13px;
 
 }
 
-.accDetail{
-    width: 1100px;
-}
-
-
-
-.bodyDiv h2{
-    margin-top: 20px;
-   margin-left: 30%;
-}
-
-.btnSearch{
-    width: 80px;
-    height: 25px;
-    border-collapse: collapse;
-    border-radius: 25px;
-    text-align: center;
-    margin-top:5px;
-    margin-bottom: 30px;
-    margin-right: 5px;
-    background-color:  #2F65EB;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-left: auto;  
+.search{
     float:right;
-    border: 0;
-    outline: 0;
+    position: relative;
+    width: 200px;
+    margin-top:0px;
+    margin-bottom: 30px;
+
 }
 
-.btnRegist{
-    width: 80px;
-    height: 40px;
-    margin-top: 20px;
-    background-color:  #2F65EB;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-left: auto;  
-    font-weight: bold;
-}
+.search img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 15px;
+    margin: 0;
+    
+  }
+
+
 .buttonDiv{
     display: flex;
     flex-direction: row;
@@ -89,14 +74,13 @@
     cursor: pointer;
     padding-top : 10px;
    padding-bottom: 10px;
-   border-top: 3px solid rgba(60, 63, 212, 0.945);
-   border-bottom: 3px solid rgba(60, 63, 212, 0.945);
-   color:rgba(60, 63, 212, 0.945);
+   border-top: 2px solid #2f59ca;
+   border-bottom: 2px solid #2f59ca;
 }
 
 .accTable td {
-    padding-top:10px;
-    padding-bottom: 5px;
+    padding-top:20px;
+    padding-bottom: 20px;
 }
 
 .pagingBtn{

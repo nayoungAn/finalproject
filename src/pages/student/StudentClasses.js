@@ -42,14 +42,13 @@ function Teacherclass() {
 
     return (
         <>
-        <div> <h3>내 강의 </h3></div>
-
-        <div>
-            
+        <div className={StudentClasses.h2}>
+        <h2>내 강의</h2>
             <table className={StudentClasses.classtable}>
+                
                 <thead className={StudentClasses.classhead}>
                     <tr>
-                        <th>No.</th>
+                        <th>No</th>
                         <th>강의명</th>
                         <th>시작일</th>
                         <th>종료일</th>

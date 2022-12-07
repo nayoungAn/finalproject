@@ -170,7 +170,7 @@ function StudentManagerRegist() {
 
     return (
         <>
-            <div>
+            <div><h2 className={ StudentManagerRegistCSS.h2}>원생 등록</h2>
             <div className={ StudentManagerRegistCSS.studentSection }>
                 <div className={ StudentManagerRegistCSS.studentInfoDiv }>
                     
@@ -228,9 +228,11 @@ function StudentManagerRegist() {
                             </tr>    
                             <tr>
                                 <td>
-                                    <label>아이디</label>
+                                    <label
+                                   >아이디</label>
                                     <button
                                         onClick={ onClickCheckMemberId }
+                                       
                                     >
                                         중복확인</button></td>
                                 <td>
@@ -357,14 +359,16 @@ function StudentManagerRegist() {
             </div>
             <div>
                 <button        
-                    onClick={ () => navigate(-1) }            
+                    onClick={ () => navigate(-1) }   
+                    className={ StudentManagerRegistCSS.btnCancle}           
                 >
                     돌아가기
                 </button>
                 <button 
                     onClick={ onClickStudentRegistHandler }
+                    className={ StudentManagerRegistCSS.RegistBtn}
                 >
-                    등록하기
+                    등록
                 </button>
             </div>        
         </div>
