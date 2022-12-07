@@ -84,8 +84,8 @@
 }
 
 .pagingBtn:hover{
+    color: black;
     cursor: pointer;
-
 }
 .InputStyle {
     width: 100%;

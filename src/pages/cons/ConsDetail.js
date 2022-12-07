@@ -107,7 +107,9 @@ function ConsDetail() {
 
     return (
         <>
-            
+              <div>
+                <h2 className={ConsDetailCSS.h2}> 상담 상세 조회 </h2>   
+            </div> 
             <div className={ ConsDetailCSS.DetailDiv } >
                 <div className={ ConsDetailCSS.descriptionDiv }>
                     <table className={ ConsDetailCSS.descriptionTable }>
@@ -215,30 +217,36 @@ function ConsDetail() {
                             </tr>
                         </tbody>
                     </table>
-                    <div>
+                    <div className={ConsDetailCSS.buttonDiv}>
+                    {modifyMode &&
                 <button        
+                    onClick={ onClickConsDelete}       
+                    className={ConsDetailCSS.deleteBtn}     
+                >
+                    삭제
+                </button>
+            }
+                <button        
+                        className={ConsDetailCSS.CancelBtn}
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기
                 </button>
-
-                <button        
-                    onClick={ onClickConsDelete}            
-                >
-                    삭제
-                </button>
+               
             {!modifyMode &&
                 <button 
                     onClick={ onClickModifyModeHandler }
+                    className={ConsDetailCSS.ModifyBtn}
                 >
                     수정 모드
                 </button>
             }
             {modifyMode &&
                 <button 
-                    onClick={ onClickConsUpdateHandler }
+                    onClick={ onClickConsUpdateHandler }                  
+                className={ConsDetailCSS.RegistBtn} 
                 >
-                    상담 수정 저장하기
+                   저장
                 </button>
             }
             </div>        
