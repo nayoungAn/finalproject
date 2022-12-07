@@ -95,7 +95,7 @@ function SmsTransmission() {
               <input
                 className={SmsTransmissionCSS.searchInput}
                 type="text"
-                placeholder="검색어를 입력하세요."
+                placeholder="조회할 이름을 입력하세요."
                 value={searchValue}
                 onChange={(e) => {
                   onSearchChangeHandler(e);

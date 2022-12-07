@@ -24,7 +24,7 @@ function AccManagement() {
     }
   }
 
-  /* */
+  /* 검색 페이지 리스트 API */
   useEffect(
     () => {
         dispatch(callSearchListForAdminAPI({

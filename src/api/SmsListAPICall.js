@@ -24,7 +24,7 @@ export const callSearchListForAdminAPI = (search) => {
   }
 }
 
-// 전송?
+// 전송
 export const callSmsTransmissionAPI = ({memberList, msgContent}) => {
   const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/ono/sms`;
   console.log("memberList =", memberList);
@@ -44,6 +44,7 @@ export const callSmsTransmissionAPI = ({memberList, msgContent}) => {
         }
       )
     })
+    
   //   .then((response) => response.json());
 
   //   if (result.status === 200) {
