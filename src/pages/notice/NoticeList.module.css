@@ -1,10 +1,11 @@
 .bodyDiv{
     display: flex;
     flex-direction: column;
+    margin-left:100px;
   
 }
 .h2{
-    margin-top:50px;
+    margin-top:30px;
 }
 
 .noticeTable{
@@ -56,8 +57,8 @@
 }
 
 .noticeTable td {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-bottom: 0.5px solid gainsboro ;
 
 }
@@ -118,7 +119,7 @@
 }
 
 .noticeHeader h2 {
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 

@@ -169,7 +169,6 @@ function NoticeList() {
                 className={NoticeListmoduleCSS.pagingBtn}
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                
             >
                 &gt;
             </button>

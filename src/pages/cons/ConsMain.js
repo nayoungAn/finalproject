@@ -53,8 +53,11 @@ function ConsMain(){
 
     return (
         <>
-            <h3>등록상담</h3>
+           
              <div className={ consCSS.bodyDiv }>  
+             <div>
+             <h2 className={ consCSS.h2}>등록상담</h2>
+             </div>
             <table className={ consCSS.consTable }>
                 <colgroup>
                     <col width="5%" />
@@ -88,16 +91,17 @@ function ConsMain(){
                     }
                 </tbody>                    
             </table> 
-            <div>
+
                 <button
                     onClick={ onClickConsInsert }
+                    className={consCSS.RegistBtn}
                 >
-                    상담 등록
+                    등록
                 </button>
-            </div>                  
+                    
             
-        </div>
-            <div style={ { listStyleType: 'none', display: 'flex'} }>
+ 
+        <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             {
                 Array.isArray(consList) &&
                 <button
@@ -112,7 +116,8 @@ function ConsMain(){
                 pageNumber.map((num) => (
                     <li key={num} onClick={ () => setCurrentPage(num)}>
                         <button
-                            style={ currentPage === num ? { backgroundColor : 'transparent'} : null }
+                            style={ currentPage === num ? 
+                                { color : '#2F65EB', textDecoration : 'underline'} : null}
                             className={ consCSS.pagingBtn} 
                         >
                             {num}
@@ -125,13 +130,13 @@ function ConsMain(){
                 Array.isArray(consList) &&
                 <button
                     onClick={ () => setCurrentPage(currentPage + 1) }
-                    disabled={ currentPage === pageInfo.endPage }
+                    disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
                     className={ consCSS.pagingBtn }
                 >
                     &gt;
                 </button>
             }
-             
+             </div>
             </div>
            
         </>
