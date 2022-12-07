@@ -92,7 +92,7 @@ function QnaTeacher() {
                     <button
                         onClick={ () => setCurrentPage(currentPage - 1) }
                         disabled={ currentPage === 1 }
-                        className={ QnaTeacherCSS.pageBtn}
+                        className={ QnaTeacherCSS.pagingBtn}
                     >
                          &lt;
                     </button>    
@@ -101,7 +101,7 @@ function QnaTeacher() {
                 pageNumber.map((num) => (
                     <li key={num} onClick={ () => setCurrentPage(num) }>
                         <button
-                            style={ currentPage === num ? { backgroundColor : 'orange'} : null }
+                            style={ currentPage === num ? { color: "#2F65EB"} : null }
                             className={ QnaTeacherCSS.pagingBtn }
                         >
                             {num}

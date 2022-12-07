@@ -5,7 +5,7 @@
 }
 
 .qnaTableCss{
-    width: 900px;
+    width: 1100px;
     text-align: center;
     border-style:none;
     border-collapse: collapse;
@@ -16,8 +16,12 @@
 .qnaTableCss th{
     border-top: 2px solid #2f59ca;
     border-bottom: 2px solid #2f59ca;
-  
+   
 } 
+.qnaTableCss td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .qnaTableCss tr:hover { 
     background-color: #F5F5F5; 
 }
@@ -45,22 +49,22 @@
 
 .registBtn {
 
-    border:1px solid #2F65EB;
-    display:inline-block;
-    color:#ffffff;
-    font-family:arial;
-    font-size:13px;
-    font-weight:bold;
-    font-style:normal;
-    height:40px;
-    line-height:30px;
-    width:80px;
-    text-decoration:none;
-    text-align:center;
-    margin: 5px 5px 5px 5px;
-    background-color:#2F65EB;
-    border-radius: 5px;
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;  
+    margin-left: 20px;
     float: right;
+}
+
+.registBtn:hover {
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
 }
 
 .InputStyle {
@@ -70,10 +74,14 @@
     padding: 10px 12px;
     font-size: 14px;
     margin-bottom: 10px;
+    
 }
 .search{
     position: relative;
     width: 200px;
+    margin-left: 900px;
+    margin-bottom: 10px;
+    
 }
 
 .search img {
@@ -83,3 +91,7 @@
     right: 12px;
     margin: 0;
   }
+
+.h2 h2{
+    margin-bottom: 10px;
+}

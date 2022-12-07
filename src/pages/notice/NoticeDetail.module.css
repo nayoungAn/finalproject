@@ -94,6 +94,7 @@
 }
 
 
+
 .RegistBtn{
     background-color:#ffffff;
 	border-radius:10px;
@@ -152,19 +153,19 @@
 
 
 .btnCancle{
-    background-color:#ffffff;
-	border-radius:10px;
-	border:1px solid #666666;
-	cursor:pointer;
-	color:#666666;
-	font-size:17px;
-	padding:5px 20px;
-    font-weight: bold;
-    margin-top : 10px;  
-    margin-left: 10px;
-    margin-right: 10px;
-    width:115px;
-    height:40px;
+  background-color:#ffffff;
+  border-radius:10px;
+  border:1px solid #666666;
+  cursor:pointer;
+  color:#666666;
+  font-size:17px;
+  padding:5px 20px;
+  font-weight: bold;
+  margin-top : 10px;  
+  margin-left: 10px;
+  margin-right: 10px;
+  width:115px;
+  height:40px;
 }
 
 .btnCancle:hover{
@@ -178,4 +179,5 @@
     position:relative;
 	top:1px;
 }
+
 

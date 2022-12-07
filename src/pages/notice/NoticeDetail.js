@@ -162,8 +162,8 @@ function NoticeDetail() {
                     </table>
                 </div>
             </div>
-            <div>
-                <button        
+            <div className={NoticeDetailCSS.backBtn}>
+                <button                  
                      onClick={ () => navigate(-1) }  
                      className={ NoticeDetailCSS.btnCancle}          
                         >

@@ -42,11 +42,10 @@ function Teacherclass() {
 
     return (
         <>
-        <div> <h3>내 강의 </h3></div>
-
-        <div>
-            
+        <div className={StudentClasses.h2}>
+        <h2>내 강의</h2>
             <table className={StudentClasses.classtable}>
+                
                 <thead className={StudentClasses.classhead}>
                     <tr>
                         <th>No.</th>

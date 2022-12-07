@@ -36,92 +36,74 @@ function StudentReQnaDetail() {
     return(
 
         <>
-           <div>
-            <div className={ StudentQnaDtailCSS.subjectSection }>
-                <div className={ StudentQnaDtailCSS.subjectInfoDiv }>
-                    <table>
-                        <tbody>
+          <div> <h2>답변 상세조회</h2>
+            <div className={ StudentQnaDtailCSS.qnaDetailtableDiv }>
+              
+                <div className={ StudentQnaDtailCSS.qnaTableDiv }>
+                    
+                    <table className={ StudentQnaDtailCSS.qnaDetailtableCss }>
+     
+                    <div className={StudentQnaDtailCSS.qnaInputDiv}>
+              
                             <tr>
-                                <td><label>번호</label></td>
-                                <td><label>제목</label></td>
-                                <td><label>작성일</label></td>
-                                <td><label>작성자</label></td>
-                                
-                            </tr>    
-                            <tr>
-                            <td>
-                                    <input 
-                                        name='mtmCode'
-                                        placeholder='번호'
-                                        className={ StudentQnaDtailCSS.subjectInfoInput }
-                                        value={ (qna.reList?.reCode) || '' }
-                                        readOnly={ true }
+                                <td>
+                                    <input
+                                      
+                                        name= 'reCode'
+                                        readOnly={true}
+                                    
+                                        value={ qna.reList?.reCode  || ''}
                                     />
                                 </td>
-                                <td>
-                                    <input 
-                                        name='mtmTitle'
-                                        placeholder='제목'
-                                        className={ StudentQnaDtailCSS.subjectInfoInput }
-                                        readOnly={ true }
-                                        value={ (qna.reList?.reTitle) || '' }
-
+                                 <td>
+                                        <input 
+                                            name= 'reTitle'
+                                            readOnly={true}
+                                           
+                                            value={ qna.reList?.reTitle ||''}
                                     />
                                 </td>
-                                <td>
-                                    <label>
-                                        <input 
-                                            name="mtmDate"  
-                                            placeholder='작성일'
-                                            className={ StudentQnaDtailCSS.subjectInfoInput }
-                                            value={ (qna.reList?.reDate?.split("00:00:00",1)) || '' }
-                                            readOnly={ true }
-                                            /> 
-                                    </label>
-                                </td>
-                                <td>
-                                    <label>
-                                        <input 
-                                            name="memberName"  
+                          
+                                 <td>
+                                    <input 
                                             placeholder='작성자'
-                                            className={ StudentQnaDtailCSS.subjectInfoInput }
-                                            value={ (qna.reList?.member.memberName) || '' }
-                                            readOnly={ true }
-                                            
-                                            /> 
-                                    </label>
+                                            readOnly={true}
+                                            value={ qna && qna.member?.memberName || ''}
+                                    />
                                 </td>
-                            </tr>    
-                            <tr>
-                                <td colSpan={4}><label>내용</label></td>
-                            </tr>
-                            <tr>
-                                <td colSpan={4}>
-                                    <label>
+                                <td>
+                                        <input 
+                                            placeholder='작성일'
+                                            readOnly={true}
+                                            value={ qna && qna.reList?.reDate?.split("T",1) || ''}
+                                    />
+                                </td>
+                             </tr>
+                             </div>
+                                   
                                         <textarea
-                                            name="mtmDescription"  
-                                            placeholder='내용'
-                                            className={ StudentQnaDtailCSS.subjectContentInput }
-                                            value={ ( qna.reList?.reContent) || '' }
-                                            readOnly={ true }
-                                            
-                                            /> 
-                                    </label>
-                                </td>
-                            </tr>    
-                        </tbody>                        
-                    </table>
+                                            name='reContent'
+                                            readOnly={true}
+                                            value={ qna.reList?.reContent|| ''}
+                                            className = { StudentQnaDtailCSS.contentTextArea }
+                                        >                                    
+                                        </textarea>
+                                   
+                           
+                        </table>
+                        
+                    </div>
                 </div>
-            </div>
-            <div>
+                </div>
+                <div className={ StudentQnaDtailCSS.buttonDivCsss} >                
                 <button        
-                className={StudentQnaDtailCSS.deleteBtn}
+                    className={StudentQnaDtailCSS.backBtns}
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기
                 </button>
             </div>        
-        </div>
+      
     </>
     );
 

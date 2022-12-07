@@ -64,7 +64,6 @@ function StudentClassesDetail(){
                 <colgroup>
                     <col width="35%" />
                     <col width="35%" />
-                    
                 </colgroup>
                 <thead>
                     <tr>
@@ -81,19 +80,20 @@ function StudentClassesDetail(){
                                     
             </table>
                 </div>
-
-
+                
                 </div>
+                
             </form>
-            
-            
+            <div className={StudentClassesDetailCSS.subjectButtonDiv}>
             <button
-                    
+                    className={ StudentClassesDetailCSS.backBtn }
                     onClick={ () => navigate(-1) }
                 >
                     돌아가기
                 </button>
-
+            </div>
+            
+            
     
           
         </>

@@ -43,14 +43,12 @@ function StudentInfo() {
 
     return (
         <>
-        <div> <h3>원생조회</h3> </div>
-
-        <div>
-            
+        <div className={StudentInfoCSS.h2}>
+            <h2>원생조회</h2>
             <table className={StudentInfoCSS.StudentInfo}>
                 <thead className={StudentInfoCSS.classhead}>
                     <tr>
-                        <th>No.</th>
+                        <th>No</th>
                         <th>학생명</th>
                         <th>이메일</th>
                         <th>연락처</th>
@@ -99,7 +97,7 @@ function StudentInfo() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'transparent' } : null}
+                    style={ currentPage === num ? { color: "#2F65EB"} : null}
                     className={ StudentInfoCSS.pagingBtn }
                 >
                     {num}

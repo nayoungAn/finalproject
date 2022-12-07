@@ -104,7 +104,8 @@
 .memberImage{
     margin-top: 5px;
     width: 300px;
-    height: 300px;    
+    height: 300px;
+        
 }
 
 .productImageButton{
@@ -115,4 +116,69 @@
     border-radius: 25px;
     background-color: white;
     font-weight: bold;
+}
+
+.studentTable button{
+    margin-right: 200px;
+    background-color: white;
+    border: 0ch;
+
+}
+
+.h2 h2{
+    margin-bottom: 40px;
+}
+
+.QnaBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:7px 20px;
+    font-weight: bold;  
+    margin-left: 20px;
+}
+
+.QnaBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.QnaBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.backBtn{
+
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+    padding:7px 20px;
+    font-weight: bold;  
+}
+
+.backBtn:hover{
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  #fbfbfb;
+}
+
+.backBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.buttonDivCss{
+    margin-bottom: 300px;
+    margin-top: 20px;
+    display: flex;
+    margin-left: 240px;
 }
