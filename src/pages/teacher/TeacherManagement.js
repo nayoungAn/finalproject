@@ -57,17 +57,14 @@ const onEnterKeyHandler = (e) => {
         navigate(`/ono/teachers/search?value=${search}`, { replace : false });
     }
 }
-const onClickSearch = () => {
-    navigate(`/ono/teachers/search?value=${search}`, { replace : false });
-}
 
 
     return (
         <>
         <div className={ TeacherManagementCSS.bodyDiv }>
-            <div>
+        <div>
             <h2> 강사 목록</h2>
-              <button className={TeacherManagementCSS.btnSearch} onClick = { () => onClickSearch()}>검색</button>
+            <div className={TeacherManagementCSS.search}>
              <input
                     className={ TeacherManagementCSS.InputStyle }
                     type="text"
@@ -76,9 +73,11 @@ const onClickSearch = () => {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-
+               <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
                 </div>            
-                <table className={ TeacherManagementCSS.teacherTable }>
+                </div>       
+                <table className={ TeacherManagementCSS.teacherTable }>     
+
                 <colgroup>
                     <col width="5%" />
                     <col width="15%" />
@@ -90,7 +89,7 @@ const onClickSearch = () => {
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>번호</th>
+                        <th>No</th>
                         <th>이름</th>
                         <th>성별</th>
                         <th>생년월일</th>
@@ -118,8 +117,9 @@ const onClickSearch = () => {
                 </tbody>                    
             </table>         
             <button
-                 onClick={ onClickTeacherInsert } className={TeacherManagementCSS.btnRegist}> 강사등록 </button>
-      
+                 onClick={ onClickTeacherInsert } 
+                 className={TeacherManagementCSS.RegistBtn}> 등록 </button>
+            
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(memberList) &&
             <button 

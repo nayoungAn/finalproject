@@ -3,10 +3,15 @@
     margin-right: 10%;
 }
 
+.h2{
+    margin-left: 150px;
+}
 .studentSection{
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
+    margin-left: 150px;
 }
 
 .studentInfoDiv{
@@ -56,3 +61,65 @@
     background-color: white;
     color : white;
 }
+
+
+
+.RegistBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;
+    margin-left: auto;
+    width:80px;
+    
+    
+}
+
+.RegistBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.RegistBtn:active{
+    position:relative;
+	top:1px;
+}
+
+
+.btnCancle{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px; 
+    margin-left: 10px;
+    margin-right: 10px;
+    width:120px;
+    
+}
+
+.btnCancle:hover{
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  white;
+}
+
+
+.btnCancle:active{
+    position:relative;
+	top:1px;
+}
+

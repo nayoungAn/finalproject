@@ -113,7 +113,7 @@ function StudentManagerDetail() {
 
     return (
         <>
-            <div>
+            <div><h2 className={ StudentManagerDetailCSS.h2}>원생 상세 조회</h2>
             <div className={ StudentManagerDetailCSS.subjectSection }>
                 <div className={ StudentManagerDetailCSS.subjectInfoDiv }>
                     
@@ -325,13 +325,15 @@ function StudentManagerDetail() {
             </div>
             <div>
                 <button        
-                    onClick={ () => navigate(-1) }            
+                    onClick={ () => navigate(-1) }   
+                    className={ StudentManagerDetailCSS.CancelBtn}                
                 >
                     돌아가기
                 </button>
             {!modifyMode &&
                 <button 
                     onClick={ onClickModifyModeHandler }
+                    className={ StudentManagerDetailCSS.ModifyBtn}
                 >
                     수정 모드
                 </button>
@@ -339,8 +341,9 @@ function StudentManagerDetail() {
             {modifyMode &&
                 <button 
                     onClick={ onClickSubjectUpdateHandler }
+                    className={ StudentManagerDetailCSS.RegistBtn}
                 >
-                    저장하기
+                    저장
                 </button>
             }
             </div>        

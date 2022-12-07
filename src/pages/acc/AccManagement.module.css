@@ -3,56 +3,44 @@
     flex-direction: column;
     margin-top: 15px;
     height: 10%;
+
+    margin-left:100px;
+}
+.h2{
+    margin-top: 30px;
+    
     
 }
-.bodyDiv h2{
-    margin-top: 20px;
 
-}
 .InputStyle {
-    width: 200px;
-    height: 25px;    
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top:5px;
-    border-radius: 10px;
-    border-color: white;
-    text-indent: 1em;
-    background-color: rgb(230, 230, 230);
-    float:right;
-    border: 0;
-    outline: 0;
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+
 }
 
-.btnSearch{
-    width: 80px;
-    height: 25px;
-    border-collapse: collapse;
-    border-radius: 25px;
-    text-align: center;
-    margin-top:5px;
+.search{
+    float:right;
+    position: relative;
+    width: 220px;
+    margin-top:0px;
     margin-bottom: 30px;
-    margin-right: 5px;
-    background-color:  #2F65EB;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-left: auto;  
-    float:right;
-    border: 0;
-    outline: 0;
-    
+
 }
 
-.btnRegist{
-    width: 80px;
-    height: 40px;
-    margin-top: 20px;
-    background-color:  #2F65EB;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-left: auto;  
-    font-weight: bold;
+
 }
+.search img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 12px;
+    margin: 0;
+  }
+
+
 .buttonDiv{
     display: flex;
     flex-direction: row;
@@ -87,14 +75,13 @@
     cursor: pointer;
     padding-top : 10px;
    padding-bottom: 10px;
-   border-top: 3px solid rgba(60, 63, 212, 0.945);
-   border-bottom: 3px solid rgba(60, 63, 212, 0.945);
-   color:rgba(60, 63, 212, 0.945);
+   border-top: 2px solid rgba(60, 63, 212, 0.945);
+   border-bottom: 2px solid rgba(60, 63, 212, 0.945);
 }
 
 .accTable td {
-    padding-top:10px;
-    padding-bottom: 5px;
+    padding-top:20px;
+    padding-bottom: 20px;
 }
 
 .pagingBtn{
@@ -111,3 +98,26 @@
     cursor: pointer;
     background-color:  rgba(60, 63, 212, 0.945);
 }
+
+.InputStyle {
+    
+    
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    
+}
+
+.search{
+    position: relative;
+    width: 200px;
+  
+}
+.search img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 1px;
+    margin: 0;
+  }

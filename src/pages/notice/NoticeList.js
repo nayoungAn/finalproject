@@ -75,24 +75,16 @@ function NoticeList() {
         <>
         <div className={ NoticeListmoduleCSS.bodyDiv }>
             <div className={ NoticeListmoduleCSS.noticeHeader }>
-                <div>
-                    { decoded === "ROLE_ADMIN" && <button
-                            onClick={ onClickNoticeInsert }
-                        >
-                            작성하기
-                        </button>
-                    }
-                </div>
-                <h2>공지사항</h2>
-                <div className={NoticeListmoduleCSS.search}>
+                <h2 className={ NoticeListmoduleCSS.h2}>공지사항</h2>
+                    <div className={NoticeListmoduleCSS.search}>
                     
-                    <input
-                            className={ NoticeListmoduleCSS.InputStyle }
-                            type="text"
-                            placeholder="검색"
-                            value={ search }
-                            onChange={ onSearchChangeHandler }
-                    />
+                      <input
+                              className={ NoticeListmoduleCSS.InputStyle }
+                              type="text"
+                              placeholder="검색"
+                              value={ search }
+                              onChange={ onSearchChangeHandler }
+                      />
                 <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
                 </div>
             </div>
@@ -100,10 +92,10 @@ function NoticeList() {
             <table className={ NoticeListmoduleCSS.noticeTable }>
                 <colgroup>
                     <col width="5%" />
-                    <col width="40%" />
+                    <col width="30%" />
                     <col width="25%" />
                     <col width="20%" />
-                    <col width="10%" />
+                    <col width="7%" />
                 </colgroup>
                 <thead>
                     <tr>
@@ -137,8 +129,20 @@ function NoticeList() {
                     }
                 </tbody>
             </table>
-        </div>
-        <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
+
+                    { decoded === "ROLE_ADMIN" && <button
+                            onClick={ onClickNoticeInsert }
+                            className={NoticeListmoduleCSS.NoticeBtn }
+                        >
+                            작성
+                        </button>
+                    }
+        <div style=
+        {{ listStyleType: "none",
+         display: "flex",
+          justifyContent: "center" 
+          }}
+          >
             { Array.isArray(noticeList) &&
             <button
                 onClick={() => setCurrentPage(currentPage - 1)}
@@ -151,7 +155,9 @@ function NoticeList() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
+                
                     style={ currentPage === num ?{ color: "#2F65EB", textDecorationLine: "none"  } : null}
+                 
                     className={ NoticeListmoduleCSS.pagingBtn }
                 >
                     {num}
@@ -160,6 +166,7 @@ function NoticeList() {
             ))}
             { Array.isArray(noticeList) &&
             <button
+            className={NoticeListmoduleCSS.pagingBtn}
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
                 className={ NoticeListmoduleCSS.pagingBtn }
@@ -167,6 +174,7 @@ function NoticeList() {
                 &gt;
             </button>
             }
+        </div>
         </div>
         </>
     );

@@ -190,6 +190,12 @@ function TeacherRegistration(){
                     </tbody>
                 </table>
             </div>
+            <button        
+                    onClick={ () => navigate('/ono/teacher') }   
+                    className={ TeacherCSS.CancelBtn}           
+                >
+                    돌아가기
+                </button>
               
             <button
                 className={TeacherCSS.teaBtn}

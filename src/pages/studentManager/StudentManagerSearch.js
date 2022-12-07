@@ -59,21 +59,13 @@ function StudentManagerSearch() {
         }
     }
 
-    /* 검색 버튼 클릭시 검색 화면으로 넘어가는 처리 */
-    const onClickSearchHandler = () => {
-        
-        navigate(`/ono/student-manager/search?value=${searchValue}`, { replace : false });
-    }
 
     return (
         <>
         <div className={ StudentListmoduleCSS.bodyDiv }>
-            <div>
-                <button
-                    onClick={ onClickNoticeInsert }
-                >
-                    등록하기
-                </button>
+        <div>
+            <h2 className={ StudentListmoduleCSS.h2}>검색된 결과 : {value}</h2>
+            <div className={StudentListmoduleCSS.search}>
                 <input
                     className={ StudentListmoduleCSS.InputStyle }
                     type="text"
@@ -82,11 +74,8 @@ function StudentManagerSearch() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
-                <button
-                    onClick={ onClickSearchHandler }
-                >
-                    검색하기
-                </button>
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>
             </div>            
             <table className={ StudentListmoduleCSS.studentTable }>
                 <colgroup>
@@ -125,8 +114,12 @@ function StudentManagerSearch() {
                 </tbody>    
                                     
             </table>         
-            
-        </div>
+            <button
+                    onClick={ onClickNoticeInsert }
+                    className={StudentListmoduleCSS.RegistBtn }
+                >
+                    등록
+                </button>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(studentList) &&
             <button 
@@ -140,7 +133,9 @@ function StudentManagerSearch() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ? 
+                        { color: "#2F65EB", textDecoration: "underline" }
+                        : null}
                     className={ StudentListmoduleCSS.pagingBtn }
                 >
                     {num}
@@ -149,12 +144,14 @@ function StudentManagerSearch() {
             ))}
             { Array.isArray(studentList) &&
             <button 
+            className={StudentListmoduleCSS.pagingBtn}
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
             >
                 &gt;
             </button>
             }
+        </div>
         </div>
         </>
     );
