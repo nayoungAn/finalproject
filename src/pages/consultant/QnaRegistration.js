@@ -31,7 +31,9 @@ function QnaRegistration() {
         dispatch(callQnaResistAPI({
             form : form
         }));
-        navigate(`/ono/tea/qna/${classes.classCode}`, { replace : false });
+        window.location.reload();
+        alert("답글이 등록되었습니다.")
+        navigate(-2);
     }
 
     return(
