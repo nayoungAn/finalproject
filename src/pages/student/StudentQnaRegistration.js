@@ -13,6 +13,7 @@ function StudentQnaRegistration() {
     const navigate = useNavigate();
     const params = useParams();
     console.log(classes);
+    console.log('classes.mtmCode', classes.mtmCode)
 
     useEffect(
         () => {
@@ -23,6 +24,7 @@ function StudentQnaRegistration() {
 
     const [ form, setForm ] = useState({
         classCode: 0,
+        mtmCode : 0,
         mtmTitle : '',
         mtmDescription :'',
       
@@ -40,6 +42,7 @@ function StudentQnaRegistration() {
 
         const formData = new FormData();
         formData.append("classCode", form.classCode);
+        formData.append("mtmCode", form.mtmCode);
         formData.append("mtmTitle", form.mtmTitle);
         formData.append("mtmDescription", form.mtmDescription);
 
@@ -47,6 +50,8 @@ function StudentQnaRegistration() {
             form : form,
             classCode : form.openClasses?.classCode,
         }));
+
+        alert('상담이 등록 되었습니다.');  
 
         navigate(`/ono/student/studentQna`, {replace:false})
         window.location.reload();
