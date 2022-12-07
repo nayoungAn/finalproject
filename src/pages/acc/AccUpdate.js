@@ -60,25 +60,11 @@ function AccUpdate() {
   }
 
   return (
-    <div>
+    <div className={AccUpdateCSS.title}>
       <div>
-        <button onClick={() => navigate(-1)}
-        >
-          취소
-          </button>
-        {!modifyMode && 
-          <button onClick={onClickModifyModeHandler}
-          >
-            작성하기
-            </button>
-        }
-        {modifyMode && 
-          <button onClick={onClickAccUpdateHandler}>
-            작성완료
-          </button>
-        }
+         <h2 className={AccUpdateCSS.h2}> 수납내역 상세 조회 </h2>
       </div>
-      <div className={AccUpdateCSS.accSection}>
+          <div className={AccUpdateCSS.accSection}>
         <div className={AccUpdateCSS.accInfoDiv}>
           <table>
             <tbody>
@@ -215,6 +201,27 @@ function AccUpdate() {
             </tbody>
           </table>
         </div>
+      </div>
+      <div>
+        <button onClick={() => navigate(-1)}
+                  className={AccUpdateCSS.CancelBtn}
+        >
+          취소
+          </button>
+        {!modifyMode && 
+          <button onClick={onClickModifyModeHandler}
+          className={AccUpdateCSS.ModifyBtn}
+          >
+            작성하기
+            </button>
+        }
+        {modifyMode && 
+          <button onClick={onClickAccUpdateHandler}
+          className={AccUpdateCSS.RegistBtn}>
+            
+            작성완료
+          </button>
+        }
       </div>
     </div>
   );

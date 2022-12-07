@@ -1,8 +1,13 @@
 .subjectSection{
     display: flex;
     flex-direction: row;
+    margin-left: 150px;
+    margin-top: 30px;
 }
 
+.h2{
+    margin-left:150px;
+}
 .noticeInfoDiv{
     display: flex;
     width: 750px;
@@ -87,3 +92,90 @@
     width : 100%;
     border-radius: 5px;
 }
+
+
+.RegistBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 10px;  
+    margin-left: auto;
+    width:80px;
+    height:40px;
+    
+    
+}
+
+.RegistBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.RegistBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.ModifyBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 10px;  
+    margin-left: auto;
+    width:115px;
+    height:40px;
+}
+
+.ModifyBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.ModifyBtn:active{
+    position:relative;
+	top:1px;
+}
+
+
+.btnCancle{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 10px;  
+    margin-left: 10px;
+    margin-right: 10px;
+    width:115px;
+    height:40px;
+}
+
+.btnCancle:hover{
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  white;
+}
+
+
+.btnCancle:active{
+    position:relative;
+	top:1px;
+}
+

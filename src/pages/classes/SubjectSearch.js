@@ -78,19 +78,15 @@ function SubjectSearch() {
             navigate(`/ono/OpenClasses/search?value=${searchValue}`, { replace : false });
         }
     }
-    const onClickSearch = () => {
-        navigate(`/ono/OpenClasses/search?value=${searchValue}`, { replace : false });
-    }
+
     
     return (
         <>
         <div className={ SubjectManagementCSS.bodyDiv }>
             <div>
-            <h2>검색된 결과 : {value}</h2>
-            <button className={SubjectManagementCSS.btnSearch}
-             onClick = { () => onClickSearch()}>검색</button>
-               
-                 <input
+            <h2 className={ SubjectManagementCSS.h2}>검색된 결과 : {value}</h2>
+            <div className={SubjectManagementCSS.search}>
+                <input
                     className={ SubjectManagementCSS.InputStyle }
                     type="text"
                     placeholder="검색"
@@ -98,6 +94,8 @@ function SubjectSearch() {
                     onKeyUp={ onEnterKeyHandler }
                     onChange={ onSearchChangeHandler }
                 />
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></img>
+            </div>
             </div>            
             <table className={ SubjectManagementCSS.subjectTable }>
                 <colgroup>
@@ -138,21 +136,22 @@ function SubjectSearch() {
                     }
                 </tbody>                    
             </table>   
-            <div>            <button        
+            <div>
+            <button        
                     onClick={ () => navigate("/ono/OpenClasses/subjects") }
-                    className={SubjectManagementCSS.btnCancle}           
+                    className={SubjectManagementCSS.CancelBtn}           
             
                 >
                     돌아가기
                 </button>      
             <button
                     onClick={ onClickSubjectInsert }
-                    className={SubjectManagementCSS.btnRegist}> 
+                    className={SubjectManagementCSS.RegistBtn}> 
                 
-                    과목 등록
+                    등록
                 </button> 
-              
-        </div>
+                </div>
+       
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(subjectList) &&
             <button 
@@ -166,7 +165,8 @@ function SubjectSearch() {
             {pageNumber.map((num) => (
             <li key={num} onClick={() => setCurrentPage(num)}>
                 <button
-                    style={ currentPage === num ? {backgroundColor : 'orange' } : null}
+                    style={ currentPage === num ? 
+                        {color : '#2F65EB', textDecoration : 'underline'} : null}
                     className={ SubjectManagementCSS.pagingBtn }
                 >
                     {num}

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ClassHistoryListCSS from './ClassHistory.module.css';
 import ClassHistoryUpdateModal from "../../components/common/classHistory/ClassHistoryUpdateModal";
 import uuid from 'react-uuid';
@@ -68,7 +67,7 @@ function ClassHistoryList() {
                             <td>{ m.classStatus}</td>
                         <button onClick={() => {onClickUpdateHandler(m.classHistoryCode,
                            m.openClasses.classCode, m.classStatus,  m.startDate)}}
-                           className={ClassHistoryListCSS.btnModify}>수정</button>
+                           className={ClassHistoryListCSS.ModifyBtn}>수정</button>
                         </tr>
                     )) 
                     }

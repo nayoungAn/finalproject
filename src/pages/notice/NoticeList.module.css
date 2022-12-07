@@ -3,13 +3,43 @@
     flex-direction: column;
   
 }
+.h2{
+    margin-top:50px;
+}
 
 .noticeTable{
-    width: 900px;
+    width: 1100px;
     text-align: center;
     border-style:none;
     border-collapse: collapse;
 }
+
+.NoticeBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:17px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 10px;  
+    margin-left: auto;
+    width:80px;
+}
+
+.NoticeBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.NoticeBtn:active{
+    position:relative;
+	top:1px;
+}
+
 
 .buttonDiv{
     display: flex;
@@ -34,18 +64,19 @@
     border-top: 2px solid #2f59ca;
     border-bottom: 2px solid #2f59ca;
 }
-
 .pagingBtn{
     margin: 5px;
     border-radius: 25px;
+    border: 0;
+    outline: 0;
     background-color: white;
-    color: gray;
     font-weight: bold;
+    color:rgb(112, 112, 112);
 }
 
 .pagingBtn:hover{
     cursor: pointer;
-    background-color: burlywood;
+
 }
 
 .InputStyle {
@@ -56,21 +87,12 @@
     font-size: 14px;
 }
 .search{
+    float:right;
     position: relative;
     width: 200px;
-}
+    margin-top:0px;
+    margin-bottom: 20px;
 
-.InputStyle {
-    width: 100%;
-    border: 1px solid #bbb;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 14px;
-}
-.search{
-    margin-left: 630px;
-    position: relative;
-    width: 200px;
 }
 .search img {
     position : absolute;
@@ -80,7 +102,7 @@
     margin: 0;
   }
 
-.noticeHeader div {
+  .noticeHeader div {
     display: inline-block;
     flex-direction: row;
 }

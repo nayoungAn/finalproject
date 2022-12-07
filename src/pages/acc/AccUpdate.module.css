@@ -1,15 +1,24 @@
-.subjectSection{
-    border: 1px solid black;
+.accSection{
+    margin-top:50px;
+    margin-left:300px;
     display: flex;
     flex-direction: row;
 }
 
-.subjectInfoDiv{
-    display: flex;
-    width: 350px;
+.title{
+    width:50%;
+}
+.h2{
+    margin-top: 40px;
+    margin-right: 150px;
 }
 
-.subjectInfoInput {    
+.accInfoDiv{
+    display: flex;
+
+}
+
+.accInfoInput {    
     width: 80%;
     margin: 0;
     padding: 0;
@@ -18,7 +27,7 @@
     text-indent: 0.5em;
 }
 
-.subjectInfoDiv table {
+.accInfoDiv table {
     width: 100%;
 }
 
@@ -30,41 +39,88 @@
     resize: none;
 }
 
-.subjectButtonDiv{
-    display: flex;
-    justify-content: flex-end;
-}
-.subjectButtonDiv button{
-    margin: 5px;    
-    margin-top: 15px;
-    margin-bottom: 15px;
-    height: 25px;
-    width: 150px;
-    border-radius: 25px;
-    background-color: white;
+
+.RegistBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:13px;
+	padding:5px 20px;
     font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;  
+    width:100px;
+    height:30px;
+    
+    
 }
 
-.subjectImageDiv{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.RegistBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
 }
 
-.subjectImage{
-    margin-top: 5px;
-    width: 80%;
-    height: 90%;    
+
+.RegistBtn:active{
+    position:relative;
+	top:1px;
 }
 
-.subjectImageButton{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 150px;
-    border-radius: 25px;
-    background-color: white;
+.ModifyBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #3f6fe9;
+	cursor:pointer;
+	color:#3f6fe9;
+	font-size:13px;
+	padding:5px 20px;
     font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;
+    width:100px;
+    height:30px;
+}
+
+.ModifyBtn:hover{
+    background-color:#3f6fe9;
+    border:1px solid #3f6fe9;
+    color:  #fbfbfb;
+}
+
+
+.ModifyBtn:active{
+    position:relative;
+	top:1px;
+}
+
+.CancelBtn{
+    background-color:#ffffff;
+	border-radius:10px;
+	border:1px solid #666666;
+	cursor:pointer;
+	color:#666666;
+	font-size:13px;
+	padding:5px 20px;
+    font-weight: bold;
+    margin-top : 20px;  
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 370px;
+    width:80px;
+    height:30px;
+}
+
+.CancelBtn:hover{
+    background-color:#666666;
+    border:1px solid #666666;
+    color:  white;
+}
+
+
+.CancelBtn:active{
+    position:relative;
+	top:1px;
 }

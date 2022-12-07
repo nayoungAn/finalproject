@@ -195,15 +195,16 @@ return (
           </table>
           
           )}
-            <button  
-                  onClick={onClickUpdateHandler}
-                  className={ClassHistoryCSS.btnRegist}>수정</button>
+           
                 <button
                   onClick={() => setClassHistoryUpdateModal(false)}
-                  className={ClassHistoryCSS.btnCancle}
+                  className={ClassHistoryCSS.CancelBtn}
                 >
                   돌아가기
                 </button>
+                <button  
+                  onClick={onClickUpdateHandler}
+                  className={ClassHistoryCSS.ModifyBtn}>수정</button>
         </div>
       
       </div>
