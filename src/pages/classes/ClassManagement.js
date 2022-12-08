@@ -107,7 +107,7 @@ function ClassManagement() {
                         >
                             <td>{ c.classCode }</td>
                             <td>{ c.member.memberName }</td>
-                            <td>{ c.className }</td>
+                            <td>{ c.className } {c.classCircuit}</td>
                            <td>{c.classesScheduleList.map((d) => d.dayName).reduce((ac, v) => ac.includes(v) ? ac : [...ac, v], [])
                             .sort((a, b) => orderBy.indexOf(a) - orderBy.indexOf(b)) + ""} </td> 
                             <td>{ c.classRoom }</td>
