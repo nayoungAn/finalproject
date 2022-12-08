@@ -118,7 +118,7 @@ function StudentQna() {
                                         <td></td>
                                         <td>{ qna?.reList?.reTitle }</td>
                                         <td>{ qna?.reList?.member.memberName }</td>
-                                        <td>{ qna?.reList?.reDate.split(" 00:00:00",1) }</td>
+                                        <td>{ qna?.reList?.reDate?.split(" 00:00:00",1) }</td>
                                        
                                  </tr>
                                  </>    

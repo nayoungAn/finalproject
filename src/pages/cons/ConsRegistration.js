@@ -45,15 +45,15 @@ function ConsRegistration(){
             form : formData
         }));
 
-        alert('과목이 등록되었습니다.');
-        //navigate("/ono/cons/consMain", { replace : true });
+        alert('상담이 등록되었습니다.');
+        navigate('/ono/Cons/consMain', { replace : true });
         window.location.reload();
 
     }
 
     return (
             <div>
-            <h2 className={ ConsRegistrationCSS.h2}> 공지사항 등록</h2>
+            <h2 className={ ConsRegistrationCSS.h2}> 등록상담 등록</h2>
 
             <div className={ ConsRegistrationCSS.subjectSection }>
                 <div className={ ConsRegistrationCSS.subjectInfoDiv }>
@@ -138,7 +138,7 @@ function ConsRegistration(){
                                         <textarea
                                             name="consDescription"  
                                             placeholder='내용'
-                                            className={ ConsRegistrationCSS.subjectInfoInput }
+                                            className={ ConsRegistrationCSS.textAreaStyle }
                                             onChange={ onChangeHandler } 
                                             /> 
                                     </label>
