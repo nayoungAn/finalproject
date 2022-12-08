@@ -76,7 +76,7 @@ function App() {
     <Routes>
       <Route path="/" element={ <Login/>}/>
       <Route path="findmeminfo" element= { <FindMemLayout/>}>
-        <Route index element={ <Navigate to= "/findmeminfo/find-pwd" replace/> }/>
+        <Route index element={ <Navigate to= "/findmeminfo/find-id" replace/> }/>
         <Route path="find-id" element={ <FindId/>}/>
         <Route path="find-pwd" element={ <FindPwd/>}/>
       </Route>

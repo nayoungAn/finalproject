@@ -128,7 +128,7 @@ export const callFindPwdAPI = ({form}) => {
                 confirmButtonText: "확인",
             })
             .then(() => {
-              
+                window.location.href = "/";
              })
         } else{
             swal.fire({
