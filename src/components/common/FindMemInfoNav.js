@@ -9,7 +9,7 @@ function FindMemInfoNav(){
             <div className={FindMemInfoCSS.FindNavDiv}>
                  <ul className={FindMemInfoCSS.FindNavUl} >
                     <li><NavLink to="/findmeminfo/find-id">아이디 찾기</NavLink></li>
-                    <li><NavLink to="/findmeminfo/find-pwd">비밀번호 찾기</NavLink></li>
+                    <li><NavLink to="/findmeminfo/find-pwd">비밀번호 발급</NavLink></li>
                 </ul>
             </div>
         </>
