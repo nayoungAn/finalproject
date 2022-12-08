@@ -16,7 +16,8 @@ function QnaRegistration() {
     const [ form, setForm ] = useState({
         mtmCode : qnaDetail.mtmCode,
         reTitle : '',
-        reContent :'', 
+        reContent :'',
+        reDate : ''
     });
 
 

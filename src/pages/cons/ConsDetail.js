@@ -86,7 +86,7 @@ function ConsDetail() {
         dispatch(callConsUpdateAPI({
             form : formData
         }));
-        alert('과목이 수정되었습니다.');
+        alert('상담이 수정되었습니다.');
         navigate('/ono/Cons/consMain', { replace : true });
     }
 
@@ -100,7 +100,7 @@ function ConsDetail() {
             console.log(consCode);
             console.log("데이터보기" , deleteCons);
             
-            alert('과목이 삭제되었습니다.');  
+            alert('상담이 삭제되었습니다.');  
 
             navigate('/ono/Cons/consMain', { replace : true });
     }

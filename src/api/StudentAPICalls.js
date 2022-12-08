@@ -134,6 +134,7 @@ export const callQnaRegsistAPI = ({form}) => {
                 classes : {
                     classCode : form.classCode
                 },
+                mtmCode : form.mtmCode,
                 mtmTitle : form.mtmTitle,
                 mtmDescription : form.mtmDescription,
             })
